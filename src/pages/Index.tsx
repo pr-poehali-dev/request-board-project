@@ -14,14 +14,16 @@ interface Request {
   rating: number;
   responses: number;
   description: string;
+  city: string;
+  delivery: boolean;
 }
 
 const categories = [
-  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-orange-cyan' },
-  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-cyan-yellow' },
-  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-orange-yellow' },
-  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-orange-cyan' },
-  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-cyan-yellow' },
+  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-instagram' },
+  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-purple-pink' },
+  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-orange-pink' },
+  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-blue-purple' },
+  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-instagram' },
 ];
 
 const mockRequests: Request[] = [
@@ -33,7 +35,9 @@ const mockRequests: Request[] = [
     author: 'Александр',
     rating: 4.8,
     responses: 12,
-    description: 'Нужен iPhone 15 Pro в хорошем состоянии, желательно с гарантией'
+    description: 'Нужен iPhone 15 Pro в хорошем состоянии, желательно с гарантией',
+    city: 'Москва',
+    delivery: true
   },
   {
     id: 2,
@@ -43,7 +47,9 @@ const mockRequests: Request[] = [
     author: 'Мария',
     rating: 4.9,
     responses: 8,
-    description: 'Ремонт квартиры, необходим опытный специалист'
+    description: 'Ремонт квартиры, необходим опытный специалист',
+    city: 'Санкт-Петербург',
+    delivery: false
   },
   {
     id: 3,
@@ -53,7 +59,9 @@ const mockRequests: Request[] = [
     author: 'Дмитрий',
     rating: 4.7,
     responses: 15,
-    description: 'Интересует MacBook Air на M2, новый или б/у в отличном состоянии'
+    description: 'Интересует MacBook Air на M2, новый или б/у в отличном состоянии',
+    city: 'Казань',
+    delivery: true
   },
   {
     id: 4,
@@ -63,20 +71,27 @@ const mockRequests: Request[] = [
     author: 'Елена',
     rating: 5.0,
     responses: 23,
-    description: 'Нужен репетитор для подготовки к IELTS, уровень Intermediate'
+    description: 'Нужен репетитор для подготовки к IELTS, уровень Intermediate',
+    city: 'Москва',
+    delivery: false
   }
 ];
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('requests');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const filteredRequests = selectedCategory 
+    ? mockRequests.filter(req => req.category === selectedCategory)
+    : mockRequests;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-cyan-50 to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
       <nav className="bg-white border-b sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-xl bg-gradient-orange-cyan flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-gradient-instagram flex items-center justify-center">
                 <Icon name="MessageSquare" className="text-white" size={24} />
               </div>
               <span className="text-2xl font-bold text-gray-800">Запросы</span>
@@ -117,7 +132,7 @@ const Index = () => {
               </Button>
             </div>
 
-            <Button className="bg-gradient-orange-cyan text-white hover:opacity-90 font-semibold shadow-lg">
+            <Button className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg">
               <Icon name="Plus" size={18} className="mr-2" />
               Создать запрос
             </Button>
@@ -178,8 +193,29 @@ const Index = () => {
               </p>
             </div>
 
+            <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
+              <Button
+                variant={selectedCategory === null ? 'default' : 'outline'}
+                onClick={() => setSelectedCategory(null)}
+                className="whitespace-nowrap font-medium"
+              >
+                Все
+              </Button>
+              {categories.map((category) => (
+                <Button
+                  key={category.name}
+                  variant={selectedCategory === category.name ? 'default' : 'outline'}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className="whitespace-nowrap font-medium"
+                >
+                  <Icon name={category.icon as any} size={16} className="mr-2" />
+                  {category.name}
+                </Button>
+              ))}
+            </div>
+
             <div className="grid gap-4">
-              {mockRequests.map((request, index) => (
+              {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
                   className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
@@ -188,13 +224,23 @@ const Index = () => {
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Badge className="bg-gradient-orange-cyan text-white border-0">
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          <Badge className="bg-gradient-instagram text-white border-0">
                             {request.category}
                           </Badge>
                           <Badge variant="outline" className="font-semibold text-gray-700">
                             {request.budget}
                           </Badge>
+                          <Badge variant="secondary" className="font-medium">
+                            <Icon name="MapPin" size={12} className="mr-1" />
+                            {request.city}
+                          </Badge>
+                          {request.delivery && (
+                            <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50">
+                              <Icon name="Truck" size={12} className="mr-1" />
+                              Доставка
+                            </Badge>
+                          )}
                         </div>
                         <CardTitle className="text-2xl mb-2">{request.title}</CardTitle>
                         <CardDescription className="text-base">
@@ -204,10 +250,10 @@ const Index = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-2">
-                          <Avatar className="w-10 h-10 bg-gradient-cyan-yellow">
+                          <Avatar className="w-10 h-10 bg-gradient-purple-pink">
                             <AvatarFallback className="bg-transparent text-white font-semibold">
                               {request.author[0]}
                             </AvatarFallback>
@@ -227,10 +273,16 @@ const Index = () => {
                         </div>
                       </div>
 
-                      <Button className="bg-secondary hover:bg-secondary/90 text-white font-semibold">
-                        Откликнуться
-                        <Icon name="Send" size={16} className="ml-2" />
-                      </Button>
+                      <div className="flex gap-2 w-full sm:w-auto">
+                        <Button variant="outline" className="flex-1 sm:flex-none font-semibold">
+                          <Icon name="Eye" size={16} className="mr-2" />
+                          Смотреть
+                        </Button>
+                        <Button className="flex-1 sm:flex-none bg-secondary hover:bg-secondary/90 text-white font-semibold">
+                          Откликнуться
+                          <Icon name="Send" size={16} className="ml-2" />
+                        </Button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -248,6 +300,10 @@ const Index = () => {
                   key={category.name}
                   className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => {
+                    setSelectedCategory(category.name);
+                    setActiveTab('requests');
+                  }}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4">
@@ -268,12 +324,12 @@ const Index = () => {
 
         {activeTab === 'my-requests' && (
           <div className="space-y-6 animate-fade-in text-center py-16">
-            <div className="w-24 h-24 mx-auto bg-gradient-orange-cyan rounded-full flex items-center justify-center">
+            <div className="w-24 h-24 mx-auto bg-gradient-instagram rounded-full flex items-center justify-center">
               <Icon name="FileText" size={48} className="text-white" />
             </div>
             <h2 className="text-3xl font-bold text-gray-800">Мои запросы</h2>
             <p className="text-gray-600 text-lg">Здесь будут отображаться ваши запросы</p>
-            <Button className="bg-gradient-orange-cyan text-white hover:opacity-90 font-semibold shadow-lg">
+            <Button className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg">
               <Icon name="Plus" size={18} className="mr-2" />
               Создать первый запрос
             </Button>
@@ -284,7 +340,7 @@ const Index = () => {
           <div className="space-y-6 animate-fade-in">
             <Card className="max-w-2xl mx-auto">
               <CardHeader className="text-center">
-                <Avatar className="w-24 h-24 mx-auto mb-4 bg-gradient-orange-cyan">
+                <Avatar className="w-24 h-24 mx-auto mb-4 bg-gradient-instagram">
                   <AvatarFallback className="bg-transparent text-white text-3xl font-bold">
                     А
                   </AvatarFallback>
@@ -294,17 +350,17 @@ const Index = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="p-4 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl">
+                  <div className="p-4 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl">
                     <Icon name="FileText" size={24} className="mx-auto mb-2 text-primary" />
                     <p className="text-2xl font-bold text-gray-800">5</p>
                     <p className="text-sm text-gray-600">Запросов</p>
                   </div>
-                  <div className="p-4 bg-gradient-to-br from-cyan-100 to-cyan-50 rounded-xl">
+                  <div className="p-4 bg-gradient-to-br from-pink-100 to-pink-50 rounded-xl">
                     <Icon name="MessageCircle" size={24} className="mx-auto mb-2 text-secondary" />
                     <p className="text-2xl font-bold text-gray-800">12</p>
                     <p className="text-sm text-gray-600">Откликов</p>
                   </div>
-                  <div className="p-4 bg-gradient-to-br from-yellow-100 to-yellow-50 rounded-xl">
+                  <div className="p-4 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl">
                     <Icon name="Star" size={24} className="mx-auto mb-2 text-accent" />
                     <p className="text-2xl font-bold text-gray-800">4.8</p>
                     <p className="text-sm text-gray-600">Рейтинг</p>
