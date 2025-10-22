@@ -34,11 +34,11 @@ interface Offer {
 }
 
 const categories = [
-  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-instagram' },
-  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-purple-pink' },
-  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-orange-pink' },
-  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-blue-purple' },
-  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-instagram' },
+  { name: 'Электроника', icon: 'Smartphone', color: 'bg-slate-700' },
+  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gray-700' },
+  { name: 'Услуги', icon: 'Wrench', color: 'bg-zinc-700' },
+  { name: 'Недвижимость', icon: 'Home', color: 'bg-neutral-700' },
+  { name: 'Транспорт', icon: 'Car', color: 'bg-stone-700' },
 ];
 
 const mockRequests: Request[] = [
