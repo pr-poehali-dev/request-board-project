@@ -476,6 +476,43 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
+            <div className="hidden md:flex items-center space-x-3 flex-1 max-w-2xl mx-6">
+              <div className="relative flex-1">
+                <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Поиск объявлений..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    <Icon name="X" size={16} />
+                  </button>
+                )}
+              </div>
+              
+              <div className="relative">
+                <select
+                  value={selectedCategory || ''}
+                  onChange={(e) => setSelectedCategory(e.target.value || null)}
+                  className="appearance-none pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer min-w-[160px]"
+                >
+                  <option value="">Все категории</option>
+                  {categories.map((category) => (
+                    <option key={category.name} value={category.name}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+                <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+              </div>
+            </div>
+
             <div className="hidden md:flex space-x-1">
               <Button 
                 variant={activeTab === 'requests' ? 'default' : 'ghost'}
@@ -652,8 +689,8 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="bg-white border-b px-3 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto">
+      <div className="md:hidden bg-white border-b px-3 py-3">
+        <div className="space-y-2">
           <div className="relative">
             <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
@@ -672,69 +709,29 @@ const Index = () => {
               </button>
             )}
           </div>
+          
+          <div className="relative">
+            <select
+              value={selectedCategory || ''}
+              onChange={(e) => setSelectedCategory(e.target.value || null)}
+              className="appearance-none w-full pl-4 pr-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
+            >
+              <option value="">Все категории</option>
+              {categories.map((category) => (
+                <option key={category.name} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+          </div>
         </div>
       </div>
 
       <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8">
         {activeTab === 'requests' && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
-            <div className="text-center mb-4 sm:mb-8">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-2 sm:mb-3">
-                Найди то, что ищешь
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Создай запрос и получи предложения от продавцов
-              </p>
-            </div>
-
-            <div className="mb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Популярные категории</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                {popularCategories.map((category, index) => {
-                  const count = getCategoryCount(category.name);
-                  return (
-                    <Card
-                      key={category.name}
-                      className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                      onClick={() => {
-                        setSelectedCategory(category.name);
-                      }}
-                    >
-                      <CardContent className="p-6">
-                        <div className="flex items-start space-x-4">
-                          <div className={`w-16 h-16 rounded-2xl ${category.color} flex items-center justify-center flex-shrink-0`}>
-                            <Icon name={category.icon as any} size={32} className="text-white" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-xl font-bold text-gray-800 mb-2">{category.name}</h3>
-                            <div className="space-y-1.5">
-                              <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-600 flex items-center">
-                                  <Icon name="Search" size={14} className="mr-1.5 text-blue-500" />
-                                  Запросы
-                                </span>
-                                <span className="font-bold text-gray-800">{count.requestCount}</span>
-                              </div>
-                              <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-600 flex items-center">
-                                  <Icon name="Package" size={14} className="mr-1.5 text-green-500" />
-                                  Предложения
-                                </span>
-                                <span className="font-bold text-gray-800">{count.offerCount}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <Icon name="ChevronRight" size={20} className="text-gray-400 flex-shrink-0" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
               <Button
                 variant={selectedCategory === null ? 'default' : 'outline'}
                 onClick={() => setSelectedCategory(null)}
@@ -889,63 +886,7 @@ const Index = () => {
 
         {activeTab === 'offers' && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
-            <div className="text-center mb-4 sm:mb-8">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-2 sm:mb-3">
-                Предложения
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Товары и услуги от продавцов
-              </p>
-            </div>
-
-            <div className="mb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Популярные категории</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                {popularCategories.map((category, index) => {
-                  const count = getCategoryCount(category.name);
-                  return (
-                    <Card
-                      key={category.name}
-                      className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                      onClick={() => {
-                        setSelectedCategory(category.name);
-                      }}
-                    >
-                      <CardContent className="p-6">
-                        <div className="flex items-start space-x-4">
-                          <div className={`w-16 h-16 rounded-2xl ${category.color} flex items-center justify-center flex-shrink-0`}>
-                            <Icon name={category.icon as any} size={32} className="text-white" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-xl font-bold text-gray-800 mb-2">{category.name}</h3>
-                            <div className="space-y-1.5">
-                              <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-600 flex items-center">
-                                  <Icon name="Search" size={14} className="mr-1.5 text-blue-500" />
-                                  Запросы
-                                </span>
-                                <span className="font-bold text-gray-800">{count.requestCount}</span>
-                              </div>
-                              <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-600 flex items-center">
-                                  <Icon name="Package" size={14} className="mr-1.5 text-green-500" />
-                                  Предложения
-                                </span>
-                                <span className="font-bold text-gray-800">{count.offerCount}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <Icon name="ChevronRight" size={20} className="text-gray-400 flex-shrink-0" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
               <Button
                 variant={selectedCategory === null ? 'default' : 'outline'}
                 onClick={() => setSelectedCategory(null)}
