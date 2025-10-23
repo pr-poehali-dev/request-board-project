@@ -44,20 +44,20 @@ const cities = [
 ];
 
 const categories = [
-  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-to-br from-yellow-500 via-amber-600 to-orange-600', popular: true },
+  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600', popular: true },
   { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-to-br from-pink-500 via-rose-500 to-red-500', popular: true },
   { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500', popular: true },
-  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500', popular: true },
-  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500', popular: true },
+  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500', popular: true },
+  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500', popular: true },
   { name: 'Мебель', icon: 'Armchair', color: 'bg-gradient-to-br from-amber-600 via-orange-600 to-red-600', popular: false },
-  { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-to-br from-yellow-400 via-amber-400 to-orange-400', popular: false },
-  { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-to-br from-yellow-500 via-amber-500 to-orange-600', popular: false },
+  { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-to-br from-sky-400 via-cyan-400 to-blue-400', popular: false },
+  { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-to-br from-lime-500 via-green-500 to-emerald-600', popular: false },
   { name: 'Красота', icon: 'Sparkles', color: 'bg-gradient-to-br from-fuchsia-500 via-pink-500 to-rose-500', popular: false },
   { name: 'Животные', icon: 'Dog', color: 'bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600', popular: false },
-  { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500', popular: false },
+  { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500', popular: false },
   { name: 'Книги', icon: 'BookOpen', color: 'bg-gradient-to-br from-slate-600 via-gray-600 to-zinc-600', popular: false },
   { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-to-br from-yellow-600 via-orange-600 to-red-600', popular: false },
-  { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-to-br from-yellow-600 via-amber-600 to-orange-700', popular: true },
+  { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700', popular: true },
   { name: 'Еда и напитки', icon: 'Coffee', color: 'bg-gradient-to-br from-rose-500 via-red-500 to-orange-500', popular: false },
 ];
 
@@ -711,7 +711,7 @@ const Index = () => {
                 >
                   <Icon name="MessageCircle" size={22} />
                   {dialogs.some(d => d.unread > 0) && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-orange-400 to-amber-400 rounded-full shadow-lg"></span>
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full shadow-lg"></span>
                   )}
                 </button>
               </div>
@@ -773,7 +773,7 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="relative bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white hover:from-orange-600 hover:via-amber-600 hover:to-yellow-600 font-bold shadow-lg hover:shadow-2xl transition-all duration-300 px-5 h-10 rounded-full hover:scale-105 border-2 border-white/30 overflow-hidden group"
+                className="relative bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 font-bold shadow-lg hover:shadow-2xl transition-all duration-300 px-5 h-10 rounded-full hover:scale-105 border-2 border-white/30 overflow-hidden group"
                 title="Создать объявление"
               >
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -925,7 +925,7 @@ const Index = () => {
                   setSelectedCategory(category.name);
                   setActiveTab('requests');
                 }}
-                className="group relative overflow-hidden rounded-2xl aspect-square border border-amber-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-amber-200"
+                className="group relative overflow-hidden rounded-2xl aspect-square border border-indigo-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-indigo-200"
               >
                 <img 
                   src={category.image} 
@@ -933,14 +933,14 @@ const Index = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
-                <div className="absolute inset-0 bg-amber-900/20"></div>
+                <div className="absolute inset-0 bg-indigo-900/20"></div>
                 
                 <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-5">
                   <div className="flex items-start justify-between">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-black/40 backdrop-blur-sm flex items-center justify-center text-white shadow-xl">
                       <Icon name={category.icon as any} size={32} />
                     </div>
-                    <span className="text-[10px] sm:text-xs font-bold text-white bg-orange-500 px-2.5 py-1 rounded-full shadow-lg">
+                    <span className="text-[10px] sm:text-xs font-bold text-white bg-emerald-500 px-2.5 py-1 rounded-full shadow-lg">
                       {category.trend}
                     </span>
                   </div>
@@ -1097,7 +1097,7 @@ const Index = () => {
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
-                  className="border border-amber-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-amber-200 transition-all duration-300 cursor-pointer"
+                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-indigo-200 transition-all duration-300 cursor-pointer"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1112,27 +1112,27 @@ const Index = () => {
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
                             <Badge className={`${
-                              request.category === 'Электроника' ? 'bg-gradient-to-r from-yellow-500 to-orange-600' :
+                              request.category === 'Электроника' ? 'bg-gradient-to-r from-blue-500 to-indigo-600' :
                               request.category === 'Одежда' ? 'bg-gradient-to-r from-pink-500 to-rose-500' :
                               request.category === 'Услуги' ? 'bg-gradient-to-r from-orange-500 to-yellow-500' :
-                              request.category === 'Недвижимость' ? 'bg-gradient-to-r from-orange-500 to-amber-500' :
-                              request.category === 'Транспорт' ? 'bg-gradient-to-r from-orange-500 to-amber-500' :
-                              'bg-gradient-to-r from-yellow-500 to-orange-500'
+                              request.category === 'Недвижимость' ? 'bg-gradient-to-r from-emerald-500 to-teal-500' :
+                              request.category === 'Транспорт' ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500' :
+                              'bg-gradient-to-r from-blue-500 to-purple-500'
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-amber-700 border-amber-200 bg-amber-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-indigo-700 border-indigo-200 bg-indigo-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {request.city}
                             </Badge>
                             {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-gradient-to-r from-orange-50 to-amber-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-gradient-to-r from-orange-50 to-amber-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-gradient-to-r from-violet-50 to-purple-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
@@ -1204,7 +1204,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(`request-${request.id}`) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-amber-200 hover:border-amber-400 hover:bg-amber-50'}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(`request-${request.id}`) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
                           >
                             <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(`request-${request.id}`) ? 'fill-primary' : ''}`} />
                             <span className="hidden sm:inline">{favorites.includes(`request-${request.id}`) ? 'В избранном' : 'В избранное'}</span>
@@ -1216,7 +1216,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-amber-200 hover:border-amber-400 hover:bg-amber-50"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
@@ -1278,7 +1278,7 @@ const Index = () => {
               {filteredOffers.map((offer, index) => (
                 <Card 
                   key={offer.id} 
-                  className="border border-amber-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-amber-200 transition-all duration-300 cursor-pointer"
+                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-indigo-200 transition-all duration-300 cursor-pointer"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1302,18 +1302,18 @@ const Index = () => {
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {offer.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-amber-700 border-amber-200 bg-amber-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-indigo-700 border-indigo-200 bg-indigo-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {offer.city}
                             </Badge>
                             {offer.delivery && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-gradient-to-r from-orange-50 to-amber-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {offer.exchange && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-gradient-to-r from-orange-50 to-amber-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-gradient-to-r from-violet-50 to-purple-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
@@ -1397,7 +1397,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-amber-200 hover:border-amber-400 hover:bg-amber-50"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
