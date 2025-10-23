@@ -895,9 +895,9 @@ const Index = () => {
                             }
                           }}
                           variant="outline" 
-                          className={`font-semibold text-sm ${favorites.includes(request.id) ? 'text-red-500 border-red-500' : ''}`}
+                          className={`font-semibold text-sm ${favorites.includes(request.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
                         >
-                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(request.id) ? 'fill-red-500' : ''}`} />
+                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(request.id) ? 'fill-primary' : ''}`} />
                           {favorites.includes(request.id) ? 'В избранном' : 'В избранное'}
                         </Button>
                         <Button 
@@ -1047,9 +1047,9 @@ const Index = () => {
                             }
                           }}
                           variant="outline" 
-                          className={`font-semibold text-sm ${favorites.includes(offer.id) ? 'text-red-500 border-red-500' : ''}`}
+                          className={`font-semibold text-sm ${favorites.includes(offer.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
                         >
-                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(offer.id) ? 'fill-red-500' : ''}`} />
+                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(offer.id) ? 'fill-primary' : ''}`} />
                           {favorites.includes(offer.id) ? 'В избранном' : 'В избранное'}
                         </Button>
                         <Button 
@@ -1156,9 +1156,9 @@ const Index = () => {
                             setFavorites(favorites.filter(id => id !== request.id));
                           }}
                           variant="outline" 
-                          className="text-red-500 border-red-500 font-semibold text-sm"
+                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-sm"
                         >
-                          <Icon name="Heart" size={14} className="mr-1.5 fill-red-500" />
+                          <Icon name="X" size={14} className="mr-1.5" />
                           Удалить из избранного
                         </Button>
                         <Button 
@@ -1220,9 +1220,9 @@ const Index = () => {
                             setFavorites(favorites.filter(id => id !== offer.id));
                           }}
                           variant="outline" 
-                          className="text-red-500 border-red-500 font-semibold text-sm"
+                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-sm"
                         >
-                          <Icon name="Heart" size={14} className="mr-1.5 fill-red-500" />
+                          <Icon name="X" size={14} className="mr-1.5" />
                           Удалить из избранного
                         </Button>
                         <Button 
@@ -1564,7 +1564,13 @@ const Index = () => {
 
                   <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
                     {currentDialog.relatedItem && (
-                      <div className="mb-4 bg-white rounded-xl border-2 border-primary/20 p-4 shadow-sm">
+                      <div 
+                        onClick={() => {
+                          setSelectedItem(currentDialog.relatedItem!);
+                          setIsViewModalOpen(true);
+                        }}
+                        className="mb-4 bg-white rounded-xl border-2 border-primary/20 p-4 shadow-sm cursor-pointer hover:border-primary/40 hover:shadow-md transition-all"
+                      >
                         <div className="flex items-center gap-2 mb-2">
                           <Icon name="Info" size={16} className="text-primary" />
                           <p className="text-xs font-semibold text-gray-600">Обсуждаемое объявление</p>
