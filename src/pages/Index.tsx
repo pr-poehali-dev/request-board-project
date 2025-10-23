@@ -476,40 +476,47 @@ const Index = () => {
                 <Icon name="Package" size={18} className="mr-2" />
                 Предложения
               </Button>
-              {isAuthenticated && (
-                <Button 
-                  variant={activeTab === 'profile' ? 'default' : 'ghost'}
-                  onClick={() => setActiveTab('profile')}
-                  className="font-medium"
-                >
-                  <Avatar className="w-5 h-5 mr-2 bg-gradient-instagram">
-                    {avatarPreview ? (
-                      <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
-                    ) : (
-                      <AvatarFallback className="bg-transparent text-white text-xs font-bold">
-                        {profileData.name.charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    )}
-                  </Avatar>
-                  Профиль
-                </Button>
-              )}
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <Button
-                variant={activeTab === 'favorites' ? 'default' : 'ghost'}
-                onClick={() => setActiveTab('favorites')}
+              <Button 
+                variant={activeTab === 'categories' ? 'default' : 'ghost'}
+                onClick={() => setActiveTab('categories')}
                 className="font-medium"
               >
-                <Icon name="Heart" size={18} className="mr-2" />
-                <span className="hidden sm:inline">Избранное</span>
-                {favorites.length > 0 && (
-                  <span className="ml-2 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
-                    {favorites.length}
-                  </span>
-                )}
+                <Icon name="FolderOpen" size={18} className="mr-2" />
+                Категории
               </Button>
+              {isAuthenticated && (
+                <>
+                  <Button
+                    variant={activeTab === 'favorites' ? 'default' : 'ghost'}
+                    onClick={() => setActiveTab('favorites')}
+                    className="font-medium"
+                  >
+                    <Icon name="Heart" size={18} className="mr-2" />
+                    <span className="hidden sm:inline">Избранное</span>
+                    {favorites.length > 0 && (
+                      <span className="ml-2 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                        {favorites.length}
+                      </span>
+                    )}
+                  </Button>
+                  <Button 
+                    variant={activeTab === 'profile' ? 'default' : 'ghost'}
+                    onClick={() => setActiveTab('profile')}
+                    className="font-medium"
+                  >
+                    <Avatar className="w-5 h-5 mr-2 bg-gradient-instagram">
+                      {avatarPreview ? (
+                        <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                      ) : (
+                        <AvatarFallback className="bg-transparent text-white text-xs font-bold">
+                          {profileData.name.charAt(0).toUpperCase()}
+                        </AvatarFallback>
+                      )}
+                    </Avatar>
+                    Профиль
+                  </Button>
+                </>
+              )}
             </div>
             
             {isAuthenticated && (
@@ -567,7 +574,7 @@ const Index = () => {
       </nav>
 
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50 shadow-lg">
-        <div className={`grid ${isAuthenticated ? 'grid-cols-4' : 'grid-cols-3'} gap-1 p-2`}>
+        <div className={`grid ${isAuthenticated ? 'grid-cols-5' : 'grid-cols-3'} gap-1 p-2`}>
           <button 
             onClick={() => setActiveTab('requests')}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
@@ -587,32 +594,43 @@ const Index = () => {
             <span className="text-xs mt-1">Предложения</span>
           </button>
           <button 
-            onClick={() => setActiveTab('favorites')}
+            onClick={() => setActiveTab('categories')}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
-              activeTab === 'favorites' ? 'bg-primary text-white' : 'text-gray-600'
+              activeTab === 'categories' ? 'bg-primary text-white' : 'text-gray-600'
             }`}
           >
-            <Icon name="Heart" size={20} />
-            <span className="text-xs mt-1">Избранное</span>
+            <Icon name="FolderOpen" size={20} />
+            <span className="text-xs mt-1">Категории</span>
           </button>
           {isAuthenticated && (
-            <button 
-              onClick={() => setActiveTab('profile')}
-              className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
-                activeTab === 'profile' ? 'bg-primary text-white' : 'text-gray-600'
-              }`}
-            >
-              <Avatar className="w-5 h-5 bg-gradient-instagram">
-                {avatarPreview ? (
-                  <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
-                ) : (
-                  <AvatarFallback className="bg-transparent text-white text-xs font-bold">
-                    {profileData.name.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                )}
-              </Avatar>
-              <span className="text-xs mt-1">Профиль</span>
-            </button>
+            <>
+              <button 
+                onClick={() => setActiveTab('favorites')}
+                className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
+                  activeTab === 'favorites' ? 'bg-primary text-white' : 'text-gray-600'
+                }`}
+              >
+                <Icon name="Heart" size={20} />
+                <span className="text-xs mt-1">Избранное</span>
+              </button>
+              <button 
+                onClick={() => setActiveTab('profile')}
+                className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
+                  activeTab === 'profile' ? 'bg-primary text-white' : 'text-gray-600'
+                }`}
+              >
+                <Avatar className="w-5 h-5 bg-gradient-instagram">
+                  {avatarPreview ? (
+                    <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                  ) : (
+                    <AvatarFallback className="bg-transparent text-white text-xs font-bold">
+                      {profileData.name.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  )}
+                </Avatar>
+                <span className="text-xs mt-1">Профиль</span>
+              </button>
+            </>
           )}
         </div>
       </div>
@@ -630,17 +648,7 @@ const Index = () => {
             </div>
 
             <div className="mb-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Популярные категории</h2>
-                <Button 
-                  variant="ghost" 
-                  onClick={() => setActiveTab('categories')}
-                  className="text-primary font-semibold"
-                >
-                  Все категории
-                  <Icon name="ChevronRight" size={16} className="ml-1" />
-                </Button>
-              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Популярные категории</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
                 {popularCategories.map((category, index) => {
                   const count = getCategoryCount(category.name);
@@ -828,17 +836,7 @@ const Index = () => {
             </div>
 
             <div className="mb-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Популярные категории</h2>
-                <Button 
-                  variant="ghost" 
-                  onClick={() => setActiveTab('categories')}
-                  className="text-primary font-semibold"
-                >
-                  Все категории
-                  <Icon name="ChevronRight" size={16} className="ml-1" />
-                </Button>
-              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Популярные категории</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
                 {popularCategories.map((category, index) => {
                   const count = getCategoryCount(category.name);
