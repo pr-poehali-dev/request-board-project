@@ -616,14 +616,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white border-b sticky top-0 z-50 shadow-sm">
+      <nav className="bg-gradient-to-r from-gray-900 to-gray-800 border-b border-gray-700 sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
             <div className="flex items-center space-x-2 flex-shrink-0">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-orange-pink flex items-center justify-center">
                 <Icon name="MessageSquare" className="text-white" size={20} />
               </div>
-              <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
+              <span className="text-lg sm:text-2xl font-bold text-white">Доска запросов</span>
             </div>
 
             <div className="hidden md:flex flex-1 max-w-xl">
@@ -634,12 +634,12 @@ const Index = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Поиск объявлений..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-600 bg-gray-800 text-white placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300"
                   >
                     <Icon name="X" size={16} />
                   </button>
@@ -649,10 +649,10 @@ const Index = () => {
 
             <div className="flex items-center space-x-3 flex-shrink-0">
             {isAuthenticated && (
-              <div className="flex items-center space-x-1 text-gray-600">
+              <div className="flex items-center space-x-1 text-gray-300">
                 <button 
                   onClick={() => setActiveTab('favorites')}
-                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="relative p-2 hover:bg-gray-700 rounded-lg transition-colors"
                   title="Избранное"
                 >
                   <Icon name="Heart" size={22} />
@@ -664,7 +664,7 @@ const Index = () => {
                 </button>
                 <button 
                   onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="relative p-2 hover:bg-gray-700 rounded-lg transition-colors"
                   title="Уведомления"
                 >
                   <Icon name="Bell" size={22} />
@@ -676,7 +676,7 @@ const Index = () => {
                 </button>
                 <button 
                   onClick={() => setIsChatOpen(!isChatOpen)} 
-                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="relative p-2 hover:bg-gray-700 rounded-lg transition-colors"
                   title="Сообщения"
                 >
                   <Icon name="MessageCircle" size={22} />
@@ -687,13 +687,13 @@ const Index = () => {
               </div>
             )}
 
-            <div className="h-6 w-px bg-gray-300"></div>
+            <div className="h-6 w-px bg-gray-600"></div>
 
-            <div className="flex items-center bg-gray-100 rounded p-0.5">
+            <div className="flex items-center bg-gray-700 rounded p-0.5">
               <button
                 onClick={() => setLanguage('ru')}
                 className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
-                  language === 'ru' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                  language === 'ru' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-300 hover:text-white'
                 }`}
               >
                 RU
@@ -701,7 +701,7 @@ const Index = () => {
               <button
                 onClick={() => setLanguage('ua')}
                 className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
-                  language === 'ua' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                  language === 'ua' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-300 hover:text-white'
                 }`}
               >
                 UA
@@ -718,7 +718,7 @@ const Index = () => {
             ) : (
               <button
                 onClick={() => setActiveTab('profile')}
-                className="flex items-center space-x-2 px-3 py-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                className="flex items-center space-x-2 px-3 py-1.5 hover:bg-gray-700 rounded-lg transition-colors"
                 title="Профиль"
               >
                 <Avatar className="w-7 h-7 bg-gradient-orange-pink">
@@ -730,8 +730,8 @@ const Index = () => {
                     </AvatarFallback>
                   )}
                 </Avatar>
-                <span className="text-sm font-medium text-gray-700">AlbeWeb</span>
-                <Icon name="ChevronDown" size={16} className="text-gray-500" />
+                <span className="text-sm font-medium text-white">AlbeWeb</span>
+                <Icon name="ChevronDown" size={16} className="text-gray-300" />
               </button>
             )}
 
@@ -906,39 +906,91 @@ const Index = () => {
                 <Button
                   variant={selectedCategory === null ? 'default' : 'ghost'}
                   onClick={() => setSelectedCategory(null)}
-                  className="w-full justify-between"
+                  className="w-full justify-start"
                 >
-                  <div className="flex items-center">
-                    <Icon name="Grid3x3" size={18} className="mr-2" />
-                    Все категории
-                  </div>
-                  <span className="text-xs text-gray-500 font-semibold">
-                    {getAllListingsCount()}
-                  </span>
+                  <Icon name="Grid3x3" size={18} className="mr-2" />
+                  Все категории
                 </Button>
-                {categories.map((category) => {
-                  const count = getCategoryCount(category.name);
-                  return (
-                    <Button
-                      key={category.name}
-                      variant={selectedCategory === category.name ? 'default' : 'ghost'}
-                      onClick={() => setSelectedCategory(category.name)}
-                      className="w-full justify-between"
-                    >
-                      <div className="flex items-center">
-                        <Icon name={category.icon as any} size={18} className="mr-2" />
-                        {category.name}
-                      </div>
-                      <span className="text-xs text-gray-500 font-semibold">
-                        {count}
-                      </span>
-                    </Button>
-                  );
-                })}
+                {categories.map((category) => (
+                  <Button
+                    key={category.name}
+                    variant={selectedCategory === category.name ? 'default' : 'ghost'}
+                    onClick={() => setSelectedCategory(category.name)}
+                    className="w-full justify-start"
+                  >
+                    <Icon name={category.icon as any} size={18} className="mr-2" />
+                    {category.name}
+                  </Button>
+                ))}
               </div>
             </div>
           </aside>
           <div className="flex-1 min-w-0 relative">
+            <div className="mb-6 sm:mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+                <Card 
+                  className={`cursor-pointer transition-all duration-300 hover:shadow-xl border-2 ${
+                    selectedCategory === null 
+                      ? 'border-primary bg-gradient-to-br from-primary/10 to-primary/5 shadow-lg' 
+                      : 'border-gray-200 hover:border-primary/30 bg-white'
+                  }`}
+                  onClick={() => setSelectedCategory(null)}
+                >
+                  <CardContent className="p-4 sm:p-5">
+                    <div className="flex flex-col items-center text-center gap-2 sm:gap-3">
+                      <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center ${
+                        selectedCategory === null ? 'bg-gradient-orange-pink' : 'bg-gray-100'
+                      }`}>
+                        <Icon name="Grid3x3" size={24} className={selectedCategory === null ? 'text-white' : 'text-gray-600'} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-sm sm:text-base text-gray-900">Все</h3>
+                        <p className="text-xl sm:text-2xl font-bold text-primary mt-1">
+                          {getAllListingsCount()}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                {categories.map((category) => {
+                  const count = getCategoryCount(category.name);
+                  return (
+                    <Card 
+                      key={category.name}
+                      className={`cursor-pointer transition-all duration-300 hover:shadow-xl border-2 ${
+                        selectedCategory === category.name 
+                          ? 'border-primary bg-gradient-to-br from-primary/10 to-primary/5 shadow-lg' 
+                          : 'border-gray-200 hover:border-primary/30 bg-white'
+                      }`}
+                      onClick={() => setSelectedCategory(category.name)}
+                    >
+                      <CardContent className="p-4 sm:p-5">
+                        <div className="flex flex-col items-center text-center gap-2 sm:gap-3">
+                          <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center ${
+                            selectedCategory === category.name ? 'bg-gradient-orange-pink' : 'bg-gray-100'
+                          }`}>
+                            <Icon 
+                              name={category.icon as any} 
+                              size={24} 
+                              className={selectedCategory === category.name ? 'text-white' : 'text-gray-600'} 
+                            />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-sm sm:text-base text-gray-900 line-clamp-1">
+                              {category.name}
+                            </h3>
+                            <p className="text-xl sm:text-2xl font-bold text-primary mt-1">
+                              {count}
+                            </p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+
             {swipeDirection && (
               <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
                 <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
