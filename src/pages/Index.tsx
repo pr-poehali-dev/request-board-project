@@ -144,19 +144,86 @@ interface ChatMessage {
   author: string;
 }
 
+interface ChatDialog {
+  id: number;
+  name: string;
+  avatar: string;
+  lastMessage: string;
+  lastTime: string;
+  type: 'request' | 'offer';
+  unread: number;
+  messages: ChatMessage[];
+}
+
 const Index = () => {
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
-    { id: 1, text: 'Здравствуйте! Заинтересовал ваш запрос на iPhone 15 Pro', sender: 'other', timestamp: '10:30', author: 'Сергей' },
-    { id: 2, text: 'Привет! Да, всё ещё актуально', sender: 'me', timestamp: '10:32', author: 'Вы' },
-    { id: 3, text: 'У меня есть отличный вариант в идеальном состоянии, 256GB', sender: 'other', timestamp: '10:33', author: 'Сергей' },
-    { id: 4, text: 'Отлично! Какая цена и где находитесь?', sender: 'me', timestamp: '10:35', author: 'Вы' },
-    { id: 5, text: '115 000₽, Москва, район метро Таганская', sender: 'other', timestamp: '10:36', author: 'Сергей' },
+  const [selectedDialog, setSelectedDialog] = useState<number>(1);
+  const [dialogs, setDialogs] = useState<ChatDialog[]>([
+    {
+      id: 1,
+      name: 'Сергей',
+      avatar: 'С',
+      lastMessage: '115 000₽, Москва, район метро Таганская',
+      lastTime: '10:36',
+      type: 'request',
+      unread: 1,
+      messages: [
+        { id: 1, text: 'Здравствуйте! Заинтересовал ваш запрос на iPhone 15 Pro', sender: 'other', timestamp: '10:30', author: 'Сергей' },
+        { id: 2, text: 'Привет! Да, всё ещё актуально', sender: 'me', timestamp: '10:32', author: 'Вы' },
+        { id: 3, text: 'У меня есть отличный вариант в идеальном состоянии, 256GB', sender: 'other', timestamp: '10:33', author: 'Сергей' },
+        { id: 4, text: 'Отлично! Какая цена и где находитесь?', sender: 'me', timestamp: '10:35', author: 'Вы' },
+        { id: 5, text: '115 000₽, Москва, район метро Таганская', sender: 'other', timestamp: '10:36', author: 'Сергей' },
+      ]
+    },
+    {
+      id: 2,
+      name: 'Мария',
+      avatar: 'М',
+      lastMessage: 'Могу выполнить работу качественно',
+      lastTime: 'вчера',
+      type: 'request',
+      unread: 0,
+      messages: [
+        { id: 1, text: 'Добрый день! Интересует ремонт?', sender: 'other', timestamp: 'вчера 15:20', author: 'Мария' },
+        { id: 2, text: 'Да, нужен мастер по ремонту квартиры', sender: 'me', timestamp: 'вчера 15:25', author: 'Вы' },
+        { id: 3, text: 'Могу выполнить работу качественно, опыт 8 лет', sender: 'other', timestamp: 'вчера 15:30', author: 'Мария' },
+      ]
+    },
+    {
+      id: 3,
+      name: 'Анна',
+      avatar: 'А',
+      lastMessage: 'Спасибо за покупку!',
+      lastTime: '2 дня назад',
+      type: 'offer',
+      unread: 0,
+      messages: [
+        { id: 1, text: 'Здравствуйте! Интересуют услуги дизайнера?', sender: 'other', timestamp: '2 дня 10:00', author: 'Анна' },
+        { id: 2, text: 'Да, расскажите подробнее о ваших услугах', sender: 'me', timestamp: '2 дня 10:15', author: 'Вы' },
+        { id: 3, text: 'Спасибо за покупку!', sender: 'other', timestamp: '2 дня 11:00', author: 'Анна' },
+      ]
+    },
+    {
+      id: 4,
+      name: 'Игорь',
+      avatar: 'И',
+      lastMessage: 'Могу обменять на что-то интересное',
+      lastTime: '3 дня назад',
+      type: 'offer',
+      unread: 2,
+      messages: [
+        { id: 1, text: 'Привет! Видел твоё предложение MacBook Pro', sender: 'other', timestamp: '3 дня 14:00', author: 'Игорь' },
+        { id: 2, text: 'Да, доступен для обмена', sender: 'me', timestamp: '3 дня 14:10', author: 'Вы' },
+        { id: 3, text: 'Могу обменять на что-то интересное', sender: 'other', timestamp: '3 дня 14:20', author: 'Игорь' },
+      ]
+    },
   ]);
   const [newMessage, setNewMessage] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
+
+  const currentDialog = dialogs.find(d => d.id === selectedDialog);
 
   const filteredRequests = selectedCategory 
     ? mockRequests.filter(req => req.category === selectedCategory)
@@ -167,15 +234,22 @@ const Index = () => {
     : mockOffers;
 
   const handleSendMessage = () => {
-    if (newMessage.trim()) {
+    if (newMessage.trim() && currentDialog) {
       const message: ChatMessage = {
-        id: chatMessages.length + 1,
+        id: currentDialog.messages.length + 1,
         text: newMessage,
         sender: 'me',
         timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
         author: 'Вы'
       };
-      setChatMessages([...chatMessages, message]);
+      
+      const updatedDialogs = dialogs.map(d => 
+        d.id === selectedDialog 
+          ? { ...d, messages: [...d.messages, message], lastMessage: newMessage, lastTime: 'только что' }
+          : d
+      );
+      
+      setDialogs(updatedDialogs);
       setNewMessage('');
     }
   };
@@ -184,7 +258,7 @@ const Index = () => {
     if (isChatOpen && chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [chatMessages, isChatOpen]);
+  }, [currentDialog?.messages, isChatOpen]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -683,67 +757,136 @@ const Index = () => {
 
       {isChatOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-instagram text-white p-4 rounded-t-2xl flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Avatar className="w-10 h-10 bg-white/20">
-                  <AvatarFallback className="bg-transparent text-white font-bold">С</AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="font-bold text-lg">Сергей</h3>
-                  <p className="text-xs text-white/80">онлайн</p>
-                </div>
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[600px] flex animate-scale-in overflow-hidden">
+            <div className="w-80 bg-gray-50 border-r flex flex-col">
+              <div className="p-4 border-b bg-white">
+                <h3 className="font-bold text-lg text-gray-800">Сообщения</h3>
+                <p className="text-xs text-gray-500 mt-1">{dialogs.length} диалогов</p>
               </div>
-              <button 
-                onClick={() => setIsChatOpen(false)}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-              >
-                <Icon name="X" size={24} />
-              </button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
-              {chatMessages.map((msg) => (
-                <div 
-                  key={msg.id} 
-                  className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
-                    <div className={`rounded-2xl px-4 py-2 ${
-                      msg.sender === 'me' 
-                        ? 'bg-gradient-instagram text-white' 
-                        : 'bg-white text-gray-800 border border-gray-200'
-                    }`}>
-                      <p className="text-sm">{msg.text}</p>
+              
+              <div className="flex-1 overflow-y-auto">
+                {dialogs.map((dialog) => (
+                  <div
+                    key={dialog.id}
+                    onClick={() => setSelectedDialog(dialog.id)}
+                    className={`p-4 border-b cursor-pointer transition-colors ${
+                      selectedDialog === dialog.id ? 'bg-primary/10 border-l-4 border-l-primary' : 'hover:bg-gray-100'
+                    }`}
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className="relative">
+                        <Avatar className="w-12 h-12 bg-gradient-instagram">
+                          <AvatarFallback className="bg-transparent text-white font-bold">
+                            {dialog.avatar}
+                          </AvatarFallback>
+                        </Avatar>
+                        {dialog.unread > 0 && (
+                          <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-bold">
+                            {dialog.unread}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <h4 className="font-semibold text-sm text-gray-800 truncate">{dialog.name}</h4>
+                          <span className="text-xs text-gray-500 ml-2">{dialog.lastTime}</span>
+                        </div>
+                        <div className="flex items-center space-x-2 mb-1">
+                          <Badge 
+                            className={`text-[10px] px-2 py-0.5 ${
+                              dialog.type === 'request' 
+                                ? 'bg-blue-100 text-blue-700 border-blue-200' 
+                                : 'bg-green-100 text-green-700 border-green-200'
+                            }`}
+                          >
+                            {dialog.type === 'request' ? 'Запрос' : 'Предложение'}
+                          </Badge>
+                        </div>
+                        <p className="text-xs text-gray-600 truncate">{dialog.lastMessage}</p>
+                      </div>
                     </div>
-                    <p className={`text-xs text-gray-500 mt-1 ${
-                      msg.sender === 'me' ? 'text-right' : 'text-left'
-                    }`}>
-                      {msg.timestamp}
-                    </p>
                   </div>
-                </div>
-              ))}
-              <div ref={chatEndRef} />
+                ))}
+              </div>
             </div>
 
-            <div className="p-4 bg-white border-t rounded-b-2xl">
-              <div className="flex items-center space-x-2">
-                <input
-                  type="text"
-                  value={newMessage}
-                  onChange={(e) => setNewMessage(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Введите сообщение..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
-                />
-                <Button 
-                  onClick={handleSendMessage}
-                  className="bg-gradient-instagram text-white hover:opacity-90 px-4 py-2 rounded-xl"
-                >
-                  <Icon name="Send" size={18} />
-                </Button>
-              </div>
+            <div className="flex-1 flex flex-col">
+              {currentDialog && (
+                <>
+                  <div className="bg-gradient-instagram text-white p-4 flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <Avatar className="w-10 h-10 bg-white/20">
+                        <AvatarFallback className="bg-transparent text-white font-bold">
+                          {currentDialog.avatar}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h3 className="font-bold text-lg">{currentDialog.name}</h3>
+                        <div className="flex items-center space-x-2">
+                          <p className="text-xs text-white/80">онлайн</p>
+                          <Badge className={`text-[10px] px-2 py-0.5 ${
+                            currentDialog.type === 'request'
+                              ? 'bg-white/20 text-white border-white/30'
+                              : 'bg-white/20 text-white border-white/30'
+                          }`}>
+                            {currentDialog.type === 'request' ? 'Запрос' : 'Предложение'}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                    <button 
+                      onClick={() => setIsChatOpen(false)}
+                      className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                    >
+                      <Icon name="X" size={24} />
+                    </button>
+                  </div>
+
+                  <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+                    {currentDialog.messages.map((msg) => (
+                      <div 
+                        key={msg.id} 
+                        className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
+                      >
+                        <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
+                          <div className={`rounded-2xl px-4 py-2 ${
+                            msg.sender === 'me' 
+                              ? 'bg-gradient-instagram text-white' 
+                              : 'bg-white text-gray-800 border border-gray-200'
+                          }`}>
+                            <p className="text-sm">{msg.text}</p>
+                          </div>
+                          <p className={`text-xs text-gray-500 mt-1 ${
+                            msg.sender === 'me' ? 'text-right' : 'text-left'
+                          }`}>
+                            {msg.timestamp}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                    <div ref={chatEndRef} />
+                  </div>
+
+                  <div className="p-4 bg-white border-t">
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="text"
+                        value={newMessage}
+                        onChange={(e) => setNewMessage(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                        placeholder="Введите сообщение..."
+                        className="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+                      />
+                      <Button 
+                        onClick={handleSendMessage}
+                        className="bg-gradient-instagram text-white hover:opacity-90 px-4 py-2 rounded-xl"
+                      >
+                        <Icon name="Send" size={18} />
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
