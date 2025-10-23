@@ -277,6 +277,80 @@ interface Notification {
   read: boolean;
 }
 
+interface Review {
+  id: number;
+  author: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
+interface UserProfile {
+  name: string;
+  avatar: string;
+  rating: number;
+  reviewsCount: number;
+  completedDeals: number;
+  registeredDate: string;
+  city: string;
+  description: string;
+  requests: Request[];
+  offers: Offer[];
+  reviews: Review[];
+}
+
+const mockUserProfiles: Record<string, UserProfile> = {
+  'Александр': {
+    name: 'Александр',
+    avatar: 'А',
+    rating: 4.8,
+    reviewsCount: 24,
+    completedDeals: 18,
+    registeredDate: 'Январь 2023',
+    city: 'Москва',
+    description: 'Продаю и покупаю технику. Всегда на связи, быстрые сделки.',
+    requests: [mockRequests[0]],
+    offers: [],
+    reviews: [
+      { id: 1, author: 'Мария', rating: 5, text: 'Отличный покупатель, быстро договорились!', date: '15 янв 2024' },
+      { id: 2, author: 'Иван', rating: 4, text: 'Все прошло хорошо, рекомендую', date: '10 дек 2023' },
+    ]
+  },
+  'Сергей': {
+    name: 'Сергей',
+    avatar: 'С',
+    rating: 4.9,
+    reviewsCount: 42,
+    completedDeals: 35,
+    registeredDate: 'Март 2022',
+    city: 'Москва',
+    description: 'Специализируюсь на продаже техники Apple. Все товары с гарантией.',
+    requests: [],
+    offers: [mockOffers[0]],
+    reviews: [
+      { id: 1, author: 'Петр', rating: 5, text: 'Надежный продавец, все как описано!', date: '20 янв 2024' },
+      { id: 2, author: 'Анна', rating: 5, text: 'Отлично упаковано, быстрая доставка', date: '18 янв 2024' },
+      { id: 3, author: 'Дмитрий', rating: 4, text: 'Хорошее качество товара', date: '12 янв 2024' },
+    ]
+  },
+  'Мария': {
+    name: 'Мария',
+    avatar: 'М',
+    rating: 4.9,
+    reviewsCount: 31,
+    completedDeals: 28,
+    registeredDate: 'Июнь 2022',
+    city: 'Санкт-Петербург',
+    description: 'Мастер по ремонту квартир. Качество и сроки гарантирую.',
+    requests: [mockRequests[1]],
+    offers: [],
+    reviews: [
+      { id: 1, author: 'Александр', rating: 5, text: 'Профессиональная работа!', date: '22 янв 2024' },
+      { id: 2, author: 'Ольга', rating: 5, text: 'Все сделали качественно и в срок', date: '15 янв 2024' },
+    ]
+  }
+};
+
 const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -285,6 +359,8 @@ const Index = () => {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
+  const [selectedUserProfile, setSelectedUserProfile] = useState<UserProfile | null>(null);
   const [selectedItem, setSelectedItem] = useState<Request | Offer | null>(null);
   const [responseData, setResponseData] = useState({ price: '', comment: '' });
   const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -559,7 +635,7 @@ const Index = () => {
                 >
                   <Icon name="Bell" size={22} className="text-gray-700" />
                   {notifications.filter(n => !n.read).length > 0 && (
-                    <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-orange-pink rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                    <span className="absolute top-1 right-1 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
                       {notifications.filter(n => !n.read).length}
                     </span>
                   )}
@@ -570,7 +646,7 @@ const Index = () => {
                 >
                   <Icon name="MessageCircle" size={22} className="text-gray-700" />
                   {dialogs.some(d => d.unread > 0) && (
-                    <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-orange-pink rounded-full"></span>
+                    <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                   )}
                 </button>
               </div>
@@ -857,14 +933,22 @@ const Index = () => {
                   <CardContent className="pt-0">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                       <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
-                        <div className="flex items-center space-x-2">
+                        <div 
+                          className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+                          onClick={() => {
+                            if (mockUserProfiles[request.author]) {
+                              setSelectedUserProfile(mockUserProfiles[request.author]);
+                              setIsUserProfileOpen(true);
+                            }
+                          }}
+                        >
                           <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-purple-pink">
                             <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                               {request.author[0]}
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="font-medium text-xs sm:text-sm">{request.author}</p>
+                            <p className="font-medium text-xs sm:text-sm hover:underline">{request.author}</p>
                             <div className="flex items-center gap-1">
                               <Icon name="Star" size={12} className="fill-yellow-400 text-yellow-400" />
                               <span className="text-xs sm:text-sm text-gray-600">{request.rating}</span>
@@ -1012,14 +1096,22 @@ const Index = () => {
                   <CardContent className="pt-0">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                       <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
-                        <div className="flex items-center space-x-2">
+                        <div 
+                          className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+                          onClick={() => {
+                            if (mockUserProfiles[offer.author]) {
+                              setSelectedUserProfile(mockUserProfiles[offer.author]);
+                              setIsUserProfileOpen(true);
+                            }
+                          }}
+                        >
                           <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-blue-purple">
                             <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                               {offer.author[0]}
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="font-medium text-xs sm:text-sm">{offer.author}</p>
+                            <p className="font-medium text-xs sm:text-sm hover:underline">{offer.author}</p>
                             <div className="flex items-center gap-1">
                               <Icon name="Star" size={12} className="fill-yellow-400 text-yellow-400" />
                               <span className="text-xs sm:text-sm text-gray-600">{offer.rating}</span>
@@ -1492,8 +1584,17 @@ const Index = () => {
                     }`}
                   >
                     <div className="flex items-start space-x-3">
-                      <div className="relative">
-                        <Avatar className="w-12 h-12 bg-gradient-orange-pink">
+                      <div 
+                        className="relative cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (dialog.type !== 'support' && mockUserProfiles[dialog.name]) {
+                            setSelectedUserProfile(mockUserProfiles[dialog.name]);
+                            setIsUserProfileOpen(true);
+                          }
+                        }}
+                      >
+                        <Avatar className="w-12 h-12 bg-gradient-orange-pink hover:opacity-80 transition-opacity">
                           <AvatarFallback className="bg-transparent text-white font-bold">
                             {dialog.avatar}
                           </AvatarFallback>
@@ -1506,7 +1607,16 @@ const Index = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-1">
-                          <h4 className="font-semibold text-sm text-gray-800 truncate">{dialog.name}</h4>
+                          <h4 
+                            className={`font-semibold text-sm text-gray-800 truncate ${dialog.type !== 'support' ? 'hover:underline cursor-pointer' : ''}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (dialog.type !== 'support' && mockUserProfiles[dialog.name]) {
+                                setSelectedUserProfile(mockUserProfiles[dialog.name]);
+                                setIsUserProfileOpen(true);
+                              }
+                            }}
+                          >{dialog.name}</h4>
                           <span className="text-xs text-gray-500 ml-2">{dialog.lastTime}</span>
                         </div>
                         <div className="flex items-center space-x-2 mb-1">
@@ -1538,14 +1648,22 @@ const Index = () => {
                       ? 'bg-gradient-to-r from-purple-600 to-pink-600' 
                       : 'bg-gradient-orange-pink'
                   } text-white p-4 flex items-center justify-between`}>
-                    <div className="flex items-center space-x-3">
+                    <div 
+                      className={`flex items-center space-x-3 ${currentDialog.type !== 'support' ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}`}
+                      onClick={() => {
+                        if (currentDialog.type !== 'support' && mockUserProfiles[currentDialog.name]) {
+                          setSelectedUserProfile(mockUserProfiles[currentDialog.name]);
+                          setIsUserProfileOpen(true);
+                        }
+                      }}
+                    >
                       <Avatar className="w-10 h-10 bg-white/20">
                         <AvatarFallback className="bg-transparent text-white font-bold">
                           {currentDialog.avatar}
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <h3 className="font-bold text-lg">{currentDialog.name}</h3>
+                        <h3 className={`font-bold text-lg ${currentDialog.type !== 'support' ? 'hover:underline' : ''}`}>{currentDialog.name}</h3>
                         <div className="flex items-center space-x-2">
                           <p className="text-xs text-white/80">онлайн</p>
                           <Badge className="text-[10px] px-2 py-0.5 bg-white/20 text-white border-white/30">
@@ -2399,16 +2517,26 @@ const Index = () => {
               <div>
                 <h3 className="text-lg font-bold text-gray-800 mb-3">Автор</h3>
                 <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
-                  <Avatar className="w-16 h-16 bg-gradient-orange-pink">
-                    <AvatarFallback className="bg-transparent text-white text-xl font-bold">
-                      {selectedItem.author[0]}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <p className="text-lg font-bold text-gray-800">{selectedItem.author}</p>
-                    <div className="flex items-center gap-2">
-                      <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
-                      <span className="text-gray-600">Рейтинг: {selectedItem.rating}</span>
+                  <div 
+                    className="flex items-center space-x-4 flex-1 cursor-pointer hover:bg-gray-100 -m-4 p-4 rounded-xl transition-colors"
+                    onClick={() => {
+                      if (mockUserProfiles[selectedItem.author]) {
+                        setSelectedUserProfile(mockUserProfiles[selectedItem.author]);
+                        setIsUserProfileOpen(true);
+                      }
+                    }}
+                  >
+                    <Avatar className="w-16 h-16 bg-gradient-orange-pink">
+                      <AvatarFallback className="bg-transparent text-white text-xl font-bold">
+                        {selectedItem.author[0]}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="text-lg font-bold text-gray-800 hover:underline">{selectedItem.author}</p>
+                      <div className="flex items-center gap-2">
+                        <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                        <span className="text-gray-600">Рейтинг: {selectedItem.rating}</span>
+                      </div>
                     </div>
                   </div>
                   <Button 
@@ -2602,6 +2730,154 @@ const Index = () => {
                 >
                   <Icon name="Send" size={18} />
                 </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isUserProfileOpen && selectedUserProfile && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between sticky top-0 z-10">
+              <h2 className="text-2xl font-bold">Профиль пользователя</h2>
+              <button 
+                onClick={() => {
+                  setIsUserProfileOpen(false);
+                  setSelectedUserProfile(null);
+                }}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <div className="flex items-start space-x-6 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl">
+                <Avatar className="w-24 h-24 bg-gradient-orange-pink">
+                  <AvatarFallback className="bg-transparent text-white text-3xl font-bold">
+                    {selectedUserProfile.avatar}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">{selectedUserProfile.name}</h3>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon name="Star" size={20} className="fill-yellow-400 text-yellow-400" />
+                    <span className="text-xl font-bold text-gray-800">{selectedUserProfile.rating}</span>
+                    <span className="text-gray-600">({selectedUserProfile.reviewsCount} отзывов)</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 mb-3">
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <Icon name="MapPin" size={18} className="text-primary" />
+                      <span>{selectedUserProfile.city}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <Icon name="Calendar" size={18} className="text-primary" />
+                      <span>На сайте с {selectedUserProfile.registeredDate}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-700 mb-4">
+                    <Icon name="CheckCircle2" size={18} className="text-green-600" />
+                    <span className="font-semibold">{selectedUserProfile.completedDeals} успешных сделок</span>
+                  </div>
+                  <p className="text-gray-700">{selectedUserProfile.description}</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <Icon name="List" size={24} className="text-primary" />
+                  История объявлений
+                </h3>
+                <div className="space-y-3">
+                  {selectedUserProfile.requests.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-gray-700 mb-2">Запросы ({selectedUserProfile.requests.length})</h4>
+                      {selectedUserProfile.requests.map(request => (
+                        <Card key={request.id} className="mb-3 hover:shadow-md transition-shadow cursor-pointer" onClick={() => {
+                          setSelectedItem(request);
+                          setIsViewModalOpen(true);
+                          setIsUserProfileOpen(false);
+                        }}>
+                          <CardHeader className="pb-2">
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <CardTitle className="text-lg">{request.title}</CardTitle>
+                                <CardDescription className="mt-1">{request.description}</CardDescription>
+                              </div>
+                              <div className="text-right ml-4">
+                                <div className="text-xl font-bold text-primary">{request.budget}</div>
+                                <Badge className="mt-1 text-xs">{request.category}</Badge>
+                              </div>
+                            </div>
+                          </CardHeader>
+                        </Card>
+                      ))}
+                    </div>
+                  )}
+                  {selectedUserProfile.offers.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-gray-700 mb-2">Предложения ({selectedUserProfile.offers.length})</h4>
+                      {selectedUserProfile.offers.map(offer => (
+                        <Card key={offer.id} className="mb-3 hover:shadow-md transition-shadow cursor-pointer" onClick={() => {
+                          setSelectedItem(offer);
+                          setIsViewModalOpen(true);
+                          setIsUserProfileOpen(false);
+                        }}>
+                          <CardHeader className="pb-2">
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <CardTitle className="text-lg">{offer.title}</CardTitle>
+                                <CardDescription className="mt-1">{offer.description}</CardDescription>
+                              </div>
+                              <div className="text-right ml-4">
+                                <div className="text-xl font-bold text-primary">{offer.price}</div>
+                                <Badge className="mt-1 text-xs">{offer.category}</Badge>
+                              </div>
+                            </div>
+                          </CardHeader>
+                        </Card>
+                      ))}
+                    </div>
+                  )}
+                  {selectedUserProfile.requests.length === 0 && selectedUserProfile.offers.length === 0 && (
+                    <p className="text-gray-500 text-center py-4">Нет размещенных объявлений</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <Icon name="MessageSquare" size={24} className="text-primary" />
+                  Отзывы ({selectedUserProfile.reviews.length})
+                </h3>
+                <div className="space-y-4">
+                  {selectedUserProfile.reviews.map(review => (
+                    <div key={review.id} className="p-4 bg-gray-50 rounded-xl">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <Avatar className="w-10 h-10 bg-gradient-purple-pink">
+                            <AvatarFallback className="bg-transparent text-white font-bold text-sm">
+                              {review.author[0]}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <p className="font-semibold text-gray-800">{review.author}</p>
+                            <p className="text-sm text-gray-500">{review.date}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                          <span className="font-bold text-gray-800">{review.rating}</span>
+                        </div>
+                      </div>
+                      <p className="text-gray-700">{review.text}</p>
+                    </div>
+                  ))}
+                  {selectedUserProfile.reviews.length === 0 && (
+                    <p className="text-gray-500 text-center py-4">Пока нет отзывов</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
