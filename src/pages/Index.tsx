@@ -773,12 +773,13 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="relative bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 font-bold shadow-lg hover:shadow-2xl transition-all duration-300 px-5 h-10 rounded-full hover:scale-105 border-2 border-white/30 overflow-hidden group"
+                className="relative bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 text-white hover:from-purple-700 hover:via-pink-700 hover:to-rose-700 font-bold shadow-xl hover:shadow-2xl transition-all duration-300 px-6 h-11 rounded-2xl hover:scale-105 border border-white/40 overflow-hidden group backdrop-blur-sm"
                 title="Создать объявление"
               >
-                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                <Icon name="Plus" size={20} className="mr-2 relative z-10" />
-                <span className="relative z-10">Создать</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-white/10"></div>
+                <Icon name="Sparkles" size={20} className="mr-2 relative z-10" />
+                <span className="relative z-10 tracking-wide">Создать</span>
               </Button>
             )}
             </div>
