@@ -616,7 +616,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50/50 via-indigo-50/50 to-purple-50/50">
-      <nav className="bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 border-b border-white/20 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
+      <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
             <div className="flex items-center space-x-2 flex-shrink-0">
