@@ -937,7 +937,7 @@ const Index = () => {
                 
                 <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-5">
                   <div className="flex items-start justify-between">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-2xl">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-slate-100 flex items-center justify-center text-slate-700 shadow-xl">
                       <Icon name={category.icon as any} size={32} />
                     </div>
                     <span className="text-[10px] sm:text-xs font-bold text-white bg-emerald-500 px-2.5 py-1 rounded-full shadow-lg">
