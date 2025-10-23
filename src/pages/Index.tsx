@@ -890,51 +890,10 @@ const Index = () => {
                   <Icon name="Package" size={18} className="mr-2" />
                   Предложения
                 </Button>
-                <div className="pt-2">
-                  <div className="relative">
-                    <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
-                    <select
-                      value={selectedCity || ''}
-                      onChange={(e) => setSelectedCity(e.target.value || null)}
-                      className="appearance-none w-full pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
-                    >
-                      <option value="">Все города</option>
-                      {cities.map((city) => (
-                        <option key={city} value={city}>
-                          {city}
-                        </option>
-                      ))}
-                    </select>
-                    <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
-                <Button
-                  variant={selectedCategory === null ? 'default' : 'ghost'}
-                  onClick={() => setSelectedCategory(null)}
-                  className="w-full justify-start"
-                >
-                  <Icon name="Grid3x3" size={18} className="mr-2" />
-                  Все категории
-                </Button>
-                {categories.map((category) => (
-                  <Button
-                    key={category.name}
-                    variant={selectedCategory === category.name ? 'default' : 'ghost'}
-                    onClick={() => setSelectedCategory(category.name)}
-                    className="w-full justify-start"
-                  >
-                    <Icon name={category.icon as any} size={18} className="mr-2" />
-                    {category.name}
-                  </Button>
-                ))}
               </div>
 
               <div className="space-y-1 pt-4 border-t">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Сортировка</h3>
+                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Сортировать</h3>
                 <Button
                   variant={sortBy === 'date' ? 'default' : 'ghost'}
                   onClick={() => setSortBy('date')}
@@ -959,6 +918,51 @@ const Index = () => {
                   <Icon name="DollarSign" size={16} className="mr-2" />
                   По цене
                 </Button>
+              </div>
+
+              <div className="space-y-1 pt-4 border-t">
+                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Фильтры</h3>
+                <div className="px-3">
+                  <div className="relative">
+                    <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
+                    <select
+                      value={selectedCity || ''}
+                      onChange={(e) => setSelectedCity(e.target.value || null)}
+                      className="appearance-none w-full pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
+                    >
+                      <option value="">Все города</option>
+                      {cities.map((city) => (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      ))}
+                    </select>
+                    <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-1 pt-4 border-t">
+                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
+                <Button
+                  variant={selectedCategory === null ? 'default' : 'ghost'}
+                  onClick={() => setSelectedCategory(null)}
+                  className="w-full justify-start"
+                >
+                  <Icon name="Grid3x3" size={18} className="mr-2" />
+                  Все категории
+                </Button>
+                {categories.map((category) => (
+                  <Button
+                    key={category.name}
+                    variant={selectedCategory === category.name ? 'default' : 'ghost'}
+                    onClick={() => setSelectedCategory(category.name)}
+                    className="w-full justify-start"
+                  >
+                    <Icon name={category.icon as any} size={18} className="mr-2" />
+                    {category.name}
+                  </Button>
+                ))}
               </div>
             </div>
           </aside>
