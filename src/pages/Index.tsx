@@ -480,7 +480,7 @@ const Index = () => {
                           <Icon name="Eye" size={14} className="mr-1.5" />
                           Смотреть
                         </Button>
-                        <Button className="flex-1 sm:flex-none bg-gradient-purple-pink text-white hover:opacity-90 font-semibold text-sm">
+                        <Button className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm">
                           Написать
                           <Icon name="MessageCircle" size={14} className="ml-1.5" />
                         </Button>
@@ -495,30 +495,30 @@ const Index = () => {
 
         {activeTab === 'categories' && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">Категории</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            <div className="text-center mb-6 sm:mb-10">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">Категории</h2>
+              <p className="text-base sm:text-lg text-gray-600">Выберите категорию для поиска</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
               {categories.map((category, index) => (
-                <Card 
+                <div
                   key={category.name}
-                  className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
+                  className="group cursor-pointer animate-scale-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => {
                     setSelectedCategory(category.name);
                     setActiveTab('requests');
                   }}
                 >
-                  <CardContent className="p-4 sm:p-6">
-                    <div className="flex items-center space-x-3 sm:space-x-4">
-                      <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl ${category.color} flex items-center justify-center`}>
-                        <Icon name={category.icon as any} size={28} className="text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg sm:text-xl font-bold text-gray-800">{category.name}</h3>
-                        <p className="text-xs sm:text-sm text-gray-600">Активных запросов: {Math.floor(Math.random() * 50 + 10)}</p>
-                      </div>
+                  <div className="relative">
+                    <div className={`w-full aspect-square rounded-3xl ${category.color} flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl`}>
+                      <Icon name={category.icon as any} size={48} className="text-white transition-transform duration-300 group-hover:scale-125" />
                     </div>
-                  </CardContent>
-                </Card>
+                    <div className="absolute inset-0 rounded-3xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  </div>
+                  <h3 className="text-center mt-3 text-sm sm:text-base font-bold text-gray-800 group-hover:text-primary transition-colors">{category.name}</h3>
+                  <p className="text-center text-xs text-gray-500 mt-1">{Math.floor(Math.random() * 50 + 10)} запросов</p>
+                </div>
               ))}
             </div>
           </div>
@@ -574,6 +574,71 @@ const Index = () => {
           </div>
         )}
       </main>
+
+      <footer className="bg-gray-900 text-gray-300 py-8 sm:py-12 mt-12">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-gradient-instagram flex items-center justify-center">
+                  <Icon name="MessageSquare" className="text-white" size={16} />
+                </div>
+                <span className="text-lg font-bold text-white">Доска запросов</span>
+              </div>
+              <p className="text-sm text-gray-400">Платформа для размещения запросов и предложений товаров и услуг</p>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-3 sm:mb-4">Разделы</h4>
+              <ul className="space-y-2 text-sm">
+                <li><button onClick={() => setActiveTab('requests')} className="hover:text-white transition-colors">Запросы</button></li>
+                <li><button onClick={() => setActiveTab('offers')} className="hover:text-white transition-colors">Предложения</button></li>
+                <li><button onClick={() => setActiveTab('categories')} className="hover:text-white transition-colors">Категории</button></li>
+                <li><button onClick={() => setActiveTab('profile')} className="hover:text-white transition-colors">Профиль</button></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-3 sm:mb-4">Категории</h4>
+              <ul className="space-y-2 text-sm">
+                {categories.map(cat => (
+                  <li key={cat.name}>
+                    <button 
+                      onClick={() => {
+                        setSelectedCategory(cat.name);
+                        setActiveTab('requests');
+                      }} 
+                      className="hover:text-white transition-colors"
+                    >
+                      {cat.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-3 sm:mb-4">Информация</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">О проекте</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Правила</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Помощь</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Контакты</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 pt-6 sm:pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-xs sm:text-sm text-gray-400">© 2024 Доска запросов. Все права защищены.</p>
+              <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm">
+                <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
+                <a href="#" className="hover:text-white transition-colors">Условия использования</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
