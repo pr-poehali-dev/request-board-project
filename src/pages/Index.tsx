@@ -38,11 +38,21 @@ interface Offer {
 }
 
 const categories = [
-  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-instagram' },
-  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-purple-pink' },
-  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-orange-pink' },
-  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-blue-purple' },
-  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-instagram' },
+  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-instagram', popular: true },
+  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-purple-pink', popular: true },
+  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-orange-pink', popular: true },
+  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-blue-purple', popular: true },
+  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-instagram', popular: true },
+  { name: 'Мебель', icon: 'Armchair', color: 'bg-gradient-purple-pink', popular: false },
+  { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-orange-pink', popular: false },
+  { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-blue-purple', popular: false },
+  { name: 'Красота', icon: 'Sparkles', color: 'bg-gradient-purple-pink', popular: false },
+  { name: 'Животные', icon: 'Dog', color: 'bg-gradient-instagram', popular: false },
+  { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-orange-pink', popular: false },
+  { name: 'Книги', icon: 'BookOpen', color: 'bg-gradient-blue-purple', popular: false },
+  { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-instagram', popular: false },
+  { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-purple-pink', popular: true },
+  { name: 'Еда и напитки', icon: 'Coffee', color: 'bg-gradient-orange-pink', popular: false },
 ];
 
 const mockRequests: Request[] = [
@@ -98,6 +108,42 @@ const mockRequests: Request[] = [
     city: 'Москва',
     delivery: false,
     exchange: false
+  },
+  {
+    id: 5,
+    title: 'Куплю диван для гостиной',
+    category: 'Мебель',
+    budget: 'до 50 000 ₽',
+    author: 'Анастасия',
+    rating: 4.6,
+    responses: 7,
+    description: 'Ищу угловой диван в хорошем состоянии',
+    city: 'Новосибирск',
+    delivery: true
+  },
+  {
+    id: 6,
+    title: 'Нужна коляска для ребенка',
+    category: 'Детские товары',
+    budget: 'до 15 000 ₽',
+    author: 'Ольга',
+    rating: 4.9,
+    responses: 12,
+    description: 'Трансформер или прогулочная коляска',
+    city: 'Екатеринбург',
+    delivery: false
+  },
+  {
+    id: 7,
+    title: 'Ищу велосипед горный',
+    category: 'Спорт',
+    budget: 'до 30 000 ₽',
+    author: 'Максим',
+    rating: 4.7,
+    responses: 9,
+    description: 'Нужен горный велосипед для трейлов',
+    city: 'Москва',
+    delivery: true
   }
 ];
 
@@ -143,6 +189,56 @@ const mockOffers: Offer[] = [
     delivery: true,
     exchange: true,
     photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a0739562-21b8-43e0-9bb1-abaeafd67dbd.jpg']
+  },
+  {
+    id: 4,
+    title: 'Продаю шкаф-купе',
+    category: 'Мебель',
+    price: '35 000 ₽',
+    author: 'Виктория',
+    rating: 4.7,
+    views: 67,
+    description: 'Шкаф-купе 2.5м, зеркальные двери, отличное состояние',
+    city: 'Москва',
+    delivery: false,
+    exchange: false
+  },
+  {
+    id: 5,
+    title: 'Детская кроватка с матрасом',
+    category: 'Детские товары',
+    price: '8 000 ₽',
+    author: 'Татьяна',
+    rating: 5.0,
+    views: 89,
+    description: 'Кроватка-маятник с ортопедическим матрасом',
+    city: 'Санкт-Петербург',
+    delivery: true
+  },
+  {
+    id: 6,
+    title: 'Горный велосипед Trek',
+    category: 'Спорт',
+    price: '45 000 ₽',
+    author: 'Николай',
+    rating: 4.8,
+    views: 112,
+    description: 'Trek X-Caliber 8, карбоновая вилка, гидравлика',
+    city: 'Казань',
+    delivery: true,
+    exchange: true
+  },
+  {
+    id: 7,
+    title: 'Вакансия: Junior разработчик',
+    category: 'Работа',
+    price: 'от 80 000 ₽',
+    author: 'IT Компания',
+    rating: 4.9,
+    views: 234,
+    description: 'Ищем Junior Python разработчика в команду',
+    city: 'Москва',
+    delivery: false
   }
 ];
 
@@ -315,6 +411,14 @@ const Index = () => {
   const filteredOffers = selectedCategory 
     ? mockOffers.filter(offer => offer.category === selectedCategory)
     : mockOffers;
+
+  const getCategoryCount = (categoryName: string) => {
+    const requestCount = mockRequests.filter(req => req.category === categoryName).length;
+    const offerCount = mockOffers.filter(offer => offer.category === categoryName).length;
+    return { requestCount, offerCount, total: requestCount + offerCount };
+  };
+
+  const popularCategories = categories.filter(c => c.popular);
 
   const handleSendMessage = () => {
     if (newMessage.trim() && currentDialog) {
@@ -526,25 +630,39 @@ const Index = () => {
             </div>
 
             <div className="mb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Категории</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                {categories.map((category, index) => (
-                  <Card
-                    key={category.name}
-                    className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
-                    style={{ animationDelay: `${index * 0.05}s` }}
-                    onClick={() => {
-                      setSelectedCategory(category.name);
-                    }}
-                  >
-                    <CardContent className="p-4 text-center">
-                      <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
-                        <Icon name={category.icon as any} size={24} className="text-white" />
-                      </div>
-                      <h3 className="text-sm font-bold text-gray-800">{category.name}</h3>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Популярные категории</h2>
+                <Button 
+                  variant="ghost" 
+                  onClick={() => setActiveTab('categories')}
+                  className="text-primary font-semibold"
+                >
+                  Все категории
+                  <Icon name="ChevronRight" size={16} className="ml-1" />
+                </Button>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+                {popularCategories.map((category, index) => {
+                  const count = getCategoryCount(category.name);
+                  return (
+                    <Card
+                      key={category.name}
+                      className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
+                      style={{ animationDelay: `${index * 0.05}s` }}
+                      onClick={() => {
+                        setSelectedCategory(category.name);
+                      }}
+                    >
+                      <CardContent className="p-4 text-center">
+                        <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
+                          <Icon name={category.icon as any} size={24} className="text-white" />
+                        </div>
+                        <h3 className="text-sm font-bold text-gray-800 mb-1">{category.name}</h3>
+                        <p className="text-xs text-gray-500">{count.total} объявлений</p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
 
@@ -710,25 +828,39 @@ const Index = () => {
             </div>
 
             <div className="mb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Категории</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                {categories.map((category, index) => (
-                  <Card
-                    key={category.name}
-                    className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
-                    style={{ animationDelay: `${index * 0.05}s` }}
-                    onClick={() => {
-                      setSelectedCategory(category.name);
-                    }}
-                  >
-                    <CardContent className="p-4 text-center">
-                      <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
-                        <Icon name={category.icon as any} size={24} className="text-white" />
-                      </div>
-                      <h3 className="text-sm font-bold text-gray-800">{category.name}</h3>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Популярные категории</h2>
+                <Button 
+                  variant="ghost" 
+                  onClick={() => setActiveTab('categories')}
+                  className="text-primary font-semibold"
+                >
+                  Все категории
+                  <Icon name="ChevronRight" size={16} className="ml-1" />
+                </Button>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+                {popularCategories.map((category, index) => {
+                  const count = getCategoryCount(category.name);
+                  return (
+                    <Card
+                      key={category.name}
+                      className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
+                      style={{ animationDelay: `${index * 0.05}s` }}
+                      onClick={() => {
+                        setSelectedCategory(category.name);
+                      }}
+                    >
+                      <CardContent className="p-4 text-center">
+                        <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
+                          <Icon name={category.icon as any} size={24} className="text-white" />
+                        </div>
+                        <h3 className="text-sm font-bold text-gray-800 mb-1">{category.name}</h3>
+                        <p className="text-xs text-gray-500">{count.total} объявлений</p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
 
@@ -918,8 +1050,7 @@ const Index = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {categories.map((category, index) => {
-                const requestCount = Math.floor(Math.random() * 50 + 10);
-                const offerCount = Math.floor(Math.random() * 30 + 5);
+                const count = getCategoryCount(category.name);
                 
                 return (
                   <Card
@@ -944,14 +1075,14 @@ const Index = () => {
                                 <Icon name="Search" size={14} className="mr-1.5 text-blue-500" />
                                 Запросы
                               </span>
-                              <span className="font-bold text-gray-800">{requestCount}</span>
+                              <span className="font-bold text-gray-800">{count.requestCount}</span>
                             </div>
                             <div className="flex items-center justify-between text-sm">
                               <span className="text-gray-600 flex items-center">
                                 <Icon name="Package" size={14} className="mr-1.5 text-green-500" />
                                 Предложения
                               </span>
-                              <span className="font-bold text-gray-800">{offerCount}</span>
+                              <span className="font-bold text-gray-800">{count.offerCount}</span>
                             </div>
                           </div>
                         </div>
