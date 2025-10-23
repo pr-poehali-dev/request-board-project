@@ -618,17 +618,36 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white border-b sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="flex justify-between items-center h-14 sm:h-16">
-            <div className="flex items-center space-x-2">
+          <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
+            <div className="flex items-center space-x-2 flex-shrink-0">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-orange-pink flex items-center justify-center">
                 <Icon name="MessageSquare" className="text-white" size={20} />
               </div>
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
+            <div className="hidden md:flex flex-1 max-w-xl">
+              <div className="relative w-full">
+                <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Поиск объявлений..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    <Icon name="X" size={16} />
+                  </button>
+                )}
+              </div>
+            </div>
 
-
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 flex-shrink-0">
             {isAuthenticated && (
               <div className="flex items-center space-x-1 text-gray-600">
                 <button 
@@ -728,45 +747,6 @@ const Index = () => {
             )}
             </div>
           </div>
-
-          <div className="hidden md:flex items-center space-x-3 py-3 border-t">
-            <div className="relative flex-1 max-w-2xl">
-              <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Поиск объявлений..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  <Icon name="X" size={16} />
-                </button>
-              )}
-            </div>
-            
-            <div className="relative">
-              <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-              <select
-                value={selectedCity || ''}
-                onChange={(e) => setSelectedCity(e.target.value || null)}
-                className="appearance-none pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer min-w-[180px]"
-              >
-                <option value="">Все города</option>
-                {cities.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select>
-              <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-            </div>
-          </div>
-
 
         </div>
       </nav>
@@ -901,6 +881,24 @@ const Index = () => {
                   <Icon name="Package" size={18} className="mr-2" />
                   Предложения
                 </Button>
+                <div className="pt-2">
+                  <div className="relative">
+                    <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
+                    <select
+                      value={selectedCity || ''}
+                      onChange={(e) => setSelectedCity(e.target.value || null)}
+                      className="appearance-none w-full pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
+                    >
+                      <option value="">Все города</option>
+                      {cities.map((city) => (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      ))}
+                    </select>
+                    <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-1">
