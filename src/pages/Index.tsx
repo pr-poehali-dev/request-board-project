@@ -964,48 +964,46 @@ const Index = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
-                    <div className="flex gap-4">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                       {request.photos && request.photos.length > 0 && (
                         <img 
                           src={request.photos[0]} 
                           alt={request.title}
-                          className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                          className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
                         />
                       )}
-                      <div className="flex justify-between items-start flex-1">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                          <Badge className="bg-gradient-orange-pink text-white border-0 text-xs">
-                            {request.category}
-                          </Badge>
-                          <Badge variant="secondary" className="font-medium text-xs">
-                            <Icon name="MapPin" size={10} className="mr-1" />
-                            {request.city}
-                          </Badge>
-                          {request.delivery && (
-                            <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50 text-xs">
-                              <Icon name="Truck" size={10} className="mr-1" />
-                              Доставка
+                      <div className="flex flex-col gap-2 flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
+                            <Badge className="bg-gradient-orange-pink text-white border-0 text-xs whitespace-nowrap">
+                              {request.category}
                             </Badge>
-                          )}
-                          {request.exchange && (
-                            <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50 text-xs">
-                              <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                              Обмен
+                            <Badge variant="secondary" className="font-medium text-xs whitespace-nowrap">
+                              <Icon name="MapPin" size={10} className="mr-1" />
+                              {request.city}
                             </Badge>
-                          )}
+                            {request.delivery && (
+                              <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50 text-xs whitespace-nowrap">
+                                <Icon name="Truck" size={10} className="mr-1" />
+                                Доставка
+                              </Badge>
+                            )}
+                            {request.exchange && (
+                              <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50 text-xs whitespace-nowrap">
+                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                                Обмен
+                              </Badge>
+                            )}
+                          </div>
+                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
+                            {request.budget}
+                          </div>
                         </div>
-                        <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{request.title}</CardTitle>
-                        <CardDescription className="text-sm sm:text-base">
+                        <CardTitle className="text-lg sm:text-2xl mb-1">{request.title}</CardTitle>
+                        <CardDescription className="text-sm sm:text-base line-clamp-2">
                           {request.description}
                         </CardDescription>
                       </div>
-                      <div className="ml-3 sm:ml-4">
-                        <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
-                          {request.budget}
-                        </div>
-                      </div>
-                    </div>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -1043,36 +1041,40 @@ const Index = () => {
                         </div>
                       </div>
 
-                      <div className="flex gap-2 w-full sm:w-auto">
-                        <Button 
-                          onClick={() => {
-                            if (!isAuthenticated) {
-                              setIsLoginOpen(true);
-                            } else {
-                              if (favorites.includes(request.id)) {
-                                setFavorites(favorites.filter(id => id !== request.id));
+                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                        <div className="flex gap-2">
+                          <Button 
+                            onClick={() => {
+                              if (!isAuthenticated) {
+                                setIsLoginOpen(true);
                               } else {
-                                setFavorites([...favorites, request.id]);
+                                if (favorites.includes(request.id)) {
+                                  setFavorites(favorites.filter(id => id !== request.id));
+                                } else {
+                                  setFavorites([...favorites, request.id]);
+                                }
                               }
-                            }
-                          }}
-                          variant="outline" 
-                          className={`font-semibold text-sm ${favorites.includes(request.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
-                        >
-                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(request.id) ? 'fill-primary' : ''}`} />
-                          {favorites.includes(request.id) ? 'В избранном' : 'В избранное'}
-                        </Button>
-                        <Button 
-                          onClick={() => {
-                            setSelectedItem(request);
-                            setIsViewModalOpen(true);
-                          }}
-                          variant="outline" 
-                          className="flex-1 sm:flex-none font-semibold text-sm"
-                        >
-                          <Icon name="Eye" size={14} className="mr-1.5" />
-                          Смотреть
-                        </Button>
+                            }}
+                            variant="outline" 
+                            size="sm"
+                            className={`flex-1 sm:flex-none font-semibold ${favorites.includes(request.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
+                          >
+                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(request.id) ? 'fill-primary' : ''}`} />
+                            <span className="hidden sm:inline">{favorites.includes(request.id) ? 'В избранном' : 'В избранное'}</span>
+                          </Button>
+                          <Button 
+                            onClick={() => {
+                              setSelectedItem(request);
+                              setIsViewModalOpen(true);
+                            }}
+                            variant="outline" 
+                            size="sm"
+                            className="flex-1 sm:flex-none font-semibold"
+                          >
+                            <Icon name="Eye" size={14} className="sm:mr-1.5" />
+                            <span className="hidden sm:inline">Смотреть</span>
+                          </Button>
+                        </div>
                         <Button 
                           onClick={() => {
                             if (!isAuthenticated) {
@@ -1082,7 +1084,8 @@ const Index = () => {
                               setIsResponseModalOpen(true);
                             }
                           }}
-                          className="flex-1 sm:flex-none bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
+                          size="sm"
+                          className="w-full sm:w-auto bg-gradient-orange-pink text-white hover:opacity-90 font-semibold"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
@@ -1132,48 +1135,46 @@ const Index = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
-                    <div className="flex gap-4">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                       {offer.photos && offer.photos.length > 0 && (
                         <img 
                           src={offer.photos[0]} 
                           alt={offer.title}
-                          className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                          className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
                         />
                       )}
-                      <div className="flex justify-between items-start flex-1">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                          <Badge className="bg-gradient-purple-pink text-white border-0 text-xs">
-                            {offer.category}
-                          </Badge>
-                          <Badge variant="secondary" className="font-medium text-xs">
-                            <Icon name="MapPin" size={10} className="mr-1" />
-                            {offer.city}
-                          </Badge>
-                          {offer.delivery && (
-                            <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50 text-xs">
-                              <Icon name="Truck" size={10} className="mr-1" />
-                              Доставка
+                      <div className="flex flex-col gap-2 flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
+                            <Badge className="bg-gradient-purple-pink text-white border-0 text-xs whitespace-nowrap">
+                              {offer.category}
                             </Badge>
-                          )}
-                          {offer.exchange && (
-                            <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50 text-xs">
-                              <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                              Обмен
+                            <Badge variant="secondary" className="font-medium text-xs whitespace-nowrap">
+                              <Icon name="MapPin" size={10} className="mr-1" />
+                              {offer.city}
                             </Badge>
-                          )}
+                            {offer.delivery && (
+                              <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50 text-xs whitespace-nowrap">
+                                <Icon name="Truck" size={10} className="mr-1" />
+                                Доставка
+                              </Badge>
+                            )}
+                            {offer.exchange && (
+                              <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50 text-xs whitespace-nowrap">
+                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                                Обмен
+                              </Badge>
+                            )}
+                          </div>
+                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
+                            {offer.price}
+                          </div>
                         </div>
-                        <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{offer.title}</CardTitle>
-                        <CardDescription className="text-sm sm:text-base">
+                        <CardTitle className="text-lg sm:text-2xl mb-1">{offer.title}</CardTitle>
+                        <CardDescription className="text-sm sm:text-base line-clamp-2">
                           {offer.description}
                         </CardDescription>
                       </div>
-                      <div className="ml-3 sm:ml-4">
-                        <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
-                          {offer.price}
-                        </div>
-                      </div>
-                    </div>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -1208,36 +1209,40 @@ const Index = () => {
                         </div>
                       </div>
 
-                      <div className="flex gap-2 w-full sm:w-auto">
-                        <Button 
-                          onClick={() => {
-                            if (!isAuthenticated) {
-                              setIsLoginOpen(true);
-                            } else {
-                              if (favorites.includes(offer.id)) {
-                                setFavorites(favorites.filter(id => id !== offer.id));
+                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                        <div className="flex gap-2">
+                          <Button 
+                            onClick={() => {
+                              if (!isAuthenticated) {
+                                setIsLoginOpen(true);
                               } else {
-                                setFavorites([...favorites, offer.id]);
+                                if (favorites.includes(offer.id)) {
+                                  setFavorites(favorites.filter(id => id !== offer.id));
+                                } else {
+                                  setFavorites([...favorites, offer.id]);
+                                }
                               }
-                            }
-                          }}
-                          variant="outline" 
-                          className={`font-semibold text-sm ${favorites.includes(offer.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
-                        >
-                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(offer.id) ? 'fill-primary' : ''}`} />
-                          {favorites.includes(offer.id) ? 'В избранном' : 'В избранное'}
-                        </Button>
-                        <Button 
-                          onClick={() => {
-                            setSelectedItem(offer);
-                            setIsViewModalOpen(true);
-                          }}
-                          variant="outline" 
-                          className="flex-1 sm:flex-none font-semibold text-sm"
-                        >
-                          <Icon name="Eye" size={14} className="mr-1.5" />
-                          Смотреть
-                        </Button>
+                            }}
+                            variant="outline" 
+                            size="sm"
+                            className={`flex-1 sm:flex-none font-semibold ${favorites.includes(offer.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
+                          >
+                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(offer.id) ? 'fill-primary' : ''}`} />
+                            <span className="hidden sm:inline">{favorites.includes(offer.id) ? 'В избранном' : 'В избранное'}</span>
+                          </Button>
+                          <Button 
+                            onClick={() => {
+                              setSelectedItem(offer);
+                              setIsViewModalOpen(true);
+                            }}
+                            variant="outline" 
+                            size="sm"
+                            className="flex-1 sm:flex-none font-semibold"
+                          >
+                            <Icon name="Eye" size={14} className="sm:mr-1.5" />
+                            <span className="hidden sm:inline">Смотреть</span>
+                          </Button>
+                        </div>
                         <Button 
                           onClick={() => {
                             if (!isAuthenticated) {
@@ -1247,7 +1252,8 @@ const Index = () => {
                               setIsResponseModalOpen(true);
                             }
                           }}
-                          className="flex-1 sm:flex-none bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
+                          size="sm"
+                          className="w-full sm:w-auto bg-gradient-orange-pink text-white hover:opacity-90 font-semibold"
                         >
                           Написать
                           <Icon name="MessageCircle" size={14} className="ml-1.5" />
