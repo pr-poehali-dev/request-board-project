@@ -710,8 +710,10 @@ const Index = () => {
                   title="Сообщения"
                 >
                   <Icon name="MessageCircle" size={22} />
-                  {dialogs.some(d => d.unread > 0) && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full shadow-lg"></span>
+                  {dialogs.filter(d => d.unread > 0).length > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg">
+                      {dialogs.reduce((sum, d) => sum + d.unread, 0)}
+                    </span>
                   )}
                 </button>
               </div>
@@ -952,7 +954,7 @@ const Index = () => {
         </div>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-56 flex-shrink-0">
-            <div className="sticky top-[88px] space-y-4">
+            <div className="sticky top-[88px] space-y-4 max-h-[calc(100vh-100px)] overflow-y-auto pr-2 custom-scrollbar" style={{scrollbarWidth: 'thin', scrollbarColor: '#e0e7ff #f8fafc'}}>
               <div className="space-y-1">
                 <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Навигация</h3>
                 <Button
@@ -1092,7 +1094,7 @@ const Index = () => {
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
-                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-indigo-200 transition-all duration-300 cursor-pointer"
+                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-indigo-300 hover:-translate-y-1 transition-all duration-300"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1273,7 +1275,7 @@ const Index = () => {
               {filteredOffers.map((offer, index) => (
                 <Card 
                   key={offer.id} 
-                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-indigo-200 transition-all duration-300 cursor-pointer"
+                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-indigo-300 hover:-translate-y-1 transition-all duration-300"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
