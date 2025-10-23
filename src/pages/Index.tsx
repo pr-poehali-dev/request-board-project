@@ -773,7 +773,7 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="relative bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 text-white hover:from-purple-700 hover:via-pink-700 hover:to-rose-700 font-bold shadow-xl hover:shadow-2xl transition-all duration-300 px-6 h-11 rounded-2xl hover:scale-105 border border-white/40 overflow-hidden group backdrop-blur-sm"
+                className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600 font-bold shadow-xl hover:shadow-2xl transition-all duration-300 px-6 h-11 rounded-2xl hover:scale-105 border border-white/40 overflow-hidden group backdrop-blur-sm"
                 title="Создать объявление"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
