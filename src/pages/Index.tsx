@@ -904,7 +904,7 @@ const Index = () => {
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3 max-w-4xl mx-auto">
             {[
               { name: 'Электроника', icon: 'Laptop', count: '2,450+', trend: '+12%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
               { name: 'Одежда', icon: 'ShoppingBag', count: '1,890+', trend: '+8%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/87587932-0e71-4945-b568-5c28885d515d.jpg' },
@@ -914,7 +914,7 @@ const Index = () => {
               { name: 'Работа', icon: 'Users', count: '2,780+', trend: '+18%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
               { name: 'Строительство', icon: 'HardHat', count: '650+', trend: '+7%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/90579daf-2c02-4cf0-9a10-8d82c4cfd188.jpg' },
               { name: 'Спорт', icon: 'Dumbbell', count: '840+', trend: '+6%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/615613ff-f799-42c9-b4c5-bbb539eeb652.jpg' },
-              { name: 'Мебель', icon: 'Armchair', count: '720+', trend: '+9%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-42ce8f831926/files/27378e24-ffdf-454b-a0e1-0710815e4b97.jpg' },
+              { name: 'Мебель', icon: 'Armchair', count: '720+', trend: '+9%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-42ce8f831926/files/c341913f-614b-45ea-83b3-9ea4c3c2bd65.jpg' },
               { name: 'Детские товары', icon: 'Baby', count: '930+', trend: '+11%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/4bf63f99-f04d-4408-96bb-4afa6a96343a.jpg' },
               { name: 'Красота', icon: 'Sparkles', count: '1,340+', trend: '+13%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
               { name: 'Хобби', icon: 'Gamepad2', count: '560+', trend: '+4%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d342e6b-79f2-4b15-84f1-0747b420bf69.jpg' }
@@ -925,7 +925,7 @@ const Index = () => {
                   setSelectedCategory(category.name);
                   setActiveTab('requests');
                 }}
-                className="group relative overflow-hidden rounded-2xl aspect-video border border-indigo-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-indigo-200"
+                className="group relative overflow-hidden rounded-xl aspect-square border border-indigo-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-indigo-200"
               >
                 <img 
                   src={category.image} 
@@ -935,20 +935,17 @@ const Index = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
                 <div className="absolute inset-0 bg-indigo-900/20"></div>
                 
-                <div className="relative z-10 h-full flex flex-col justify-between p-3 sm:p-4">
-                  <div className="flex items-start justify-between">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-lg">
-                      <Icon name={category.icon as any} size={18} />
-                    </div>
-                    <span className="text-[10px] sm:text-xs font-bold text-white bg-emerald-500 px-2 py-0.5 rounded-full shadow-lg">
+                <div className="relative z-10 h-full flex flex-col justify-between p-2">
+                  <div className="flex items-start justify-end">
+                    <span className="text-[8px] font-bold text-white bg-emerald-500 px-1.5 py-0.5 rounded-full shadow-lg">
                       {category.trend}
                     </span>
                   </div>
-                  <div className="text-left">
-                    <h3 className="font-bold text-sm sm:text-base mb-0.5 text-white drop-shadow-lg">{category.name}</h3>
-                    <p className="text-[10px] sm:text-xs text-white/90 font-medium drop-shadow">
-                      {category.count} объявлений
-                    </p>
+                  <div className="text-center">
+                    <div className="w-6 h-6 mx-auto mb-1 rounded-lg bg-white/95 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-lg">
+                      <Icon name={category.icon as any} size={14} />
+                    </div>
+                    <h3 className="font-bold text-[10px] text-white drop-shadow-lg leading-tight">{category.name}</h3>
                   </div>
                 </div>
               </button>
