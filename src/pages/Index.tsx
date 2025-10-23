@@ -1130,19 +1130,20 @@ const Index = () => {
                               if (!isAuthenticated) {
                                 setIsLoginOpen(true);
                               } else {
-                                if (favorites.includes(request.id)) {
-                                  setFavorites(favorites.filter(id => id !== request.id));
+                                const itemKey = `request-${request.id}`;
+                                if (favorites.includes(itemKey)) {
+                                  setFavorites(favorites.filter(id => id !== itemKey));
                                 } else {
-                                  setFavorites([...favorites, request.id]);
+                                  setFavorites([...favorites, itemKey]);
                                 }
                               }
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(request.id) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(`request-${request.id}`) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
                           >
-                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(request.id) ? 'fill-primary' : ''}`} />
-                            <span className="hidden sm:inline">{favorites.includes(request.id) ? 'В избранном' : 'В избранное'}</span>
+                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(`request-${request.id}`) ? 'fill-primary' : ''}`} />
+                            <span className="hidden sm:inline">{favorites.includes(`request-${request.id}`) ? 'В избранном' : 'В избранное'}</span>
                           </Button>
                           <Button 
                             onClick={() => {
@@ -1310,19 +1311,20 @@ const Index = () => {
                               if (!isAuthenticated) {
                                 setIsLoginOpen(true);
                               } else {
-                                if (favorites.includes(offer.id)) {
-                                  setFavorites(favorites.filter(id => id !== offer.id));
+                                const itemKey = `offer-${offer.id}`;
+                                if (favorites.includes(itemKey)) {
+                                  setFavorites(favorites.filter(id => id !== itemKey));
                                 } else {
-                                  setFavorites([...favorites, offer.id]);
+                                  setFavorites([...favorites, itemKey]);
                                 }
                               }
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold ${favorites.includes(offer.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(`offer-${offer.id}`) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
                           >
-                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(offer.id) ? 'fill-primary' : ''}`} />
-                            <span className="hidden sm:inline">{favorites.includes(offer.id) ? 'В избранном' : 'В избранное'}</span>
+                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(`offer-${offer.id}`) ? 'fill-primary' : ''}`} />
+                            <span className="hidden sm:inline">{favorites.includes(`offer-${offer.id}`) ? 'В избранном' : 'В избранное'}</span>
                           </Button>
                           <Button 
                             onClick={() => {
@@ -1331,7 +1333,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
@@ -1390,7 +1392,7 @@ const Index = () => {
               </Card>
             ) : (
               <div className="grid gap-3 sm:gap-4">
-                {mockRequests.filter(req => favorites.includes(req.id)).map((request, index) => (
+                {mockRequests.filter(req => favorites.includes(`request-${req.id}`)).map((request, index) => (
                   <Card 
                     key={request.id} 
                     className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
@@ -1433,7 +1435,7 @@ const Index = () => {
                       <div className="flex flex-col sm:flex-row gap-2">
                         <Button 
                           onClick={() => {
-                            setFavorites(favorites.filter(id => id !== request.id));
+                            setFavorites(favorites.filter(id => id !== `request-${request.id}`));
                           }}
                           variant="outline" 
                           className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-xs sm:text-sm w-full sm:w-auto"
@@ -1455,7 +1457,7 @@ const Index = () => {
                     </CardContent>
                   </Card>
                 ))}
-                {mockOffers.filter(offer => favorites.includes(offer.id)).map((offer, index) => (
+                {mockOffers.filter(offer => favorites.includes(`offer-${offer.id}`)).map((offer, index) => (
                   <Card 
                     key={offer.id} 
                     className="hover:shadow-xl transition-all duration-300 border-2 hover:border-secondary/20 animate-scale-in"
@@ -1498,7 +1500,7 @@ const Index = () => {
                       <div className="flex flex-col sm:flex-row gap-2">
                         <Button 
                           onClick={() => {
-                            setFavorites(favorites.filter(id => id !== offer.id));
+                            setFavorites(favorites.filter(id => id !== `offer-${offer.id}`));
                           }}
                           variant="outline" 
                           className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-xs sm:text-sm w-full sm:w-auto"
