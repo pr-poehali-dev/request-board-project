@@ -74,7 +74,7 @@ const mockRequests: Request[] = [
     city: 'Москва',
     delivery: true,
     exchange: true,
-    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/fc00d06a-d099-40ff-ad81-00acaf3bcc1d.jpg']
+    photos: ['https://cdn.poehali.dev/files/609c2405-3d9e-47e8-b11a-a587fb53e663.jpg']
   },
   {
     id: 2,
@@ -156,17 +156,17 @@ const mockRequests: Request[] = [
 const mockOffers: Offer[] = [
   {
     id: 1,
-    title: 'Продаю iPhone 14 Pro Max',
+    title: 'Продаю iPhone 15 Pro',
     category: 'Электроника',
-    price: '85 000 ₽',
+    price: '95 000 ₽',
     author: 'Сергей',
     rating: 4.9,
     views: 145,
-    description: 'iPhone 14 Pro Max 256GB, черный, отличное состояние, все документы',
+    description: 'iPhone 15 Pro 256GB, титановый, отличное состояние, все документы',
     city: 'Москва',
     delivery: true,
     exchange: true,
-    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/fc00d06a-d099-40ff-ad81-00acaf3bcc1d.jpg', 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a0739562-21b8-43e0-9bb1-abaeafd67dbd.jpg']
+    photos: ['https://cdn.poehali.dev/files/609c2405-3d9e-47e8-b11a-a587fb53e663.jpg']
   },
   {
     id: 2,
