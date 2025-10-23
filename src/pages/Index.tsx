@@ -476,7 +476,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white border-b sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="px-3 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14 sm:h-16">
             <div className="flex items-center space-x-2">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-instagram flex items-center justify-center">
@@ -768,7 +768,7 @@ const Index = () => {
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8">
+      <main className="px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8">
         {activeTab === 'requests' && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
