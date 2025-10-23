@@ -372,14 +372,6 @@ const Index = () => {
                 <Icon name="Package" size={18} className="mr-2" />
                 Предложения
               </Button>
-              <Button 
-                variant={activeTab === 'categories' ? 'default' : 'ghost'}
-                onClick={() => setActiveTab('categories')}
-                className="font-medium"
-              >
-                <Icon name="FolderOpen" size={18} className="mr-2" />
-                Категории
-              </Button>
               {isAuthenticated && (
                 <Button 
                   variant={activeTab === 'profile' ? 'default' : 'ghost'}
@@ -400,40 +392,46 @@ const Index = () => {
               )}
             </div>
             
-            <button
-              onClick={() => setActiveTab('favorites')}
-              className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              <Icon name="Heart" size={22} className="text-gray-700" />
-              {favorites.length > 0 && (
-                <span className="absolute top-1 right-1 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
-                  {favorites.length}
-                </span>
-              )}
-            </button>
-            
             <div className="flex items-center space-x-2">
-              <button 
-                onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              <Button
+                variant={activeTab === 'favorites' ? 'default' : 'ghost'}
+                onClick={() => setActiveTab('favorites')}
+                className="font-medium"
               >
-                <Icon name="Bell" size={22} className="text-gray-700" />
-                {notifications.filter(n => !n.read).length > 0 && (
-                  <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-instagram rounded-full text-white text-xs flex items-center justify-center font-semibold">
-                    {notifications.filter(n => !n.read).length}
+                <Icon name="Heart" size={18} className="mr-2" />
+                <span className="hidden sm:inline">Избранное</span>
+                {favorites.length > 0 && (
+                  <span className="ml-2 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                    {favorites.length}
                   </span>
                 )}
-              </button>
-              <button 
-                onClick={() => setIsChatOpen(!isChatOpen)} 
-                className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <Icon name="MessageCircle" size={22} className="text-gray-700" />
-                {dialogs.some(d => d.unread > 0) && (
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
-                )}
-              </button>
+              </Button>
             </div>
+            
+            {isAuthenticated && (
+              <div className="flex items-center space-x-2">
+                <button 
+                  onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <Icon name="Bell" size={22} className="text-gray-700" />
+                  {notifications.filter(n => !n.read).length > 0 && (
+                    <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-instagram rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                      {notifications.filter(n => !n.read).length}
+                    </span>
+                  )}
+                </button>
+                <button 
+                  onClick={() => setIsChatOpen(!isChatOpen)} 
+                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <Icon name="MessageCircle" size={22} className="text-gray-700" />
+                  {dialogs.some(d => d.unread > 0) && (
+                    <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
+                  )}
+                </button>
+              </div>
+            )}
 
             {!isAuthenticated ? (
               <div className="flex items-center space-x-2">
@@ -465,7 +463,7 @@ const Index = () => {
       </nav>
 
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50 shadow-lg">
-        <div className="grid grid-cols-4 gap-1 p-2">
+        <div className={`grid ${isAuthenticated ? 'grid-cols-4' : 'grid-cols-3'} gap-1 p-2`}>
           <button 
             onClick={() => setActiveTab('requests')}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
@@ -485,13 +483,13 @@ const Index = () => {
             <span className="text-xs mt-1">Предложения</span>
           </button>
           <button 
-            onClick={() => setActiveTab('categories')}
+            onClick={() => setActiveTab('favorites')}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
-              activeTab === 'categories' ? 'bg-primary text-white' : 'text-gray-600'
+              activeTab === 'favorites' ? 'bg-primary text-white' : 'text-gray-600'
             }`}
           >
-            <Icon name="FolderOpen" size={20} />
-            <span className="text-xs mt-1">Категории</span>
+            <Icon name="Heart" size={20} />
+            <span className="text-xs mt-1">Избранное</span>
           </button>
           {isAuthenticated && (
             <button 
@@ -525,6 +523,29 @@ const Index = () => {
               <p className="text-base sm:text-lg text-gray-600">
                 Создай запрос и получи предложения от продавцов
               </p>
+            </div>
+
+            <div className="mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Категории</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                {categories.map((category, index) => (
+                  <Card
+                    key={category.name}
+                    className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                    }}
+                  >
+                    <CardContent className="p-4 text-center">
+                      <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
+                        <Icon name={category.icon as any} size={24} className="text-white" />
+                      </div>
+                      <h3 className="text-sm font-bold text-gray-800">{category.name}</h3>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
 
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
@@ -686,6 +707,29 @@ const Index = () => {
               <p className="text-base sm:text-lg text-gray-600">
                 Товары и услуги от продавцов
               </p>
+            </div>
+
+            <div className="mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Категории</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                {categories.map((category, index) => (
+                  <Card
+                    key={category.name}
+                    className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                    }}
+                  >
+                    <CardContent className="p-4 text-center">
+                      <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
+                        <Icon name={category.icon as any} size={24} className="text-white" />
+                      </div>
+                      <h3 className="text-sm font-bold text-gray-800">{category.name}</h3>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
 
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
