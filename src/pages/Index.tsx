@@ -904,55 +904,53 @@ const Index = () => {
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
           
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6 gap-3 sm:gap-4">
-            {[
-              { name: 'Электроника', icon: 'Smartphone', count: '2,450+', trend: '+12%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
-              { name: 'Одежда', icon: 'Shirt', count: '1,890+', trend: '+8%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/87587932-0e71-4945-b568-5c28885d515d.jpg' },
-              { name: 'Услуги', icon: 'Wrench', count: '3,200+', trend: '+15%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a4b0129a-c824-49ec-9ac3-65b1a4f1ea7f.jpg' },
-              { name: 'Недвижимость', icon: 'Building2', count: '980+', trend: '+5%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/c077dd48-4194-493c-bbfe-7d266f2f6833.jpg' },
-              { name: 'Транспорт', icon: 'CarFront', count: '1,120+', trend: '+10%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/613cb2e4-b120-4978-8a64-718792bfd099.jpg' },
-              { name: 'Работа', icon: 'BriefcaseBusiness', count: '2,780+', trend: '+18%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
-              { name: 'Строительство', icon: 'Hammer', count: '650+', trend: '+7%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/90579daf-2c02-4cf0-9a10-8d82c4cfd188.jpg' },
-              { name: 'Спорт', icon: 'Trophy', count: '840+', trend: '+6%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/615613ff-f799-42c9-b4c5-bbb539eeb652.jpg' },
-              { name: 'Мебель', icon: 'Sofa', count: '720+', trend: '+9%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d4aaf5a-4a15-4b9d-b416-147cbe119959.jpg' },
-              { name: 'Детские товары', icon: 'Baby', count: '930+', trend: '+11%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/4bf63f99-f04d-4408-96bb-4afa6a96343a.jpg' },
-              { name: 'Красота', icon: 'Heart', count: '1,340+', trend: '+13%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
-              { name: 'Хобби', icon: 'Palette', count: '560+', trend: '+4%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d342e6b-79f2-4b15-84f1-0747b420bf69.jpg' }
-            ].map((category, index) => (
-              <button
-                key={category.name}
-                onClick={() => {
-                  setSelectedCategory(category.name);
-                  setActiveTab('requests');
-                }}
-                className="group relative overflow-hidden rounded-2xl aspect-square border border-indigo-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-indigo-200"
-              >
-                <img 
-                  src={category.image} 
-                  alt={category.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
-                <div className="absolute inset-0 bg-indigo-900/20"></div>
-                
-                <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-5">
-                  <div className="flex items-start justify-between">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-black/40 backdrop-blur-sm flex items-center justify-center text-white shadow-xl">
-                      <Icon name={category.icon as any} size={32} />
+          <div className="relative">
+            <div className="overflow-x-auto scrollbar-hide -mx-3 px-3">
+              <div className="flex gap-4 sm:gap-5 pb-2">
+                {[
+                  { name: 'Работа', icon: 'BriefcaseBusiness', count: '2,780+', trend: '+18%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
+                  { name: 'Услуги', icon: 'Wrench', count: '3,200+', trend: '+15%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a4b0129a-c824-49ec-9ac3-65b1a4f1ea7f.jpg' },
+                  { name: 'Красота', icon: 'Heart', count: '1,340+', trend: '+13%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
+                  { name: 'Электроника', icon: 'Smartphone', count: '2,450+', trend: '+12%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
+                  { name: 'Транспорт', icon: 'CarFront', count: '1,120+', trend: '+10%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/613cb2e4-b120-4978-8a64-718792bfd099.jpg' }
+                ].map((category, index) => (
+                  <button
+                    key={category.name}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                      setActiveTab('requests');
+                    }}
+                    className="group relative overflow-hidden rounded-2xl flex-shrink-0 w-64 sm:w-80 h-36 sm:h-44 border border-indigo-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-indigo-200"
+                    style={{ aspectRatio: '16/9' }}
+                  >
+                    <img 
+                      src={category.image} 
+                      alt={category.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                    <div className="absolute inset-0 bg-indigo-900/20"></div>
+                    
+                    <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-5">
+                      <div className="flex items-start justify-between">
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-black/40 backdrop-blur-sm flex items-center justify-center text-white shadow-xl">
+                          <Icon name={category.icon as any} size={28} />
+                        </div>
+                        <span className="text-xs font-bold text-white bg-emerald-500 px-2.5 py-1 rounded-full shadow-lg">
+                          {category.trend}
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <h3 className="font-bold text-base sm:text-lg text-white drop-shadow-lg mb-1">{category.name}</h3>
+                        <p className="text-sm text-white/90 font-semibold drop-shadow">
+                          {category.count} объявлений
+                        </p>
+                      </div>
                     </div>
-                    <span className="text-[10px] sm:text-xs font-bold text-white bg-emerald-500 px-2.5 py-1 rounded-full shadow-lg">
-                      {category.trend}
-                    </span>
-                  </div>
-                  <div className="text-left">
-                    <h3 className="font-bold text-sm sm:text-base text-white drop-shadow-lg mb-1">{category.name}</h3>
-                    <p className="text-xs sm:text-sm text-white/90 font-semibold drop-shadow">
-                      {category.count} объявлений
-                    </p>
-                  </div>
-                </div>
-              </button>
-            ))}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex gap-6 justify-center">
