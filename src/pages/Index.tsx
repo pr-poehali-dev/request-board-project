@@ -896,7 +896,7 @@ const Index = () => {
         </div>
       </div>
 
-      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
+      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
         <div className="mb-6 sm:mb-8 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
@@ -2837,7 +2837,7 @@ const Index = () => {
       {isSupportOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4">
           <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl w-full max-w-2xl h-full sm:h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-none sm:rounded-t-2xl flex items-center justify-between">
+            <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white p-4 rounded-t-none sm:rounded-t-2xl flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <Avatar className="w-10 h-10 bg-white/20">
                   <AvatarFallback className="bg-transparent text-white font-bold text-xl">👮</AvatarFallback>
@@ -2858,7 +2858,7 @@ const Index = () => {
                   <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                     <div className={`rounded-2xl px-4 py-2 ${
                       msg.sender === 'me' 
-                        ? 'bg-gradient-orange-pink text-white' 
+                        ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' 
                         : 'bg-white text-gray-800 border border-gray-200'
                     }`}>
                       <p className="text-sm">{msg.text}</p>
@@ -2908,7 +2908,7 @@ const Index = () => {
                       setNewMessage('');
                     }
                   }}
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 px-4 py-2 rounded-xl"
+                  className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600 px-4 py-2 rounded-xl transition-all duration-300"
                 >
                   <Icon name="Send" size={18} />
                 </Button>
@@ -3068,7 +3068,7 @@ const Index = () => {
 
       <button
         onClick={() => setIsSupportOpen(true)}
-        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-orange-pink text-white rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-40 animate-bounce"
+        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 animate-bounce hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600"
         style={{ animationDuration: '3s' }}
       >
         <Icon name="HelpCircle" size={28} />
