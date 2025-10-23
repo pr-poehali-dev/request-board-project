@@ -860,7 +860,7 @@ const Index = () => {
       </div>
 
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
-        <div className="mb-6 sm:mb-8 text-center lg:hidden">
+        <div className="mb-6 sm:mb-8 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
           </h1>
@@ -870,7 +870,7 @@ const Index = () => {
         </div>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-20 space-y-4">
+            <div className="sticky top-[88px] space-y-4">
               <div className="space-y-1">
                 <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Навигация</h3>
                 <Button
