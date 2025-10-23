@@ -647,24 +647,7 @@ const Index = () => {
                 <Icon name="FolderOpen" size={18} className="mr-2" />
                 Все категории
               </Button>
-              {isAuthenticated && (
-                <>
-                  <Button
-                    variant={activeTab === 'favorites' ? 'default' : 'ghost'}
-                    onClick={() => setActiveTab('favorites')}
-                    className="font-medium"
-                  >
-                    <Icon name="Heart" size={18} className="mr-2" />
-                    <span className="hidden sm:inline">Избранное</span>
-                    {favorites.length > 0 && (
-                      <span className="ml-2 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
-                        {favorites.length}
-                      </span>
-                    )}
-                  </Button>
 
-                </>
-              )}
             </div>
 
             <div className="flex items-center space-x-3">
@@ -748,6 +731,15 @@ const Index = () => {
                 className="flex items-center space-x-2 px-3 py-1.5 hover:bg-gray-100 rounded-lg transition-colors"
                 title="Профиль"
               >
+                <Avatar className="w-7 h-7 bg-gradient-orange-pink">
+                  {avatarPreview ? (
+                    <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                  ) : (
+                    <AvatarFallback className="bg-transparent text-white font-semibold text-xs">
+                      {profileData.name.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  )}
+                </Avatar>
                 <span className="text-sm font-medium text-gray-700">AlbeWeb</span>
                 <Icon name="ChevronDown" size={16} className="text-gray-500" />
               </button>
