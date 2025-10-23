@@ -842,7 +842,7 @@ const Index = () => {
                         </CardDescription>
                       </div>
                       <div className="ml-4">
-                        <div className="text-2xl font-extrabold bg-gradient-purple-pink bg-clip-text text-transparent whitespace-nowrap">
+                        <div className="text-2xl font-extrabold text-black whitespace-nowrap">
                           {request.budget}
                         </div>
                       </div>
@@ -997,7 +997,7 @@ const Index = () => {
                         </CardDescription>
                       </div>
                       <div className="ml-4">
-                        <div className="text-2xl font-extrabold bg-gradient-purple-pink bg-clip-text text-transparent whitespace-nowrap">
+                        <div className="text-2xl font-extrabold text-black whitespace-nowrap">
                           {offer.price}
                         </div>
                       </div>
