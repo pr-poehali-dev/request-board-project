@@ -6,44 +6,44 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 220 15% 15%;
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 15%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 15%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 262 83% 58%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 340 82% 52%;
+    --secondary: 320 85% 60%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 175 60% 50%;
+    --accent: 173 80% 40%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 262 83% 58%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 221 83% 53%;
   }
 
   .dark {
@@ -111,5 +111,95 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  .swipe-indicator {
+    position: relative;
+    touch-action: pan-y;
+  }
+
+  .swipe-indicator::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: linear-gradient(90deg, #5680e9, #84ceeb);
+    border-radius: 2px;
+    opacity: 0.3;
+  }
+
+  @keyframes swipe-hint {
+    0%,
+    100% {
+      transform: translateX(-50%);
+    }
+    50% {
+      transform: translateX(-45%);
+    }
+  }
+
+  .animate-swipe-hint::after {
+    animation: swipe-hint 2s ease-in-out infinite;
+  }
+
+  @keyframes float-card {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 4px 20px rgba(86, 128, 233, 0.2);
+    }
+    50% {
+      box-shadow: 0 8px 30px rgba(86, 128, 233, 0.4);
+    }
+  }
+
+  .category-card {
+    animation: float-card 6s ease-in-out infinite;
+  }
+
+  .category-card:hover {
+    animation:
+      pulse-glow 2.5s ease-in-out infinite,
+      float-card 6s ease-in-out infinite;
+  }
+
+  .category-card:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .category-card:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  .category-card:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  .category-card:nth-child(4) {
+    animation-delay: 0.9s;
+  }
+  .category-card:nth-child(5) {
+    animation-delay: 1.2s;
+  }
+  .category-card:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .category-card:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  .category-card:nth-child(4) {
+    animation-delay: 0.6s;
+  }
+  .category-card:nth-child(5) {
+    animation-delay: 0.8s;
   }
 }
