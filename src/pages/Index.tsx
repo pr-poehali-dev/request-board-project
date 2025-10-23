@@ -150,9 +150,18 @@ interface ChatDialog {
   avatar: string;
   lastMessage: string;
   lastTime: string;
-  type: 'request' | 'offer';
+  type: 'request' | 'offer' | 'support';
   unread: number;
   messages: ChatMessage[];
+}
+
+interface Notification {
+  id: number;
+  title: string;
+  message: string;
+  time: string;
+  type: 'info' | 'success' | 'warning';
+  read: boolean;
 }
 
 const Index = () => {
@@ -219,13 +228,60 @@ const Index = () => {
         { id: 3, text: 'Могу обменять на что-то интересное', sender: 'other', timestamp: '3 дня 14:20', author: 'Игорь' },
       ]
     },
+    {
+      id: 999,
+      name: 'Поддержка',
+      avatar: '👮',
+      lastMessage: 'Здравствуйте! Чем можем помочь?',
+      lastTime: 'онлайн',
+      type: 'support',
+      unread: 0,
+      messages: [
+        { id: 1, text: 'Здравствуйте! Я бот-помощник. Чем могу помочь?', sender: 'other', timestamp: 'сейчас', author: 'Поддержка' },
+      ]
+    },
   ]);
   const [newMessage, setNewMessage] = useState('');
   const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
   const [formType, setFormType] = useState<'request' | 'offer'>('request');
+  const [notifications, setNotifications] = useState<Notification[]>([
+    {
+      id: 1,
+      title: 'Новый отклик',
+      message: 'Сергей откликнулся на ваш запрос iPhone 15 Pro',
+      time: '5 мин назад',
+      type: 'info',
+      read: false
+    },
+    {
+      id: 2,
+      title: 'Сделка завершена',
+      message: 'Вы успешно завершили сделку с Анной',
+      time: '2 часа назад',
+      type: 'success',
+      read: false
+    },
+    {
+      id: 3,
+      title: 'Новое сообщение',
+      message: 'Мария ответила на ваше сообщение',
+      time: 'вчера',
+      type: 'info',
+      read: true
+    },
+    {
+      id: 4,
+      title: 'Новый отзыв',
+      message: 'Игорь оставил вам отзыв на 5 звёзд',
+      time: '2 дня назад',
+      type: 'success',
+      read: true
+    },
+  ]);
   const [formData, setFormData] = useState({
     title: '',
     category: '',
@@ -322,9 +378,16 @@ const Index = () => {
             </div>
             
             <div className="flex items-center space-x-2">
-              <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
+              <button 
+                onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+                className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
                 <Icon name="Bell" size={22} className="text-gray-700" />
-                <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-instagram rounded-full text-white text-xs flex items-center justify-center font-semibold">3</span>
+                {notifications.filter(n => !n.read).length > 0 && (
+                  <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-instagram rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                    {notifications.filter(n => !n.read).length}
+                  </span>
+                )}
               </button>
               <button 
                 onClick={() => setIsChatOpen(!isChatOpen)} 
@@ -628,33 +691,77 @@ const Index = () => {
         )}
 
         {activeTab === 'categories' && (
-          <div className="space-y-4 sm:space-y-6 animate-fade-in">
-            <div className="text-center mb-6 sm:mb-10">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">Категории</h2>
-              <p className="text-base sm:text-lg text-gray-600">Выберите категорию для поиска</p>
+          <div className="space-y-6 sm:space-y-8 animate-fade-in">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">Категории</h2>
+              <p className="text-base sm:text-lg text-gray-600">Выберите категорию для просмотра запросов и предложений</p>
             </div>
-            <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">
-              {categories.map((category, index) => (
-                <div
-                  key={category.name}
-                  className="group cursor-pointer animate-scale-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {categories.map((category, index) => {
+                const requestCount = Math.floor(Math.random() * 50 + 10);
+                const offerCount = Math.floor(Math.random() * 30 + 5);
+                
+                return (
+                  <Card
+                    key={category.name}
+                    className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                      setActiveTab('requests');
+                    }}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className={`w-16 h-16 rounded-2xl ${category.color} flex items-center justify-center flex-shrink-0`}>
+                          <Icon name={category.icon as any} size={32} className="text-white" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-xl font-bold text-gray-800 mb-2">{category.name}</h3>
+                          <div className="space-y-1.5">
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-gray-600 flex items-center">
+                                <Icon name="Search" size={14} className="mr-1.5 text-blue-500" />
+                                Запросы
+                              </span>
+                              <span className="font-bold text-gray-800">{requestCount}</span>
+                            </div>
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-gray-600 flex items-center">
+                                <Icon name="Package" size={14} className="mr-1.5 text-green-500" />
+                                Предложения
+                              </span>
+                              <span className="font-bold text-gray-800">{offerCount}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <Icon name="ChevronRight" size={20} className="text-gray-400 flex-shrink-0" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+
+            <Card className="border-2 border-dashed border-gray-300 bg-gray-50">
+              <CardContent className="p-8 text-center">
+                <Icon name="HelpCircle" size={48} className="mx-auto mb-4 text-gray-400" />
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Не нашли нужную категорию?</h3>
+                <p className="text-gray-600 mb-4">Напишите нам, и мы добавим её!</p>
+                <Button 
                   onClick={() => {
-                    setSelectedCategory(category.name);
-                    setActiveTab('requests');
+                    setSelectedDialog(999);
+                    setIsChatOpen(true);
                   }}
+                  variant="outline" 
+                  className="font-semibold"
                 >
-                  <div className="relative">
-                    <div className={`w-full aspect-square rounded-2xl ${category.color} flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl`}>
-                      <Icon name={category.icon as any} size={32} className="text-white transition-transform duration-300 group-hover:scale-125" />
-                    </div>
-                    <div className="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                  </div>
-                  <h3 className="text-center mt-2 text-xs sm:text-sm font-bold text-gray-800 group-hover:text-primary transition-colors">{category.name}</h3>
-                  <p className="text-center text-[10px] sm:text-xs text-gray-500 mt-0.5">{Math.floor(Math.random() * 50 + 10)}</p>
-                </div>
-              ))}
-            </div>
+                  <Icon name="MessageCircle" size={16} className="mr-2" />
+                  Связаться с поддержкой
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         )}
 
@@ -789,7 +896,11 @@ const Index = () => {
                     key={dialog.id}
                     onClick={() => setSelectedDialog(dialog.id)}
                     className={`p-4 border-b cursor-pointer transition-colors ${
-                      selectedDialog === dialog.id ? 'bg-primary/10 border-l-4 border-l-primary' : 'hover:bg-gray-100'
+                      dialog.type === 'support'
+                        ? 'bg-gradient-to-r from-purple-50 to-pink-50 border-l-4 border-l-purple-500'
+                        : selectedDialog === dialog.id 
+                          ? 'bg-primary/10 border-l-4 border-l-primary' 
+                          : 'hover:bg-gray-100'
                     }`}
                   >
                     <div className="flex items-start space-x-3">
@@ -813,12 +924,14 @@ const Index = () => {
                         <div className="flex items-center space-x-2 mb-1">
                           <Badge 
                             className={`text-[10px] px-2 py-0.5 ${
-                              dialog.type === 'request' 
-                                ? 'bg-blue-100 text-blue-700 border-blue-200' 
-                                : 'bg-green-100 text-green-700 border-green-200'
+                              dialog.type === 'support'
+                                ? 'bg-purple-100 text-purple-700 border-purple-200'
+                                : dialog.type === 'request' 
+                                  ? 'bg-blue-100 text-blue-700 border-blue-200' 
+                                  : 'bg-green-100 text-green-700 border-green-200'
                             }`}
                           >
-                            {dialog.type === 'request' ? 'Запрос' : 'Предложение'}
+                            {dialog.type === 'support' ? 'Поддержка' : dialog.type === 'request' ? 'Запрос' : 'Предложение'}
                           </Badge>
                         </div>
                         <p className="text-xs text-gray-600 truncate">{dialog.lastMessage}</p>
@@ -832,7 +945,11 @@ const Index = () => {
             <div className="flex-1 flex flex-col">
               {currentDialog && (
                 <>
-                  <div className="bg-gradient-instagram text-white p-4 flex items-center justify-between">
+                  <div className={`${
+                    currentDialog.type === 'support' 
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600' 
+                      : 'bg-gradient-instagram'
+                  } text-white p-4 flex items-center justify-between`}>
                     <div className="flex items-center space-x-3">
                       <Avatar className="w-10 h-10 bg-white/20">
                         <AvatarFallback className="bg-transparent text-white font-bold">
@@ -843,12 +960,8 @@ const Index = () => {
                         <h3 className="font-bold text-lg">{currentDialog.name}</h3>
                         <div className="flex items-center space-x-2">
                           <p className="text-xs text-white/80">онлайн</p>
-                          <Badge className={`text-[10px] px-2 py-0.5 ${
-                            currentDialog.type === 'request'
-                              ? 'bg-white/20 text-white border-white/30'
-                              : 'bg-white/20 text-white border-white/30'
-                          }`}>
-                            {currentDialog.type === 'request' ? 'Запрос' : 'Предложение'}
+                          <Badge className="text-[10px] px-2 py-0.5 bg-white/20 text-white border-white/30">
+                            {currentDialog.type === 'support' ? 'Поддержка' : currentDialog.type === 'request' ? 'Запрос' : 'Предложение'}
                           </Badge>
                         </div>
                       </div>
@@ -887,15 +1000,17 @@ const Index = () => {
                   </div>
 
                   <div className="p-4 bg-white border-t">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <Button
-                        onClick={() => setIsReviewFormOpen(true)}
-                        className="bg-gradient-purple-pink text-white hover:opacity-90 font-semibold text-sm px-4 py-2 rounded-xl"
-                      >
-                        <Icon name="CheckCircle" size={16} className="mr-2" />
-                        Заключить сделку
-                      </Button>
-                    </div>
+                    {currentDialog.type !== 'support' && (
+                      <div className="flex items-center space-x-2 mb-3">
+                        <Button
+                          onClick={() => setIsReviewFormOpen(true)}
+                          className="bg-gradient-purple-pink text-white hover:opacity-90 font-semibold text-sm px-4 py-2 rounded-xl"
+                        >
+                          <Icon name="CheckCircle" size={16} className="mr-2" />
+                          Заключить сделку
+                        </Button>
+                      </div>
+                    )}
                     <div className="flex items-center space-x-2">
                       <input
                         type="text"
@@ -1182,6 +1297,106 @@ const Index = () => {
                   Отправить
                 </Button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isNotificationsOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[600px] flex flex-col animate-scale-in">
+            <div className="bg-gradient-instagram text-white p-4 sm:p-5 rounded-t-2xl flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-bold">Уведомления</h2>
+                <p className="text-xs text-white/80 mt-1">
+                  {notifications.filter(n => !n.read).length} новых
+                </p>
+              </div>
+              <button 
+                onClick={() => setIsNotificationsOpen(false)}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto">
+              {notifications.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+                  <Icon name="Bell" size={48} className="text-gray-300 mb-4" />
+                  <p className="text-gray-500">У вас пока нет уведомлений</p>
+                </div>
+              ) : (
+                <div className="divide-y">
+                  {notifications.map((notification) => (
+                    <div
+                      key={notification.id}
+                      className={`p-4 hover:bg-gray-50 cursor-pointer transition-colors ${
+                        !notification.read ? 'bg-blue-50/50' : ''
+                      }`}
+                      onClick={() => {
+                        setNotifications(notifications.map(n => 
+                          n.id === notification.id ? { ...n, read: true } : n
+                        ));
+                      }}
+                    >
+                      <div className="flex items-start space-x-3">
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                          notification.type === 'success' 
+                            ? 'bg-green-100' 
+                            : notification.type === 'warning' 
+                              ? 'bg-yellow-100' 
+                              : 'bg-blue-100'
+                        }`}>
+                          <Icon 
+                            name={
+                              notification.type === 'success' 
+                                ? 'CheckCircle' 
+                                : notification.type === 'warning' 
+                                  ? 'AlertCircle' 
+                                  : 'Info'
+                            } 
+                            size={20} 
+                            className={`${
+                              notification.type === 'success' 
+                                ? 'text-green-600' 
+                                : notification.type === 'warning' 
+                                  ? 'text-yellow-600' 
+                                  : 'text-blue-600'
+                            }`}
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between mb-1">
+                            <h4 className="font-semibold text-sm text-gray-800">
+                              {notification.title}
+                            </h4>
+                            {!notification.read && (
+                              <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0 ml-2 mt-1"></span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-600 mb-1">{notification.message}</p>
+                          <p className="text-xs text-gray-500">{notification.time}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="p-4 bg-gray-50 border-t rounded-b-2xl">
+              <Button
+                onClick={() => {
+                  setNotifications(notifications.map(n => ({ ...n, read: true })));
+                }}
+                variant="outline"
+                className="w-full font-semibold"
+                disabled={notifications.filter(n => !n.read).length === 0}
+              >
+                <Icon name="CheckCheck" size={16} className="mr-2" />
+                Отметить все как прочитанные
+              </Button>
             </div>
           </div>
         </div>
