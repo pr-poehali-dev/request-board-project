@@ -501,6 +501,8 @@ const Index = () => {
     photos: [] as string[],
   });
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isCarouselHovered, setIsCarouselHovered] = useState(false);
 
   const currentDialog = dialogs.find(d => d.id === selectedDialog);
 
@@ -642,6 +644,30 @@ const Index = () => {
       chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [currentDialog?.messages, isChatOpen]);
+
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel || isCarouselHovered) return;
+
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5;
+    const cardWidth = 280;
+    const gap = 16;
+    const totalWidth = (cardWidth + gap) * categories.length;
+
+    const animate = () => {
+      scrollPosition += scrollSpeed;
+      if (scrollPosition >= totalWidth / 2) {
+        scrollPosition = 0;
+      }
+      if (carousel) {
+        carousel.scrollLeft = scrollPosition;
+      }
+    };
+
+    const intervalId = setInterval(animate, 16);
+    return () => clearInterval(intervalId);
+  }, [isCarouselHovered]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50/50 via-indigo-50/50 to-purple-50/50">
@@ -913,54 +939,68 @@ const Index = () => {
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-            {[
-              { name: 'Работа', icon: 'BriefcaseBusiness', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
-              { name: 'Услуги', icon: 'Wrench', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a4b0129a-c824-49ec-9ac3-65b1a4f1ea7f.jpg' },
-              { name: 'Красота', icon: 'Heart', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
-              { name: 'Электроника', icon: 'Smartphone', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
-              { name: 'Транспорт', icon: 'CarFront', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/613cb2e4-b120-4978-8a64-718792bfd099.jpg' }
-            ].map((category, index) => {
+          <div 
+            ref={carouselRef}
+            onMouseEnter={() => setIsCarouselHovered(true)}
+            onMouseLeave={() => setIsCarouselHovered(false)}
+            className="flex gap-4 overflow-x-auto scrollbar-hide pb-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {[...categories, ...categories].map((category, index) => {
+              const categoryImages: Record<string, string> = {
+                'Работа': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg',
+                'Услуги': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a4b0129a-c824-49ec-9ac3-65b1a4f1ea7f.jpg',
+                'Красота': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg',
+                'Электроника': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg',
+                'Транспорт': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-42ce8f831926/files/613cb2e4-b120-4978-8a64-718792bfd099.jpg'
+              };
               const stats = getCategoryStats(category.name);
+              const iconMap: Record<string, string> = {
+                'Работа': 'BriefcaseBusiness',
+                'Услуги': 'Wrench',
+                'Красота': 'Heart',
+                'Электроника': 'Smartphone',
+                'Транспорт': 'CarFront'
+              };
               return (
               <div
-                key={category.name}
-                className="group relative overflow-hidden rounded-2xl border border-indigo-100 shadow-sm transition-all duration-300"
-                style={{ aspectRatio: '16/9' }}
+                key={`${category.name}-${index}`}
+                className="flex-shrink-0 relative overflow-hidden rounded-2xl border border-indigo-100 shadow-lg transition-all duration-300"
+                style={{ width: '280px', height: '200px' }}
               >
                 <img 
-                  src={category.image} 
+                  src={categoryImages[category.name] || 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg'} 
                   alt={category.name}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
                 <div className="absolute inset-0 bg-indigo-900/20"></div>
                 
-                <div className="relative z-10 h-full flex flex-col justify-between p-3 sm:p-4">
+                <div className="relative z-10 h-full flex flex-col justify-between p-4">
                   <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xl">
-                      <Icon name={category.icon as any} size={20} className="sm:w-6 sm:h-6" />
+                    <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xl">
+                      <Icon name={(iconMap[category.name] || category.icon) as any} size={28} />
                     </div>
                   </div>
-                  <div className="text-left space-y-2">
-                    <h3 className="font-bold text-sm sm:text-base text-white drop-shadow-lg">{category.name}</h3>
+                  <div className="text-left space-y-2.5">
+                    <h3 className="font-bold text-lg text-white drop-shadow-lg">{category.name}</h3>
                     <div className="flex gap-2">
-                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2 py-1.5">
+                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
                         <div className="flex items-center justify-between gap-1">
-                          <span className="flex items-center gap-1 text-white/80 text-[10px] font-medium">
-                            <Icon name="Search" size={12} />
-                            <span className="hidden sm:inline">Запросы</span>
+                          <span className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
+                            <Icon name="Search" size={14} />
+                            <span>Запросы</span>
                           </span>
-                          <span className="text-white font-bold text-xs sm:text-sm">{stats.requestCount}</span>
+                          <span className="text-white font-bold text-sm">{stats.requestCount}</span>
                         </div>
                       </div>
-                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2 py-1.5">
+                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
                         <div className="flex items-center justify-between gap-1">
-                          <span className="flex items-center gap-1 text-white/80 text-[10px] font-medium">
-                            <Icon name="Package" size={12} />
-                            <span className="hidden sm:inline">Предложения</span>
+                          <span className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
+                            <Icon name="Package" size={14} />
+                            <span>Предложения</span>
                           </span>
-                          <span className="text-white font-bold text-xs sm:text-sm">{stats.offerCount}</span>
+                          <span className="text-white font-bold text-sm">{stats.offerCount}</span>
                         </div>
                       </div>
                     </div>
