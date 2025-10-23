@@ -667,34 +667,29 @@ const Index = () => {
               )}
             </div>
 
-            <div className="flex items-center space-x-2">
-            <div className="flex items-center bg-gray-100 rounded-lg p-1">
-              <button
-                onClick={() => setLanguage('ru')}
-                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-                  language === 'ru' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                RU
-              </button>
-              <button
-                onClick={() => setLanguage('ua')}
-                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-                  language === 'ua' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                UA
-              </button>
-            </div>
+            <div className="flex items-center space-x-3">
             {isAuthenticated && (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1 text-gray-600">
+                <button 
+                  onClick={() => setActiveTab('favorites')}
+                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  title="Избранное"
+                >
+                  <Icon name="Heart" size={22} />
+                  {favorites.length > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold">
+                      {favorites.length}
+                    </span>
+                  )}
+                </button>
                 <button 
                   onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
                   className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  title="Уведомления"
                 >
-                  <Icon name="Bell" size={22} className="text-gray-700" />
+                  <Icon name="Bell" size={22} />
                   {notifications.filter(n => !n.read).length > 0 && (
-                    <span className="absolute top-1 right-1 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold">
                       {notifications.filter(n => !n.read).length}
                     </span>
                   )}
@@ -702,59 +697,60 @@ const Index = () => {
                 <button 
                   onClick={() => setIsChatOpen(!isChatOpen)} 
                   className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  title="Сообщения"
                 >
-                  <Icon name="MessageCircle" size={22} className="text-gray-700" />
+                  <Icon name="MessageCircle" size={22} />
                   {dialogs.some(d => d.unread > 0) && (
-                    <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                   )}
+                </button>
+                <button 
+                  onClick={() => setIsCreateFormOpen(true)}
+                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  title="Создать объявление"
+                >
+                  <Icon name="Plus" size={22} />
                 </button>
               </div>
             )}
 
+            <div className="h-6 w-px bg-gray-300"></div>
+
+            <div className="flex items-center bg-gray-100 rounded p-0.5">
+              <button
+                onClick={() => setLanguage('ru')}
+                className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                  language === 'ru' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                RU
+              </button>
+              <button
+                onClick={() => setLanguage('ua')}
+                className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                  language === 'ua' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                UA
+              </button>
+            </div>
+
             {!isAuthenticated ? (
-              <div className="flex items-center space-x-2">
-                <Button 
-                  onClick={() => setIsLoginOpen(true)}
-                  variant="outline" 
-                  className="font-semibold text-sm"
-                >
-                  Войти
-                </Button>
-                <Button 
-                  onClick={() => setIsRegisterOpen(true)}
-                  className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
-                >
-                  Регистрация
-                </Button>
-              </div>
+              <Button 
+                onClick={() => setIsLoginOpen(true)}
+                className="bg-primary hover:bg-primary/90 text-white font-medium text-sm px-6 h-9"
+              >
+                Войти
+              </Button>
             ) : (
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => setActiveTab('profile')}
-                  className="relative group hidden md:block"
-                  title="Профиль"
-                >
-                  <Avatar className="w-9 h-9 bg-gradient-orange-pink cursor-pointer ring-2 ring-transparent hover:ring-primary/30 transition-all">
-                    {avatarPreview ? (
-                      <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
-                    ) : (
-                      <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
-                        {profileData.name.charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    )}
-                  </Avatar>
-                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                    Профиль
-                  </span>
-                </button>
-                <Button 
-                  onClick={() => setIsCreateFormOpen(true)}
-                  className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
-                >
-                  <Icon name="Plus" size={16} className="sm:mr-2" />
-                  <span className="hidden sm:inline">Создать</span>
-                </Button>
-              </div>
+              <button
+                onClick={() => setActiveTab('profile')}
+                className="flex items-center space-x-2 px-3 py-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                title="Профиль"
+              >
+                <span className="text-sm font-medium text-gray-700">AlbeWeb</span>
+                <Icon name="ChevronDown" size={16} className="text-gray-500" />
+              </button>
             )}
             </div>
           </div>
