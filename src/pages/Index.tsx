@@ -615,12 +615,12 @@ const Index = () => {
   }, [currentDialog?.messages, isChatOpen]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-gradient-to-r from-gray-900 to-gray-800 border-b border-gray-700 sticky top-0 z-50 shadow-lg">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+      <nav className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 border-b border-white/20 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
             <div className="flex items-center space-x-2 flex-shrink-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-orange-pink flex items-center justify-center">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center ring-2 ring-white/30">
                 <Icon name="MessageSquare" className="text-white" size={20} />
               </div>
               <span className="text-lg sm:text-2xl font-bold text-white">Доска запросов</span>
@@ -634,7 +634,7 @@ const Index = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Поиск объявлений..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-600 bg-gray-800 text-white placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
+                  className="w-full pl-10 pr-4 py-2 border border-white/30 bg-white/10 backdrop-blur-md text-white placeholder-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-sm"
                 />
                 {searchQuery && (
                   <button
@@ -649,47 +649,47 @@ const Index = () => {
 
             <div className="flex items-center space-x-3 flex-shrink-0">
             {isAuthenticated && (
-              <div className="flex items-center space-x-1 text-gray-300">
+              <div className="flex items-center space-x-1 text-white">
                 <button 
                   onClick={() => setActiveTab('favorites')}
-                  className="relative p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
                   title="Избранное"
                 >
                   <Icon name="Heart" size={22} />
                   {favorites.length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold">
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold shadow-lg">
                       {favorites.length}
                     </span>
                   )}
                 </button>
                 <button 
                   onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                  className="relative p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
                   title="Уведомления"
                 >
                   <Icon name="Bell" size={22} />
                   {notifications.filter(n => !n.read).length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold">
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold shadow-lg">
                       {notifications.filter(n => !n.read).length}
                     </span>
                   )}
                 </button>
                 <button 
                   onClick={() => setIsChatOpen(!isChatOpen)} 
-                  className="relative p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
                   title="Сообщения"
                 >
                   <Icon name="MessageCircle" size={22} />
                   {dialogs.some(d => d.unread > 0) && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full shadow-lg"></span>
                   )}
                 </button>
               </div>
             )}
 
-            <div className="h-6 w-px bg-gray-600"></div>
+            <div className="h-6 w-px bg-white/30"></div>
 
-            <div className="flex items-center bg-gray-700 rounded p-0.5">
+            <div className="flex items-center bg-white/20 backdrop-blur-md rounded-lg p-0.5">
               <button
                 onClick={() => setLanguage('ru')}
                 className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
@@ -718,7 +718,7 @@ const Index = () => {
             ) : (
               <button
                 onClick={() => setActiveTab('profile')}
-                className="flex items-center space-x-2 px-3 py-1.5 hover:bg-gray-700 rounded-lg transition-colors"
+                className="flex items-center space-x-2 px-3 py-1.5 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
                 title="Профиль"
               >
                 <Avatar className="w-7 h-7 bg-gradient-orange-pink">
@@ -738,7 +738,7 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="bg-gradient-orange-pink hover:opacity-90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 px-4 h-9"
+                className="bg-white text-purple-600 hover:bg-white/90 font-semibold shadow-lg hover:shadow-2xl transition-all duration-200 px-4 h-9 rounded-xl"
                 title="Создать объявление"
               >
                 <Icon name="Plus" size={20} className="mr-1.5" />
@@ -1043,7 +1043,7 @@ const Index = () => {
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
-                  className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
+                  className="hover:shadow-2xl transition-all duration-300 border border-purple-100 hover:border-purple-300 bg-white/80 backdrop-blur-sm animate-scale-in rounded-2xl overflow-hidden"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
@@ -1058,21 +1058,21 @@ const Index = () => {
                       <div className="flex flex-col gap-2 flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
-                            <Badge className="bg-gradient-orange-pink text-white border-0 text-xs whitespace-nowrap">
+                            <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 text-xs whitespace-nowrap shadow-md">
                               {request.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-gray-700 border-gray-300 bg-gray-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-gray-700 border-purple-200 bg-purple-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {request.city}
                             </Badge>
                             {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-emerald-600 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-gradient-to-r from-blue-50 to-cyan-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
@@ -1101,7 +1101,7 @@ const Index = () => {
                             }
                           }}
                         >
-                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-purple-pink">
+                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-pink-500 ring-2 ring-purple-200">
                             <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                               {request.author[0]}
                             </AvatarFallback>
@@ -1115,11 +1115,11 @@ const Index = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center space-x-2 bg-gray-100 px-3 py-1.5 rounded-lg">
-                          <Icon name="MessageCircle" size={22} className="text-primary" />
+                        <div className="flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-purple-50 px-3 py-1.5 rounded-xl border border-blue-100">
+                          <Icon name="MessageCircle" size={22} className="text-blue-600" />
                           <div className="flex flex-col">
                             <span className="text-xs text-gray-500 leading-none">Откликнулись</span>
-                            <span className="text-sm sm:text-base font-bold text-gray-800">{request.responses}</span>
+                            <span className="text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{request.responses}</span>
                           </div>
                         </div>
                       </div>
@@ -1140,7 +1140,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold ${favorites.includes(request.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(request.id) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-purple-200 hover:border-purple-300'}`}
                           >
                             <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(request.id) ? 'fill-primary' : ''}`} />
                             <span className="hidden sm:inline">{favorites.includes(request.id) ? 'В избранном' : 'В избранное'}</span>
@@ -1152,7 +1152,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-purple-200 hover:border-purple-300"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
@@ -1168,7 +1168,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-gradient-orange-pink text-white hover:opacity-90 font-semibold"
+                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white hover:opacity-90 font-semibold shadow-lg hover:shadow-xl transition-all rounded-xl"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
