@@ -221,6 +221,20 @@ const Index = () => {
     },
   ]);
   const [newMessage, setNewMessage] = useState('');
+  const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
+  const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
+  const [reviewRating, setReviewRating] = useState(0);
+  const [reviewText, setReviewText] = useState('');
+  const [formType, setFormType] = useState<'request' | 'offer'>('request');
+  const [formData, setFormData] = useState({
+    title: '',
+    category: '',
+    budget: '',
+    description: '',
+    city: '',
+    delivery: false,
+    exchange: false,
+  });
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   const currentDialog = dialogs.find(d => d.id === selectedDialog);
@@ -317,11 +331,16 @@ const Index = () => {
                 className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
                 <Icon name="MessageCircle" size={22} className="text-gray-700" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
+                {dialogs.some(d => d.unread > 0) && (
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
+                )}
               </button>
             </div>
 
-            <Button className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex">
+            <Button 
+              onClick={() => setIsCreateFormOpen(true)}
+              className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
+            >
               <Icon name="Plus" size={16} className="sm:mr-2" />
               <span className="hidden sm:inline">Создать</span>
             </Button>
@@ -868,6 +887,15 @@ const Index = () => {
                   </div>
 
                   <div className="p-4 bg-white border-t">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Button
+                        onClick={() => setIsReviewFormOpen(true)}
+                        className="bg-gradient-purple-pink text-white hover:opacity-90 font-semibold text-sm px-4 py-2 rounded-xl"
+                      >
+                        <Icon name="CheckCircle" size={16} className="mr-2" />
+                        Заключить сделку
+                      </Button>
+                    </div>
                     <div className="flex items-center space-x-2">
                       <input
                         type="text"
@@ -887,6 +915,273 @@ const Index = () => {
                   </div>
                 </>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isCreateFormOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="sticky top-0 bg-gradient-instagram text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between z-10">
+              <h2 className="text-xl sm:text-2xl font-bold">Создать объявление</h2>
+              <button 
+                onClick={() => setIsCreateFormOpen(false)}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Тип объявления</label>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    onClick={() => setFormType('request')}
+                    className={`p-4 rounded-xl border-2 transition-all ${
+                      formType === 'request'
+                        ? 'border-primary bg-primary/10 text-primary'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <Icon name="Search" size={24} className="mx-auto mb-2" />
+                    <p className="font-semibold">Запрос</p>
+                    <p className="text-xs text-gray-500 mt-1">Я ищу товар/услугу</p>
+                  </button>
+                  <button
+                    onClick={() => setFormType('offer')}
+                    className={`p-4 rounded-xl border-2 transition-all ${
+                      formType === 'offer'
+                        ? 'border-secondary bg-secondary/10 text-secondary'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <Icon name="Package" size={24} className="mx-auto mb-2" />
+                    <p className="font-semibold">Предложение</p>
+                    <p className="text-xs text-gray-500 mt-1">Я предлагаю товар/услугу</p>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Заголовок *</label>
+                <input
+                  type="text"
+                  value={formData.title}
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  placeholder={formType === 'request' ? 'Например: Ищу iPhone 15 Pro' : 'Например: Продаю iPhone 14 Pro Max'}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Категория *</label>
+                <select
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                >
+                  <option value="">Выберите категорию</option>
+                  {categories.map((cat) => (
+                    <option key={cat.name} value={cat.name}>{cat.name}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {formType === 'request' ? 'Бюджет' : 'Цена'}
+                </label>
+                <input
+                  type="text"
+                  value={formData.budget}
+                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                  placeholder={formType === 'request' ? 'Например: до 120 000 ₽' : 'Например: 85 000 ₽'}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Описание *</label>
+                <textarea
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  placeholder="Подробно опишите что вы ищете или предлагаете..."
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Город *</label>
+                <input
+                  type="text"
+                  value={formData.city}
+                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                  placeholder="Например: Москва"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+
+              <div className="space-y-3">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.delivery}
+                    onChange={(e) => setFormData({ ...formData, delivery: e.target.checked })}
+                    className="w-5 h-5 text-primary rounded focus:ring-2 focus:ring-primary/50"
+                  />
+                  <span className="text-sm font-medium text-gray-700">Возможна доставка</span>
+                </label>
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.exchange}
+                    onChange={(e) => setFormData({ ...formData, exchange: e.target.checked })}
+                    className="w-5 h-5 text-primary rounded focus:ring-2 focus:ring-primary/50"
+                  />
+                  <span className="text-sm font-medium text-gray-700">Возможен обмен</span>
+                </label>
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <Button
+                  onClick={() => setIsCreateFormOpen(false)}
+                  variant="outline"
+                  className="flex-1 py-3 text-base font-semibold"
+                >
+                  Отмена
+                </Button>
+                <Button
+                  onClick={() => {
+                    if (formData.title && formData.category && formData.description && formData.city) {
+                      alert('Объявление создано!');
+                      setIsCreateFormOpen(false);
+                      setFormData({
+                        title: '',
+                        category: '',
+                        budget: '',
+                        description: '',
+                        city: '',
+                        delivery: false,
+                        exchange: false,
+                      });
+                    } else {
+                      alert('Заполните все обязательные поля');
+                    }
+                  }}
+                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90 py-3 text-base font-semibold"
+                >
+                  <Icon name="Plus" size={18} className="mr-2" />
+                  Создать
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isReviewFormOpen && currentDialog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-instagram text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between">
+              <h2 className="text-xl font-bold">Оставить отзыв</h2>
+              <button 
+                onClick={() => {
+                  setIsReviewFormOpen(false);
+                  setReviewRating(0);
+                  setReviewText('');
+                }}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+              <div className="text-center">
+                <Avatar className="w-16 h-16 mx-auto mb-3 bg-gradient-purple-pink">
+                  <AvatarFallback className="bg-transparent text-white font-bold text-xl">
+                    {currentDialog.avatar}
+                  </AvatarFallback>
+                </Avatar>
+                <h3 className="text-lg font-bold text-gray-800">{currentDialog.name}</h3>
+                <p className="text-sm text-gray-500">Оцените вашу сделку</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3 text-center">Ваша оценка</label>
+                <div className="flex justify-center space-x-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      onClick={() => setReviewRating(star)}
+                      className="transition-transform hover:scale-110"
+                    >
+                      <Icon 
+                        name="Star" 
+                        size={40} 
+                        className={`${
+                          star <= reviewRating 
+                            ? 'fill-yellow-400 text-yellow-400' 
+                            : 'text-gray-300'
+                        }`}
+                      />
+                    </button>
+                  ))}
+                </div>
+                {reviewRating > 0 && (
+                  <p className="text-center text-sm text-gray-600 mt-2">
+                    {reviewRating === 5 && 'Отлично!'}
+                    {reviewRating === 4 && 'Хорошо!'}
+                    {reviewRating === 3 && 'Нормально'}
+                    {reviewRating === 2 && 'Плохо'}
+                    {reviewRating === 1 && 'Ужасно'}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Ваш отзыв</label>
+                <textarea
+                  value={reviewText}
+                  onChange={(e) => setReviewText(e.target.value)}
+                  placeholder="Расскажите о вашем опыте сделки..."
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                />
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <Button
+                  onClick={() => {
+                    setIsReviewFormOpen(false);
+                    setReviewRating(0);
+                    setReviewText('');
+                  }}
+                  variant="outline"
+                  className="flex-1 py-3 text-base font-semibold"
+                >
+                  Отмена
+                </Button>
+                <Button
+                  onClick={() => {
+                    if (reviewRating > 0) {
+                      alert(`Отзыв отправлен! Оценка: ${reviewRating} звезд`);
+                      setIsReviewFormOpen(false);
+                      setReviewRating(0);
+                      setReviewText('');
+                    } else {
+                      alert('Поставьте оценку');
+                    }
+                  }}
+                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90 py-3 text-base font-semibold"
+                >
+                  <Icon name="Send" size={18} className="mr-2" />
+                  Отправить
+                </Button>
+              </div>
             </div>
           </div>
         </div>
