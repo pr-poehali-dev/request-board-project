@@ -476,27 +476,6 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
-            <div className="flex-1 max-w-md mx-4 hidden lg:block">
-              <div className="relative">
-                <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Поиск объявлений..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    <Icon name="X" size={16} />
-                  </button>
-                )}
-              </div>
-            </div>
-
             <div className="hidden md:flex space-x-1">
               <Button 
                 variant={activeTab === 'requests' ? 'default' : 'ghost'}
@@ -673,24 +652,26 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="lg:hidden bg-white border-b px-3 py-2">
-        <div className="relative">
-          <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Поиск объявлений..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-            >
-              <Icon name="X" size={16} />
-            </button>
-          )}
+      <div className="bg-white border-b px-3 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative">
+            <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Поиск объявлений..."
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <Icon name="X" size={16} />
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -708,32 +689,43 @@ const Index = () => {
 
             <div className="mb-6">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Популярные категории</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {popularCategories.map((category, index) => {
                   const count = getCategoryCount(category.name);
                   return (
                     <Card
                       key={category.name}
                       className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
-                      style={{ animationDelay: `${index * 0.05}s` }}
+                      style={{ animationDelay: `${index * 0.1}s` }}
                       onClick={() => {
                         setSelectedCategory(category.name);
                       }}
                     >
-                      <CardContent className="p-4 text-center">
-                        <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
-                          <Icon name={category.icon as any} size={24} className="text-white" />
-                        </div>
-                        <h3 className="text-sm font-bold text-gray-800 mb-2">{category.name}</h3>
-                        <div className="space-y-1">
-                          <div className="flex items-center justify-center gap-1 text-xs text-blue-600">
-                            <Icon name="Search" size={12} />
-                            <span>{count.requestCount}</span>
+                      <CardContent className="p-6">
+                        <div className="flex items-start space-x-4">
+                          <div className={`w-16 h-16 rounded-2xl ${category.color} flex items-center justify-center flex-shrink-0`}>
+                            <Icon name={category.icon as any} size={32} className="text-white" />
                           </div>
-                          <div className="flex items-center justify-center gap-1 text-xs text-green-600">
-                            <Icon name="Package" size={12} />
-                            <span>{count.offerCount}</span>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-xl font-bold text-gray-800 mb-2">{category.name}</h3>
+                            <div className="space-y-1.5">
+                              <div className="flex items-center justify-between text-sm">
+                                <span className="text-gray-600 flex items-center">
+                                  <Icon name="Search" size={14} className="mr-1.5 text-blue-500" />
+                                  Запросы
+                                </span>
+                                <span className="font-bold text-gray-800">{count.requestCount}</span>
+                              </div>
+                              <div className="flex items-center justify-between text-sm">
+                                <span className="text-gray-600 flex items-center">
+                                  <Icon name="Package" size={14} className="mr-1.5 text-green-500" />
+                                  Предложения
+                                </span>
+                                <span className="font-bold text-gray-800">{count.offerCount}</span>
+                              </div>
+                            </div>
                           </div>
+                          <Icon name="ChevronRight" size={20} className="text-gray-400 flex-shrink-0" />
                         </div>
                       </CardContent>
                     </Card>
@@ -908,32 +900,43 @@ const Index = () => {
 
             <div className="mb-6">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Популярные категории</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {popularCategories.map((category, index) => {
                   const count = getCategoryCount(category.name);
                   return (
                     <Card
                       key={category.name}
                       className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
-                      style={{ animationDelay: `${index * 0.05}s` }}
+                      style={{ animationDelay: `${index * 0.1}s` }}
                       onClick={() => {
                         setSelectedCategory(category.name);
                       }}
                     >
-                      <CardContent className="p-4 text-center">
-                        <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
-                          <Icon name={category.icon as any} size={24} className="text-white" />
-                        </div>
-                        <h3 className="text-sm font-bold text-gray-800 mb-2">{category.name}</h3>
-                        <div className="space-y-1">
-                          <div className="flex items-center justify-center gap-1 text-xs text-blue-600">
-                            <Icon name="Search" size={12} />
-                            <span>{count.requestCount}</span>
+                      <CardContent className="p-6">
+                        <div className="flex items-start space-x-4">
+                          <div className={`w-16 h-16 rounded-2xl ${category.color} flex items-center justify-center flex-shrink-0`}>
+                            <Icon name={category.icon as any} size={32} className="text-white" />
                           </div>
-                          <div className="flex items-center justify-center gap-1 text-xs text-green-600">
-                            <Icon name="Package" size={12} />
-                            <span>{count.offerCount}</span>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-xl font-bold text-gray-800 mb-2">{category.name}</h3>
+                            <div className="space-y-1.5">
+                              <div className="flex items-center justify-between text-sm">
+                                <span className="text-gray-600 flex items-center">
+                                  <Icon name="Search" size={14} className="mr-1.5 text-blue-500" />
+                                  Запросы
+                                </span>
+                                <span className="font-bold text-gray-800">{count.requestCount}</span>
+                              </div>
+                              <div className="flex items-center justify-between text-sm">
+                                <span className="text-gray-600 flex items-center">
+                                  <Icon name="Package" size={14} className="mr-1.5 text-green-500" />
+                                  Предложения
+                                </span>
+                                <span className="font-bold text-gray-800">{count.offerCount}</span>
+                              </div>
+                            </div>
                           </div>
+                          <Icon name="ChevronRight" size={20} className="text-gray-400 flex-shrink-0" />
                         </div>
                       </CardContent>
                     </Card>
