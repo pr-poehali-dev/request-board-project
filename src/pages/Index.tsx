@@ -719,19 +719,24 @@ const Index = () => {
 
             <div className="h-6 w-px bg-white/30"></div>
 
-            <div className="flex items-center bg-white/20 backdrop-blur-md rounded-lg p-1 gap-0.5">
+            <div className="relative flex items-center bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-full p-1 border border-white/20 shadow-lg">
+              <div 
+                className={`absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-full shadow-md transition-all duration-300 ease-out ${
+                  language === 'ru' ? 'left-1' : 'left-[calc(50%+3px)]'
+                }`}
+              />
               <button
                 onClick={() => setLanguage('ru')}
-                className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
-                  language === 'ru' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-300 hover:text-white'
+                className={`relative z-10 px-3 py-1 rounded-full text-xs font-bold transition-colors duration-300 ${
+                  language === 'ru' ? 'text-gray-900' : 'text-white/70 hover:text-white'
                 }`}
               >
                 RU
               </button>
               <button
                 onClick={() => setLanguage('ua')}
-                className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
-                  language === 'ua' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-300 hover:text-white'
+                className={`relative z-10 px-3 py-1 rounded-full text-xs font-bold transition-colors duration-300 ${
+                  language === 'ua' ? 'text-gray-900' : 'text-white/70 hover:text-white'
                 }`}
               >
                 UA
