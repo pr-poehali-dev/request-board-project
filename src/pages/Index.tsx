@@ -37,6 +37,12 @@ interface Offer {
   photos?: string[];
 }
 
+const cities = [
+  'Москва', 'Санкт-Петербург', 'Казань', 'Новосибирск', 'Екатеринбург', 
+  'Нижний Новгород', 'Самара', 'Омск', 'Челябинск', 'Ростов-на-Дону',
+  'Уфа', 'Красноярск', 'Воронеж', 'Пермь', 'Волгоград'
+];
+
 const categories = [
   { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-instagram', popular: true },
   { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-purple-pink', popular: true },
@@ -355,6 +361,7 @@ const Index = () => {
     { id: 1, text: 'Здравствуйте! Я бот-помощник. Чем могу помочь?', sender: 'other', timestamp: 'сейчас', author: 'Поддержка' },
   ]);
   const [newMessage, setNewMessage] = useState('');
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
@@ -411,22 +418,24 @@ const Index = () => {
 
   const filteredRequests = mockRequests.filter(req => {
     const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
+    const matchesCity = selectedCity ? req.city === selectedCity : true;
     const matchesSearch = searchQuery ? 
       req.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       req.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       req.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesCity && matchesSearch;
   });
 
   const filteredOffers = mockOffers.filter(offer => {
     const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
+    const matchesCity = selectedCity ? offer.city === selectedCity : true;
     const matchesSearch = searchQuery ? 
       offer.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       offer.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       offer.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesCity && matchesSearch;
   });
 
   const getCategoryCount = (categoryName: string) => {
@@ -615,20 +624,44 @@ const Index = () => {
             </div>
             
             <div className="relative">
+              <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
               <select
-                value={selectedCategory || ''}
-                onChange={(e) => setSelectedCategory(e.target.value || null)}
-                className="appearance-none pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer min-w-[180px]"
+                value={selectedCity || ''}
+                onChange={(e) => setSelectedCity(e.target.value || null)}
+                className="appearance-none pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer min-w-[180px]"
               >
-                <option value="">Все категории</option>
-                {categories.map((category) => (
-                  <option key={category.name} value={category.name}>
-                    {category.name}
+                <option value="">Все города</option>
+                {cities.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
                   </option>
                 ))}
               </select>
               <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             </div>
+          </div>
+
+          <div className="hidden md:flex items-center gap-2 py-2 border-t overflow-x-auto scrollbar-hide">
+            <Button
+              variant={selectedCategory === null ? 'default' : 'outline'}
+              onClick={() => setSelectedCategory(null)}
+              size="sm"
+              className="whitespace-nowrap"
+            >
+              Все категории
+            </Button>
+            {categories.map((category) => (
+              <Button
+                key={category.name}
+                variant={selectedCategory === category.name ? 'default' : 'outline'}
+                onClick={() => setSelectedCategory(category.name)}
+                size="sm"
+                className="whitespace-nowrap"
+              >
+                <Icon name={category.icon as any} size={14} className="mr-1.5" />
+                {category.name}
+              </Button>
+            ))}
           </div>
         </div>
       </nav>
@@ -717,15 +750,16 @@ const Index = () => {
           </div>
           
           <div className="relative">
+            <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             <select
-              value={selectedCategory || ''}
-              onChange={(e) => setSelectedCategory(e.target.value || null)}
-              className="appearance-none w-full pl-4 pr-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
+              value={selectedCity || ''}
+              onChange={(e) => setSelectedCity(e.target.value || null)}
+              className="appearance-none w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
             >
-              <option value="">Все категории</option>
-              {categories.map((category) => (
-                <option key={category.name} value={category.name}>
-                  {category.name}
+              <option value="">Все города</option>
+              {cities.map((city) => (
+                <option key={city} value={city}>
+                  {city}
                 </option>
               ))}
             </select>
