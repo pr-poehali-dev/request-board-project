@@ -978,7 +978,7 @@ const Index = () => {
                             <Badge className="bg-gradient-orange-pink text-white border-0 text-xs whitespace-nowrap">
                               {request.category}
                             </Badge>
-                            <Badge variant="secondary" className="font-medium text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-gray-700 border-gray-300 bg-gray-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {request.city}
                             </Badge>
@@ -1149,7 +1149,7 @@ const Index = () => {
                             <Badge className="bg-gradient-purple-pink text-white border-0 text-xs whitespace-nowrap">
                               {offer.category}
                             </Badge>
-                            <Badge variant="secondary" className="font-medium text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-gray-700 border-gray-300 bg-gray-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {offer.city}
                             </Badge>
