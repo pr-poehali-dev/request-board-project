@@ -171,7 +171,7 @@ const Index = () => {
               </button>
             </div>
 
-            <div className="hidden md:flex space-x-1"
+            <div className="hidden md:flex space-x-1">
               <Button 
                 variant={activeTab === 'requests' ? 'default' : 'ghost'}
                 onClick={() => setActiveTab('requests')}
