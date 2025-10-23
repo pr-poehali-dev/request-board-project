@@ -448,6 +448,7 @@ const Index = () => {
   ]);
   const [newMessage, setNewMessage] = useState('');
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [language, setLanguage] = useState<'ru' | 'ua'>('ru');
   const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
@@ -682,6 +683,24 @@ const Index = () => {
             </div>
 
             <div className="flex items-center space-x-2">
+            <div className="flex items-center bg-gray-100 rounded-lg p-1">
+              <button
+                onClick={() => setLanguage('ru')}
+                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                  language === 'ru' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                RU
+              </button>
+              <button
+                onClick={() => setLanguage('ua')}
+                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                  language === 'ua' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                UA
+              </button>
+            </div>
             {isAuthenticated && (
               <div className="flex items-center space-x-2">
                 <button 
