@@ -747,8 +747,32 @@ const Index = () => {
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8">
+      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8" style={{maxWidth: '1600px'}}>
         <div className="flex gap-6">
+          <aside className="hidden lg:block w-64 flex-shrink-0">
+            <div className="sticky top-24 space-y-2">
+              <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
+              <Button
+                variant={selectedCategory === null ? 'default' : 'ghost'}
+                onClick={() => setSelectedCategory(null)}
+                className="w-full justify-start"
+              >
+                <Icon name="Grid3x3" size={18} className="mr-2" />
+                Все категории
+              </Button>
+              {categories.map((category) => (
+                <Button
+                  key={category.name}
+                  variant={selectedCategory === category.name ? 'default' : 'ghost'}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className="w-full justify-start"
+                >
+                  <Icon name={category.icon as any} size={18} className="mr-2" />
+                  {category.name}
+                </Button>
+              ))}
+            </div>
+          </aside>
           <div className="flex-1 min-w-0">
           {activeTab === 'requests' && (
             <div className="space-y-4 sm:space-y-6 animate-fade-in">
@@ -1228,31 +1252,6 @@ const Index = () => {
           </div>
         )}
           </div>
-
-          <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-24 space-y-2">
-              <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
-              <Button
-                variant={selectedCategory === null ? 'default' : 'ghost'}
-                onClick={() => setSelectedCategory(null)}
-                className="w-full justify-start"
-              >
-                <Icon name="Grid3x3" size={18} className="mr-2" />
-                Все категории
-              </Button>
-              {categories.map((category) => (
-                <Button
-                  key={category.name}
-                  variant={selectedCategory === category.name ? 'default' : 'ghost'}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className="w-full justify-start"
-                >
-                  <Icon name={category.icon as any} size={18} className="mr-2" />
-                  {category.name}
-                </Button>
-              ))}
-            </div>
-          </aside>
         </div>
       </main>
 
