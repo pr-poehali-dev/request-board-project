@@ -1199,9 +1199,9 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(`request-${request.id}`) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${favorites.includes(`request-${request.id}`) ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
                           >
-                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(`request-${request.id}`) ? 'fill-primary' : ''}`} />
+                            <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${favorites.includes(`request-${request.id}`) ? 'fill-rose-500 text-rose-600' : ''}`} />
                             <span className="hidden sm:inline">{favorites.includes(`request-${request.id}`) ? 'В избранном' : 'В избранное'}</span>
                           </Button>
                           <Button 
@@ -1380,9 +1380,9 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(`offer-${offer.id}`) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${favorites.includes(`offer-${offer.id}`) ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
                           >
-                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(`offer-${offer.id}`) ? 'fill-primary' : ''}`} />
+                            <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${favorites.includes(`offer-${offer.id}`) ? 'fill-rose-500 text-rose-600' : ''}`} />
                             <span className="hidden sm:inline">{favorites.includes(`offer-${offer.id}`) ? 'В избранном' : 'В избранное'}</span>
                           </Button>
                           <Button 
