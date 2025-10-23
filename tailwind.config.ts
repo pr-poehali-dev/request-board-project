@@ -101,10 +101,10 @@ export default {
 				'scale-in': 'scale-in 0.2s ease-out'
 			},
 			backgroundImage: {
-				'gradient-instagram': 'linear-gradient(135deg, #262626 0%, #3f3f3f 100%)',
-				'gradient-purple-pink': 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
-				'gradient-orange-pink': 'linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%)',
-				'gradient-blue-purple': 'linear-gradient(135deg, #262626 0%, #404040 100%)'
+				'gradient-instagram': 'linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)',
+				'gradient-purple-pink': 'linear-gradient(135deg, #833ab4 0%, #fd1d1d 100%)',
+				'gradient-orange-pink': 'linear-gradient(135deg, #f58529 0%, #dd2a7b 100%)',
+				'gradient-blue-purple': 'linear-gradient(135deg, #405de6 0%, #833ab4 100%)'
 			}
 		}
 	},
