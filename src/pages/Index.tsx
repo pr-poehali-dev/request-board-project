@@ -557,7 +557,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white border-b sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{maxWidth: '1600px'}}>
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex justify-between items-center h-14 sm:h-16">
             <div className="flex items-center space-x-2">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-orange-pink flex items-center justify-center">
@@ -828,7 +828,7 @@ const Index = () => {
         </div>
       </div>
 
-      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8" style={{maxWidth: '1600px'}}>
+      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24 space-y-2">
@@ -922,8 +922,8 @@ const Index = () => {
                           {request.description}
                         </CardDescription>
                       </div>
-                      <div className="ml-4">
-                        <div className="text-2xl font-extrabold text-black whitespace-nowrap">
+                      <div className="ml-3 sm:ml-4">
+                        <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
                           {request.budget}
                         </div>
                       </div>
@@ -1085,8 +1085,8 @@ const Index = () => {
                           {offer.description}
                         </CardDescription>
                       </div>
-                      <div className="ml-4">
-                        <div className="text-2xl font-extrabold text-black whitespace-nowrap">
+                      <div className="ml-3 sm:ml-4">
+                        <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
                           {offer.price}
                         </div>
                       </div>
@@ -1233,8 +1233,8 @@ const Index = () => {
                             {request.description}
                           </CardDescription>
                         </div>
-                        <div className="ml-4">
-                          <div className="text-2xl font-extrabold text-black whitespace-nowrap">
+                        <div className="ml-3 sm:ml-4">
+                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
                             {request.budget}
                           </div>
                         </div>
@@ -1242,23 +1242,24 @@ const Index = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <Button 
                           onClick={() => {
                             setFavorites(favorites.filter(id => id !== request.id));
                           }}
                           variant="outline" 
-                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-sm"
+                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-xs sm:text-sm w-full sm:w-auto"
                         >
                           <Icon name="X" size={14} className="mr-1.5" />
-                          Удалить из избранного
+                          <span className="hidden sm:inline">Удалить из избранного</span>
+                          <span className="sm:hidden">Удалить</span>
                         </Button>
                         <Button 
                           onClick={() => {
                             setSelectedItem(request);
                             setIsViewModalOpen(true);
                           }}
-                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
+                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
                         >
                           Смотреть
                         </Button>
@@ -1297,8 +1298,8 @@ const Index = () => {
                             {offer.description}
                           </CardDescription>
                         </div>
-                        <div className="ml-4">
-                          <div className="text-2xl font-extrabold text-black whitespace-nowrap">
+                        <div className="ml-3 sm:ml-4">
+                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
                             {offer.price}
                           </div>
                         </div>
@@ -1306,23 +1307,24 @@ const Index = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <Button 
                           onClick={() => {
                             setFavorites(favorites.filter(id => id !== offer.id));
                           }}
                           variant="outline" 
-                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-sm"
+                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-xs sm:text-sm w-full sm:w-auto"
                         >
                           <Icon name="X" size={14} className="mr-1.5" />
-                          Удалить из избранного
+                          <span className="hidden sm:inline">Удалить из избранного</span>
+                          <span className="sm:hidden">Удалить</span>
                         </Button>
                         <Button 
                           onClick={() => {
                             setSelectedItem(offer);
                             setIsViewModalOpen(true);
                           }}
-                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
+                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
                         >
                           Смотреть
                         </Button>
@@ -1562,9 +1564,9 @@ const Index = () => {
       </footer>
 
       {isChatOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[600px] flex animate-scale-in overflow-hidden">
-            <div className="w-80 bg-gray-50 border-r flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4">
+          <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl w-full max-w-5xl h-full sm:h-[90vh] sm:max-h-[600px] flex animate-scale-in overflow-hidden">
+            <div className="hidden sm:flex w-full sm:w-80 bg-gray-50 border-r flex-col">
               <div className="p-4 border-b bg-white">
                 <h3 className="font-bold text-lg text-gray-800">Сообщения</h3>
                 <p className="text-xs text-gray-500 mt-1">{dialogs.length} диалогов</p>
@@ -1640,7 +1642,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col w-full">
               {currentDialog && (
                 <>
                   <div className={`${
@@ -1721,7 +1723,7 @@ const Index = () => {
                         key={msg.id} 
                         className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
                       >
-                        <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
+                        <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                           <div className={`rounded-2xl px-4 py-2 ${
                             msg.sender === 'me' 
                               ? 'bg-gradient-orange-pink text-white' 
@@ -2003,10 +2005,10 @@ const Index = () => {
       )}
 
       {isReviewFormOpen && currentDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between">
-              <h2 className="text-xl font-bold">Оставить отзыв</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
+              <h2 className="text-lg sm:text-xl font-bold">Оставить отзыв</h2>
               <button 
                 onClick={() => {
                   setIsReviewFormOpen(false);
@@ -2108,11 +2110,11 @@ const Index = () => {
       )}
 
       {isNotificationsOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-5 rounded-t-2xl flex items-center justify-between">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-bold">Уведомления</h2>
+                <h2 className="text-lg sm:text-xl font-bold">Уведомления</h2>
                 <p className="text-xs text-white/80 mt-1">
                   {notifications.filter(n => !n.read).length} новых
                 </p>
@@ -2208,13 +2210,13 @@ const Index = () => {
       )}
 
       {isLoginOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl">
-              <h2 className="text-2xl font-bold">Вход</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
+              <h2 className="text-xl sm:text-2xl font-bold">Вход</h2>
               <p className="text-white/80 text-sm mt-1">Войдите в свой аккаунт</p>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 sm:p-6 space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
                 <input
@@ -2272,13 +2274,13 @@ const Index = () => {
       )}
 
       {isRegisterOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl">
-              <h2 className="text-2xl font-bold">Регистрация</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
+              <h2 className="text-xl sm:text-2xl font-bold">Регистрация</h2>
               <p className="text-white/80 text-sm mt-1">Создайте новый аккаунт</p>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 sm:p-6 space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Имя</label>
                 <input
@@ -2466,10 +2468,10 @@ const Index = () => {
       )}
 
       {isViewModalOpen && selectedItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="sticky top-0 bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between z-10">
-              <h2 className="text-2xl font-bold">{selectedItem.title}</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="sticky top-0 bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between z-10">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold line-clamp-2">{selectedItem.title}</h2>
               <button 
                 onClick={() => {
                   setIsViewModalOpen(false);
@@ -2481,11 +2483,11 @@ const Index = () => {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
               {'photos' in selectedItem && selectedItem.photos && selectedItem.photos.length > 0 && (
                 <div>
                   <h3 className="text-lg font-bold text-gray-800 mb-3">Фотографии</h3>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {selectedItem.photos.map((photo, idx) => (
                       <img 
                         key={idx}
@@ -2503,14 +2505,14 @@ const Index = () => {
                 <p className="text-gray-600">{'description' in selectedItem && selectedItem.description}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 mb-1">{'budget' in selectedItem ? 'Бюджет' : 'Цена'}</h3>
-                  <p className="text-xl font-bold text-primary">{'budget' in selectedItem ? selectedItem.budget : 'price' in selectedItem ? selectedItem.price : ''}</p>
+                  <p className="text-lg sm:text-xl font-bold text-primary break-words">{'budget' in selectedItem ? selectedItem.budget : 'price' in selectedItem ? selectedItem.price : ''}</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 mb-1">Город</h3>
-                  <p className="text-lg font-medium text-gray-800">{selectedItem.city}</p>
+                  <p className="text-base sm:text-lg font-medium text-gray-800">{selectedItem.city}</p>
                 </div>
               </div>
 
@@ -2580,10 +2582,10 @@ const Index = () => {
       )}
 
       {isResponseModalOpen && selectedItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Откликнуться</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
+              <h2 className="text-xl sm:text-2xl font-bold">Откликнуться</h2>
               <button 
                 onClick={() => {
                   setIsResponseModalOpen(false);
@@ -2596,9 +2598,9 @@ const Index = () => {
               </button>
             </div>
             
-            <div className="p-6 space-y-4">
+            <div className="p-4 sm:p-6 space-y-4">
               <div>
-                <p className="text-sm text-gray-600 mb-4">Откликаетесь на: <span className="font-bold text-gray-800">{selectedItem.title}</span></p>
+                <p className="text-sm text-gray-600 mb-4">Откликаетесь на: <span className="font-bold text-gray-800 break-words">{selectedItem.title}</span></p>
               </div>
 
               <div>
@@ -2653,9 +2655,9 @@ const Index = () => {
       )}
 
       {isSupportOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4">
+          <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl w-full max-w-2xl h-full sm:h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in">
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-none sm:rounded-t-2xl flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <Avatar className="w-10 h-10 bg-white/20">
                   <AvatarFallback className="bg-transparent text-white font-bold text-xl">👮</AvatarFallback>
@@ -2673,7 +2675,7 @@ const Index = () => {
             <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
               {supportMessages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
+                  <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                     <div className={`rounded-2xl px-4 py-2 ${
                       msg.sender === 'me' 
                         ? 'bg-gradient-orange-pink text-white' 
@@ -2737,10 +2739,10 @@ const Index = () => {
       )}
 
       {isUserProfileOpen && selectedUserProfile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between sticky top-0 z-10">
-              <h2 className="text-2xl font-bold">Профиль пользователя</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between sticky top-0 z-10">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold">Профиль пользователя</h2>
               <button 
                 onClick={() => {
                   setIsUserProfileOpen(false);
@@ -2752,21 +2754,21 @@ const Index = () => {
               </button>
             </div>
             
-            <div className="p-6 space-y-6">
-              <div className="flex items-start space-x-6 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl">
-                <Avatar className="w-24 h-24 bg-gradient-orange-pink">
-                  <AvatarFallback className="bg-transparent text-white text-3xl font-bold">
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-start gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl">
+                <Avatar className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-orange-pink flex-shrink-0">
+                  <AvatarFallback className="bg-transparent text-white text-2xl sm:text-3xl font-bold">
                     {selectedUserProfile.avatar}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">{selectedUserProfile.name}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">{selectedUserProfile.name}</h3>
                   <div className="flex items-center gap-2 mb-3">
                     <Icon name="Star" size={20} className="fill-yellow-400 text-yellow-400" />
-                    <span className="text-xl font-bold text-gray-800">{selectedUserProfile.rating}</span>
+                    <span className="text-lg sm:text-xl font-bold text-gray-800">{selectedUserProfile.rating}</span>
                     <span className="text-gray-600">({selectedUserProfile.reviewsCount} отзывов)</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 mb-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3">
                     <div className="flex items-center gap-2 text-gray-700">
                       <Icon name="MapPin" size={18} className="text-primary" />
                       <span>{selectedUserProfile.city}</span>
