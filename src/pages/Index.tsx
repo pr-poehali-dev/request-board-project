@@ -935,17 +935,20 @@ const Index = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
                 <div className="absolute inset-0 bg-indigo-900/20"></div>
                 
-                <div className="relative z-10 h-full flex flex-col justify-between p-3 sm:p-4">
-                  <div className="flex items-start justify-end">
-                    <span className="text-[9px] sm:text-[10px] font-bold text-white bg-emerald-500 px-2 py-0.5 rounded-full shadow-lg">
+                <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-5">
+                  <div className="flex items-start justify-between">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-lg">
+                      <Icon name={category.icon as any} size={24} />
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-bold text-white bg-emerald-500 px-2.5 py-1 rounded-full shadow-lg">
                       {category.trend}
                     </span>
                   </div>
-                  <div className="text-center">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1.5 sm:mb-2 rounded-xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-lg">
-                      <Icon name={category.icon as any} size={18} />
-                    </div>
-                    <h3 className="font-bold text-xs sm:text-sm text-white drop-shadow-lg leading-tight">{category.name}</h3>
+                  <div className="text-left">
+                    <h3 className="font-bold text-sm sm:text-base text-white drop-shadow-lg mb-1">{category.name}</h3>
+                    <p className="text-xs sm:text-sm text-white/90 font-semibold drop-shadow">
+                      {category.count} объявлений
+                    </p>
                   </div>
                 </div>
               </button>
