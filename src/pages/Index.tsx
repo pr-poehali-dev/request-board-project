@@ -950,7 +950,7 @@ const Index = () => {
             ))}
           </div>
         </div>
-        <div className="flex gap-6 justify-center">
+        <div className="flex gap-6">
           <aside className="hidden lg:block w-56 flex-shrink-0">
             <div className="sticky top-[88px] space-y-4">
               <div className="space-y-1">
@@ -1047,7 +1047,7 @@ const Index = () => {
               </div>
             </div>
           </aside>
-          <div className="flex-1 min-w-0 max-w-4xl relative">
+          <div className="flex-1 min-w-0 relative">
             {swipeDirection && (
               <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
                 <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
