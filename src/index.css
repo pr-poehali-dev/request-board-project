@@ -112,4 +112,36 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .swipe-indicator {
+    position: relative;
+    touch-action: pan-y;
+  }
+
+  .swipe-indicator::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    border-radius: 2px;
+    opacity: 0.3;
+  }
+
+  @keyframes swipe-hint {
+    0%,
+    100% {
+      transform: translateX(-50%);
+    }
+    50% {
+      transform: translateX(-45%);
+    }
+  }
+
+  .animate-swipe-hint::after {
+    animation: swipe-hint 2s ease-in-out infinite;
+  }
 }

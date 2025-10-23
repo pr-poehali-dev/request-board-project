@@ -373,6 +373,11 @@ const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState<number>(1);
   const [favorites, setFavorites] = useState<number[]>([]);
+  
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [dialogs, setDialogs] = useState<ChatDialog[]>([
     {
       id: 1,
@@ -526,6 +531,56 @@ const Index = () => {
   };
 
   const popularCategories = categories.filter(c => c.popular);
+
+  const minSwipeDistance = 50;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const currentTouch = e.targetTouches[0].clientX;
+    setTouchEnd(currentTouch);
+    
+    if (touchStart) {
+      const distance = touchStart - currentTouch;
+      if (Math.abs(distance) > minSwipeDistance / 2) {
+        setSwipeDirection(distance > 0 ? 'left' : 'right');
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) {
+      setSwipeDirection(null);
+      return;
+    }
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      if (activeTab === 'requests') {
+        setActiveTab('offers');
+      } else if (activeTab === 'offers' && isAuthenticated) {
+        setActiveTab('favorites');
+      }
+    }
+    
+    if (isRightSwipe) {
+      if (activeTab === 'favorites' && isAuthenticated) {
+        setActiveTab('offers');
+      } else if (activeTab === 'offers') {
+        setActiveTab('requests');
+      }
+    }
+    
+    setSwipeDirection(null);
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
 
   const handleSendMessage = () => {
     if (newMessage.trim() && currentDialog) {
@@ -727,6 +782,12 @@ const Index = () => {
       </nav>
 
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50 shadow-lg">
+        <div className="text-center py-1 bg-gradient-to-r from-purple-50 to-pink-50">
+          <p className="text-[10px] text-gray-500 flex items-center justify-center gap-1">
+            <Icon name="MoveHorizontal" size={12} />
+            <span>Свайпайте влево/вправо для переключения</span>
+          </p>
+        </div>
         <div className={`grid ${isAuthenticated ? 'grid-cols-5' : 'grid-cols-3'} gap-1 p-2`}>
           <button 
             onClick={() => setActiveTab('requests')}
@@ -854,9 +915,26 @@ const Index = () => {
               ))}
             </div>
           </aside>
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 relative">
+            {swipeDirection && (
+              <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
+                <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
+                <span className="font-semibold">
+                  {swipeDirection === 'left' && activeTab === 'requests' && 'Предложения'}
+                  {swipeDirection === 'left' && activeTab === 'offers' && isAuthenticated && 'Избранное'}
+                  {swipeDirection === 'right' && activeTab === 'offers' && 'Запросы'}
+                  {swipeDirection === 'right' && activeTab === 'favorites' && 'Предложения'}
+                </span>
+                <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
+              </div>
+            )}
           {activeTab === 'requests' && (
-            <div className="space-y-4 sm:space-y-6 animate-fade-in">
+            <div 
+              className="space-y-4 sm:space-y-6 animate-fade-in"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
               <Button
                 variant={selectedCategory === null ? 'default' : 'outline'}
@@ -1019,7 +1097,12 @@ const Index = () => {
         )}
 
         {activeTab === 'offers' && (
-          <div className="space-y-4 sm:space-y-6 animate-fade-in">
+          <div 
+            className="space-y-4 sm:space-y-6 animate-fade-in"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
               <Button
                 variant={selectedCategory === null ? 'default' : 'outline'}
@@ -1179,7 +1262,12 @@ const Index = () => {
         )}
 
         {activeTab === 'favorites' && (
-          <div className="space-y-4 sm:space-y-6 animate-fade-in">
+          <div 
+            className="space-y-4 sm:space-y-6 animate-fade-in"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div className="text-center mb-4 sm:mb-8">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-2 sm:mb-3">
                 Избранное
