@@ -687,13 +687,6 @@ const Index = () => {
                     <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                   )}
                 </button>
-                <button 
-                  onClick={() => setIsCreateFormOpen(true)}
-                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                  title="Создать объявление"
-                >
-                  <Icon name="Plus" size={22} />
-                </button>
               </div>
             )}
 
@@ -743,6 +736,17 @@ const Index = () => {
                 <span className="text-sm font-medium text-gray-700">AlbeWeb</span>
                 <Icon name="ChevronDown" size={16} className="text-gray-500" />
               </button>
+            )}
+
+            {isAuthenticated && (
+              <Button
+                onClick={() => setIsCreateFormOpen(true)}
+                className="bg-gradient-orange-pink hover:opacity-90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 px-4 h-9"
+                title="Создать объявление"
+              >
+                <Icon name="Plus" size={20} className="mr-1.5" />
+                Создать
+              </Button>
             )}
             </div>
           </div>
