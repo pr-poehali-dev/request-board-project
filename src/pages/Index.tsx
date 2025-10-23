@@ -1010,7 +1010,7 @@ const Index = () => {
             )}
           {activeTab === 'requests' && (
             <div 
-              className="space-y-4 sm:space-y-6 animate-fade-in"
+              className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-right-4 duration-300"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
@@ -1191,7 +1191,7 @@ const Index = () => {
 
         {activeTab === 'offers' && (
           <div 
-            className="space-y-4 sm:space-y-6 animate-fade-in"
+            className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-left-4 duration-300"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -1372,7 +1372,7 @@ const Index = () => {
 
         {activeTab === 'favorites' && (
           <div 
-            className="space-y-4 sm:space-y-6 animate-fade-in"
+            className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -1537,7 +1537,7 @@ const Index = () => {
 
 
         {activeTab === 'profile' && (
-          <div className="space-y-4 sm:space-y-6 animate-fade-in">
+          <div className="space-y-4 sm:space-y-6 animate-in fade-in zoom-in-95 duration-300">
             <Card className="max-w-2xl mx-auto">
               <CardHeader className="text-center">
                 <Avatar className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 bg-gradient-orange-pink">
