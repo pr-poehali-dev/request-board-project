@@ -662,22 +662,7 @@ const Index = () => {
                       </span>
                     )}
                   </Button>
-                  <Button 
-                    variant={activeTab === 'profile' ? 'default' : 'ghost'}
-                    onClick={() => setActiveTab('profile')}
-                    className="font-medium"
-                  >
-                    <Avatar className="w-5 h-5 mr-2 bg-gradient-orange-pink">
-                      {avatarPreview ? (
-                        <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
-                      ) : (
-                        <AvatarFallback className="bg-transparent text-white text-xs font-bold">
-                          {profileData.name.charAt(0).toUpperCase()}
-                        </AvatarFallback>
-                      )}
-                    </Avatar>
-                    Профиль
-                  </Button>
+
                 </>
               )}
             </div>
