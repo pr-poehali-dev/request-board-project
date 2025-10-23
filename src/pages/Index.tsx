@@ -18,6 +18,7 @@ interface Request {
   delivery: boolean;
   exchange?: boolean;
   isFavorite?: boolean;
+  photos?: string[];
 }
 
 interface Offer {
@@ -33,6 +34,7 @@ interface Offer {
   delivery: boolean;
   exchange?: boolean;
   isFavorite?: boolean;
+  photos?: string[];
 }
 
 const categories = [
@@ -55,7 +57,8 @@ const mockRequests: Request[] = [
     description: 'Нужен iPhone 15 Pro в хорошем состоянии, желательно с гарантией',
     city: 'Москва',
     delivery: true,
-    exchange: true
+    exchange: true,
+    photos: ['https://images.unsplash.com/photo-1696446702061-cbd88e2846b8?w=400', 'https://images.unsplash.com/photo-1678685888221-cda773a3dcdb?w=400']
   },
   {
     id: 2,
@@ -108,7 +111,8 @@ const mockOffers: Offer[] = [
     description: 'iPhone 14 Pro Max 256GB, черный, отличное состояние, все документы',
     city: 'Москва',
     delivery: true,
-    exchange: true
+    exchange: true,
+    photos: ['https://images.unsplash.com/photo-1678652197565-941946f48bfe?w=400', 'https://images.unsplash.com/photo-1592286927505-72ad6c4b492a?w=400', 'https://images.unsplash.com/photo-1611472173362-3f53dbd65d80?w=400']
   },
   {
     id: 2,
@@ -293,6 +297,7 @@ const Index = () => {
     city: '',
     delivery: false,
     exchange: false,
+    photos: [] as string[],
   });
   const chatEndRef = useRef<HTMLDivElement>(null);
 
@@ -345,26 +350,6 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
-            {!isAuthenticated && (
-              <div className="flex items-center space-x-2">
-                <Button 
-                  onClick={() => setIsLoginOpen(true)}
-                  variant="outline" 
-                  className="font-semibold text-sm"
-                >
-                  Войти
-                </Button>
-                <Button 
-                  onClick={() => setIsRegisterOpen(true)}
-                  className="bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
-                >
-                  Регистрация
-                </Button>
-              </div>
-            )}
-
-            {isAuthenticated && (
-              <>
             <div className="hidden md:flex space-x-1">
               <Button 
                 variant={activeTab === 'requests' ? 'default' : 'ghost'}
@@ -435,14 +420,30 @@ const Index = () => {
               </button>
             </div>
 
-            <Button 
-              onClick={() => setIsCreateFormOpen(true)}
-              className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
-            >
-              <Icon name="Plus" size={16} className="sm:mr-2" />
-              <span className="hidden sm:inline">Создать</span>
-            </Button>
-              </>
+            {!isAuthenticated ? (
+              <div className="flex items-center space-x-2">
+                <Button 
+                  onClick={() => setIsLoginOpen(true)}
+                  variant="outline" 
+                  className="font-semibold text-sm"
+                >
+                  Войти
+                </Button>
+                <Button 
+                  onClick={() => setIsRegisterOpen(true)}
+                  className="bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
+                >
+                  Регистрация
+                </Button>
+              </div>
+            ) : (
+              <Button 
+                onClick={() => setIsCreateFormOpen(true)}
+                className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
+              >
+                <Icon name="Plus" size={16} className="sm:mr-2" />
+                <span className="hidden sm:inline">Создать</span>
+              </Button>
             )}
           </div>
         </div>
@@ -530,6 +531,20 @@ const Index = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
+                    {request.photos && request.photos.length > 0 && (
+                      <div className="mb-4 -mx-6 -mt-6">
+                        <div className="flex overflow-x-auto gap-2 scrollbar-hide">
+                          {request.photos.map((photo, idx) => (
+                            <img 
+                              key={idx}
+                              src={photo} 
+                              alt={`${request.title} ${idx + 1}`}
+                              className="h-48 w-auto object-cover rounded-t-xl first:rounded-tl-xl"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
@@ -595,10 +610,14 @@ const Index = () => {
                       <div className="flex gap-2 w-full sm:w-auto">
                         <Button 
                           onClick={() => {
-                            if (favorites.includes(request.id)) {
-                              setFavorites(favorites.filter(id => id !== request.id));
+                            if (!isAuthenticated) {
+                              setIsLoginOpen(true);
                             } else {
-                              setFavorites([...favorites, request.id]);
+                              if (favorites.includes(request.id)) {
+                                setFavorites(favorites.filter(id => id !== request.id));
+                              } else {
+                                setFavorites([...favorites, request.id]);
+                              }
                             }
                           }}
                           variant="outline" 
@@ -611,7 +630,16 @@ const Index = () => {
                           <Icon name="Eye" size={14} className="mr-1.5" />
                           Смотреть
                         </Button>
-                        <Button className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm">
+                        <Button 
+                          onClick={() => {
+                            if (!isAuthenticated) {
+                              setIsLoginOpen(true);
+                            } else {
+                              alert('Функция откликов будет доступна в следующей версии');
+                            }
+                          }}
+                          className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
+                        >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
                         </Button>
@@ -664,6 +692,20 @@ const Index = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
+                    {offer.photos && offer.photos.length > 0 && (
+                      <div className="mb-4 -mx-6 -mt-6">
+                        <div className="flex overflow-x-auto gap-2 scrollbar-hide">
+                          {offer.photos.map((photo, idx) => (
+                            <img 
+                              key={idx}
+                              src={photo} 
+                              alt={`${offer.title} ${idx + 1}`}
+                              className="h-48 w-auto object-cover rounded-t-xl first:rounded-tl-xl"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
@@ -726,10 +768,14 @@ const Index = () => {
                       <div className="flex gap-2 w-full sm:w-auto">
                         <Button 
                           onClick={() => {
-                            if (favorites.includes(offer.id)) {
-                              setFavorites(favorites.filter(id => id !== offer.id));
+                            if (!isAuthenticated) {
+                              setIsLoginOpen(true);
                             } else {
-                              setFavorites([...favorites, offer.id]);
+                              if (favorites.includes(offer.id)) {
+                                setFavorites(favorites.filter(id => id !== offer.id));
+                              } else {
+                                setFavorites([...favorites, offer.id]);
+                              }
                             }
                           }}
                           variant="outline" 
@@ -742,7 +788,16 @@ const Index = () => {
                           <Icon name="Eye" size={14} className="mr-1.5" />
                           Смотреть
                         </Button>
-                        <Button className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm">
+                        <Button 
+                          onClick={() => {
+                            if (!isAuthenticated) {
+                              setIsLoginOpen(true);
+                            } else {
+                              setIsChatOpen(true);
+                            }
+                          }}
+                          className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
+                        >
                           Написать
                           <Icon name="MessageCircle" size={14} className="ml-1.5" />
                         </Button>
@@ -1247,6 +1302,69 @@ const Index = () => {
                 />
               </div>
 
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Фотографии (до 5 шт)
+                </label>
+                <div className="space-y-3">
+                  <div className="flex flex-wrap gap-2">
+                    {formData.photos.map((photo, idx) => (
+                      <div key={idx} className="relative group">
+                        <img 
+                          src={photo} 
+                          alt={`Фото ${idx + 1}`}
+                          className="w-24 h-24 object-cover rounded-lg border-2 border-gray-200"
+                        />
+                        <button
+                          onClick={() => {
+                            setFormData({ 
+                              ...formData, 
+                              photos: formData.photos.filter((_, i) => i !== idx) 
+                            });
+                          }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                        >
+                          <Icon name="X" size={14} />
+                        </button>
+                      </div>
+                    ))}
+                    {formData.photos.length < 5 && (
+                      <label className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-primary transition-colors">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          className="hidden"
+                          onChange={(e) => {
+                            const files = Array.from(e.target.files || []);
+                            const remainingSlots = 5 - formData.photos.length;
+                            const filesToAdd = files.slice(0, remainingSlots);
+                            
+                            filesToAdd.forEach(file => {
+                              const reader = new FileReader();
+                              reader.onloadend = () => {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  photos: [...prev.photos, reader.result as string]
+                                }));
+                              };
+                              reader.readAsDataURL(file);
+                            });
+                          }}
+                        />
+                        <div className="text-center">
+                          <Icon name="Plus" size={24} className="mx-auto text-gray-400" />
+                          <p className="text-xs text-gray-500 mt-1">Добавить</p>
+                        </div>
+                      </label>
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-500">
+                    Добавлено {formData.photos.length} из 5 фотографий
+                  </p>
+                </div>
+              </div>
+
               <div className="space-y-3">
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input
@@ -1289,6 +1407,7 @@ const Index = () => {
                         city: '',
                         delivery: false,
                         exchange: false,
+                        photos: [],
                       });
                     } else {
                       alert('Заполните все обязательные поля');
