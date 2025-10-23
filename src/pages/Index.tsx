@@ -44,21 +44,21 @@ const cities = [
 ];
 
 const categories = [
-  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600', popular: true },
-  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-to-br from-pink-500 via-rose-500 to-red-500', popular: true },
-  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500', popular: true },
-  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500', popular: true },
-  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500', popular: true },
-  { name: 'Мебель', icon: 'Armchair', color: 'bg-gradient-to-br from-amber-600 via-orange-600 to-red-600', popular: false },
-  { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-to-br from-sky-400 via-cyan-400 to-blue-400', popular: false },
-  { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-to-br from-lime-500 via-green-500 to-emerald-600', popular: false },
-  { name: 'Красота', icon: 'Sparkles', color: 'bg-gradient-to-br from-fuchsia-500 via-pink-500 to-rose-500', popular: false },
-  { name: 'Животные', icon: 'Dog', color: 'bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600', popular: false },
-  { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500', popular: false },
-  { name: 'Книги', icon: 'BookOpen', color: 'bg-gradient-to-br from-slate-600 via-gray-600 to-zinc-600', popular: false },
-  { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-to-br from-yellow-600 via-orange-600 to-red-600', popular: false },
-  { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700', popular: true },
-  { name: 'Еда и напитки', icon: 'Coffee', color: 'bg-gradient-to-br from-rose-500 via-red-500 to-orange-500', popular: false },
+  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-orange-pink', popular: true },
+  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-purple-pink', popular: true },
+  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-orange-pink', popular: true },
+  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-blue-purple', popular: true },
+  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-orange-pink', popular: true },
+  { name: 'Мебель', icon: 'Armchair', color: 'bg-gradient-purple-pink', popular: false },
+  { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-orange-pink', popular: false },
+  { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-blue-purple', popular: false },
+  { name: 'Красота', icon: 'Sparkles', color: 'bg-gradient-purple-pink', popular: false },
+  { name: 'Животные', icon: 'Dog', color: 'bg-gradient-orange-pink', popular: false },
+  { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-orange-pink', popular: false },
+  { name: 'Книги', icon: 'BookOpen', color: 'bg-gradient-blue-purple', popular: false },
+  { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-orange-pink', popular: false },
+  { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-purple-pink', popular: true },
+  { name: 'Еда и напитки', icon: 'Coffee', color: 'bg-gradient-orange-pink', popular: false },
 ];
 
 const mockRequests: Request[] = [
@@ -74,7 +74,7 @@ const mockRequests: Request[] = [
     city: 'Москва',
     delivery: true,
     exchange: true,
-    photos: ['https://cdn.poehali.dev/files/609c2405-3d9e-47e8-b11a-a587fb53e663.jpg']
+    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/fc00d06a-d099-40ff-ad81-00acaf3bcc1d.jpg']
   },
   {
     id: 2,
@@ -156,17 +156,17 @@ const mockRequests: Request[] = [
 const mockOffers: Offer[] = [
   {
     id: 1,
-    title: 'Продаю iPhone 15 Pro',
+    title: 'Продаю iPhone 14 Pro Max',
     category: 'Электроника',
-    price: '95 000 ₽',
+    price: '85 000 ₽',
     author: 'Сергей',
     rating: 4.9,
     views: 145,
-    description: 'iPhone 15 Pro 256GB, титановый, отличное состояние, все документы',
+    description: 'iPhone 14 Pro Max 256GB, черный, отличное состояние, все документы',
     city: 'Москва',
     delivery: true,
     exchange: true,
-    photos: ['https://cdn.poehali.dev/files/609c2405-3d9e-47e8-b11a-a587fb53e663.jpg']
+    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/fc00d06a-d099-40ff-ad81-00acaf3bcc1d.jpg', 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a0739562-21b8-43e0-9bb1-abaeafd67dbd.jpg']
   },
   {
     id: 2,
@@ -373,11 +373,6 @@ const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState<number>(1);
   const [favorites, setFavorites] = useState<number[]>([]);
-  
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const [dialogs, setDialogs] = useState<ChatDialog[]>([
     {
       id: 1,
@@ -448,8 +443,6 @@ const Index = () => {
   ]);
   const [newMessage, setNewMessage] = useState('');
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
-  const [language, setLanguage] = useState<'ru' | 'ua'>('ru');
-  const [sortBy, setSortBy] = useState<'date' | 'popular' | 'price'>('date');
   const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
@@ -513,17 +506,6 @@ const Index = () => {
       req.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
     return matchesCategory && matchesCity && matchesSearch;
-  }).sort((a, b) => {
-    if (sortBy === 'date') {
-      return b.id - a.id;
-    } else if (sortBy === 'popular') {
-      return b.responses - a.responses;
-    } else if (sortBy === 'price') {
-      const priceA = parseInt(a.budget.replace(/[^0-9]/g, '')) || 0;
-      const priceB = parseInt(b.budget.replace(/[^0-9]/g, '')) || 0;
-      return priceB - priceA;
-    }
-    return 0;
   });
 
   const filteredOffers = mockOffers.filter(offer => {
@@ -535,80 +517,15 @@ const Index = () => {
       offer.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
     return matchesCategory && matchesCity && matchesSearch;
-  }).sort((a, b) => {
-    if (sortBy === 'date') {
-      return b.id - a.id;
-    } else if (sortBy === 'popular') {
-      return b.views - a.views;
-    } else if (sortBy === 'price') {
-      const priceA = parseInt(a.price.replace(/[^0-9]/g, '')) || 0;
-      const priceB = parseInt(b.price.replace(/[^0-9]/g, '')) || 0;
-      return priceB - priceA;
-    }
-    return 0;
   });
 
   const getCategoryCount = (categoryName: string) => {
     const requestCount = mockRequests.filter(req => req.category === categoryName).length;
     const offerCount = mockOffers.filter(offer => offer.category === categoryName).length;
-    return requestCount + offerCount;
-  };
-
-  const getAllListingsCount = () => {
-    return mockRequests.length + mockOffers.length;
+    return { requestCount, offerCount, total: requestCount + offerCount };
   };
 
   const popularCategories = categories.filter(c => c.popular);
-
-  const minSwipeDistance = 50;
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    const currentTouch = e.targetTouches[0].clientX;
-    setTouchEnd(currentTouch);
-    
-    if (touchStart) {
-      const distance = touchStart - currentTouch;
-      if (Math.abs(distance) > minSwipeDistance / 2) {
-        setSwipeDirection(distance > 0 ? 'left' : 'right');
-      }
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) {
-      setSwipeDirection(null);
-      return;
-    }
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    
-    if (isLeftSwipe) {
-      if (activeTab === 'requests') {
-        setActiveTab('offers');
-      } else if (activeTab === 'offers' && isAuthenticated) {
-        setActiveTab('favorites');
-      }
-    }
-    
-    if (isRightSwipe) {
-      if (activeTab === 'favorites' && isAuthenticated) {
-        setActiveTab('offers');
-      } else if (activeTab === 'offers') {
-        setActiveTab('requests');
-      }
-    }
-    
-    setSwipeDirection(null);
-    setTouchStart(null);
-    setTouchEnd(null);
-  };
 
   const handleSendMessage = () => {
     if (newMessage.trim() && currentDialog) {
@@ -638,156 +555,178 @@ const Index = () => {
   }, [currentDialog?.messages, isChatOpen]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50/50 via-indigo-50/50 to-purple-50/50">
-      <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
-        <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
-            <button 
-              onClick={() => {
-                setActiveTab('requests');
-                setSelectedCategory(null);
-                setSearchQuery('');
-              }}
-              className="flex items-center space-x-2 flex-shrink-0 hover:opacity-80 transition-opacity"
-            >
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center ring-2 ring-white/30">
+    <div className="min-h-screen bg-gray-50">
+      <nav className="bg-white border-b sticky top-0 z-50 shadow-sm">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{maxWidth: '1600px'}}>
+          <div className="flex justify-between items-center h-14 sm:h-16">
+            <div className="flex items-center space-x-2">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-orange-pink flex items-center justify-center">
                 <Icon name="MessageSquare" className="text-white" size={20} />
               </div>
-              <span className="text-lg sm:text-2xl font-bold text-white">Доска запросов</span>
-            </button>
-
-            <div className="hidden md:flex flex-1 max-w-xl">
-              <div className="relative w-full">
-                <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Поиск объявлений..."
-                  className="w-full pl-10 pr-4 py-2 border border-white/30 bg-white/10 backdrop-blur-md text-white placeholder-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-sm"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300"
-                  >
-                    <Icon name="X" size={16} />
-                  </button>
-                )}
-              </div>
+              <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
-            <div className="flex items-center space-x-3 flex-shrink-0">
+            <div className="hidden md:flex space-x-1">
+              <Button 
+                variant={activeTab === 'requests' ? 'default' : 'ghost'}
+                onClick={() => setActiveTab('requests')}
+                className="font-medium"
+              >
+                <Icon name="Search" size={18} className="mr-2" />
+                Запросы
+              </Button>
+              <Button 
+                variant={activeTab === 'offers' ? 'default' : 'ghost'}
+                onClick={() => setActiveTab('offers')}
+                className="font-medium"
+              >
+                <Icon name="Package" size={18} className="mr-2" />
+                Предложения
+              </Button>
+              <Button 
+                variant={activeTab === 'categories' ? 'default' : 'ghost'}
+                onClick={() => setActiveTab('categories')}
+                className="font-medium"
+              >
+                <Icon name="FolderOpen" size={18} className="mr-2" />
+                Все категории
+              </Button>
+              {isAuthenticated && (
+                <>
+                  <Button
+                    variant={activeTab === 'favorites' ? 'default' : 'ghost'}
+                    onClick={() => setActiveTab('favorites')}
+                    className="font-medium"
+                  >
+                    <Icon name="Heart" size={18} className="mr-2" />
+                    <span className="hidden sm:inline">Избранное</span>
+                    {favorites.length > 0 && (
+                      <span className="ml-2 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                        {favorites.length}
+                      </span>
+                    )}
+                  </Button>
+                  <Button 
+                    variant={activeTab === 'profile' ? 'default' : 'ghost'}
+                    onClick={() => setActiveTab('profile')}
+                    className="font-medium"
+                  >
+                    <Avatar className="w-5 h-5 mr-2 bg-gradient-orange-pink">
+                      {avatarPreview ? (
+                        <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                      ) : (
+                        <AvatarFallback className="bg-transparent text-white text-xs font-bold">
+                          {profileData.name.charAt(0).toUpperCase()}
+                        </AvatarFallback>
+                      )}
+                    </Avatar>
+                    Профиль
+                  </Button>
+                </>
+              )}
+            </div>
+
+            <div className="flex items-center space-x-2">
             {isAuthenticated && (
-              <div className="flex items-center space-x-1 text-white">
-                <button 
-                  onClick={() => setActiveTab('favorites')}
-                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
-                  title="Избранное"
-                >
-                  <Icon name="Heart" size={22} />
-                  {favorites.length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold shadow-lg">
-                      {favorites.length}
-                    </span>
-                  )}
-                </button>
+              <div className="flex items-center space-x-2">
                 <button 
                   onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
-                  title="Уведомления"
+                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
                 >
-                  <Icon name="Bell" size={22} />
+                  <Icon name="Bell" size={22} className="text-gray-700" />
                   {notifications.filter(n => !n.read).length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold shadow-lg">
+                    <span className="absolute top-1 right-1 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
                       {notifications.filter(n => !n.read).length}
                     </span>
                   )}
                 </button>
                 <button 
                   onClick={() => setIsChatOpen(!isChatOpen)} 
-                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
-                  title="Сообщения"
+                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
                 >
-                  <Icon name="MessageCircle" size={22} />
+                  <Icon name="MessageCircle" size={22} className="text-gray-700" />
                   {dialogs.some(d => d.unread > 0) && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full shadow-lg"></span>
+                    <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                   )}
                 </button>
               </div>
             )}
 
-            <div className="h-6 w-px bg-white/30"></div>
-
-            <div className="flex items-center bg-white/20 backdrop-blur-md rounded-lg p-0.5">
-              <button
-                onClick={() => setLanguage('ru')}
-                className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
-                  language === 'ru' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-300 hover:text-white'
-                }`}
-              >
-                RU
-              </button>
-              <button
-                onClick={() => setLanguage('ua')}
-                className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
-                  language === 'ua' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-300 hover:text-white'
-                }`}
-              >
-                UA
-              </button>
-            </div>
-
             {!isAuthenticated ? (
-              <Button 
-                onClick={() => setIsLoginOpen(true)}
-                className="bg-primary hover:bg-primary/90 text-white font-medium text-sm px-6 h-9"
-              >
-                Войти
-              </Button>
+              <div className="flex items-center space-x-2">
+                <Button 
+                  onClick={() => setIsLoginOpen(true)}
+                  variant="outline" 
+                  className="font-semibold text-sm"
+                >
+                  Войти
+                </Button>
+                <Button 
+                  onClick={() => setIsRegisterOpen(true)}
+                  className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
+                >
+                  Регистрация
+                </Button>
+              </div>
             ) : (
-              <button
-                onClick={() => setActiveTab('profile')}
-                className="flex items-center space-x-2 px-3 py-1.5 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
-                title="Профиль"
-              >
-                <Avatar className="w-7 h-7 bg-gradient-orange-pink">
-                  {avatarPreview ? (
-                    <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
-                  ) : (
-                    <AvatarFallback className="bg-transparent text-white font-semibold text-xs">
-                      {profileData.name.charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  )}
-                </Avatar>
-                <span className="text-sm font-medium text-white">AlbeWeb</span>
-                <Icon name="ChevronDown" size={16} className="text-gray-300" />
-              </button>
+              <>
+              </>
             )}
-
             {isAuthenticated && (
-              <Button
+              <Button 
                 onClick={() => setIsCreateFormOpen(true)}
-                className="bg-white text-indigo-600 hover:bg-white/90 font-semibold shadow-lg hover:shadow-2xl transition-all duration-200 px-4 h-9 rounded-xl hover:scale-105"
-                title="Создать объявление"
+                className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
               >
-                <Icon name="Plus" size={20} className="mr-1.5" />
-                Создать
+                <Icon name="Plus" size={16} className="sm:mr-2" />
+                <span className="hidden sm:inline">Создать</span>
               </Button>
             )}
             </div>
           </div>
 
+          <div className="hidden md:flex items-center space-x-3 py-3 border-t">
+            <div className="relative flex-1 max-w-2xl">
+              <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Поиск объявлений..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <Icon name="X" size={16} />
+                </button>
+              )}
+            </div>
+            
+            <div className="relative">
+              <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+              <select
+                value={selectedCity || ''}
+                onChange={(e) => setSelectedCity(e.target.value || null)}
+                className="appearance-none pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer min-w-[180px]"
+              >
+                <option value="">Все города</option>
+                {cities.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
+              <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
+          </div>
+
+
         </div>
       </nav>
 
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50 shadow-lg">
-        <div className="text-center py-1 bg-gradient-to-r from-purple-50 to-pink-50">
-          <p className="text-[10px] text-gray-500 flex items-center justify-center gap-1">
-            <Icon name="MoveHorizontal" size={12} />
-            <span>Свайпайте влево/вправо для переключения</span>
-          </p>
-        </div>
         <div className={`grid ${isAuthenticated ? 'grid-cols-5' : 'grid-cols-3'} gap-1 p-2`}>
           <button 
             onClick={() => setActiveTab('requests')}
@@ -889,140 +828,35 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="w-full overflow-hidden mb-6">
-        <img 
-          src="https://cdn.poehali.dev/files/51b4242f-5702-48d0-b60d-88bd0075b852.jpg" 
-          alt="Баннер с товарами" 
-          className="w-full h-48 sm:h-64 md:h-80 object-cover"
-        />
-      </div>
-
-      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
-        <div className="mb-6 sm:mb-8 text-center">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-            Найди. Предложи. Обменяй.
-          </h1>
-          <p className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto font-medium">
-            Доска объявлений нового поколения — где запросы встречаются с предложениями
-          </p>
-        </div>
-        <div className="flex gap-6 justify-center">
-          <aside className="hidden lg:block w-56 flex-shrink-0">
-            <div className="sticky top-[88px] space-y-4">
-              <div className="space-y-1">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Навигация</h3>
+      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8" style={{maxWidth: '1600px'}}>
+        <div className="flex gap-6">
+          <aside className="hidden lg:block w-64 flex-shrink-0">
+            <div className="sticky top-24 space-y-2">
+              <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
+              <Button
+                variant={selectedCategory === null ? 'default' : 'ghost'}
+                onClick={() => setSelectedCategory(null)}
+                className="w-full justify-start"
+              >
+                <Icon name="Grid3x3" size={18} className="mr-2" />
+                Все категории
+              </Button>
+              {categories.map((category) => (
                 <Button
-                  variant={activeTab === 'requests' ? 'default' : 'ghost'}
-                  onClick={() => setActiveTab('requests')}
-                  className="w-full justify-start font-medium"
-                >
-                  <Icon name="Search" size={18} className="mr-2" />
-                  Запросы
-                </Button>
-                <Button
-                  variant={activeTab === 'offers' ? 'default' : 'ghost'}
-                  onClick={() => setActiveTab('offers')}
-                  className="w-full justify-start font-medium"
-                >
-                  <Icon name="Package" size={18} className="mr-2" />
-                  Предложения
-                </Button>
-              </div>
-
-              <div className="space-y-1 pt-4 border-t">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Сортировать</h3>
-                <Button
-                  variant={sortBy === 'date' ? 'default' : 'ghost'}
-                  onClick={() => setSortBy('date')}
-                  className="w-full justify-start font-medium text-sm"
-                >
-                  <Icon name="Calendar" size={16} className="mr-2" />
-                  По дате
-                </Button>
-                <Button
-                  variant={sortBy === 'popular' ? 'default' : 'ghost'}
-                  onClick={() => setSortBy('popular')}
-                  className="w-full justify-start font-medium text-sm"
-                >
-                  <Icon name="TrendingUp" size={16} className="mr-2" />
-                  По популярности
-                </Button>
-                <Button
-                  variant={sortBy === 'price' ? 'default' : 'ghost'}
-                  onClick={() => setSortBy('price')}
-                  className="w-full justify-start font-medium text-sm"
-                >
-                  <Icon name="DollarSign" size={16} className="mr-2" />
-                  По цене
-                </Button>
-              </div>
-
-              <div className="space-y-1 pt-4 border-t">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Фильтры</h3>
-                <div className="px-3">
-                  <div className="relative">
-                    <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
-                    <select
-                      value={selectedCity || ''}
-                      onChange={(e) => setSelectedCity(e.target.value || null)}
-                      className="appearance-none w-full pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
-                    >
-                      <option value="">Все города</option>
-                      {cities.map((city) => (
-                        <option key={city} value={city}>
-                          {city}
-                        </option>
-                      ))}
-                    </select>
-                    <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-1 pt-4 border-t">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
-                <Button
-                  variant={selectedCategory === null ? 'default' : 'ghost'}
-                  onClick={() => setSelectedCategory(null)}
+                  key={category.name}
+                  variant={selectedCategory === category.name ? 'default' : 'ghost'}
+                  onClick={() => setSelectedCategory(category.name)}
                   className="w-full justify-start"
                 >
-                  <Icon name="Grid3x3" size={18} className="mr-2" />
-                  Все категории
+                  <Icon name={category.icon as any} size={18} className="mr-2" />
+                  {category.name}
                 </Button>
-                {categories.map((category) => (
-                  <Button
-                    key={category.name}
-                    variant={selectedCategory === category.name ? 'default' : 'ghost'}
-                    onClick={() => setSelectedCategory(category.name)}
-                    className="w-full justify-start"
-                  >
-                    <Icon name={category.icon as any} size={18} className="mr-2" />
-                    {category.name}
-                  </Button>
-                ))}
-              </div>
+              ))}
             </div>
           </aside>
-          <div className="flex-1 min-w-0 max-w-4xl relative">
-            {swipeDirection && (
-              <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
-                <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
-                <span className="font-semibold">
-                  {swipeDirection === 'left' && activeTab === 'requests' && 'Предложения'}
-                  {swipeDirection === 'left' && activeTab === 'offers' && isAuthenticated && 'Избранное'}
-                  {swipeDirection === 'right' && activeTab === 'offers' && 'Запросы'}
-                  {swipeDirection === 'right' && activeTab === 'favorites' && 'Предложения'}
-                </span>
-                <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
-              </div>
-            )}
+          <div className="flex-1 min-w-0">
           {activeTab === 'requests' && (
-            <div 
-              className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-right-4 duration-300"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            >
+            <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
               <Button
                 variant={selectedCategory === null ? 'default' : 'outline'}
@@ -1044,60 +878,56 @@ const Index = () => {
               ))}
             </div>
 
-            <div>
+            <div className="grid gap-3 sm:gap-4">
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
-                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-indigo-200 transition-all duration-300 cursor-pointer"
+                  className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <div className="flex gap-4">
                       {request.photos && request.photos.length > 0 && (
                         <img 
                           src={request.photos[0]} 
                           alt={request.title}
-                          className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                          className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
                         />
                       )}
-                      <div className="flex flex-col gap-2 flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
-                            <Badge className={`${
-                              request.category === 'Электроника' ? 'bg-gradient-to-r from-blue-500 to-indigo-600' :
-                              request.category === 'Одежда' ? 'bg-gradient-to-r from-pink-500 to-rose-500' :
-                              request.category === 'Услуги' ? 'bg-gradient-to-r from-orange-500 to-yellow-500' :
-                              request.category === 'Недвижимость' ? 'bg-gradient-to-r from-emerald-500 to-teal-500' :
-                              request.category === 'Транспорт' ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500' :
-                              'bg-gradient-to-r from-blue-500 to-purple-500'
-                            } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
-                              {request.category}
+                      <div className="flex justify-between items-start flex-1">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
+                          <Badge className="bg-gradient-orange-pink text-white border-0 text-xs">
+                            {request.category}
+                          </Badge>
+                          <Badge variant="secondary" className="font-medium text-xs">
+                            <Icon name="MapPin" size={10} className="mr-1" />
+                            {request.city}
+                          </Badge>
+                          {request.delivery && (
+                            <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50 text-xs">
+                              <Icon name="Truck" size={10} className="mr-1" />
+                              Доставка
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-indigo-700 border-indigo-200 bg-indigo-50 text-xs whitespace-nowrap">
-                              <Icon name="MapPin" size={10} className="mr-1" />
-                              {request.city}
+                          )}
+                          {request.exchange && (
+                            <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50 text-xs">
+                              <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                              Обмен
                             </Badge>
-                            {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
-                                <Icon name="Truck" size={10} className="mr-1" />
-                                Доставка
-                              </Badge>
-                            )}
-                            {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-gradient-to-r from-violet-50 to-purple-50 text-xs whitespace-nowrap">
-                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                                Обмен
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
-                            {request.budget}
-                          </div>
+                          )}
                         </div>
-                        <CardTitle className="text-lg sm:text-2xl mb-1">{request.title}</CardTitle>
-                        <CardDescription className="text-sm sm:text-base line-clamp-2">
+                        <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{request.title}</CardTitle>
+                        <CardDescription className="text-sm sm:text-base">
                           {request.description}
                         </CardDescription>
                       </div>
+                      <div className="ml-4">
+                        <div className="text-2xl font-extrabold text-black whitespace-nowrap">
+                          {request.budget}
+                        </div>
+                      </div>
+                    </div>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -1112,7 +942,7 @@ const Index = () => {
                             }
                           }}
                         >
-                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 ring-2 ring-violet-200">
+                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-purple-pink">
                             <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                               {request.author[0]}
                             </AvatarFallback>
@@ -1126,53 +956,45 @@ const Index = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center gap-1.5 text-gray-600">
-                            <Icon name="MessageCircle" size={16} />
-                            <span className="text-sm font-medium">{request.responses}</span>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-gray-600">
-                            <Icon name="Eye" size={16} />
-                            <span className="text-sm font-medium">{Math.floor(Math.random() * 500) + 100}</span>
+                        <div className="flex items-center space-x-2 bg-gray-100 px-3 py-1.5 rounded-lg">
+                          <Icon name="MessageCircle" size={22} className="text-primary" />
+                          <div className="flex flex-col">
+                            <span className="text-xs text-gray-500 leading-none">Откликнулись</span>
+                            <span className="text-sm sm:text-base font-bold text-gray-800">{request.responses}</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                        <div className="flex gap-2">
-                          <Button 
-                            onClick={() => {
-                              if (!isAuthenticated) {
-                                setIsLoginOpen(true);
+                      <div className="flex gap-2 w-full sm:w-auto">
+                        <Button 
+                          onClick={() => {
+                            if (!isAuthenticated) {
+                              setIsLoginOpen(true);
+                            } else {
+                              if (favorites.includes(request.id)) {
+                                setFavorites(favorites.filter(id => id !== request.id));
                               } else {
-                                const itemKey = `request-${request.id}`;
-                                if (favorites.includes(itemKey)) {
-                                  setFavorites(favorites.filter(id => id !== itemKey));
-                                } else {
-                                  setFavorites([...favorites, itemKey]);
-                                }
+                                setFavorites([...favorites, request.id]);
                               }
-                            }}
-                            variant="outline" 
-                            size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(`request-${request.id}`) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
-                          >
-                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(`request-${request.id}`) ? 'fill-primary' : ''}`} />
-                            <span className="hidden sm:inline">{favorites.includes(`request-${request.id}`) ? 'В избранном' : 'В избранное'}</span>
-                          </Button>
-                          <Button 
-                            onClick={() => {
-                              setSelectedItem(request);
-                              setIsViewModalOpen(true);
-                            }}
-                            variant="outline" 
-                            size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50"
-                          >
-                            <Icon name="Eye" size={14} className="sm:mr-1.5" />
-                            <span className="hidden sm:inline">Смотреть</span>
-                          </Button>
-                        </div>
+                            }
+                          }}
+                          variant="outline" 
+                          className={`font-semibold text-sm ${favorites.includes(request.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
+                        >
+                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(request.id) ? 'fill-primary' : ''}`} />
+                          {favorites.includes(request.id) ? 'В избранном' : 'В избранное'}
+                        </Button>
+                        <Button 
+                          onClick={() => {
+                            setSelectedItem(request);
+                            setIsViewModalOpen(true);
+                          }}
+                          variant="outline" 
+                          className="flex-1 sm:flex-none font-semibold text-sm"
+                        >
+                          <Icon name="Eye" size={14} className="mr-1.5" />
+                          Смотреть
+                        </Button>
                         <Button 
                           onClick={() => {
                             if (!isAuthenticated) {
@@ -1182,8 +1004,7 @@ const Index = () => {
                               setIsResponseModalOpen(true);
                             }
                           }}
-                          size="sm"
-                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 text-white hover:opacity-90 font-semibold shadow-lg hover:shadow-xl transition-all rounded-xl"
+                          className="flex-1 sm:flex-none bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
@@ -1198,12 +1019,7 @@ const Index = () => {
         )}
 
         {activeTab === 'offers' && (
-          <div 
-            className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-left-4 duration-300"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
               <Button
                 variant={selectedCategory === null ? 'default' : 'outline'}
@@ -1225,60 +1041,56 @@ const Index = () => {
               ))}
             </div>
 
-            <div>
+            <div className="grid gap-3 sm:gap-4">
               {filteredOffers.map((offer, index) => (
                 <Card 
                   key={offer.id} 
-                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-indigo-200 transition-all duration-300 cursor-pointer"
+                  className="hover:shadow-xl transition-all duration-300 border-2 hover:border-secondary/20 animate-scale-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <div className="flex gap-4">
                       {offer.photos && offer.photos.length > 0 && (
                         <img 
                           src={offer.photos[0]} 
                           alt={offer.title}
-                          className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                          className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
                         />
                       )}
-                      <div className="flex flex-col gap-2 flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
-                            <Badge className={`${
-                              offer.category === 'Электроника' ? 'bg-gradient-to-r from-blue-500 to-indigo-600' :
-                              offer.category === 'Одежда' ? 'bg-gradient-to-r from-pink-500 to-rose-500' :
-                              offer.category === 'Услуги' ? 'bg-gradient-to-r from-orange-500 to-yellow-500' :
-                              offer.category === 'Недвижимость' ? 'bg-gradient-to-r from-emerald-500 to-teal-500' :
-                              offer.category === 'Транспорт' ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500' :
-                              'bg-gradient-to-r from-blue-500 to-purple-500'
-                            } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
-                              {offer.category}
+                      <div className="flex justify-between items-start flex-1">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
+                          <Badge className="bg-gradient-purple-pink text-white border-0 text-xs">
+                            {offer.category}
+                          </Badge>
+                          <Badge variant="secondary" className="font-medium text-xs">
+                            <Icon name="MapPin" size={10} className="mr-1" />
+                            {offer.city}
+                          </Badge>
+                          {offer.delivery && (
+                            <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50 text-xs">
+                              <Icon name="Truck" size={10} className="mr-1" />
+                              Доставка
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-indigo-700 border-indigo-200 bg-indigo-50 text-xs whitespace-nowrap">
-                              <Icon name="MapPin" size={10} className="mr-1" />
-                              {offer.city}
+                          )}
+                          {offer.exchange && (
+                            <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50 text-xs">
+                              <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                              Обмен
                             </Badge>
-                            {offer.delivery && (
-                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
-                                <Icon name="Truck" size={10} className="mr-1" />
-                                Доставка
-                              </Badge>
-                            )}
-                            {offer.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-gradient-to-r from-violet-50 to-purple-50 text-xs whitespace-nowrap">
-                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                                Обмен
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
-                            {offer.price}
-                          </div>
+                          )}
                         </div>
-                        <CardTitle className="text-lg sm:text-2xl mb-1">{offer.title}</CardTitle>
-                        <CardDescription className="text-sm sm:text-base line-clamp-2">
+                        <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{offer.title}</CardTitle>
+                        <CardDescription className="text-sm sm:text-base">
                           {offer.description}
                         </CardDescription>
                       </div>
+                      <div className="ml-4">
+                        <div className="text-2xl font-extrabold text-black whitespace-nowrap">
+                          {offer.price}
+                        </div>
+                      </div>
+                    </div>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -1307,53 +1119,42 @@ const Index = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center gap-1.5 text-gray-600">
-                            <Icon name="MessageCircle" size={16} />
-                            <span className="text-sm font-medium">{Math.floor(Math.random() * 30) + 5}</span>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-gray-600">
-                            <Icon name="Eye" size={16} />
-                            <span className="text-sm font-medium">{offer.views}</span>
-                          </div>
+                        <div className="flex items-center space-x-1 text-gray-600">
+                          <Icon name="Eye" size={18} />
+                          <span className="text-sm font-medium">{offer.views}</span>
                         </div>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                        <div className="flex gap-2">
-                          <Button 
-                            onClick={() => {
-                              if (!isAuthenticated) {
-                                setIsLoginOpen(true);
+                      <div className="flex gap-2 w-full sm:w-auto">
+                        <Button 
+                          onClick={() => {
+                            if (!isAuthenticated) {
+                              setIsLoginOpen(true);
+                            } else {
+                              if (favorites.includes(offer.id)) {
+                                setFavorites(favorites.filter(id => id !== offer.id));
                               } else {
-                                const itemKey = `offer-${offer.id}`;
-                                if (favorites.includes(itemKey)) {
-                                  setFavorites(favorites.filter(id => id !== itemKey));
-                                } else {
-                                  setFavorites([...favorites, itemKey]);
-                                }
+                                setFavorites([...favorites, offer.id]);
                               }
-                            }}
-                            variant="outline" 
-                            size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(`offer-${offer.id}`) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
-                          >
-                            <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(`offer-${offer.id}`) ? 'fill-primary' : ''}`} />
-                            <span className="hidden sm:inline">{favorites.includes(`offer-${offer.id}`) ? 'В избранном' : 'В избранное'}</span>
-                          </Button>
-                          <Button 
-                            onClick={() => {
-                              setSelectedItem(offer);
-                              setIsViewModalOpen(true);
-                            }}
-                            variant="outline" 
-                            size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50"
-                          >
-                            <Icon name="Eye" size={14} className="sm:mr-1.5" />
-                            <span className="hidden sm:inline">Смотреть</span>
-                          </Button>
-                        </div>
+                            }
+                          }}
+                          variant="outline" 
+                          className={`font-semibold text-sm ${favorites.includes(offer.id) ? 'text-primary border-primary bg-primary/5' : ''}`}
+                        >
+                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(offer.id) ? 'fill-primary' : ''}`} />
+                          {favorites.includes(offer.id) ? 'В избранном' : 'В избранное'}
+                        </Button>
+                        <Button 
+                          onClick={() => {
+                            setSelectedItem(offer);
+                            setIsViewModalOpen(true);
+                          }}
+                          variant="outline" 
+                          className="flex-1 sm:flex-none font-semibold text-sm"
+                        >
+                          <Icon name="Eye" size={14} className="mr-1.5" />
+                          Смотреть
+                        </Button>
                         <Button 
                           onClick={() => {
                             if (!isAuthenticated) {
@@ -1363,8 +1164,7 @@ const Index = () => {
                               setIsResponseModalOpen(true);
                             }
                           }}
-                          size="sm"
-                          className="w-full sm:w-auto bg-gradient-orange-pink text-white hover:opacity-90 font-semibold"
+                          className="flex-1 sm:flex-none bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
                         >
                           Написать
                           <Icon name="MessageCircle" size={14} className="ml-1.5" />
@@ -1379,12 +1179,7 @@ const Index = () => {
         )}
 
         {activeTab === 'favorites' && (
-          <div 
-            className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <div className="text-center mb-4 sm:mb-8">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-2 sm:mb-3">
                 Избранное
@@ -1407,7 +1202,7 @@ const Index = () => {
               </Card>
             ) : (
               <div className="grid gap-3 sm:gap-4">
-                {mockRequests.filter(req => favorites.includes(`request-${req.id}`)).map((request, index) => (
+                {mockRequests.filter(req => favorites.includes(req.id)).map((request, index) => (
                   <Card 
                     key={request.id} 
                     className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
@@ -1438,8 +1233,8 @@ const Index = () => {
                             {request.description}
                           </CardDescription>
                         </div>
-                        <div className="ml-3 sm:ml-4">
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
+                        <div className="ml-4">
+                          <div className="text-2xl font-extrabold text-black whitespace-nowrap">
                             {request.budget}
                           </div>
                         </div>
@@ -1447,24 +1242,23 @@ const Index = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="flex flex-col sm:flex-row gap-2">
+                      <div className="flex gap-2">
                         <Button 
                           onClick={() => {
-                            setFavorites(favorites.filter(id => id !== `request-${request.id}`));
+                            setFavorites(favorites.filter(id => id !== request.id));
                           }}
                           variant="outline" 
-                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-xs sm:text-sm w-full sm:w-auto"
+                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-sm"
                         >
                           <Icon name="X" size={14} className="mr-1.5" />
-                          <span className="hidden sm:inline">Удалить из избранного</span>
-                          <span className="sm:hidden">Удалить</span>
+                          Удалить из избранного
                         </Button>
                         <Button 
                           onClick={() => {
                             setSelectedItem(request);
                             setIsViewModalOpen(true);
                           }}
-                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
+                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
                         >
                           Смотреть
                         </Button>
@@ -1472,7 +1266,7 @@ const Index = () => {
                     </CardContent>
                   </Card>
                 ))}
-                {mockOffers.filter(offer => favorites.includes(`offer-${offer.id}`)).map((offer, index) => (
+                {mockOffers.filter(offer => favorites.includes(offer.id)).map((offer, index) => (
                   <Card 
                     key={offer.id} 
                     className="hover:shadow-xl transition-all duration-300 border-2 hover:border-secondary/20 animate-scale-in"
@@ -1503,8 +1297,8 @@ const Index = () => {
                             {offer.description}
                           </CardDescription>
                         </div>
-                        <div className="ml-3 sm:ml-4">
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
+                        <div className="ml-4">
+                          <div className="text-2xl font-extrabold text-black whitespace-nowrap">
                             {offer.price}
                           </div>
                         </div>
@@ -1512,24 +1306,23 @@ const Index = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="flex flex-col sm:flex-row gap-2">
+                      <div className="flex gap-2">
                         <Button 
                           onClick={() => {
-                            setFavorites(favorites.filter(id => id !== `offer-${offer.id}`));
+                            setFavorites(favorites.filter(id => id !== offer.id));
                           }}
                           variant="outline" 
-                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-xs sm:text-sm w-full sm:w-auto"
+                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-sm"
                         >
                           <Icon name="X" size={14} className="mr-1.5" />
-                          <span className="hidden sm:inline">Удалить из избранного</span>
-                          <span className="sm:hidden">Удалить</span>
+                          Удалить из избранного
                         </Button>
                         <Button 
                           onClick={() => {
                             setSelectedItem(offer);
                             setIsViewModalOpen(true);
                           }}
-                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
+                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
                         >
                           Смотреть
                         </Button>
@@ -1542,10 +1335,79 @@ const Index = () => {
           </div>
         )}
 
+        {activeTab === 'categories' && (
+          <div className="space-y-6 sm:space-y-8 animate-fade-in">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">Категории</h2>
+              <p className="text-base sm:text-lg text-gray-600">Выберите категорию для просмотра запросов и предложений</p>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {categories.map((category, index) => {
+                const count = getCategoryCount(category.name);
+                
+                return (
+                  <Card
+                    key={category.name}
+                    className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                      setActiveTab('requests');
+                    }}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className={`w-16 h-16 rounded-2xl ${category.color} flex items-center justify-center flex-shrink-0`}>
+                          <Icon name={category.icon as any} size={32} className="text-white" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-xl font-bold text-gray-800 mb-2">{category.name}</h3>
+                          <div className="space-y-1.5">
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-gray-600 flex items-center">
+                                <Icon name="Search" size={14} className="mr-1.5 text-blue-500" />
+                                Запросы
+                              </span>
+                              <span className="font-bold text-gray-800">{count.requestCount}</span>
+                            </div>
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-gray-600 flex items-center">
+                                <Icon name="Package" size={14} className="mr-1.5 text-green-500" />
+                                Предложения
+                              </span>
+                              <span className="font-bold text-gray-800">{count.offerCount}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <Icon name="ChevronRight" size={20} className="text-gray-400 flex-shrink-0" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
 
+            <Card className="border-2 border-dashed border-gray-300 bg-gray-50">
+              <CardContent className="p-8 text-center">
+                <Icon name="HelpCircle" size={48} className="mx-auto mb-4 text-gray-400" />
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Не нашли нужную категорию?</h3>
+                <p className="text-gray-600 mb-4">Напишите нам, и мы добавим её!</p>
+                <Button 
+                  onClick={() => setIsSupportOpen(true)}
+                  variant="outline" 
+                  className="font-semibold"
+                >
+                  <Icon name="MessageCircle" size={16} className="mr-2" />
+                  Связаться с поддержкой
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {activeTab === 'profile' && (
-          <div className="space-y-4 sm:space-y-6 animate-in fade-in zoom-in-95 duration-300">
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <Card className="max-w-2xl mx-auto">
               <CardHeader className="text-center">
                 <Avatar className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 bg-gradient-orange-pink">
@@ -1642,7 +1504,7 @@ const Index = () => {
 
             <div>
               <h4 className="text-white font-bold mb-3 sm:mb-4">Категории</h4>
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+              <ul className="space-y-2 text-sm">
                 {categories.map(cat => (
                   <li key={cat.name}>
                     <button 
@@ -1650,7 +1512,7 @@ const Index = () => {
                         setSelectedCategory(cat.name);
                         setActiveTab('requests');
                       }} 
-                      className="hover:text-white transition-colors text-left"
+                      className="hover:text-white transition-colors"
                     >
                       {cat.name}
                     </button>
@@ -1700,9 +1562,9 @@ const Index = () => {
       </footer>
 
       {isChatOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4">
-          <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl w-full max-w-5xl h-full sm:h-[90vh] sm:max-h-[600px] flex animate-scale-in overflow-hidden">
-            <div className="hidden sm:flex w-full sm:w-80 bg-gray-50 border-r flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[600px] flex animate-scale-in overflow-hidden">
+            <div className="w-80 bg-gray-50 border-r flex flex-col">
               <div className="p-4 border-b bg-white">
                 <h3 className="font-bold text-lg text-gray-800">Сообщения</h3>
                 <p className="text-xs text-gray-500 mt-1">{dialogs.length} диалогов</p>
@@ -1778,7 +1640,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col w-full">
+            <div className="flex-1 flex flex-col">
               {currentDialog && (
                 <>
                   <div className={`${
@@ -1859,7 +1721,7 @@ const Index = () => {
                         key={msg.id} 
                         className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
                       >
-                        <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
+                        <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                           <div className={`rounded-2xl px-4 py-2 ${
                             msg.sender === 'me' 
                               ? 'bg-gradient-orange-pink text-white' 
@@ -2141,10 +2003,10 @@ const Index = () => {
       )}
 
       {isReviewFormOpen && currentDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
-              <h2 className="text-lg sm:text-xl font-bold">Оставить отзыв</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between">
+              <h2 className="text-xl font-bold">Оставить отзыв</h2>
               <button 
                 onClick={() => {
                   setIsReviewFormOpen(false);
@@ -2246,11 +2108,11 @@ const Index = () => {
       )}
 
       {isNotificationsOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[600px] flex flex-col animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-4 sm:p-5 rounded-t-2xl flex items-center justify-between">
               <div>
-                <h2 className="text-lg sm:text-xl font-bold">Уведомления</h2>
+                <h2 className="text-xl font-bold">Уведомления</h2>
                 <p className="text-xs text-white/80 mt-1">
                   {notifications.filter(n => !n.read).length} новых
                 </p>
@@ -2346,13 +2208,13 @@ const Index = () => {
       )}
 
       {isLoginOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
-              <h2 className="text-xl sm:text-2xl font-bold">Вход</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl">
+              <h2 className="text-2xl font-bold">Вход</h2>
               <p className="text-white/80 text-sm mt-1">Войдите в свой аккаунт</p>
             </div>
-            <div className="p-4 sm:p-6 space-y-4">
+            <div className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
                 <input
@@ -2410,13 +2272,13 @@ const Index = () => {
       )}
 
       {isRegisterOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
-              <h2 className="text-xl sm:text-2xl font-bold">Регистрация</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl">
+              <h2 className="text-2xl font-bold">Регистрация</h2>
               <p className="text-white/80 text-sm mt-1">Создайте новый аккаунт</p>
             </div>
-            <div className="p-4 sm:p-6 space-y-4">
+            <div className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Имя</label>
                 <input
@@ -2604,10 +2466,10 @@ const Index = () => {
       )}
 
       {isViewModalOpen && selectedItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="sticky top-0 bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between z-10">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-bold line-clamp-2">{selectedItem.title}</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="sticky top-0 bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between z-10">
+              <h2 className="text-2xl font-bold">{selectedItem.title}</h2>
               <button 
                 onClick={() => {
                   setIsViewModalOpen(false);
@@ -2619,11 +2481,11 @@ const Index = () => {
               </button>
             </div>
 
-            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+            <div className="p-6 space-y-6">
               {'photos' in selectedItem && selectedItem.photos && selectedItem.photos.length > 0 && (
                 <div>
                   <h3 className="text-lg font-bold text-gray-800 mb-3">Фотографии</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     {selectedItem.photos.map((photo, idx) => (
                       <img 
                         key={idx}
@@ -2641,14 +2503,14 @@ const Index = () => {
                 <p className="text-gray-600">{'description' in selectedItem && selectedItem.description}</p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 mb-1">{'budget' in selectedItem ? 'Бюджет' : 'Цена'}</h3>
-                  <p className="text-lg sm:text-xl font-bold text-primary break-words">{'budget' in selectedItem ? selectedItem.budget : 'price' in selectedItem ? selectedItem.price : ''}</p>
+                  <p className="text-xl font-bold text-primary">{'budget' in selectedItem ? selectedItem.budget : 'price' in selectedItem ? selectedItem.price : ''}</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 mb-1">Город</h3>
-                  <p className="text-base sm:text-lg font-medium text-gray-800">{selectedItem.city}</p>
+                  <p className="text-lg font-medium text-gray-800">{selectedItem.city}</p>
                 </div>
               </div>
 
@@ -2718,10 +2580,10 @@ const Index = () => {
       )}
 
       {isResponseModalOpen && selectedItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
-              <h2 className="text-xl sm:text-2xl font-bold">Откликнуться</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between">
+              <h2 className="text-2xl font-bold">Откликнуться</h2>
               <button 
                 onClick={() => {
                   setIsResponseModalOpen(false);
@@ -2734,9 +2596,9 @@ const Index = () => {
               </button>
             </div>
             
-            <div className="p-4 sm:p-6 space-y-4">
+            <div className="p-6 space-y-4">
               <div>
-                <p className="text-sm text-gray-600 mb-4">Откликаетесь на: <span className="font-bold text-gray-800 break-words">{selectedItem.title}</span></p>
+                <p className="text-sm text-gray-600 mb-4">Откликаетесь на: <span className="font-bold text-gray-800">{selectedItem.title}</span></p>
               </div>
 
               <div>
@@ -2791,9 +2653,9 @@ const Index = () => {
       )}
 
       {isSupportOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4">
-          <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl w-full max-w-2xl h-full sm:h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-none sm:rounded-t-2xl flex items-center justify-between">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl h-[600px] flex flex-col animate-scale-in">
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <Avatar className="w-10 h-10 bg-white/20">
                   <AvatarFallback className="bg-transparent text-white font-bold text-xl">👮</AvatarFallback>
@@ -2811,7 +2673,7 @@ const Index = () => {
             <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
               {supportMessages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
+                  <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                     <div className={`rounded-2xl px-4 py-2 ${
                       msg.sender === 'me' 
                         ? 'bg-gradient-orange-pink text-white' 
@@ -2875,10 +2737,10 @@ const Index = () => {
       )}
 
       {isUserProfileOpen && selectedUserProfile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between sticky top-0 z-10">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-bold">Профиль пользователя</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between sticky top-0 z-10">
+              <h2 className="text-2xl font-bold">Профиль пользователя</h2>
               <button 
                 onClick={() => {
                   setIsUserProfileOpen(false);
@@ -2890,21 +2752,21 @@ const Index = () => {
               </button>
             </div>
             
-            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-              <div className="flex flex-col sm:flex-row items-start sm:items-start gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl">
-                <Avatar className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-orange-pink flex-shrink-0">
-                  <AvatarFallback className="bg-transparent text-white text-2xl sm:text-3xl font-bold">
+            <div className="p-6 space-y-6">
+              <div className="flex items-start space-x-6 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl">
+                <Avatar className="w-24 h-24 bg-gradient-orange-pink">
+                  <AvatarFallback className="bg-transparent text-white text-3xl font-bold">
                     {selectedUserProfile.avatar}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">{selectedUserProfile.name}</h3>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">{selectedUserProfile.name}</h3>
                   <div className="flex items-center gap-2 mb-3">
                     <Icon name="Star" size={20} className="fill-yellow-400 text-yellow-400" />
-                    <span className="text-lg sm:text-xl font-bold text-gray-800">{selectedUserProfile.rating}</span>
+                    <span className="text-xl font-bold text-gray-800">{selectedUserProfile.rating}</span>
                     <span className="text-gray-600">({selectedUserProfile.reviewsCount} отзывов)</span>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3">
+                  <div className="grid grid-cols-2 gap-4 mb-3">
                     <div className="flex items-center gap-2 text-gray-700">
                       <Icon name="MapPin" size={18} className="text-primary" />
                       <span>{selectedUserProfile.city}</span>
