@@ -160,7 +160,18 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
             
-            <div className="hidden md:flex space-x-1">
+            <div className="flex items-center space-x-2">
+              <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <Icon name="MessageCircle" size={22} className="text-gray-700" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
+              </button>
+              <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <Icon name="Bell" size={22} className="text-gray-700" />
+                <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-instagram rounded-full text-white text-xs flex items-center justify-center font-semibold">3</span>
+              </button>
+            </div>
+
+            <div className="hidden md:flex space-x-1"
               <Button 
                 variant={activeTab === 'requests' ? 'default' : 'ghost'}
                 onClick={() => setActiveTab('requests')}
@@ -195,7 +206,7 @@ const Index = () => {
               </Button>
             </div>
 
-            <Button className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4">
+            <Button className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex">
               <Icon name="Plus" size={16} className="sm:mr-2" />
               <span className="hidden sm:inline">Создать</span>
             </Button>
@@ -291,7 +302,7 @@ const Index = () => {
                           <Badge className="bg-gradient-instagram text-white border-0 text-xs">
                             {request.category}
                           </Badge>
-                          <Badge variant="outline" className="font-semibold text-gray-700 text-xs">
+                          <Badge className="font-extrabold text-white text-base bg-gradient-instagram border-0 px-3 py-1">
                             {request.budget}
                           </Badge>
                           <Badge variant="secondary" className="font-medium text-xs">
@@ -409,7 +420,7 @@ const Index = () => {
                           <Badge className="bg-gradient-purple-pink text-white border-0 text-xs">
                             {offer.category}
                           </Badge>
-                          <Badge className="bg-gradient-instagram text-white border-0 font-bold text-xs">
+                          <Badge className="font-extrabold text-white text-base bg-gradient-purple-pink border-0 px-3 py-1">
                             {offer.price}
                           </Badge>
                           <Badge variant="secondary" className="font-medium text-xs">
