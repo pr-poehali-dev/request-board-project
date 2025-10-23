@@ -1003,7 +1003,7 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="max-w-3xl">
+            <div>
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
@@ -1183,7 +1183,7 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="max-w-3xl">
+            <div>
               {filteredOffers.map((offer, index) => (
                 <Card 
                   key={offer.id} 
