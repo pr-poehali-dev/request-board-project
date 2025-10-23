@@ -938,25 +938,31 @@ const Index = () => {
                 
                 <div className="relative z-10 h-full flex flex-col justify-between p-3 sm:p-4">
                   <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-black/40 backdrop-blur-sm flex items-center justify-center text-white shadow-xl">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xl">
                       <Icon name={category.icon as any} size={20} className="sm:w-6 sm:h-6" />
                     </div>
-                    <span className="text-[10px] sm:text-xs font-bold text-white bg-indigo-500/80 backdrop-blur-sm px-2 py-0.5 rounded-full shadow-lg">
-                      {stats.total}
-                    </span>
                   </div>
-                  <div className="text-left">
-                    <h3 className="font-bold text-xs sm:text-sm text-white drop-shadow-lg mb-1">{category.name}</h3>
-                    <div className="flex gap-2 text-[10px] sm:text-xs text-white/90 font-medium">
-                      <span className="flex items-center gap-1">
-                        <Icon name="Search" size={10} />
-                        {stats.requestCount}
-                      </span>
-                      <span className="text-white/50">•</span>
-                      <span className="flex items-center gap-1">
-                        <Icon name="Package" size={10} />
-                        {stats.offerCount}
-                      </span>
+                  <div className="text-left space-y-2">
+                    <h3 className="font-bold text-sm sm:text-base text-white drop-shadow-lg">{category.name}</h3>
+                    <div className="flex gap-2">
+                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2 py-1.5">
+                        <div className="flex items-center justify-between gap-1">
+                          <span className="flex items-center gap-1 text-white/80 text-[10px] font-medium">
+                            <Icon name="Search" size={12} />
+                            <span className="hidden sm:inline">Ищут</span>
+                          </span>
+                          <span className="text-white font-bold text-xs sm:text-sm">{stats.requestCount}</span>
+                        </div>
+                      </div>
+                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2 py-1.5">
+                        <div className="flex items-center justify-between gap-1">
+                          <span className="flex items-center gap-1 text-white/80 text-[10px] font-medium">
+                            <Icon name="Package" size={12} />
+                            <span className="hidden sm:inline">Продают</span>
+                          </span>
+                          <span className="text-white font-bold text-xs sm:text-sm">{stats.offerCount}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
