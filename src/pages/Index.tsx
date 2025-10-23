@@ -900,9 +900,35 @@ const Index = () => {
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
           </h1>
-          <p className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto font-medium">
+          <p className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto font-medium mb-8">
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-5xl mx-auto">
+            {categories.slice(0, 5).map((category, index) => (
+              <button
+                key={category.name}
+                onClick={() => {
+                  setSelectedCategory(category.name);
+                  setActiveTab('requests');
+                }}
+                className={`group relative overflow-hidden rounded-2xl aspect-video bg-gradient-to-br ${
+                  index === 0 ? 'from-blue-500 via-indigo-500 to-purple-600' :
+                  index === 1 ? 'from-pink-500 via-rose-500 to-red-500' :
+                  index === 2 ? 'from-orange-500 via-amber-500 to-yellow-500' :
+                  index === 3 ? 'from-emerald-500 via-teal-500 to-cyan-500' :
+                  'from-violet-500 via-purple-500 to-fuchsia-600'
+                } p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-white/20`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div className="relative z-10 h-full flex flex-col items-center justify-center text-white">
+                  <Icon name={category.icon as any} size={32} className="mb-2 drop-shadow-lg" />
+                  <span className="font-bold text-sm sm:text-base drop-shadow-lg text-center">{category.name}</span>
+                </div>
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              </button>
+            ))}
+          </div>
         </div>
         <div className="flex gap-6 justify-center">
           <aside className="hidden lg:block w-56 flex-shrink-0">
