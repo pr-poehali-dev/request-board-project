@@ -15,16 +15,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 15%;
 
-    --primary: 262 83% 58%;
+    --primary: 221 78% 63%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 340 82% 52%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 195 71% 73%;
+    --secondary-foreground: 220 15% 15%;
 
     --muted: 210 20% 96%;
     --muted-foreground: 220 10% 50%;
 
-    --accent: 175 60% 50%;
+    --accent: 198 80% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,7 +32,7 @@
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 262 83% 58%;
+    --ring: 221 78% 63%;
 
     --radius: 0.75rem;
 
@@ -126,7 +126,7 @@
     transform: translateX(-50%);
     width: 40px;
     height: 4px;
-    background: linear-gradient(90deg, #a855f7, #ec4899);
+    background: linear-gradient(90deg, #5680e9, #84ceeb);
     border-radius: 2px;
     opacity: 0.3;
   }
