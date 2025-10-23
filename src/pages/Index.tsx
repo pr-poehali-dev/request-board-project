@@ -44,19 +44,19 @@ const cities = [
 ];
 
 const categories = [
-  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-instagram', popular: true },
+  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-orange-pink', popular: true },
   { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-purple-pink', popular: true },
   { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-orange-pink', popular: true },
   { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-blue-purple', popular: true },
-  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-instagram', popular: true },
+  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-orange-pink', popular: true },
   { name: 'Мебель', icon: 'Armchair', color: 'bg-gradient-purple-pink', popular: false },
   { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-orange-pink', popular: false },
   { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-blue-purple', popular: false },
   { name: 'Красота', icon: 'Sparkles', color: 'bg-gradient-purple-pink', popular: false },
-  { name: 'Животные', icon: 'Dog', color: 'bg-gradient-instagram', popular: false },
+  { name: 'Животные', icon: 'Dog', color: 'bg-gradient-orange-pink', popular: false },
   { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-orange-pink', popular: false },
   { name: 'Книги', icon: 'BookOpen', color: 'bg-gradient-blue-purple', popular: false },
-  { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-instagram', popular: false },
+  { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-orange-pink', popular: false },
   { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-purple-pink', popular: true },
   { name: 'Еда и напитки', icon: 'Coffee', color: 'bg-gradient-orange-pink', popular: false },
 ];
@@ -479,7 +479,7 @@ const Index = () => {
         <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{maxWidth: '1600px'}}>
           <div className="flex justify-between items-center h-14 sm:h-16">
             <div className="flex items-center space-x-2">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-instagram flex items-center justify-center">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-orange-pink flex items-center justify-center">
                 <Icon name="MessageSquare" className="text-white" size={20} />
               </div>
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
@@ -530,7 +530,7 @@ const Index = () => {
                     onClick={() => setActiveTab('profile')}
                     className="font-medium"
                   >
-                    <Avatar className="w-5 h-5 mr-2 bg-gradient-instagram">
+                    <Avatar className="w-5 h-5 mr-2 bg-gradient-orange-pink">
                       {avatarPreview ? (
                         <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                       ) : (
@@ -554,7 +554,7 @@ const Index = () => {
                 >
                   <Icon name="Bell" size={22} className="text-gray-700" />
                   {notifications.filter(n => !n.read).length > 0 && (
-                    <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-instagram rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                    <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-orange-pink rounded-full text-white text-xs flex items-center justify-center font-semibold">
                       {notifications.filter(n => !n.read).length}
                     </span>
                   )}
@@ -565,7 +565,7 @@ const Index = () => {
                 >
                   <Icon name="MessageCircle" size={22} className="text-gray-700" />
                   {dialogs.some(d => d.unread > 0) && (
-                    <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
+                    <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-orange-pink rounded-full"></span>
                   )}
                 </button>
               </div>
@@ -582,7 +582,7 @@ const Index = () => {
                 </Button>
                 <Button 
                   onClick={() => setIsRegisterOpen(true)}
-                  className="bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
+                  className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
                 >
                   Регистрация
                 </Button>
@@ -594,7 +594,7 @@ const Index = () => {
             {isAuthenticated && (
               <Button 
                 onClick={() => setIsCreateFormOpen(true)}
-                className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
+                className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
               >
                 <Icon name="Plus" size={16} className="sm:mr-2" />
                 <span className="hidden sm:inline">Создать</span>
@@ -691,7 +691,7 @@ const Index = () => {
                   activeTab === 'profile' ? 'bg-primary text-white' : 'text-gray-600'
                 }`}
               >
-                <Avatar className="w-5 h-5 bg-gradient-instagram">
+                <Avatar className="w-5 h-5 bg-gradient-orange-pink">
                   {avatarPreview ? (
                     <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
@@ -816,7 +816,7 @@ const Index = () => {
                       <div className="flex justify-between items-start flex-1">
                       <div className="flex-1">
                         <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                          <Badge className="bg-gradient-instagram text-white border-0 text-xs">
+                          <Badge className="bg-gradient-orange-pink text-white border-0 text-xs">
                             {request.category}
                           </Badge>
                           <Badge variant="secondary" className="font-medium text-xs">
@@ -915,7 +915,7 @@ const Index = () => {
                               setIsResponseModalOpen(true);
                             }
                           }}
-                          className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
+                          className="flex-1 sm:flex-none bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
@@ -1067,7 +1067,7 @@ const Index = () => {
                               setIsResponseModalOpen(true);
                             }
                           }}
-                          className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
+                          className="flex-1 sm:flex-none bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
                         >
                           Написать
                           <Icon name="MessageCircle" size={14} className="ml-1.5" />
@@ -1098,7 +1098,7 @@ const Index = () => {
                   <Icon name="Heart" size={64} className="mx-auto mb-4 text-gray-300" />
                   <h3 className="text-xl font-bold text-gray-800 mb-2">Избранное пусто</h3>
                   <p className="text-gray-600 mb-4">Добавьте объявления в избранное, чтобы быстро находить их</p>
-                  <Button onClick={() => setActiveTab('requests')} className="bg-gradient-instagram text-white hover:opacity-90">
+                  <Button onClick={() => setActiveTab('requests')} className="bg-gradient-orange-pink text-white hover:opacity-90">
                     Посмотреть объявления
                   </Button>
                 </CardContent>
@@ -1186,7 +1186,7 @@ const Index = () => {
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
             <Card className="max-w-2xl mx-auto">
               <CardHeader className="text-center">
-                <Avatar className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 bg-gradient-instagram">
+                <Avatar className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 bg-gradient-orange-pink">
                   {avatarPreview ? (
                     <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
@@ -1260,7 +1260,7 @@ const Index = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-instagram flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-gradient-orange-pink flex items-center justify-center">
                   <Icon name="MessageSquare" className="text-white" size={16} />
                 </div>
                 <span className="text-lg font-bold text-white">Доска запросов</span>
@@ -1344,7 +1344,7 @@ const Index = () => {
                   >
                     <div className="flex items-start space-x-3">
                       <div className="relative">
-                        <Avatar className="w-12 h-12 bg-gradient-instagram">
+                        <Avatar className="w-12 h-12 bg-gradient-orange-pink">
                           <AvatarFallback className="bg-transparent text-white font-bold">
                             {dialog.avatar}
                           </AvatarFallback>
@@ -1387,7 +1387,7 @@ const Index = () => {
                   <div className={`${
                     currentDialog.type === 'support' 
                       ? 'bg-gradient-to-r from-purple-600 to-pink-600' 
-                      : 'bg-gradient-instagram'
+                      : 'bg-gradient-orange-pink'
                   } text-white p-4 flex items-center justify-between`}>
                     <div className="flex items-center space-x-3">
                       <Avatar className="w-10 h-10 bg-white/20">
@@ -1422,7 +1422,7 @@ const Index = () => {
                         <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                           <div className={`rounded-2xl px-4 py-2 ${
                             msg.sender === 'me' 
-                              ? 'bg-gradient-instagram text-white' 
+                              ? 'bg-gradient-orange-pink text-white' 
                               : 'bg-white text-gray-800 border border-gray-200'
                           }`}>
                             <p className="text-sm">{msg.text}</p>
@@ -1461,7 +1461,7 @@ const Index = () => {
                       />
                       <Button 
                         onClick={handleSendMessage}
-                        className="bg-gradient-instagram text-white hover:opacity-90 px-4 py-2 rounded-xl"
+                        className="bg-gradient-orange-pink text-white hover:opacity-90 px-4 py-2 rounded-xl"
                       >
                         <Icon name="Send" size={18} />
                       </Button>
@@ -1477,7 +1477,7 @@ const Index = () => {
       {isCreateFormOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="sticky top-0 bg-gradient-instagram text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between z-10">
+            <div className="sticky top-0 bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between z-10">
               <h2 className="text-xl sm:text-2xl font-bold">Создать объявление</h2>
               <button 
                 onClick={() => setIsCreateFormOpen(false)}
@@ -1689,7 +1689,7 @@ const Index = () => {
                       alert('Заполните все обязательные поля');
                     }
                   }}
-                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90 py-3 text-base font-semibold"
+                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90 py-3 text-base font-semibold"
                 >
                   <Icon name="Plus" size={18} className="mr-2" />
                   Создать
@@ -1703,7 +1703,7 @@ const Index = () => {
       {isReviewFormOpen && currentDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-instagram text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between">
+            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between">
               <h2 className="text-xl font-bold">Оставить отзыв</h2>
               <button 
                 onClick={() => {
@@ -1794,7 +1794,7 @@ const Index = () => {
                       alert('Поставьте оценку');
                     }
                   }}
-                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90 py-3 text-base font-semibold"
+                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90 py-3 text-base font-semibold"
                 >
                   <Icon name="Send" size={18} className="mr-2" />
                   Отправить
@@ -1808,7 +1808,7 @@ const Index = () => {
       {isNotificationsOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-instagram text-white p-4 sm:p-5 rounded-t-2xl flex items-center justify-between">
+            <div className="bg-gradient-orange-pink text-white p-4 sm:p-5 rounded-t-2xl flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold">Уведомления</h2>
                 <p className="text-xs text-white/80 mt-1">
@@ -1908,7 +1908,7 @@ const Index = () => {
       {isLoginOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-instagram text-white p-6 rounded-t-2xl">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl">
               <h2 className="text-2xl font-bold">Вход</h2>
               <p className="text-white/80 text-sm mt-1">Войдите в свой аккаунт</p>
             </div>
@@ -1947,7 +1947,7 @@ const Index = () => {
                       alert('Заполните все поля');
                     }
                   }}
-                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
+                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
                 >
                   Войти
                 </Button>
@@ -1972,7 +1972,7 @@ const Index = () => {
       {isRegisterOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-instagram text-white p-6 rounded-t-2xl">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl">
               <h2 className="text-2xl font-bold">Регистрация</h2>
               <p className="text-white/80 text-sm mt-1">Создайте новый аккаунт</p>
             </div>
@@ -2021,7 +2021,7 @@ const Index = () => {
                       alert('Заполните все поля');
                     }
                   }}
-                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
+                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
                 >
                   Зарегистрироваться
                 </Button>
@@ -2046,7 +2046,7 @@ const Index = () => {
       {isProfileEditOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-instagram text-white p-6 rounded-t-2xl flex items-center justify-between">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between">
               <h2 className="text-2xl font-bold">Редактирование профиля</h2>
               <button onClick={() => setIsProfileEditOpen(false)} className="p-2 hover:bg-white/20 rounded-lg">
                 <Icon name="X" size={24} />
@@ -2056,7 +2056,7 @@ const Index = () => {
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Фото профиля</label>
                 <div className="flex items-center gap-4">
-                  <Avatar className="w-20 h-20 bg-gradient-instagram">
+                  <Avatar className="w-20 h-20 bg-gradient-orange-pink">
                     {avatarPreview ? (
                       <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                     ) : (
@@ -2153,7 +2153,7 @@ const Index = () => {
                     alert('Профиль обновлён!');
                     setIsProfileEditOpen(false);
                   }}
-                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
+                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
                 >
                   Сохранить
                 </Button>
@@ -2166,7 +2166,7 @@ const Index = () => {
       {isViewModalOpen && selectedItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="sticky top-0 bg-gradient-instagram text-white p-6 rounded-t-2xl flex items-center justify-between z-10">
+            <div className="sticky top-0 bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between z-10">
               <h2 className="text-2xl font-bold">{selectedItem.title}</h2>
               <button 
                 onClick={() => {
@@ -2215,7 +2215,7 @@ const Index = () => {
               <div>
                 <h3 className="text-lg font-bold text-gray-800 mb-3">Автор</h3>
                 <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
-                  <Avatar className="w-16 h-16 bg-gradient-instagram">
+                  <Avatar className="w-16 h-16 bg-gradient-orange-pink">
                     <AvatarFallback className="bg-transparent text-white text-xl font-bold">
                       {selectedItem.author[0]}
                     </AvatarFallback>
@@ -2237,7 +2237,7 @@ const Index = () => {
                         setIsViewModalOpen(false);
                       }
                     }}
-                    className="bg-gradient-instagram text-white hover:opacity-90"
+                    className="bg-gradient-orange-pink text-white hover:opacity-90"
                   >
                     <Icon name="MessageCircle" size={16} className="mr-2" />
                     Написать
@@ -2246,7 +2246,7 @@ const Index = () => {
               </div>
 
               <div className="flex gap-2 flex-wrap">
-                <Badge className="bg-gradient-instagram text-white border-0">
+                <Badge className="bg-gradient-orange-pink text-white border-0">
                   {selectedItem.category}
                 </Badge>
                 {selectedItem.delivery && (
@@ -2270,7 +2270,7 @@ const Index = () => {
       {isResponseModalOpen && selectedItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-instagram text-white p-6 rounded-t-2xl flex items-center justify-between">
+            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between">
               <h2 className="text-2xl font-bold">Откликнуться</h2>
               <button 
                 onClick={() => {
@@ -2330,7 +2330,7 @@ const Index = () => {
                     setSelectedItem(null);
                     setResponseData({ price: '', comment: '' });
                   }}
-                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
+                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
                 >
                   Отправить
                 </Button>
@@ -2364,7 +2364,7 @@ const Index = () => {
                   <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                     <div className={`rounded-2xl px-4 py-2 ${
                       msg.sender === 'me' 
-                        ? 'bg-gradient-instagram text-white' 
+                        ? 'bg-gradient-orange-pink text-white' 
                         : 'bg-white text-gray-800 border border-gray-200'
                     }`}>
                       <p className="text-sm">{msg.text}</p>
