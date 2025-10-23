@@ -860,6 +860,14 @@ const Index = () => {
       </div>
 
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
+        <div className="mb-6 sm:mb-8 text-center">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-2">
+            Найди. Предложи. Обменяй.
+          </h1>
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+            Доска объявлений нового поколения — где запросы встречаются с предложениями
+          </p>
+        </div>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24 space-y-4">
