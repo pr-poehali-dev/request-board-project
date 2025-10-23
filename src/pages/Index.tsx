@@ -476,7 +476,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white border-b sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{maxWidth: '1600px'}}>
           <div className="flex justify-between items-center h-14 sm:h-16">
             <div className="flex items-center space-x-2">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-instagram flex items-center justify-center">
