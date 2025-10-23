@@ -197,12 +197,12 @@ const Index = () => {
             
             <div className="flex items-center space-x-2">
               <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <Icon name="MessageCircle" size={22} className="text-gray-700" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
-              </button>
-              <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
                 <Icon name="Bell" size={22} className="text-gray-700" />
                 <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-instagram rounded-full text-white text-xs flex items-center justify-center font-semibold">3</span>
+              </button>
+              <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <Icon name="MessageCircle" size={22} className="text-gray-700" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
               </button>
             </div>
 
