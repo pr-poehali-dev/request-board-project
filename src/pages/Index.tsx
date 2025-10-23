@@ -276,6 +276,10 @@ const Index = () => {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<Request | Offer | null>(null);
+  const [responseData, setResponseData] = useState({ price: '', comment: '' });
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({ email: '', password: '', name: '' });
   const [profileData, setProfileData] = useState({ name: 'Александр', email: 'user@example.com', currentPassword: '', newPassword: '', avatar: '' });
@@ -703,21 +707,15 @@ const Index = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
-                    {request.photos && request.photos.length > 0 && (
-                      <div className="mb-4 -mx-6 -mt-6">
-                        <div className="flex overflow-x-auto gap-2 scrollbar-hide">
-                          {request.photos.map((photo, idx) => (
-                            <img 
-                              key={idx}
-                              src={photo} 
-                              alt={`${request.title} ${idx + 1}`}
-                              className="h-48 w-auto object-cover rounded-t-xl first:rounded-tl-xl"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    <div className="flex justify-between items-start">
+                    <div className="flex gap-4">
+                      {request.photos && request.photos.length > 0 && (
+                        <img 
+                          src={request.photos[0]} 
+                          alt={request.title}
+                          className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                        />
+                      )}
+                      <div className="flex justify-between items-start flex-1">
                       <div className="flex-1">
                         <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
                           <Badge className="bg-gradient-instagram text-white border-0 text-xs">
@@ -750,6 +748,7 @@ const Index = () => {
                           {request.budget}
                         </div>
                       </div>
+                    </div>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -798,7 +797,14 @@ const Index = () => {
                           <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(request.id) ? 'fill-red-500' : ''}`} />
                           {favorites.includes(request.id) ? 'В избранном' : 'В избранное'}
                         </Button>
-                        <Button variant="outline" className="flex-1 sm:flex-none font-semibold text-sm">
+                        <Button 
+                          onClick={() => {
+                            setSelectedItem(request);
+                            setIsViewModalOpen(true);
+                          }}
+                          variant="outline" 
+                          className="flex-1 sm:flex-none font-semibold text-sm"
+                        >
                           <Icon name="Eye" size={14} className="mr-1.5" />
                           Смотреть
                         </Button>
@@ -807,7 +813,8 @@ const Index = () => {
                             if (!isAuthenticated) {
                               setIsLoginOpen(true);
                             } else {
-                              alert('Функция откликов будет доступна в следующей версии');
+                              setSelectedItem(request);
+                              setIsResponseModalOpen(true);
                             }
                           }}
                           className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
@@ -891,21 +898,15 @@ const Index = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
-                    {offer.photos && offer.photos.length > 0 && (
-                      <div className="mb-4 -mx-6 -mt-6">
-                        <div className="flex overflow-x-auto gap-2 scrollbar-hide">
-                          {offer.photos.map((photo, idx) => (
-                            <img 
-                              key={idx}
-                              src={photo} 
-                              alt={`${offer.title} ${idx + 1}`}
-                              className="h-48 w-auto object-cover rounded-t-xl first:rounded-tl-xl"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    <div className="flex justify-between items-start">
+                    <div className="flex gap-4">
+                      {offer.photos && offer.photos.length > 0 && (
+                        <img 
+                          src={offer.photos[0]} 
+                          alt={offer.title}
+                          className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                        />
+                      )}
+                      <div className="flex justify-between items-start flex-1">
                       <div className="flex-1">
                         <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
                           <Badge className="bg-gradient-purple-pink text-white border-0 text-xs">
@@ -938,6 +939,7 @@ const Index = () => {
                           {offer.price}
                         </div>
                       </div>
+                    </div>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -983,7 +985,14 @@ const Index = () => {
                           <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(offer.id) ? 'fill-red-500' : ''}`} />
                           {favorites.includes(offer.id) ? 'В избранном' : 'В избранное'}
                         </Button>
-                        <Button variant="outline" className="flex-1 sm:flex-none font-semibold text-sm">
+                        <Button 
+                          onClick={() => {
+                            setSelectedItem(offer);
+                            setIsViewModalOpen(true);
+                          }}
+                          variant="outline" 
+                          className="flex-1 sm:flex-none font-semibold text-sm"
+                        >
                           <Icon name="Eye" size={14} className="mr-1.5" />
                           Смотреть
                         </Button>
@@ -992,7 +1001,8 @@ const Index = () => {
                             if (!isAuthenticated) {
                               setIsLoginOpen(true);
                             } else {
-                              setIsChatOpen(true);
+                              setSelectedItem(offer);
+                              setIsResponseModalOpen(true);
                             }
                           }}
                           className="flex-1 sm:flex-none bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
@@ -2082,6 +2092,183 @@ const Index = () => {
                   className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
                 >
                   Сохранить
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isViewModalOpen && selectedItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="sticky top-0 bg-gradient-instagram text-white p-6 rounded-t-2xl flex items-center justify-between z-10">
+              <h2 className="text-2xl font-bold">{selectedItem.title}</h2>
+              <button 
+                onClick={() => {
+                  setIsViewModalOpen(false);
+                  setSelectedItem(null);
+                }}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {'photos' in selectedItem && selectedItem.photos && selectedItem.photos.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-3">Фотографии</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {selectedItem.photos.map((photo, idx) => (
+                      <img 
+                        key={idx}
+                        src={photo} 
+                        alt={`${selectedItem.title} ${idx + 1}`}
+                        className="w-full h-48 object-cover rounded-xl"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Описание</h3>
+                <p className="text-gray-600">{'description' in selectedItem && selectedItem.description}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-500 mb-1">{'budget' in selectedItem ? 'Бюджет' : 'Цена'}</h3>
+                  <p className="text-xl font-bold text-primary">{'budget' in selectedItem ? selectedItem.budget : 'price' in selectedItem ? selectedItem.price : ''}</p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-500 mb-1">Город</h3>
+                  <p className="text-lg font-medium text-gray-800">{selectedItem.city}</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold text-gray-800 mb-3">Автор</h3>
+                <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
+                  <Avatar className="w-16 h-16 bg-gradient-instagram">
+                    <AvatarFallback className="bg-transparent text-white text-xl font-bold">
+                      {selectedItem.author[0]}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <p className="text-lg font-bold text-gray-800">{selectedItem.author}</p>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                      <span className="text-gray-600">Рейтинг: {selectedItem.rating}</span>
+                    </div>
+                  </div>
+                  <Button 
+                    onClick={() => {
+                      if (!isAuthenticated) {
+                        setIsViewModalOpen(false);
+                        setIsLoginOpen(true);
+                      } else {
+                        setIsChatOpen(true);
+                        setIsViewModalOpen(false);
+                      }
+                    }}
+                    className="bg-gradient-instagram text-white hover:opacity-90"
+                  >
+                    <Icon name="MessageCircle" size={16} className="mr-2" />
+                    Написать
+                  </Button>
+                </div>
+              </div>
+
+              <div className="flex gap-2 flex-wrap">
+                <Badge className="bg-gradient-instagram text-white border-0">
+                  {selectedItem.category}
+                </Badge>
+                {selectedItem.delivery && (
+                  <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50">
+                    <Icon name="Truck" size={14} className="mr-1" />
+                    Доставка
+                  </Badge>
+                )}
+                {selectedItem.exchange && (
+                  <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50">
+                    <Icon name="ArrowLeftRight" size={14} className="mr-1" />
+                    Обмен
+                  </Badge>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isResponseModalOpen && selectedItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-instagram text-white p-6 rounded-t-2xl flex items-center justify-between">
+              <h2 className="text-2xl font-bold">Откликнуться</h2>
+              <button 
+                onClick={() => {
+                  setIsResponseModalOpen(false);
+                  setSelectedItem(null);
+                  setResponseData({ price: '', comment: '' });
+                }}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-4">
+              <div>
+                <p className="text-sm text-gray-600 mb-4">Откликаетесь на: <span className="font-bold text-gray-800">{selectedItem.title}</span></p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Ваша цена</label>
+                <input
+                  type="text"
+                  value={responseData.price}
+                  onChange={(e) => setResponseData({ ...responseData, price: e.target.value })}
+                  placeholder="Например: 100 000 ₽"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Комментарий</label>
+                <textarea
+                  value={responseData.comment}
+                  onChange={(e) => setResponseData({ ...responseData, comment: e.target.value })}
+                  placeholder="Расскажите подробнее о вашем предложении..."
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                />
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <Button 
+                  onClick={() => {
+                    setIsResponseModalOpen(false);
+                    setSelectedItem(null);
+                    setResponseData({ price: '', comment: '' });
+                  }}
+                  variant="outline" 
+                  className="flex-1"
+                >
+                  Отмена
+                </Button>
+                <Button 
+                  onClick={() => {
+                    alert(`Отклик отправлен!\nЦена: ${responseData.price}\nКомментарий: ${responseData.comment}`);
+                    setIsResponseModalOpen(false);
+                    setSelectedItem(null);
+                    setResponseData({ price: '', comment: '' });
+                  }}
+                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
+                >
+                  Отправить
                 </Button>
               </div>
             </div>
