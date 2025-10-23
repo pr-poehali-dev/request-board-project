@@ -476,43 +476,6 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
-            <div className="hidden md:flex items-center space-x-3 flex-1 max-w-2xl mx-6">
-              <div className="relative flex-1">
-                <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Поиск объявлений..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    <Icon name="X" size={16} />
-                  </button>
-                )}
-              </div>
-              
-              <div className="relative">
-                <select
-                  value={selectedCategory || ''}
-                  onChange={(e) => setSelectedCategory(e.target.value || null)}
-                  className="appearance-none pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer min-w-[160px]"
-                >
-                  <option value="">Все категории</option>
-                  {categories.map((category) => (
-                    <option key={category.name} value={category.name}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
-                <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-              </div>
-            </div>
-
             <div className="hidden md:flex space-x-1">
               <Button 
                 variant={activeTab === 'requests' ? 'default' : 'ghost'}
@@ -572,7 +535,8 @@ const Index = () => {
                 </>
               )}
             </div>
-            
+
+            <div className="flex items-center space-x-2">
             {isAuthenticated && (
               <div className="flex items-center space-x-2">
                 <button 
@@ -615,6 +579,10 @@ const Index = () => {
                 </Button>
               </div>
             ) : (
+              <>
+              </>
+            )}
+            {isAuthenticated && (
               <Button 
                 onClick={() => setIsCreateFormOpen(true)}
                 className="bg-gradient-instagram text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
@@ -623,6 +591,44 @@ const Index = () => {
                 <span className="hidden sm:inline">Создать</span>
               </Button>
             )}
+            </div>
+          </div>
+
+          <div className="hidden md:flex items-center space-x-3 py-3 border-t">
+            <div className="relative flex-1 max-w-2xl">
+              <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Поиск объявлений..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <Icon name="X" size={16} />
+                </button>
+              )}
+            </div>
+            
+            <div className="relative">
+              <select
+                value={selectedCategory || ''}
+                onChange={(e) => setSelectedCategory(e.target.value || null)}
+                className="appearance-none pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer min-w-[180px]"
+              >
+                <option value="">Все категории</option>
+                {categories.map((category) => (
+                  <option key={category.name} value={category.name}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+              <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
           </div>
         </div>
       </nav>
