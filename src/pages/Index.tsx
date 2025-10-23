@@ -1310,8 +1310,12 @@ const Index = () => {
 
           <div className="border-t border-gray-800 pt-6 sm:pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-xs sm:text-sm text-gray-400">© 2024 Доска запросов. Все права защищены.</p>
               <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-                <p className="text-xs sm:text-sm text-gray-400">© 2024 Доска запросов. Все права защищены.</p>
+                <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm">
+                  <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
+                  <a href="#" className="hover:text-white transition-colors">Условия использования</a>
+                </div>
                 <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400">
                   <span>Разработано в</span>
                   <a 
@@ -1323,14 +1327,10 @@ const Index = () => {
                     <img 
                       src="https://cdn.poehali.dev/files/0a180c27-7df9-40c0-a8e1-bcea0325f94b.png" 
                       alt="Albeweb" 
-                      className="h-5 sm:h-6"
+                      className="h-4"
                     />
                   </a>
                 </div>
-              </div>
-              <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm">
-                <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
-                <a href="#" className="hover:text-white transition-colors">Условия использования</a>
               </div>
             </div>
           </div>
@@ -2443,7 +2443,7 @@ const Index = () => {
 
       <button
         onClick={() => setIsSupportOpen(true)}
-        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-40 animate-bounce"
+        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-orange-pink text-white rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-40 animate-bounce"
         style={{ animationDuration: '3s' }}
       >
         <Icon name="HelpCircle" size={28} />
