@@ -286,6 +286,7 @@ const Index = () => {
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState<number>(1);
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -408,13 +409,25 @@ const Index = () => {
 
   const currentDialog = dialogs.find(d => d.id === selectedDialog);
 
-  const filteredRequests = selectedCategory 
-    ? mockRequests.filter(req => req.category === selectedCategory)
-    : mockRequests;
+  const filteredRequests = mockRequests.filter(req => {
+    const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
+    const matchesSearch = searchQuery ? 
+      req.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      req.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      req.category.toLowerCase().includes(searchQuery.toLowerCase())
+      : true;
+    return matchesCategory && matchesSearch;
+  });
 
-  const filteredOffers = selectedCategory 
-    ? mockOffers.filter(offer => offer.category === selectedCategory)
-    : mockOffers;
+  const filteredOffers = mockOffers.filter(offer => {
+    const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
+    const matchesSearch = searchQuery ? 
+      offer.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      offer.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      offer.category.toLowerCase().includes(searchQuery.toLowerCase())
+      : true;
+    return matchesCategory && matchesSearch;
+  });
 
   const getCategoryCount = (categoryName: string) => {
     const requestCount = mockRequests.filter(req => req.category === categoryName).length;
@@ -463,6 +476,27 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
+            <div className="flex-1 max-w-md mx-4 hidden lg:block">
+              <div className="relative">
+                <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Поиск объявлений..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    <Icon name="X" size={16} />
+                  </button>
+                )}
+              </div>
+            </div>
+
             <div className="hidden md:flex space-x-1">
               <Button 
                 variant={activeTab === 'requests' ? 'default' : 'ghost'}
@@ -486,7 +520,7 @@ const Index = () => {
                 className="font-medium"
               >
                 <Icon name="FolderOpen" size={18} className="mr-2" />
-                Категории
+                Все категории
               </Button>
               {isAuthenticated && (
                 <>
@@ -604,7 +638,7 @@ const Index = () => {
             }`}
           >
             <Icon name="FolderOpen" size={20} />
-            <span className="text-xs mt-1">Категории</span>
+            <span className="text-xs mt-1">Все</span>
           </button>
           {isAuthenticated && (
             <>
@@ -639,6 +673,27 @@ const Index = () => {
         </div>
       </div>
 
+      <div className="lg:hidden bg-white border-b px-3 py-2">
+        <div className="relative">
+          <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Поиск объявлений..."
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            >
+              <Icon name="X" size={16} />
+            </button>
+          )}
+        </div>
+      </div>
+
       <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8">
         {activeTab === 'requests' && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
@@ -669,8 +724,17 @@ const Index = () => {
                         <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
                           <Icon name={category.icon as any} size={24} className="text-white" />
                         </div>
-                        <h3 className="text-sm font-bold text-gray-800 mb-1">{category.name}</h3>
-                        <p className="text-xs text-gray-500">{count.total} объявлений</p>
+                        <h3 className="text-sm font-bold text-gray-800 mb-2">{category.name}</h3>
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-center gap-1 text-xs text-blue-600">
+                            <Icon name="Search" size={12} />
+                            <span>{count.requestCount}</span>
+                          </div>
+                          <div className="flex items-center justify-center gap-1 text-xs text-green-600">
+                            <Icon name="Package" size={12} />
+                            <span>{count.offerCount}</span>
+                          </div>
+                        </div>
                       </CardContent>
                     </Card>
                   );
@@ -860,8 +924,17 @@ const Index = () => {
                         <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-2`}>
                           <Icon name={category.icon as any} size={24} className="text-white" />
                         </div>
-                        <h3 className="text-sm font-bold text-gray-800 mb-1">{category.name}</h3>
-                        <p className="text-xs text-gray-500">{count.total} объявлений</p>
+                        <h3 className="text-sm font-bold text-gray-800 mb-2">{category.name}</h3>
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-center gap-1 text-xs text-blue-600">
+                            <Icon name="Search" size={12} />
+                            <span>{count.requestCount}</span>
+                          </div>
+                          <div className="flex items-center justify-center gap-1 text-xs text-green-600">
+                            <Icon name="Package" size={12} />
+                            <span>{count.offerCount}</span>
+                          </div>
+                        </div>
                       </CardContent>
                     </Card>
                   );
