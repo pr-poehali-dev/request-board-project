@@ -44,21 +44,21 @@ const cities = [
 ];
 
 const categories = [
-  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-orange-pink', popular: true },
-  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-purple-pink', popular: true },
-  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-orange-pink', popular: true },
-  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-blue-purple', popular: true },
-  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-orange-pink', popular: true },
-  { name: 'Мебель', icon: 'Armchair', color: 'bg-gradient-purple-pink', popular: false },
-  { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-orange-pink', popular: false },
-  { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-blue-purple', popular: false },
-  { name: 'Красота', icon: 'Sparkles', color: 'bg-gradient-purple-pink', popular: false },
-  { name: 'Животные', icon: 'Dog', color: 'bg-gradient-orange-pink', popular: false },
-  { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-orange-pink', popular: false },
-  { name: 'Книги', icon: 'BookOpen', color: 'bg-gradient-blue-purple', popular: false },
-  { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-orange-pink', popular: false },
-  { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-purple-pink', popular: true },
-  { name: 'Еда и напитки', icon: 'Coffee', color: 'bg-gradient-orange-pink', popular: false },
+  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600', popular: true },
+  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-to-br from-pink-500 via-rose-500 to-red-500', popular: true },
+  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500', popular: true },
+  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500', popular: true },
+  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500', popular: true },
+  { name: 'Мебель', icon: 'Armchair', color: 'bg-gradient-to-br from-amber-600 via-orange-600 to-red-600', popular: false },
+  { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-to-br from-sky-400 via-cyan-400 to-blue-400', popular: false },
+  { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-to-br from-lime-500 via-green-500 to-emerald-600', popular: false },
+  { name: 'Красота', icon: 'Sparkles', color: 'bg-gradient-to-br from-fuchsia-500 via-pink-500 to-rose-500', popular: false },
+  { name: 'Животные', icon: 'Dog', color: 'bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600', popular: false },
+  { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500', popular: false },
+  { name: 'Книги', icon: 'BookOpen', color: 'bg-gradient-to-br from-slate-600 via-gray-600 to-zinc-600', popular: false },
+  { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-to-br from-yellow-600 via-orange-600 to-red-600', popular: false },
+  { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700', popular: true },
+  { name: 'Еда и напитки', icon: 'Coffee', color: 'bg-gradient-to-br from-rose-500 via-red-500 to-orange-500', popular: false },
 ];
 
 const mockRequests: Request[] = [
@@ -927,7 +927,7 @@ const Index = () => {
           </aside>
           <div className="flex-1 min-w-0 relative">
             <div className="mb-6 sm:mb-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5">
                 {categories
                   .map(category => ({
                     ...category,
@@ -936,49 +936,56 @@ const Index = () => {
                   .sort((a, b) => b.count - a.count)
                   .slice(0, 5)
                   .map((category, index) => (
-                    <Card 
+                    <div
                       key={category.name}
-                      className={`category-card cursor-pointer transition-all duration-500 border-2 overflow-hidden group ${
-                        selectedCategory === category.name 
-                          ? 'border-primary bg-gradient-to-br from-primary/20 via-primary/10 to-transparent shadow-2xl scale-105' 
-                          : 'border-gray-200 hover:border-primary/50 bg-white hover:scale-105'
-                      }`}
+                      className="category-card cursor-pointer transition-all duration-500 hover:scale-105 group"
                       onClick={() => setSelectedCategory(category.name)}
                       style={{ animationDelay: `${index * 0.1}s` }}
                     >
-                      <CardContent className="p-6 sm:p-7 relative">
-                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <Icon name="TrendingUp" size={16} className="text-primary" />
-                        </div>
-                        <div className="flex flex-col items-center text-center gap-3 sm:gap-4">
-                          <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 ${
-                            selectedCategory === category.name 
-                              ? 'bg-gradient-orange-pink shadow-xl scale-110' 
-                              : 'bg-gradient-to-br from-gray-100 to-gray-50 group-hover:scale-110 group-hover:shadow-lg'
-                          }`}>
-                            <Icon 
-                              name={category.icon as any} 
-                              size={32} 
-                              className={`transition-colors duration-300 ${
-                                selectedCategory === category.name ? 'text-white' : 'text-gray-600 group-hover:text-primary'
-                              }`}
-                            />
-                          </div>
-                          <div className="w-full">
-                            <h3 className="font-bold text-base sm:text-lg text-gray-900 mb-1 line-clamp-1">
-                              {category.name}
-                            </h3>
-                            <div className="flex items-center justify-center gap-1.5 mt-2">
-                              <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                                {category.count}
-                              </p>
+                      <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                        <div className={`absolute inset-0 rounded-2xl overflow-hidden shadow-lg transition-all duration-500 ${
+                          selectedCategory === category.name 
+                            ? 'shadow-2xl ring-4 ring-primary/50' 
+                            : 'group-hover:shadow-2xl'
+                        }`}>
+                          <div className={`w-full h-full ${category.color} p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden`}>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-150"></div>
+                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12 transition-transform duration-500 group-hover:scale-150"></div>
+                            
+                            <div className="relative z-10">
+                              <div className="flex items-center justify-between mb-3">
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-white/30">
+                                  <Icon 
+                                    name={category.icon as any} 
+                                    size={28} 
+                                    className="text-white drop-shadow-lg"
+                                  />
+                                </div>
+                                {selectedCategory === category.name && (
+                                  <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                                    <Icon name="Check" size={18} className="text-white" />
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                            <p className="text-xs text-gray-500 mt-1 font-medium">объявлений</p>
+                            
+                            <div className="relative z-10 mt-auto">
+                              <h3 className="font-bold text-base sm:text-lg text-white mb-2 drop-shadow-md line-clamp-1">
+                                {category.name}
+                              </h3>
+                              <div className="flex items-baseline gap-1.5">
+                                <p className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg">
+                                  {category.count}
+                                </p>
+                                <p className="text-sm text-white/90 font-medium">объявлений</p>
+                              </div>
+                            </div>
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                           </div>
                         </div>
-                        <div className={`absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
-                      </CardContent>
-                    </Card>
+                      </div>
+                    </div>
                   ))
                 }
               </div>
