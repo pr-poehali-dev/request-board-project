@@ -914,7 +914,7 @@ const Index = () => {
               { name: 'Работа', icon: 'Users', count: '2,780+', trend: '+18%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
               { name: 'Строительство', icon: 'HardHat', count: '650+', trend: '+7%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/90579daf-2c02-4cf0-9a10-8d82c4cfd188.jpg' },
               { name: 'Спорт', icon: 'Dumbbell', count: '840+', trend: '+6%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/615613ff-f799-42c9-b4c5-bbb539eeb652.jpg' },
-              { name: 'Мебель', icon: 'Armchair', count: '720+', trend: '+9%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-42ce8f831926/files/c341913f-614b-45ea-83b3-9ea4c3c2bd65.jpg' },
+              { name: 'Мебель', icon: 'Armchair', count: '720+', trend: '+9%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d4aaf5a-4a15-4b9d-b416-147cbe119959.jpg' },
               { name: 'Детские товары', icon: 'Baby', count: '930+', trend: '+11%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/4bf63f99-f04d-4408-96bb-4afa6a96343a.jpg' },
               { name: 'Красота', icon: 'Sparkles', count: '1,340+', trend: '+13%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
               { name: 'Хобби', icon: 'Gamepad2', count: '560+', trend: '+4%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d342e6b-79f2-4b15-84f1-0747b420bf69.jpg' }
