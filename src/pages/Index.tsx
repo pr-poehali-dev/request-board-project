@@ -743,17 +743,33 @@ const Index = () => {
                 </Button>
               </div>
             ) : (
-              <>
-              </>
-            )}
-            {isAuthenticated && (
-              <Button 
-                onClick={() => setIsCreateFormOpen(true)}
-                className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
-              >
-                <Icon name="Plus" size={16} className="sm:mr-2" />
-                <span className="hidden sm:inline">Создать</span>
-              </Button>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setActiveTab('profile')}
+                  className="relative group hidden md:block"
+                  title="Профиль"
+                >
+                  <Avatar className="w-9 h-9 bg-gradient-orange-pink cursor-pointer ring-2 ring-transparent hover:ring-primary/30 transition-all">
+                    {avatarPreview ? (
+                      <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                    ) : (
+                      <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
+                        {profileData.name.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    )}
+                  </Avatar>
+                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    Профиль
+                  </span>
+                </button>
+                <Button 
+                  onClick={() => setIsCreateFormOpen(true)}
+                  className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold shadow-lg text-sm sm:text-base px-3 sm:px-4 hidden md:flex"
+                >
+                  <Icon name="Plus" size={16} className="sm:mr-2" />
+                  <span className="hidden sm:inline">Создать</span>
+                </Button>
+              </div>
             )}
             </div>
           </div>
