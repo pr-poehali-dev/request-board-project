@@ -906,18 +906,18 @@ const Index = () => {
           
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { name: 'Электроника', icon: 'Laptop', count: '2,450+', trend: '+12%', color: 'from-blue-600 via-indigo-600 to-purple-700' },
-              { name: 'Одежда', icon: 'ShoppingBag', count: '1,890+', trend: '+8%', color: 'from-pink-600 via-rose-600 to-red-600' },
-              { name: 'Услуги', icon: 'Briefcase', count: '3,200+', trend: '+15%', color: 'from-orange-600 via-amber-600 to-yellow-600' },
-              { name: 'Недвижимость', icon: 'Home', count: '980+', trend: '+5%', color: 'from-emerald-600 via-teal-600 to-cyan-600' },
-              { name: 'Транспорт', icon: 'Car', count: '1,120+', trend: '+10%', color: 'from-violet-600 via-purple-600 to-fuchsia-700' },
-              { name: 'Работа', icon: 'Users', count: '2,780+', trend: '+18%', color: 'from-cyan-700 via-blue-700 to-indigo-800' },
-              { name: 'Строительство', icon: 'HardHat', count: '650+', trend: '+7%', color: 'from-yellow-700 via-orange-700 to-red-700' },
-              { name: 'Спорт', icon: 'Dumbbell', count: '840+', trend: '+6%', color: 'from-lime-600 via-green-600 to-emerald-700' },
-              { name: 'Мебель', icon: 'Armchair', count: '720+', trend: '+9%', color: 'from-amber-700 via-orange-700 to-red-700' },
-              { name: 'Детские товары', icon: 'Baby', count: '930+', trend: '+11%', color: 'from-sky-500 via-cyan-500 to-blue-600' },
-              { name: 'Красота', icon: 'Sparkles', count: '1,340+', trend: '+13%', color: 'from-fuchsia-600 via-pink-600 to-rose-600' },
-              { name: 'Хобби', icon: 'Gamepad2', count: '560+', trend: '+4%', color: 'from-indigo-600 via-purple-600 to-pink-600' }
+              { name: 'Электроника', icon: 'Laptop', count: '2,450+', trend: '+12%' },
+              { name: 'Одежда', icon: 'ShoppingBag', count: '1,890+', trend: '+8%' },
+              { name: 'Услуги', icon: 'Briefcase', count: '3,200+', trend: '+15%' },
+              { name: 'Недвижимость', icon: 'Home', count: '980+', trend: '+5%' },
+              { name: 'Транспорт', icon: 'Car', count: '1,120+', trend: '+10%' },
+              { name: 'Работа', icon: 'Users', count: '2,780+', trend: '+18%' },
+              { name: 'Строительство', icon: 'HardHat', count: '650+', trend: '+7%' },
+              { name: 'Спорт', icon: 'Dumbbell', count: '840+', trend: '+6%' },
+              { name: 'Мебель', icon: 'Armchair', count: '720+', trend: '+9%' },
+              { name: 'Детские товары', icon: 'Baby', count: '930+', trend: '+11%' },
+              { name: 'Красота', icon: 'Sparkles', count: '1,340+', trend: '+13%' },
+              { name: 'Хобби', icon: 'Gamepad2', count: '560+', trend: '+4%' }
             ].map((category, index) => (
               <button
                 key={category.name}
@@ -925,24 +925,37 @@ const Index = () => {
                   setSelectedCategory(category.name);
                   setActiveTab('requests');
                 }}
-                className={`group relative overflow-hidden rounded-2xl aspect-video bg-gradient-to-br ${category.color} p-4 sm:p-5 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border border-white/20`}
+                className="group relative overflow-hidden rounded-2xl aspect-video bg-white border border-indigo-100 p-4 sm:p-5 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-indigo-200"
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
-                <div className="relative z-10 h-full flex flex-col justify-between text-white">
+                <div className="h-full flex flex-col justify-between">
                   <div className="flex items-start justify-between">
-                    <Icon name={category.icon as any} size={28} className="drop-shadow-lg opacity-90" />
-                    <span className="text-[10px] sm:text-xs font-bold bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/30">
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${
+                      category.name === 'Электроника' ? 'bg-gradient-to-br from-blue-100 to-indigo-100 text-indigo-600' :
+                      category.name === 'Одежда' ? 'bg-gradient-to-br from-pink-100 to-rose-100 text-rose-600' :
+                      category.name === 'Услуги' ? 'bg-gradient-to-br from-orange-100 to-amber-100 text-orange-600' :
+                      category.name === 'Недвижимость' ? 'bg-gradient-to-br from-emerald-100 to-teal-100 text-emerald-600' :
+                      category.name === 'Транспорт' ? 'bg-gradient-to-br from-violet-100 to-purple-100 text-violet-600' :
+                      category.name === 'Работа' ? 'bg-gradient-to-br from-cyan-100 to-blue-100 text-blue-600' :
+                      category.name === 'Строительство' ? 'bg-gradient-to-br from-yellow-100 to-orange-100 text-yellow-700' :
+                      category.name === 'Спорт' ? 'bg-gradient-to-br from-lime-100 to-green-100 text-green-600' :
+                      category.name === 'Мебель' ? 'bg-gradient-to-br from-amber-100 to-orange-100 text-amber-700' :
+                      category.name === 'Детские товары' ? 'bg-gradient-to-br from-sky-100 to-cyan-100 text-sky-600' :
+                      category.name === 'Красота' ? 'bg-gradient-to-br from-fuchsia-100 to-pink-100 text-fuchsia-600' :
+                      'bg-gradient-to-br from-indigo-100 to-purple-100 text-indigo-600'
+                    }`}>
+                      <Icon name={category.icon as any} size={20} />
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                       {category.trend}
                     </span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm sm:text-base mb-0.5 drop-shadow-lg">{category.name}</h3>
-                    <p className="text-[10px] sm:text-xs text-white/90 font-medium drop-shadow">
+                    <h3 className="font-bold text-sm sm:text-base mb-0.5 text-gray-800">{category.name}</h3>
+                    <p className="text-[10px] sm:text-xs text-gray-600 font-medium">
                       {category.count} объявлений
                     </p>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </button>
             ))}
           </div>
