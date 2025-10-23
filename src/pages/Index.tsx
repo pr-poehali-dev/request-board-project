@@ -17,6 +17,7 @@ interface Request {
   city: string;
   delivery: boolean;
   exchange?: boolean;
+  isFavorite?: boolean;
 }
 
 interface Offer {
@@ -31,6 +32,7 @@ interface Offer {
   city: string;
   delivery: boolean;
   exchange?: boolean;
+  isFavorite?: boolean;
 }
 
 const categories = [
@@ -165,10 +167,19 @@ interface Notification {
 }
 
 const Index = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
+  const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [loginData, setLoginData] = useState({ email: '', password: '' });
+  const [registerData, setRegisterData] = useState({ email: '', password: '', name: '' });
+  const [profileData, setProfileData] = useState({ name: 'Александр', email: 'user@example.com', currentPassword: '', newPassword: '' });
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState<number>(1);
+  const [favorites, setFavorites] = useState<number[]>([]);
   const [dialogs, setDialogs] = useState<ChatDialog[]>([
     {
       id: 1,
@@ -228,18 +239,10 @@ const Index = () => {
         { id: 3, text: 'Могу обменять на что-то интересное', sender: 'other', timestamp: '3 дня 14:20', author: 'Игорь' },
       ]
     },
-    {
-      id: 999,
-      name: 'Поддержка',
-      avatar: '👮',
-      lastMessage: 'Здравствуйте! Чем можем помочь?',
-      lastTime: 'онлайн',
-      type: 'support',
-      unread: 0,
-      messages: [
-        { id: 1, text: 'Здравствуйте! Я бот-помощник. Чем могу помочь?', sender: 'other', timestamp: 'сейчас', author: 'Поддержка' },
-      ]
-    },
+  ]);  
+  
+  const [supportMessages, setSupportMessages] = useState<ChatMessage[]>([
+    { id: 1, text: 'Здравствуйте! Я бот-помощник. Чем могу помочь?', sender: 'other', timestamp: 'сейчас', author: 'Поддержка' },
   ]);
   const [newMessage, setNewMessage] = useState('');
   const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
@@ -342,6 +345,26 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
+            {!isAuthenticated && (
+              <div className="flex items-center space-x-2">
+                <Button 
+                  onClick={() => setIsLoginOpen(true)}
+                  variant="outline" 
+                  className="font-semibold text-sm"
+                >
+                  Войти
+                </Button>
+                <Button 
+                  onClick={() => setIsRegisterOpen(true)}
+                  className="bg-gradient-instagram text-white hover:opacity-90 font-semibold text-sm"
+                >
+                  Регистрация
+                </Button>
+              </div>
+            )}
+
+            {isAuthenticated && (
+              <>
             <div className="hidden md:flex space-x-1">
               <Button 
                 variant={activeTab === 'requests' ? 'default' : 'ghost'}
@@ -377,6 +400,18 @@ const Index = () => {
               </Button>
             </div>
             
+            <button
+              onClick={() => setActiveTab('favorites')}
+              className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Icon name="Heart" size={22} className="text-gray-700" />
+              {favorites.length > 0 && (
+                <span className="absolute top-1 right-1 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                  {favorites.length}
+                </span>
+              )}
+            </button>
+            
             <div className="flex items-center space-x-2">
               <button 
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
@@ -407,6 +442,8 @@ const Index = () => {
               <Icon name="Plus" size={16} className="sm:mr-2" />
               <span className="hidden sm:inline">Создать</span>
             </Button>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -556,6 +593,20 @@ const Index = () => {
                       </div>
 
                       <div className="flex gap-2 w-full sm:w-auto">
+                        <Button 
+                          onClick={() => {
+                            if (favorites.includes(request.id)) {
+                              setFavorites(favorites.filter(id => id !== request.id));
+                            } else {
+                              setFavorites([...favorites, request.id]);
+                            }
+                          }}
+                          variant="outline" 
+                          className={`font-semibold text-sm ${favorites.includes(request.id) ? 'text-red-500 border-red-500' : ''}`}
+                        >
+                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(request.id) ? 'fill-red-500' : ''}`} />
+                          {favorites.includes(request.id) ? 'В избранном' : 'В избранное'}
+                        </Button>
                         <Button variant="outline" className="flex-1 sm:flex-none font-semibold text-sm">
                           <Icon name="Eye" size={14} className="mr-1.5" />
                           Смотреть
@@ -673,6 +724,20 @@ const Index = () => {
                       </div>
 
                       <div className="flex gap-2 w-full sm:w-auto">
+                        <Button 
+                          onClick={() => {
+                            if (favorites.includes(offer.id)) {
+                              setFavorites(favorites.filter(id => id !== offer.id));
+                            } else {
+                              setFavorites([...favorites, offer.id]);
+                            }
+                          }}
+                          variant="outline" 
+                          className={`font-semibold text-sm ${favorites.includes(offer.id) ? 'text-red-500 border-red-500' : ''}`}
+                        >
+                          <Icon name="Heart" size={14} className={`mr-1.5 ${favorites.includes(offer.id) ? 'fill-red-500' : ''}`} />
+                          {favorites.includes(offer.id) ? 'В избранном' : 'В избранное'}
+                        </Button>
                         <Button variant="outline" className="flex-1 sm:flex-none font-semibold text-sm">
                           <Icon name="Eye" size={14} className="mr-1.5" />
                           Смотреть
@@ -687,6 +752,36 @@ const Index = () => {
                 </Card>
               ))}
             </div>
+          </div>
+        )}
+
+        {activeTab === 'favorites' && (
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
+            <div className="text-center mb-4 sm:mb-8">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-2 sm:mb-3">
+                Избранное
+              </h1>
+              <p className="text-base sm:text-lg text-gray-600">
+                {favorites.length} {favorites.length === 1 ? 'объявление' : 'объявлений'}
+              </p>
+            </div>
+            
+            {favorites.length === 0 ? (
+              <Card className="max-w-md mx-auto">
+                <CardContent className="p-8 text-center">
+                  <Icon name="Heart" size={64} className="mx-auto mb-4 text-gray-300" />
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">Избранное пусто</h3>
+                  <p className="text-gray-600 mb-4">Добавьте объявления в избранное, чтобы быстро находить их</p>
+                  <Button onClick={() => setActiveTab('requests')} className="bg-gradient-instagram text-white hover:opacity-90">
+                    Посмотреть объявления
+                  </Button>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="grid gap-3 sm:gap-4">
+                <p className="text-gray-600 text-center">Здесь будут отображаться ваши избранные объявления</p>
+              </div>
+            )}
           </div>
         )}
 
@@ -750,10 +845,7 @@ const Index = () => {
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Не нашли нужную категорию?</h3>
                 <p className="text-gray-600 mb-4">Напишите нам, и мы добавим её!</p>
                 <Button 
-                  onClick={() => {
-                    setSelectedDialog(999);
-                    setIsChatOpen(true);
-                  }}
+                  onClick={() => setIsSupportOpen(true)}
                   variant="outline" 
                   className="font-semibold"
                 >
@@ -797,7 +889,11 @@ const Index = () => {
                 </div>
 
                 <div className="space-y-2 sm:space-y-3">
-                  <Button variant="outline" className="w-full justify-start text-sm sm:text-base font-medium">
+                  <Button 
+                    onClick={() => setIsProfileEditOpen(true)}
+                    variant="outline" 
+                    className="w-full justify-start text-sm sm:text-base font-medium"
+                  >
                     <Icon name="Settings" size={18} className="mr-2 sm:mr-3" />
                     Настройки профиля
                   </Button>
@@ -805,9 +901,21 @@ const Index = () => {
                     <Icon name="Bell" size={18} className="mr-2 sm:mr-3" />
                     Уведомления
                   </Button>
-                  <Button variant="outline" className="w-full justify-start text-sm sm:text-base font-medium">
+                  <Button 
+                    onClick={() => setIsSupportOpen(true)}
+                    variant="outline" 
+                    className="w-full justify-start text-sm sm:text-base font-medium"
+                  >
                     <Icon name="HelpCircle" size={18} className="mr-2 sm:mr-3" />
                     Помощь
+                  </Button>
+                  <Button 
+                    onClick={() => setIsAuthenticated(false)}
+                    variant="outline" 
+                    className="w-full justify-start text-sm sm:text-base font-medium text-red-600 hover:text-red-700"
+                  >
+                    <Icon name="LogOut" size={18} className="mr-2 sm:mr-3" />
+                    Выйти
                   </Button>
                 </div>
               </CardContent>
@@ -1401,6 +1509,305 @@ const Index = () => {
           </div>
         </div>
       )}
+
+      {isLoginOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-instagram text-white p-6 rounded-t-2xl">
+              <h2 className="text-2xl font-bold">Вход</h2>
+              <p className="text-white/80 text-sm mt-1">Войдите в свой аккаунт</p>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  value={loginData.email}
+                  onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                  placeholder="your@email.com"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Пароль</label>
+                <input
+                  type="password"
+                  value={loginData.password}
+                  onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <Button onClick={() => setIsLoginOpen(false)} variant="outline" className="flex-1">
+                  Отмена
+                </Button>
+                <Button 
+                  onClick={() => {
+                    if (loginData.email && loginData.password) {
+                      setIsAuthenticated(true);
+                      setIsLoginOpen(false);
+                      setLoginData({ email: '', password: '' });
+                    } else {
+                      alert('Заполните все поля');
+                    }
+                  }}
+                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
+                >
+                  Войти
+                </Button>
+              </div>
+              <p className="text-center text-sm text-gray-600">
+                Нет аккаунта?{' '}
+                <button 
+                  onClick={() => {
+                    setIsLoginOpen(false);
+                    setIsRegisterOpen(true);
+                  }}
+                  className="text-primary font-semibold hover:underline"
+                >
+                  Зарегистрируйтесь
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isRegisterOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-instagram text-white p-6 rounded-t-2xl">
+              <h2 className="text-2xl font-bold">Регистрация</h2>
+              <p className="text-white/80 text-sm mt-1">Создайте новый аккаунт</p>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Имя</label>
+                <input
+                  type="text"
+                  value={registerData.name}
+                  onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
+                  placeholder="Александр"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  value={registerData.email}
+                  onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                  placeholder="your@email.com"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Пароль</label>
+                <input
+                  type="password"
+                  value={registerData.password}
+                  onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <Button onClick={() => setIsRegisterOpen(false)} variant="outline" className="flex-1">
+                  Отмена
+                </Button>
+                <Button 
+                  onClick={() => {
+                    if (registerData.name && registerData.email && registerData.password) {
+                      setIsAuthenticated(true);
+                      setIsRegisterOpen(false);
+                      setRegisterData({ email: '', password: '', name: '' });
+                    } else {
+                      alert('Заполните все поля');
+                    }
+                  }}
+                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
+                >
+                  Зарегистрироваться
+                </Button>
+              </div>
+              <p className="text-center text-sm text-gray-600">
+                Уже есть аккаунт?{' '}
+                <button 
+                  onClick={() => {
+                    setIsRegisterOpen(false);
+                    setIsLoginOpen(true);
+                  }}
+                  className="text-primary font-semibold hover:underline"
+                >
+                  Войдите
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isProfileEditOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+            <div className="bg-gradient-instagram text-white p-6 rounded-t-2xl flex items-center justify-between">
+              <h2 className="text-2xl font-bold">Редактирование профиля</h2>
+              <button onClick={() => setIsProfileEditOpen(false)} className="p-2 hover:bg-white/20 rounded-lg">
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Имя</label>
+                <input
+                  type="text"
+                  value={profileData.name}
+                  onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  value={profileData.email}
+                  onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <hr className="my-4" />
+              <h3 className="font-bold text-lg text-gray-800">Смена пароля</h3>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Текущий пароль</label>
+                <input
+                  type="password"
+                  value={profileData.currentPassword}
+                  onChange={(e) => setProfileData({ ...profileData, currentPassword: e.target.value })}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Новый пароль</label>
+                <input
+                  type="password"
+                  value={profileData.newPassword}
+                  onChange={(e) => setProfileData({ ...profileData, newPassword: e.target.value })}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <Button onClick={() => setIsProfileEditOpen(false)} variant="outline" className="flex-1">
+                  Отмена
+                </Button>
+                <Button 
+                  onClick={() => {
+                    alert('Профиль обновлён!');
+                    setIsProfileEditOpen(false);
+                  }}
+                  className="flex-1 bg-gradient-instagram text-white hover:opacity-90"
+                >
+                  Сохранить
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isSupportOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl h-[600px] flex flex-col animate-scale-in">
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <Avatar className="w-10 h-10 bg-white/20">
+                  <AvatarFallback className="bg-transparent text-white font-bold text-xl">👮</AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="font-bold text-lg">Поддержка</h3>
+                  <p className="text-xs text-white/80">Онлайн 24/7</p>
+                </div>
+              </div>
+              <button onClick={() => setIsSupportOpen(false)} className="p-2 hover:bg-white/20 rounded-lg">
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+              {supportMessages.map((msg) => (
+                <div key={msg.id} className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
+                    <div className={`rounded-2xl px-4 py-2 ${
+                      msg.sender === 'me' 
+                        ? 'bg-gradient-instagram text-white' 
+                        : 'bg-white text-gray-800 border border-gray-200'
+                    }`}>
+                      <p className="text-sm">{msg.text}</p>
+                    </div>
+                    <p className={`text-xs text-gray-500 mt-1 ${msg.sender === 'me' ? 'text-right' : 'text-left'}`}>
+                      {msg.timestamp}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              <div ref={chatEndRef} />
+            </div>
+
+            <div className="p-4 bg-white border-t rounded-b-2xl">
+              <div className="flex items-center space-x-2">
+                <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' && newMessage.trim()) {
+                      const msg: ChatMessage = {
+                        id: supportMessages.length + 1,
+                        text: newMessage,
+                        sender: 'me',
+                        timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+                        author: 'Вы'
+                      };
+                      setSupportMessages([...supportMessages, msg]);
+                      setNewMessage('');
+                    }
+                  }}
+                  placeholder="Напишите ваш вопрос..."
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+                />
+                <Button 
+                  onClick={() => {
+                    if (newMessage.trim()) {
+                      const msg: ChatMessage = {
+                        id: supportMessages.length + 1,
+                        text: newMessage,
+                        sender: 'me',
+                        timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+                        author: 'Вы'
+                      };
+                      setSupportMessages([...supportMessages, msg]);
+                      setNewMessage('');
+                    }
+                  }}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 px-4 py-2 rounded-xl"
+                >
+                  <Icon name="Send" size={18} />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <button
+        onClick={() => setIsSupportOpen(true)}
+        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-40 animate-bounce"
+        style={{ animationDuration: '3s' }}
+      >
+        <Icon name="HelpCircle" size={28} />
+      </button>
     </div>
   );
 };
