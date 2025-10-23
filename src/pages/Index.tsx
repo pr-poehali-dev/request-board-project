@@ -904,7 +904,7 @@ const Index = () => {
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
           
-          <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3 max-w-4xl mx-auto">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6 gap-3 sm:gap-4">
             {[
               { name: 'Электроника', icon: 'Laptop', count: '2,450+', trend: '+12%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
               { name: 'Одежда', icon: 'ShoppingBag', count: '1,890+', trend: '+8%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/87587932-0e71-4945-b568-5c28885d515d.jpg' },
@@ -925,7 +925,7 @@ const Index = () => {
                   setSelectedCategory(category.name);
                   setActiveTab('requests');
                 }}
-                className="group relative overflow-hidden rounded-xl aspect-square border border-indigo-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-indigo-200"
+                className="group relative overflow-hidden rounded-2xl aspect-square border border-indigo-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-indigo-200"
               >
                 <img 
                   src={category.image} 
@@ -935,17 +935,17 @@ const Index = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
                 <div className="absolute inset-0 bg-indigo-900/20"></div>
                 
-                <div className="relative z-10 h-full flex flex-col justify-between p-2">
+                <div className="relative z-10 h-full flex flex-col justify-between p-3 sm:p-4">
                   <div className="flex items-start justify-end">
-                    <span className="text-[8px] font-bold text-white bg-emerald-500 px-1.5 py-0.5 rounded-full shadow-lg">
+                    <span className="text-[9px] sm:text-[10px] font-bold text-white bg-emerald-500 px-2 py-0.5 rounded-full shadow-lg">
                       {category.trend}
                     </span>
                   </div>
                   <div className="text-center">
-                    <div className="w-6 h-6 mx-auto mb-1 rounded-lg bg-white/95 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-lg">
-                      <Icon name={category.icon as any} size={14} />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1.5 sm:mb-2 rounded-xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-lg">
+                      <Icon name={category.icon as any} size={18} />
                     </div>
-                    <h3 className="font-bold text-[10px] text-white drop-shadow-lg leading-tight">{category.name}</h3>
+                    <h3 className="font-bold text-xs sm:text-sm text-white drop-shadow-lg leading-tight">{category.name}</h3>
                   </div>
                 </div>
               </button>
