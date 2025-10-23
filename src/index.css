@@ -15,35 +15,35 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 45 93% 58%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 320 85% 60%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 38 92% 50%;
+    --secondary-foreground: 0 0% 0%;
 
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 173 80% 40%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 42 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 221 83% 53%;
+    --ring: 45 93% 58%;
 
     --radius: 1rem;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary: 45 93% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 210 40% 96%;
     --sidebar-accent-foreground: 222 47% 11%;
     --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 221 83% 53%;
+    --sidebar-ring: 45 93% 58%;
   }
 
   .dark {
@@ -126,7 +126,7 @@
     transform: translateX(-50%);
     width: 40px;
     height: 4px;
-    background: linear-gradient(90deg, #5680e9, #84ceeb);
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
     border-radius: 2px;
     opacity: 0.3;
   }
@@ -158,10 +158,10 @@
   @keyframes pulse-glow {
     0%,
     100% {
-      box-shadow: 0 4px 20px rgba(86, 128, 233, 0.2);
+      box-shadow: 0 4px 20px rgba(251, 191, 36, 0.2);
     }
     50% {
-      box-shadow: 0 8px 30px rgba(86, 128, 233, 0.4);
+      box-shadow: 0 8px 30px rgba(251, 191, 36, 0.4);
     }
   }
 
