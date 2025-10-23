@@ -860,7 +860,7 @@ const Index = () => {
         </div>
       </div>
 
-      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-6xl">
+      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
         <div className="mb-6 sm:mb-8 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
@@ -869,8 +869,8 @@ const Index = () => {
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
         </div>
-        <div className="flex gap-6">
-          <aside className="hidden lg:block w-64 flex-shrink-0">
+        <div className="flex gap-6 justify-center">
+          <aside className="hidden lg:block w-56 flex-shrink-0">
             <div className="sticky top-[88px] space-y-4">
               <div className="space-y-1">
                 <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Навигация</h3>
@@ -962,7 +962,7 @@ const Index = () => {
               </div>
             </div>
           </aside>
-          <div className="flex-1 min-w-0 relative">
+          <div className="flex-1 min-w-0 max-w-4xl relative">
             {swipeDirection && (
               <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
                 <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
