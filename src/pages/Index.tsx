@@ -1040,7 +1040,7 @@ const Index = () => {
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
-                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm"
+                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-indigo-200 transition-all duration-300 cursor-pointer"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1221,7 +1221,7 @@ const Index = () => {
               {filteredOffers.map((offer, index) => (
                 <Card 
                   key={offer.id} 
-                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm"
+                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-xl hover:scale-[1.02] hover:border-indigo-200 transition-all duration-300 cursor-pointer"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
