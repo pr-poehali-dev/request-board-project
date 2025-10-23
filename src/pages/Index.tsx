@@ -1535,76 +1535,7 @@ const Index = () => {
           </div>
         )}
 
-        {activeTab === 'categories' && (
-          <div className="space-y-6 sm:space-y-8 animate-fade-in">
-            <div className="text-center mb-6 sm:mb-8">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">Категории</h2>
-              <p className="text-base sm:text-lg text-gray-600">Выберите категорию для просмотра запросов и предложений</p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {categories.map((category, index) => {
-                const count = getCategoryCount(category.name);
-                
-                return (
-                  <Card
-                    key={category.name}
-                    className="cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 animate-scale-in"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={() => {
-                      setSelectedCategory(category.name);
-                      setActiveTab('requests');
-                    }}
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className={`w-16 h-16 rounded-2xl ${category.color} flex items-center justify-center flex-shrink-0`}>
-                          <Icon name={category.icon as any} size={32} className="text-white" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-xl font-bold text-gray-800 mb-2">{category.name}</h3>
-                          <div className="space-y-1.5">
-                            <div className="flex items-center justify-between text-sm">
-                              <span className="text-gray-600 flex items-center">
-                                <Icon name="Search" size={14} className="mr-1.5 text-blue-500" />
-                                Запросы
-                              </span>
-                              <span className="font-bold text-gray-800">{count.requestCount}</span>
-                            </div>
-                            <div className="flex items-center justify-between text-sm">
-                              <span className="text-gray-600 flex items-center">
-                                <Icon name="Package" size={14} className="mr-1.5 text-green-500" />
-                                Предложения
-                              </span>
-                              <span className="font-bold text-gray-800">{count.offerCount}</span>
-                            </div>
-                          </div>
-                        </div>
-                        <Icon name="ChevronRight" size={20} className="text-gray-400 flex-shrink-0" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
 
-            <Card className="border-2 border-dashed border-gray-300 bg-gray-50">
-              <CardContent className="p-8 text-center">
-                <Icon name="HelpCircle" size={48} className="mx-auto mb-4 text-gray-400" />
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Не нашли нужную категорию?</h3>
-                <p className="text-gray-600 mb-4">Напишите нам, и мы добавим её!</p>
-                <Button 
-                  onClick={() => setIsSupportOpen(true)}
-                  variant="outline" 
-                  className="font-semibold"
-                >
-                  <Icon name="MessageCircle" size={16} className="mr-2" />
-                  Связаться с поддержкой
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        )}
 
         {activeTab === 'profile' && (
           <div className="space-y-4 sm:space-y-6 animate-fade-in">
