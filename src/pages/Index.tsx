@@ -773,11 +773,12 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="bg-white text-indigo-600 hover:bg-white/90 font-semibold shadow-lg hover:shadow-2xl transition-all duration-200 px-4 h-9 rounded-xl hover:scale-105"
+                className="relative bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 font-bold shadow-lg hover:shadow-2xl transition-all duration-300 px-5 h-10 rounded-full hover:scale-105 border-2 border-white/30 overflow-hidden group"
                 title="Создать объявление"
               >
-                <Icon name="Plus" size={20} className="mr-1.5" />
-                Создать
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                <Icon name="Plus" size={20} className="mr-2 relative z-10" />
+                <span className="relative z-10">Создать</span>
               </Button>
             )}
             </div>
