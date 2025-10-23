@@ -949,7 +949,7 @@ const Index = () => {
                         <div className="flex items-center justify-between gap-1">
                           <span className="flex items-center gap-1 text-white/80 text-[10px] font-medium">
                             <Icon name="Search" size={12} />
-                            <span className="hidden sm:inline">Ищут</span>
+                            <span className="hidden sm:inline">Запросы</span>
                           </span>
                           <span className="text-white font-bold text-xs sm:text-sm">{stats.requestCount}</span>
                         </div>
@@ -958,7 +958,7 @@ const Index = () => {
                         <div className="flex items-center justify-between gap-1">
                           <span className="flex items-center gap-1 text-white/80 text-[10px] font-medium">
                             <Icon name="Package" size={12} />
-                            <span className="hidden sm:inline">Продают</span>
+                            <span className="hidden sm:inline">Предложения</span>
                           </span>
                           <span className="text-white font-bold text-xs sm:text-sm">{stats.offerCount}</span>
                         </div>
