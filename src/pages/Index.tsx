@@ -927,67 +927,60 @@ const Index = () => {
           </aside>
           <div className="flex-1 min-w-0 relative">
             <div className="mb-6 sm:mb-8">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
-                <Card 
-                  className={`cursor-pointer transition-all duration-300 hover:shadow-xl border-2 ${
-                    selectedCategory === null 
-                      ? 'border-primary bg-gradient-to-br from-primary/10 to-primary/5 shadow-lg' 
-                      : 'border-gray-200 hover:border-primary/30 bg-white'
-                  }`}
-                  onClick={() => setSelectedCategory(null)}
-                >
-                  <CardContent className="p-4 sm:p-5">
-                    <div className="flex flex-col items-center text-center gap-2 sm:gap-3">
-                      <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center ${
-                        selectedCategory === null ? 'bg-gradient-orange-pink' : 'bg-gray-100'
-                      }`}>
-                        <Icon name="Grid3x3" size={24} className={selectedCategory === null ? 'text-white' : 'text-gray-600'} />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-sm sm:text-base text-gray-900">Все</h3>
-                        <p className="text-xl sm:text-2xl font-bold text-primary mt-1">
-                          {getAllListingsCount()}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                {categories.map((category) => {
-                  const count = getCategoryCount(category.name);
-                  return (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
+                {categories
+                  .map(category => ({
+                    ...category,
+                    count: getCategoryCount(category.name)
+                  }))
+                  .sort((a, b) => b.count - a.count)
+                  .slice(0, 5)
+                  .map((category, index) => (
                     <Card 
                       key={category.name}
-                      className={`cursor-pointer transition-all duration-300 hover:shadow-xl border-2 ${
+                      className={`category-card cursor-pointer transition-all duration-500 border-2 overflow-hidden group ${
                         selectedCategory === category.name 
-                          ? 'border-primary bg-gradient-to-br from-primary/10 to-primary/5 shadow-lg' 
-                          : 'border-gray-200 hover:border-primary/30 bg-white'
+                          ? 'border-primary bg-gradient-to-br from-primary/20 via-primary/10 to-transparent shadow-2xl scale-105' 
+                          : 'border-gray-200 hover:border-primary/50 bg-white hover:scale-105'
                       }`}
                       onClick={() => setSelectedCategory(category.name)}
+                      style={{ animationDelay: `${index * 0.1}s` }}
                     >
-                      <CardContent className="p-4 sm:p-5">
-                        <div className="flex flex-col items-center text-center gap-2 sm:gap-3">
-                          <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center ${
-                            selectedCategory === category.name ? 'bg-gradient-orange-pink' : 'bg-gray-100'
+                      <CardContent className="p-6 sm:p-7 relative">
+                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Icon name="TrendingUp" size={16} className="text-primary" />
+                        </div>
+                        <div className="flex flex-col items-center text-center gap-3 sm:gap-4">
+                          <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+                            selectedCategory === category.name 
+                              ? 'bg-gradient-orange-pink shadow-xl scale-110' 
+                              : 'bg-gradient-to-br from-gray-100 to-gray-50 group-hover:scale-110 group-hover:shadow-lg'
                           }`}>
                             <Icon 
                               name={category.icon as any} 
-                              size={24} 
-                              className={selectedCategory === category.name ? 'text-white' : 'text-gray-600'} 
+                              size={32} 
+                              className={`transition-colors duration-300 ${
+                                selectedCategory === category.name ? 'text-white' : 'text-gray-600 group-hover:text-primary'
+                              }`}
                             />
                           </div>
-                          <div>
-                            <h3 className="font-bold text-sm sm:text-base text-gray-900 line-clamp-1">
+                          <div className="w-full">
+                            <h3 className="font-bold text-base sm:text-lg text-gray-900 mb-1 line-clamp-1">
                               {category.name}
                             </h3>
-                            <p className="text-xl sm:text-2xl font-bold text-primary mt-1">
-                              {count}
-                            </p>
+                            <div className="flex items-center justify-center gap-1.5 mt-2">
+                              <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                                {category.count}
+                              </p>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-1 font-medium">объявлений</p>
                           </div>
                         </div>
+                        <div className={`absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
                       </CardContent>
                     </Card>
-                  );
-                })}
+                  ))
+                }
               </div>
             </div>
 
