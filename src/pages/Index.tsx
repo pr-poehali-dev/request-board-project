@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -136,9 +136,27 @@ const mockOffers: Offer[] = [
   }
 ];
 
+interface ChatMessage {
+  id: number;
+  text: string;
+  sender: 'me' | 'other';
+  timestamp: string;
+  author: string;
+}
+
 const Index = () => {
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
+    { id: 1, text: 'Здравствуйте! Заинтересовал ваш запрос на iPhone 15 Pro', sender: 'other', timestamp: '10:30', author: 'Сергей' },
+    { id: 2, text: 'Привет! Да, всё ещё актуально', sender: 'me', timestamp: '10:32', author: 'Вы' },
+    { id: 3, text: 'У меня есть отличный вариант в идеальном состоянии, 256GB', sender: 'other', timestamp: '10:33', author: 'Сергей' },
+    { id: 4, text: 'Отлично! Какая цена и где находитесь?', sender: 'me', timestamp: '10:35', author: 'Вы' },
+    { id: 5, text: '115 000₽, Москва, район метро Таганская', sender: 'other', timestamp: '10:36', author: 'Сергей' },
+  ]);
+  const [newMessage, setNewMessage] = useState('');
+  const chatEndRef = useRef<HTMLDivElement>(null);
 
   const filteredRequests = selectedCategory 
     ? mockRequests.filter(req => req.category === selectedCategory)
@@ -147,6 +165,26 @@ const Index = () => {
   const filteredOffers = selectedCategory 
     ? mockOffers.filter(offer => offer.category === selectedCategory)
     : mockOffers;
+
+  const handleSendMessage = () => {
+    if (newMessage.trim()) {
+      const message: ChatMessage = {
+        id: chatMessages.length + 1,
+        text: newMessage,
+        sender: 'me',
+        timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+        author: 'Вы'
+      };
+      setChatMessages([...chatMessages, message]);
+      setNewMessage('');
+    }
+  };
+
+  useEffect(() => {
+    if (isChatOpen && chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [chatMessages, isChatOpen]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -200,7 +238,10 @@ const Index = () => {
                 <Icon name="Bell" size={22} className="text-gray-700" />
                 <span className="absolute top-1 right-1 w-5 h-5 bg-gradient-instagram rounded-full text-white text-xs flex items-center justify-center font-semibold">3</span>
               </button>
-              <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
+              <button 
+                onClick={() => setIsChatOpen(!isChatOpen)} 
+                className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
                 <Icon name="MessageCircle" size={22} className="text-gray-700" />
                 <span className="absolute top-1 right-1 w-2 h-2 bg-gradient-instagram rounded-full"></span>
               </button>
@@ -499,7 +540,7 @@ const Index = () => {
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">Категории</h2>
               <p className="text-base sm:text-lg text-gray-600">Выберите категорию для поиска</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+            <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-3 sm:gap-4 max-w-4xl mx-auto">
               {categories.map((category, index) => (
                 <div
                   key={category.name}
@@ -511,13 +552,13 @@ const Index = () => {
                   }}
                 >
                   <div className="relative">
-                    <div className={`w-full aspect-square rounded-3xl ${category.color} flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl`}>
-                      <Icon name={category.icon as any} size={48} className="text-white transition-transform duration-300 group-hover:scale-125" />
+                    <div className={`w-full aspect-square rounded-2xl ${category.color} flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl`}>
+                      <Icon name={category.icon as any} size={32} className="text-white transition-transform duration-300 group-hover:scale-125" />
                     </div>
-                    <div className="absolute inset-0 rounded-3xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                   </div>
-                  <h3 className="text-center mt-3 text-sm sm:text-base font-bold text-gray-800 group-hover:text-primary transition-colors">{category.name}</h3>
-                  <p className="text-center text-xs text-gray-500 mt-1">{Math.floor(Math.random() * 50 + 10)} запросов</p>
+                  <h3 className="text-center mt-2 text-xs sm:text-sm font-bold text-gray-800 group-hover:text-primary transition-colors">{category.name}</h3>
+                  <p className="text-center text-[10px] sm:text-xs text-gray-500 mt-0.5">{Math.floor(Math.random() * 50 + 10)}</p>
                 </div>
               ))}
             </div>
@@ -639,6 +680,74 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {isChatOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl h-[600px] flex flex-col animate-scale-in">
+            <div className="bg-gradient-instagram text-white p-4 rounded-t-2xl flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <Avatar className="w-10 h-10 bg-white/20">
+                  <AvatarFallback className="bg-transparent text-white font-bold">С</AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="font-bold text-lg">Сергей</h3>
+                  <p className="text-xs text-white/80">онлайн</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsChatOpen(false)}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <Icon name="X" size={24} />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+              {chatMessages.map((msg) => (
+                <div 
+                  key={msg.id} 
+                  className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div className={`max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
+                    <div className={`rounded-2xl px-4 py-2 ${
+                      msg.sender === 'me' 
+                        ? 'bg-gradient-instagram text-white' 
+                        : 'bg-white text-gray-800 border border-gray-200'
+                    }`}>
+                      <p className="text-sm">{msg.text}</p>
+                    </div>
+                    <p className={`text-xs text-gray-500 mt-1 ${
+                      msg.sender === 'me' ? 'text-right' : 'text-left'
+                    }`}>
+                      {msg.timestamp}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              <div ref={chatEndRef} />
+            </div>
+
+            <div className="p-4 bg-white border-t rounded-b-2xl">
+              <div className="flex items-center space-x-2">
+                <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Введите сообщение..."
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+                />
+                <Button 
+                  onClick={handleSendMessage}
+                  className="bg-gradient-instagram text-white hover:opacity-90 px-4 py-2 rounded-xl"
+                >
+                  <Icon name="Send" size={18} />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
