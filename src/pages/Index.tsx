@@ -615,8 +615,8 @@ const Index = () => {
   }, [currentDialog?.messages, isChatOpen]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-      <nav className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 border-b border-white/20 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50/50 via-indigo-50/50 to-purple-50/50">
+      <nav className="bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 border-b border-white/20 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
             <div className="flex items-center space-x-2 flex-shrink-0">
@@ -738,7 +738,7 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="bg-white text-purple-600 hover:bg-white/90 font-semibold shadow-lg hover:shadow-2xl transition-all duration-200 px-4 h-9 rounded-xl"
+                className="bg-white text-indigo-600 hover:bg-white/90 font-semibold shadow-lg hover:shadow-2xl transition-all duration-200 px-4 h-9 rounded-xl hover:scale-105"
                 title="Создать объявление"
               >
                 <Icon name="Plus" size={20} className="mr-1.5" />
@@ -861,10 +861,10 @@ const Index = () => {
 
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
         <div className="mb-6 sm:mb-8 text-center">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-2">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
           </h1>
-          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto font-medium">
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
         </div>
@@ -1043,7 +1043,7 @@ const Index = () => {
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
-                  className="hover:shadow-2xl transition-all duration-300 border border-purple-100 hover:border-purple-300 bg-white/80 backdrop-blur-sm animate-scale-in rounded-2xl overflow-hidden"
+                  className="hover:shadow-2xl transition-all duration-300 border border-indigo-100 hover:border-indigo-300 bg-white backdrop-blur-sm animate-scale-in rounded-2xl overflow-hidden hover:scale-[1.01]"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
@@ -1058,21 +1058,28 @@ const Index = () => {
                       <div className="flex flex-col gap-2 flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
-                            <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 text-xs whitespace-nowrap shadow-md">
+                            <Badge className={`${
+                              request.category === 'Электроника' ? 'bg-gradient-to-r from-blue-500 to-indigo-600' :
+                              request.category === 'Одежда' ? 'bg-gradient-to-r from-pink-500 to-rose-500' :
+                              request.category === 'Услуги' ? 'bg-gradient-to-r from-orange-500 to-yellow-500' :
+                              request.category === 'Недвижимость' ? 'bg-gradient-to-r from-emerald-500 to-teal-500' :
+                              request.category === 'Транспорт' ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500' :
+                              'bg-gradient-to-r from-blue-500 to-purple-500'
+                            } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-gray-700 border-purple-200 bg-purple-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-indigo-700 border-indigo-200 bg-indigo-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {request.city}
                             </Badge>
                             {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-emerald-600 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-gradient-to-r from-blue-50 to-cyan-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-gradient-to-r from-violet-50 to-purple-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
@@ -1101,7 +1108,7 @@ const Index = () => {
                             }
                           }}
                         >
-                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-pink-500 ring-2 ring-purple-200">
+                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 ring-2 ring-violet-200">
                             <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                               {request.author[0]}
                             </AvatarFallback>
@@ -1115,11 +1122,11 @@ const Index = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-purple-50 px-3 py-1.5 rounded-xl border border-blue-100">
-                          <Icon name="MessageCircle" size={22} className="text-blue-600" />
+                        <div className="flex items-center space-x-2 bg-gradient-to-r from-indigo-50 to-purple-50 px-3 py-1.5 rounded-xl border border-indigo-100">
+                          <Icon name="MessageCircle" size={22} className="text-indigo-600" />
                           <div className="flex flex-col">
-                            <span className="text-xs text-gray-500 leading-none">Откликнулись</span>
-                            <span className="text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{request.responses}</span>
+                            <span className="text-xs text-gray-600 leading-none font-medium">Откликнулись</span>
+                            <span className="text-sm sm:text-base font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{request.responses}</span>
                           </div>
                         </div>
                       </div>
@@ -1140,7 +1147,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(request.id) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-purple-200 hover:border-purple-300'}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl ${favorites.includes(request.id) ? 'text-pink-600 border-pink-300 bg-gradient-to-r from-pink-50 to-rose-50' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
                           >
                             <Icon name="Heart" size={14} className={`sm:mr-1.5 ${favorites.includes(request.id) ? 'fill-primary' : ''}`} />
                             <span className="hidden sm:inline">{favorites.includes(request.id) ? 'В избранном' : 'В избранное'}</span>
@@ -1152,7 +1159,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-purple-200 hover:border-purple-300"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
@@ -1168,7 +1175,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white hover:opacity-90 font-semibold shadow-lg hover:shadow-xl transition-all rounded-xl"
+                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 text-white hover:opacity-90 font-semibold shadow-lg hover:shadow-xl transition-all rounded-xl"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
@@ -1214,7 +1221,7 @@ const Index = () => {
               {filteredOffers.map((offer, index) => (
                 <Card 
                   key={offer.id} 
-                  className="hover:shadow-xl transition-all duration-300 border-2 hover:border-secondary/20 animate-scale-in"
+                  className="hover:shadow-2xl transition-all duration-300 border border-indigo-100 hover:border-indigo-300 bg-white backdrop-blur-sm animate-scale-in rounded-2xl overflow-hidden hover:scale-[1.01]"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3 sm:pb-6">
@@ -1229,21 +1236,28 @@ const Index = () => {
                       <div className="flex flex-col gap-2 flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
-                            <Badge className="bg-gradient-purple-pink text-white border-0 text-xs whitespace-nowrap">
+                            <Badge className={`${
+                              offer.category === 'Электроника' ? 'bg-gradient-to-r from-blue-500 to-indigo-600' :
+                              offer.category === 'Одежда' ? 'bg-gradient-to-r from-pink-500 to-rose-500' :
+                              offer.category === 'Услуги' ? 'bg-gradient-to-r from-orange-500 to-yellow-500' :
+                              offer.category === 'Недвижимость' ? 'bg-gradient-to-r from-emerald-500 to-teal-500' :
+                              offer.category === 'Транспорт' ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500' :
+                              'bg-gradient-to-r from-blue-500 to-purple-500'
+                            } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {offer.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-gray-700 border-gray-300 bg-gray-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-indigo-700 border-indigo-200 bg-indigo-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {offer.city}
                             </Badge>
                             {offer.delivery && (
-                              <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {offer.exchange && (
-                              <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-gradient-to-r from-violet-50 to-purple-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
