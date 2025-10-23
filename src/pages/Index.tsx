@@ -906,18 +906,18 @@ const Index = () => {
           
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6 gap-3 sm:gap-4">
             {[
-              { name: 'Электроника', icon: 'Laptop', count: '2,450+', trend: '+12%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
-              { name: 'Одежда', icon: 'ShoppingBag', count: '1,890+', trend: '+8%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/87587932-0e71-4945-b568-5c28885d515d.jpg' },
-              { name: 'Услуги', icon: 'Briefcase', count: '3,200+', trend: '+15%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a4b0129a-c824-49ec-9ac3-65b1a4f1ea7f.jpg' },
-              { name: 'Недвижимость', icon: 'Home', count: '980+', trend: '+5%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/c077dd48-4194-493c-bbfe-7d266f2f6833.jpg' },
-              { name: 'Транспорт', icon: 'Car', count: '1,120+', trend: '+10%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/613cb2e4-b120-4978-8a64-718792bfd099.jpg' },
-              { name: 'Работа', icon: 'Users', count: '2,780+', trend: '+18%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
-              { name: 'Строительство', icon: 'HardHat', count: '650+', trend: '+7%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/90579daf-2c02-4cf0-9a10-8d82c4cfd188.jpg' },
-              { name: 'Спорт', icon: 'Dumbbell', count: '840+', trend: '+6%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/615613ff-f799-42c9-b4c5-bbb539eeb652.jpg' },
-              { name: 'Мебель', icon: 'Armchair', count: '720+', trend: '+9%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d4aaf5a-4a15-4b9d-b416-147cbe119959.jpg' },
+              { name: 'Электроника', icon: 'Smartphone', count: '2,450+', trend: '+12%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
+              { name: 'Одежда', icon: 'Shirt', count: '1,890+', trend: '+8%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/87587932-0e71-4945-b568-5c28885d515d.jpg' },
+              { name: 'Услуги', icon: 'Wrench', count: '3,200+', trend: '+15%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a4b0129a-c824-49ec-9ac3-65b1a4f1ea7f.jpg' },
+              { name: 'Недвижимость', icon: 'Building2', count: '980+', trend: '+5%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/c077dd48-4194-493c-bbfe-7d266f2f6833.jpg' },
+              { name: 'Транспорт', icon: 'CarFront', count: '1,120+', trend: '+10%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/613cb2e4-b120-4978-8a64-718792bfd099.jpg' },
+              { name: 'Работа', icon: 'BriefcaseBusiness', count: '2,780+', trend: '+18%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
+              { name: 'Строительство', icon: 'Hammer', count: '650+', trend: '+7%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/90579daf-2c02-4cf0-9a10-8d82c4cfd188.jpg' },
+              { name: 'Спорт', icon: 'Trophy', count: '840+', trend: '+6%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/615613ff-f799-42c9-b4c5-bbb539eeb652.jpg' },
+              { name: 'Мебель', icon: 'Sofa', count: '720+', trend: '+9%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d4aaf5a-4a15-4b9d-b416-147cbe119959.jpg' },
               { name: 'Детские товары', icon: 'Baby', count: '930+', trend: '+11%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/4bf63f99-f04d-4408-96bb-4afa6a96343a.jpg' },
-              { name: 'Красота', icon: 'Sparkles', count: '1,340+', trend: '+13%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
-              { name: 'Хобби', icon: 'Gamepad2', count: '560+', trend: '+4%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d342e6b-79f2-4b15-84f1-0747b420bf69.jpg' }
+              { name: 'Красота', icon: 'Heart', count: '1,340+', trend: '+13%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
+              { name: 'Хобби', icon: 'Palette', count: '560+', trend: '+4%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7d342e6b-79f2-4b15-84f1-0747b420bf69.jpg' }
             ].map((category, index) => (
               <button
                 key={category.name}
