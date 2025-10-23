@@ -889,14 +889,6 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="w-full overflow-hidden mb-6">
-        <img 
-          src="https://cdn.poehali.dev/files/51b4242f-5702-48d0-b60d-88bd0075b852.jpg" 
-          alt="Баннер с товарами" 
-          className="w-full h-48 sm:h-64 md:h-80 object-cover"
-        />
-      </div>
-
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
         <div className="mb-6 sm:mb-8 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
