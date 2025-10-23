@@ -513,6 +513,17 @@ const Index = () => {
       req.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
     return matchesCategory && matchesCity && matchesSearch;
+  }).sort((a, b) => {
+    if (sortBy === 'date') {
+      return b.id - a.id;
+    } else if (sortBy === 'popular') {
+      return b.responses - a.responses;
+    } else if (sortBy === 'price') {
+      const priceA = parseInt(a.budget.replace(/[^0-9]/g, '')) || 0;
+      const priceB = parseInt(b.budget.replace(/[^0-9]/g, '')) || 0;
+      return priceB - priceA;
+    }
+    return 0;
   });
 
   const filteredOffers = mockOffers.filter(offer => {
@@ -524,6 +535,17 @@ const Index = () => {
       offer.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
     return matchesCategory && matchesCity && matchesSearch;
+  }).sort((a, b) => {
+    if (sortBy === 'date') {
+      return b.id - a.id;
+    } else if (sortBy === 'popular') {
+      return b.views - a.views;
+    } else if (sortBy === 'price') {
+      const priceA = parseInt(a.price.replace(/[^0-9]/g, '')) || 0;
+      const priceB = parseInt(b.price.replace(/[^0-9]/g, '')) || 0;
+      return priceB - priceA;
+    }
+    return 0;
   });
 
   const getCategoryCount = (categoryName: string) => {
