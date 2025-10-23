@@ -1310,7 +1310,24 @@ const Index = () => {
 
           <div className="border-t border-gray-800 pt-6 sm:pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p className="text-xs sm:text-sm text-gray-400">© 2024 Доска запросов. Все права защищены.</p>
+              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                <p className="text-xs sm:text-sm text-gray-400">© 2024 Доска запросов. Все права защищены.</p>
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400">
+                  <span>Разработано в</span>
+                  <a 
+                    href="https://albeweb.ru/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <img 
+                      src="https://cdn.poehali.dev/files/0a180c27-7df9-40c0-a8e1-bcea0325f94b.png" 
+                      alt="Albeweb" 
+                      className="h-5 sm:h-6"
+                    />
+                  </a>
+                </div>
+              </div>
               <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm">
                 <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
                 <a href="#" className="hover:text-white transition-colors">Условия использования</a>
