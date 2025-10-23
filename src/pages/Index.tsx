@@ -1600,7 +1600,7 @@ const Index = () => {
 
             <div>
               <h4 className="text-white font-bold mb-3 sm:mb-4">Категории</h4>
-              <ul className="space-y-2 text-sm">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
                 {categories.map(cat => (
                   <li key={cat.name}>
                     <button 
@@ -1608,7 +1608,7 @@ const Index = () => {
                         setSelectedCategory(cat.name);
                         setActiveTab('requests');
                       }} 
-                      className="hover:text-white transition-colors"
+                      className="hover:text-white transition-colors text-left"
                     >
                       {cat.name}
                     </button>
