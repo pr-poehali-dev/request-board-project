@@ -528,7 +528,11 @@ const Index = () => {
   const getCategoryCount = (categoryName: string) => {
     const requestCount = mockRequests.filter(req => req.category === categoryName).length;
     const offerCount = mockOffers.filter(offer => offer.category === categoryName).length;
-    return { requestCount, offerCount, total: requestCount + offerCount };
+    return requestCount + offerCount;
+  };
+
+  const getAllListingsCount = () => {
+    return mockRequests.length + mockOffers.length;
   };
 
   const popularCategories = categories.filter(c => c.popular);
@@ -622,33 +626,7 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-gray-800">Доска запросов</span>
             </div>
 
-            <div className="hidden md:flex space-x-1">
-              <Button 
-                variant={activeTab === 'requests' ? 'default' : 'ghost'}
-                onClick={() => setActiveTab('requests')}
-                className="font-medium"
-              >
-                <Icon name="Search" size={18} className="mr-2" />
-                Запросы
-              </Button>
-              <Button 
-                variant={activeTab === 'offers' ? 'default' : 'ghost'}
-                onClick={() => setActiveTab('offers')}
-                className="font-medium"
-              >
-                <Icon name="Package" size={18} className="mr-2" />
-                Предложения
-              </Button>
-              <Button 
-                variant={activeTab === 'categories' ? 'default' : 'ghost'}
-                onClick={() => setActiveTab('categories')}
-                className="font-medium"
-              >
-                <Icon name="FolderOpen" size={18} className="mr-2" />
-                Все категории
-              </Button>
 
-            </div>
 
             <div className="flex items-center space-x-3">
             {isAuthenticated && (
@@ -904,27 +882,62 @@ const Index = () => {
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8 max-w-7xl">
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-24 space-y-2">
-              <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
-              <Button
-                variant={selectedCategory === null ? 'default' : 'ghost'}
-                onClick={() => setSelectedCategory(null)}
-                className="w-full justify-start"
-              >
-                <Icon name="Grid3x3" size={18} className="mr-2" />
-                Все категории
-              </Button>
-              {categories.map((category) => (
+            <div className="sticky top-24 space-y-4">
+              <div className="space-y-1">
+                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Навигация</h3>
                 <Button
-                  key={category.name}
-                  variant={selectedCategory === category.name ? 'default' : 'ghost'}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className="w-full justify-start"
+                  variant={activeTab === 'requests' ? 'default' : 'ghost'}
+                  onClick={() => setActiveTab('requests')}
+                  className="w-full justify-start font-medium"
                 >
-                  <Icon name={category.icon as any} size={18} className="mr-2" />
-                  {category.name}
+                  <Icon name="Search" size={18} className="mr-2" />
+                  Запросы
                 </Button>
-              ))}
+                <Button
+                  variant={activeTab === 'offers' ? 'default' : 'ghost'}
+                  onClick={() => setActiveTab('offers')}
+                  className="w-full justify-start font-medium"
+                >
+                  <Icon name="Package" size={18} className="mr-2" />
+                  Предложения
+                </Button>
+              </div>
+
+              <div className="space-y-1">
+                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
+                <Button
+                  variant={selectedCategory === null ? 'default' : 'ghost'}
+                  onClick={() => setSelectedCategory(null)}
+                  className="w-full justify-between"
+                >
+                  <div className="flex items-center">
+                    <Icon name="Grid3x3" size={18} className="mr-2" />
+                    Все категории
+                  </div>
+                  <span className="text-xs text-gray-500 font-semibold">
+                    {getAllListingsCount()}
+                  </span>
+                </Button>
+                {categories.map((category) => {
+                  const count = getCategoryCount(category.name);
+                  return (
+                    <Button
+                      key={category.name}
+                      variant={selectedCategory === category.name ? 'default' : 'ghost'}
+                      onClick={() => setSelectedCategory(category.name)}
+                      className="w-full justify-between"
+                    >
+                      <div className="flex items-center">
+                        <Icon name={category.icon as any} size={18} className="mr-2" />
+                        {category.name}
+                      </div>
+                      <span className="text-xs text-gray-500 font-semibold">
+                        {count}
+                      </span>
+                    </Button>
+                  );
+                })}
+              </div>
             </div>
           </aside>
           <div className="flex-1 min-w-0 relative">
