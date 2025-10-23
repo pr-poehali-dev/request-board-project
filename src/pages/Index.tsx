@@ -905,54 +905,118 @@ const Index = () => {
           </p>
           
           {activeTab === 'main' && (
-            <div className="relative">
-              <div className="overflow-x-auto scrollbar-hide -mx-3 px-3">
-                <div className="flex gap-4 sm:gap-5 pb-2">
-                  {[
-                    { name: 'Работа', icon: 'BriefcaseBusiness', count: '2,780+', trend: '+18%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
-                    { name: 'Услуги', icon: 'Wrench', count: '3,200+', trend: '+15%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a4b0129a-c824-49ec-9ac3-65b1a4f1ea7f.jpg' },
-                    { name: 'Красота', icon: 'Heart', count: '1,340+', trend: '+13%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
-                    { name: 'Электроника', icon: 'Smartphone', count: '2,450+', trend: '+12%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
-                    { name: 'Транспорт', icon: 'CarFront', count: '1,120+', trend: '+10%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/613cb2e4-b120-4978-8a64-718792bfd099.jpg' },
-                    { name: 'Одежда', icon: 'Shirt', count: '1,890+', trend: '+8%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/87587932-0e71-4945-b568-5c28885d515d.jpg' }
-                  ].map((category, index) => (
-                    <button
-                      key={category.name}
-                      onClick={() => {
-                        setSelectedCategory(category.name);
-                        setActiveTab('requests');
-                      }}
-                      className="group relative overflow-hidden rounded-2xl flex-shrink-0 w-56 sm:w-64 h-56 sm:h-64 border border-indigo-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-indigo-200"
-                    >
-                      <img 
-                        src={category.image} 
-                        alt={category.name}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
-                      <div className="absolute inset-0 bg-indigo-900/20"></div>
-                      
-                      <div className="relative z-10 h-full flex flex-col justify-between p-5">
-                        <div className="flex items-start justify-between">
-                          <div className="w-20 h-20 rounded-3xl bg-black/40 backdrop-blur-sm flex items-center justify-center text-white shadow-xl">
-                            <Icon name={category.icon as any} size={32} />
+            <>
+              <div className="relative mb-12">
+                <div className="overflow-x-auto scrollbar-hide -mx-3 px-3">
+                  <div className="flex gap-4 sm:gap-5 pb-2">
+                    {[
+                      { name: 'Работа', icon: 'BriefcaseBusiness', count: '2,780+', trend: '+18%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b586ebb-47ab-45a0-b8c3-1ac0b3826379.jpg' },
+                      { name: 'Услуги', icon: 'Wrench', count: '3,200+', trend: '+15%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a4b0129a-c824-49ec-9ac3-65b1a4f1ea7f.jpg' },
+                      { name: 'Красота', icon: 'Heart', count: '1,340+', trend: '+13%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eda00f71-6fd1-4afc-82a6-a3a39a2aaeef.jpg' },
+                      { name: 'Электроника', icon: 'Smartphone', count: '2,450+', trend: '+12%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg' },
+                      { name: 'Транспорт', icon: 'CarFront', count: '1,120+', trend: '+10%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/613cb2e4-b120-4978-8a64-718792bfd099.jpg' },
+                      { name: 'Одежда', icon: 'Shirt', count: '1,890+', trend: '+8%', image: 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/87587932-0e71-4945-b568-5c28885d515d.jpg' }
+                    ].map((category, index) => (
+                      <button
+                        key={category.name}
+                        onClick={() => {
+                          setSelectedCategory(category.name);
+                          setActiveTab('requests');
+                        }}
+                        className="group relative overflow-hidden rounded-2xl flex-shrink-0 w-56 sm:w-64 h-56 sm:h-64 border border-indigo-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-indigo-200"
+                      >
+                        <img 
+                          src={category.image} 
+                          alt={category.name}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                        <div className="absolute inset-0 bg-indigo-900/20"></div>
+                        
+                        <div className="relative z-10 h-full flex flex-col justify-between p-5">
+                          <div className="flex items-start justify-between">
+                            <div className="w-20 h-20 rounded-3xl bg-black/40 backdrop-blur-sm flex items-center justify-center text-white shadow-xl">
+                              <Icon name={category.icon as any} size={32} />
+                            </div>
+                            <span className="text-xs font-bold text-white bg-emerald-500 px-2.5 py-1 rounded-full shadow-lg">
+                              {category.trend}
+                            </span>
                           </div>
-                          <span className="text-xs font-bold text-white bg-emerald-500 px-2.5 py-1 rounded-full shadow-lg">
-                            {category.trend}
-                          </span>
+                          <div className="text-left">
+                            <h3 className="font-bold text-base text-white drop-shadow-lg mb-1">{category.name}</h3>
+                            <p className="text-sm text-white/90 font-semibold drop-shadow">
+                              {category.count} объявлений
+                            </p>
+                          </div>
                         </div>
-                        <div className="text-left">
-                          <h3 className="font-bold text-base text-white drop-shadow-lg mb-1">{category.name}</h3>
-                          <p className="text-sm text-white/90 font-semibold drop-shadow">
-                            {category.count} объявлений
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-4 sm:space-y-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Последние объявления</h2>
+                <div>
+                  {filteredRequests.slice(0, 10).map((request, index) => (
+                    <Card 
+                      key={request.id}
+                      className={`p-4 sm:p-6 cursor-pointer hover:shadow-md transition-all duration-200 hover:border-primary/30 ${
+                        index > 0 ? 'border-t-0 rounded-t-none' : ''
+                      } ${
+                        index < filteredRequests.slice(0, 10).length - 1 ? 'rounded-b-none' : ''
+                      }`}
+                      onClick={() => openModal(request)}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-2 flex-wrap">
+                            <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 text-xs font-semibold px-2 py-0.5">
+                              {request.type === 'request' ? 'Запрос' : 'Предложение'}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs font-medium">
+                              <Icon name={categories.find(c => c.name === request.category)?.icon as any} size={12} className="mr-1" />
+                              {request.category}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              <Icon name="MapPin" size={12} className="mr-1" />
+                              {request.location}
+                            </Badge>
+                          </div>
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            {request.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                            {request.description}
                           </p>
+                          <div className="flex items-center gap-4 text-xs text-gray-500">
+                            <div className="flex items-center gap-1">
+                              <Icon name="User" size={14} />
+                              <span className="font-medium">{request.author}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Icon name="Calendar" size={14} />
+                              <span>{request.date}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Icon name="MessageCircle" size={14} />
+                              <span>{request.responses} откликов</span>
+                            </div>
+                          </div>
                         </div>
+                        {request.price && (
+                          <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                            <div className="text-xl sm:text-2xl font-bold text-primary whitespace-nowrap">
+                              {request.price}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </button>
+                    </Card>
                   ))}
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
         <div className="flex gap-6 justify-center">
