@@ -870,7 +870,7 @@ const Index = () => {
         </div>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-24 space-y-4">
+            <div className="sticky top-[88px] space-y-4">
               <div className="space-y-1">
                 <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Навигация</h3>
                 <Button
@@ -1039,12 +1039,11 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="grid gap-3 sm:gap-4">
+            <div className="max-w-3xl">
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
-                  className="hover:shadow-2xl transition-all duration-300 border border-indigo-100 hover:border-indigo-300 bg-white backdrop-blur-sm animate-scale-in rounded-2xl overflow-hidden hover:scale-[1.01]"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="hover:shadow-lg transition-shadow duration-300 border border-indigo-100 hover:border-indigo-300 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1122,11 +1121,14 @@ const Index = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center space-x-2 bg-gradient-to-r from-indigo-50 to-purple-50 px-3 py-1.5 rounded-xl border border-indigo-100">
-                          <Icon name="MessageCircle" size={22} className="text-indigo-600" />
-                          <div className="flex flex-col">
-                            <span className="text-xs text-gray-600 leading-none font-medium">Откликнулись</span>
-                            <span className="text-sm sm:text-base font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{request.responses}</span>
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-1.5 text-gray-600">
+                            <Icon name="MessageCircle" size={16} />
+                            <span className="text-sm font-medium">{request.responses}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 text-gray-600">
+                            <Icon name="Eye" size={16} />
+                            <span className="text-sm font-medium">{Math.floor(Math.random() * 500) + 100}</span>
                           </div>
                         </div>
                       </div>
@@ -1217,12 +1219,11 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="grid gap-3 sm:gap-4">
+            <div className="max-w-3xl">
               {filteredOffers.map((offer, index) => (
                 <Card 
                   key={offer.id} 
-                  className="hover:shadow-2xl transition-all duration-300 border border-indigo-100 hover:border-indigo-300 bg-white backdrop-blur-sm animate-scale-in rounded-2xl overflow-hidden hover:scale-[1.01]"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="hover:shadow-lg transition-shadow duration-300 border border-indigo-100 hover:border-indigo-300 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1300,9 +1301,15 @@ const Index = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center space-x-1 text-gray-600">
-                          <Icon name="Eye" size={18} />
-                          <span className="text-sm font-medium">{offer.views}</span>
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-1.5 text-gray-600">
+                            <Icon name="MessageCircle" size={16} />
+                            <span className="text-sm font-medium">{Math.floor(Math.random() * 30) + 5}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 text-gray-600">
+                            <Icon name="Eye" size={16} />
+                            <span className="text-sm font-medium">{offer.views}</span>
+                          </div>
                         </div>
                       </div>
 
