@@ -265,6 +265,7 @@ interface ChatDialog {
   type: 'request' | 'offer' | 'support';
   unread: number;
   messages: ChatMessage[];
+  relatedItem?: Request | Offer;
 }
 
 interface Notification {
@@ -305,6 +306,7 @@ const Index = () => {
       lastTime: '10:36',
       type: 'request',
       unread: 1,
+      relatedItem: mockRequests[0],
       messages: [
         { id: 1, text: 'Здравствуйте! Заинтересовал ваш запрос на iPhone 15 Pro', sender: 'other', timestamp: '10:30', author: 'Сергей' },
         { id: 2, text: 'Привет! Да, всё ещё актуально', sender: 'me', timestamp: '10:32', author: 'Вы' },
@@ -321,6 +323,7 @@ const Index = () => {
       lastTime: 'вчера',
       type: 'request',
       unread: 0,
+      relatedItem: mockRequests[1],
       messages: [
         { id: 1, text: 'Добрый день! Интересует ремонт?', sender: 'other', timestamp: 'вчера 15:20', author: 'Мария' },
         { id: 2, text: 'Да, нужен мастер по ремонту квартиры', sender: 'me', timestamp: 'вчера 15:25', author: 'Вы' },
@@ -335,6 +338,7 @@ const Index = () => {
       lastTime: '2 дня назад',
       type: 'offer',
       unread: 0,
+      relatedItem: mockOffers[1],
       messages: [
         { id: 1, text: 'Здравствуйте! Интересуют услуги дизайнера?', sender: 'other', timestamp: '2 дня 10:00', author: 'Анна' },
         { id: 2, text: 'Да, расскажите подробнее о ваших услугах', sender: 'me', timestamp: '2 дня 10:15', author: 'Вы' },
@@ -349,6 +353,7 @@ const Index = () => {
       lastTime: '3 дня назад',
       type: 'offer',
       unread: 2,
+      relatedItem: mockOffers[2],
       messages: [
         { id: 1, text: 'Привет! Видел твоё предложение MacBook Pro', sender: 'other', timestamp: '3 дня 14:00', author: 'Игорь' },
         { id: 2, text: 'Да, доступен для обмена', sender: 'me', timestamp: '3 дня 14:10', author: 'Вы' },
@@ -1105,7 +1110,134 @@ const Index = () => {
               </Card>
             ) : (
               <div className="grid gap-3 sm:gap-4">
-                <p className="text-gray-600 text-center">Здесь будут отображаться ваши избранные объявления</p>
+                {mockRequests.filter(req => favorites.includes(req.id)).map((request, index) => (
+                  <Card 
+                    key={request.id} 
+                    className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <CardHeader className="pb-3 sm:pb-6">
+                      <div className="flex gap-4">
+                        {request.photos && request.photos.length > 0 && (
+                          <img 
+                            src={request.photos[0]} 
+                            alt={request.title}
+                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                          />
+                        )}
+                        <div className="flex justify-between items-start flex-1">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
+                            <Badge className="bg-gradient-orange-pink text-white border-0 text-xs">
+                              {request.category}
+                            </Badge>
+                            <Badge variant="secondary" className="font-medium text-xs">
+                              <Icon name="MapPin" size={10} className="mr-1" />
+                              {request.city}
+                            </Badge>
+                          </div>
+                          <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{request.title}</CardTitle>
+                          <CardDescription className="text-sm sm:text-base">
+                            {request.description}
+                          </CardDescription>
+                        </div>
+                        <div className="ml-4">
+                          <div className="text-2xl font-extrabold text-black whitespace-nowrap">
+                            {request.budget}
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <div className="flex gap-2">
+                        <Button 
+                          onClick={() => {
+                            setFavorites(favorites.filter(id => id !== request.id));
+                          }}
+                          variant="outline" 
+                          className="text-red-500 border-red-500 font-semibold text-sm"
+                        >
+                          <Icon name="Heart" size={14} className="mr-1.5 fill-red-500" />
+                          Удалить из избранного
+                        </Button>
+                        <Button 
+                          onClick={() => {
+                            setSelectedItem(request);
+                            setIsViewModalOpen(true);
+                          }}
+                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
+                        >
+                          Смотреть
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+                {mockOffers.filter(offer => favorites.includes(offer.id)).map((offer, index) => (
+                  <Card 
+                    key={offer.id} 
+                    className="hover:shadow-xl transition-all duration-300 border-2 hover:border-secondary/20 animate-scale-in"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <CardHeader className="pb-3 sm:pb-6">
+                      <div className="flex gap-4">
+                        {offer.photos && offer.photos.length > 0 && (
+                          <img 
+                            src={offer.photos[0]} 
+                            alt={offer.title}
+                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                          />
+                        )}
+                        <div className="flex justify-between items-start flex-1">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
+                            <Badge className="bg-gradient-purple-pink text-white border-0 text-xs">
+                              {offer.category}
+                            </Badge>
+                            <Badge variant="secondary" className="font-medium text-xs">
+                              <Icon name="MapPin" size={10} className="mr-1" />
+                              {offer.city}
+                            </Badge>
+                          </div>
+                          <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{offer.title}</CardTitle>
+                          <CardDescription className="text-sm sm:text-base">
+                            {offer.description}
+                          </CardDescription>
+                        </div>
+                        <div className="ml-4">
+                          <div className="text-2xl font-extrabold text-black whitespace-nowrap">
+                            {offer.price}
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <div className="flex gap-2">
+                        <Button 
+                          onClick={() => {
+                            setFavorites(favorites.filter(id => id !== offer.id));
+                          }}
+                          variant="outline" 
+                          className="text-red-500 border-red-500 font-semibold text-sm"
+                        >
+                          <Icon name="Heart" size={14} className="mr-1.5 fill-red-500" />
+                          Удалить из избранного
+                        </Button>
+                        <Button 
+                          onClick={() => {
+                            setSelectedItem(offer);
+                            setIsViewModalOpen(true);
+                          }}
+                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-sm"
+                        >
+                          Смотреть
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             )}
           </div>
@@ -1431,6 +1563,35 @@ const Index = () => {
                   </div>
 
                   <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+                    {currentDialog.relatedItem && (
+                      <div className="mb-4 bg-white rounded-xl border-2 border-primary/20 p-4 shadow-sm">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Icon name="Info" size={16} className="text-primary" />
+                          <p className="text-xs font-semibold text-gray-600">Обсуждаемое объявление</p>
+                        </div>
+                        <div className="flex gap-3">
+                          {'photos' in currentDialog.relatedItem && currentDialog.relatedItem.photos && currentDialog.relatedItem.photos.length > 0 && (
+                            <img 
+                              src={currentDialog.relatedItem.photos[0]} 
+                              alt={currentDialog.relatedItem.title}
+                              className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-bold text-sm text-gray-800 mb-1 line-clamp-1">{currentDialog.relatedItem.title}</h4>
+                            <p className="text-xs text-gray-600 mb-2 line-clamp-2">{currentDialog.relatedItem.description}</p>
+                            <div className="flex items-center justify-between">
+                              <Badge className="bg-gradient-orange-pink text-white border-0 text-xs">
+                                {currentDialog.relatedItem.category}
+                              </Badge>
+                              <p className="text-sm font-bold text-black">
+                                {'budget' in currentDialog.relatedItem ? currentDialog.relatedItem.budget : currentDialog.relatedItem.price}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                     {currentDialog.messages.map((msg) => (
                       <div 
                         key={msg.id} 
