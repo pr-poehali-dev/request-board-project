@@ -900,7 +900,7 @@ const Index = () => {
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
           </h1>
-          <p className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto font-medium mb-8">
+          <p className="text-sm sm:text-base text-black max-w-2xl mx-auto font-medium mb-8">
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
           
