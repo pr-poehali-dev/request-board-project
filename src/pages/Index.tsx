@@ -58,7 +58,7 @@ const mockRequests: Request[] = [
     city: 'Москва',
     delivery: true,
     exchange: true,
-    photos: ['https://images.unsplash.com/photo-1696446702061-cbd88e2846b8?w=400', 'https://images.unsplash.com/photo-1678685888221-cda773a3dcdb?w=400']
+    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/fc00d06a-d099-40ff-ad81-00acaf3bcc1d.jpg']
   },
   {
     id: 2,
@@ -70,7 +70,8 @@ const mockRequests: Request[] = [
     responses: 8,
     description: 'Ремонт квартиры, необходим опытный специалист',
     city: 'Санкт-Петербург',
-    delivery: false
+    delivery: false,
+    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/0b1914a4-8040-4ba5-b056-340aa7672cc2.jpg']
   },
   {
     id: 3,
@@ -82,7 +83,8 @@ const mockRequests: Request[] = [
     responses: 15,
     description: 'Интересует MacBook Air на M2, новый или б/у в отличном состоянии',
     city: 'Казань',
-    delivery: true
+    delivery: true,
+    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a0739562-21b8-43e0-9bb1-abaeafd67dbd.jpg']
   },
   {
     id: 4,
@@ -112,7 +114,7 @@ const mockOffers: Offer[] = [
     city: 'Москва',
     delivery: true,
     exchange: true,
-    photos: ['https://images.unsplash.com/photo-1678652197565-941946f48bfe?w=400', 'https://images.unsplash.com/photo-1592286927505-72ad6c4b492a?w=400', 'https://images.unsplash.com/photo-1611472173362-3f53dbd65d80?w=400']
+    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/fc00d06a-d099-40ff-ad81-00acaf3bcc1d.jpg', 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a0739562-21b8-43e0-9bb1-abaeafd67dbd.jpg']
   },
   {
     id: 2,
@@ -125,7 +127,8 @@ const mockOffers: Offer[] = [
     description: 'Профессиональный дизайн интерьера квартир и домов, 3D визуализация',
     city: 'Санкт-Петербург',
     delivery: false,
-    exchange: false
+    exchange: false,
+    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/f1a02277-f0d3-44f5-a04a-246b3ea08cdf.jpg']
   },
   {
     id: 3,
@@ -138,7 +141,8 @@ const mockOffers: Offer[] = [
     description: 'MacBook Pro 16" M1 Pro, 32GB RAM, 1TB SSD, состояние идеальное',
     city: 'Москва',
     delivery: true,
-    exchange: true
+    exchange: true,
+    photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/a0739562-21b8-43e0-9bb1-abaeafd67dbd.jpg']
   }
 ];
 
@@ -178,7 +182,8 @@ const Index = () => {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({ email: '', password: '', name: '' });
-  const [profileData, setProfileData] = useState({ name: 'Александр', email: 'user@example.com', currentPassword: '', newPassword: '' });
+  const [profileData, setProfileData] = useState({ name: 'Александр', email: 'user@example.com', currentPassword: '', newPassword: '', avatar: '' });
+  const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -375,14 +380,24 @@ const Index = () => {
                 <Icon name="FolderOpen" size={18} className="mr-2" />
                 Категории
               </Button>
-              <Button 
-                variant={activeTab === 'profile' ? 'default' : 'ghost'}
-                onClick={() => setActiveTab('profile')}
-                className="font-medium"
-              >
-                <Icon name="User" size={18} className="mr-2" />
-                Профиль
-              </Button>
+              {isAuthenticated && (
+                <Button 
+                  variant={activeTab === 'profile' ? 'default' : 'ghost'}
+                  onClick={() => setActiveTab('profile')}
+                  className="font-medium"
+                >
+                  <Avatar className="w-5 h-5 mr-2 bg-gradient-instagram">
+                    {avatarPreview ? (
+                      <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                    ) : (
+                      <AvatarFallback className="bg-transparent text-white text-xs font-bold">
+                        {profileData.name.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    )}
+                  </Avatar>
+                  Профиль
+                </Button>
+              )}
             </div>
             
             <button
@@ -478,15 +493,25 @@ const Index = () => {
             <Icon name="FolderOpen" size={20} />
             <span className="text-xs mt-1">Категории</span>
           </button>
-          <button 
-            onClick={() => setActiveTab('profile')}
-            className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
-              activeTab === 'profile' ? 'bg-primary text-white' : 'text-gray-600'
-            }`}
-          >
-            <Icon name="User" size={20} />
-            <span className="text-xs mt-1">Профиль</span>
-          </button>
+          {isAuthenticated && (
+            <button 
+              onClick={() => setActiveTab('profile')}
+              className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
+                activeTab === 'profile' ? 'bg-primary text-white' : 'text-gray-600'
+              }`}
+            >
+              <Avatar className="w-5 h-5 bg-gradient-instagram">
+                {avatarPreview ? (
+                  <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <AvatarFallback className="bg-transparent text-white text-xs font-bold">
+                    {profileData.name.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                )}
+              </Avatar>
+              <span className="text-xs mt-1">Профиль</span>
+            </button>
+          )}
         </div>
       </div>
 
@@ -917,9 +942,13 @@ const Index = () => {
             <Card className="max-w-2xl mx-auto">
               <CardHeader className="text-center">
                 <Avatar className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 bg-gradient-instagram">
-                  <AvatarFallback className="bg-transparent text-white text-2xl sm:text-3xl font-bold">
-                    А
-                  </AvatarFallback>
+                  {avatarPreview ? (
+                    <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                  ) : (
+                    <AvatarFallback className="bg-transparent text-white text-2xl sm:text-3xl font-bold">
+                      {profileData.name.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  )}
                 </Avatar>
                 <CardTitle className="text-2xl sm:text-3xl">Александр</CardTitle>
                 <CardDescription className="text-sm sm:text-base">Пользователь с октября 2024</CardDescription>
@@ -1777,6 +1806,57 @@ const Index = () => {
               </button>
             </div>
             <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Фото профиля</label>
+                <div className="flex items-center gap-4">
+                  <Avatar className="w-20 h-20 bg-gradient-instagram">
+                    {avatarPreview ? (
+                      <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                    ) : (
+                      <AvatarFallback className="bg-transparent text-white text-2xl font-bold">
+                        {profileData.name.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    )}
+                  </Avatar>
+                  <div className="flex-1">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = () => {
+                            const result = reader.result as string;
+                            setAvatarPreview(result);
+                            setProfileData({ ...profileData, avatar: result });
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      className="hidden"
+                      id="avatar-upload"
+                    />
+                    <label
+                      htmlFor="avatar-upload"
+                      className="inline-block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-xl cursor-pointer text-sm font-semibold text-gray-700 transition-colors"
+                    >
+                      Выбрать фото
+                    </label>
+                    {avatarPreview && (
+                      <button
+                        onClick={() => {
+                          setAvatarPreview('');
+                          setProfileData({ ...profileData, avatar: '' });
+                        }}
+                        className="ml-2 px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                      >
+                        Удалить
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Имя</label>
                 <input
