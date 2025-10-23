@@ -1199,7 +1199,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${favorites.includes(`request-${request.id}`) ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${favorites.includes(`request-${request.id}`) ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700'}`}
                           >
                             <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${favorites.includes(`request-${request.id}`) ? 'fill-rose-500 text-rose-600' : ''}`} />
                             <span className="hidden sm:inline">{favorites.includes(`request-${request.id}`) ? 'В избранном' : 'В избранное'}</span>
@@ -1211,7 +1211,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 transition-all duration-300"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
@@ -1227,7 +1227,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 text-white hover:opacity-90 font-semibold shadow-lg hover:shadow-xl transition-all rounded-xl"
+                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 text-white hover:from-blue-600 hover:via-blue-700 hover:to-indigo-700 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
@@ -1380,7 +1380,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${favorites.includes(`offer-${offer.id}`) ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50'}`}
+                            className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${favorites.includes(`offer-${offer.id}`) ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700'}`}
                           >
                             <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${favorites.includes(`offer-${offer.id}`) ? 'fill-rose-500 text-rose-600' : ''}`} />
                             <span className="hidden sm:inline">{favorites.includes(`offer-${offer.id}`) ? 'В избранном' : 'В избранное'}</span>
@@ -1392,7 +1392,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 transition-all duration-300"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
@@ -1408,7 +1408,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-gradient-orange-pink text-white hover:opacity-90 font-semibold"
+                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 text-white hover:from-blue-600 hover:via-blue-700 hover:to-indigo-700 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                         >
                           Написать
                           <Icon name="MessageCircle" size={14} className="ml-1.5" />
