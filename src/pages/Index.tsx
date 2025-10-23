@@ -449,6 +449,7 @@ const Index = () => {
   const [newMessage, setNewMessage] = useState('');
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [language, setLanguage] = useState<'ru' | 'ua'>('ru');
+  const [sortBy, setSortBy] = useState<'date' | 'popular' | 'price'>('date');
   const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
@@ -930,6 +931,34 @@ const Index = () => {
                     {category.name}
                   </Button>
                 ))}
+              </div>
+
+              <div className="space-y-1 pt-4 border-t">
+                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Сортировка</h3>
+                <Button
+                  variant={sortBy === 'date' ? 'default' : 'ghost'}
+                  onClick={() => setSortBy('date')}
+                  className="w-full justify-start font-medium text-sm"
+                >
+                  <Icon name="Calendar" size={16} className="mr-2" />
+                  По дате
+                </Button>
+                <Button
+                  variant={sortBy === 'popular' ? 'default' : 'ghost'}
+                  onClick={() => setSortBy('popular')}
+                  className="w-full justify-start font-medium text-sm"
+                >
+                  <Icon name="TrendingUp" size={16} className="mr-2" />
+                  По популярности
+                </Button>
+                <Button
+                  variant={sortBy === 'price' ? 'default' : 'ghost'}
+                  onClick={() => setSortBy('price')}
+                  className="w-full justify-start font-medium text-sm"
+                >
+                  <Icon name="DollarSign" size={16} className="mr-2" />
+                  По цене
+                </Button>
               </div>
             </div>
           </aside>
