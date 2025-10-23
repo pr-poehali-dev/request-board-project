@@ -642,12 +642,19 @@ const Index = () => {
       <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
-            <div className="flex items-center space-x-2 flex-shrink-0">
+            <button 
+              onClick={() => {
+                setActiveTab('requests');
+                setSelectedCategory(null);
+                setSearchQuery('');
+              }}
+              className="flex items-center space-x-2 flex-shrink-0 hover:opacity-80 transition-opacity"
+            >
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center ring-2 ring-white/30">
                 <Icon name="MessageSquare" className="text-white" size={20} />
               </div>
               <span className="text-lg sm:text-2xl font-bold text-white">Доска запросов</span>
-            </div>
+            </button>
 
             <div className="hidden md:flex flex-1 max-w-xl">
               <div className="relative w-full">
