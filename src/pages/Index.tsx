@@ -1163,7 +1163,6 @@ const Index = () => {
             )}
           {activeTab === 'requests' && (
             <div 
-              ref={contentTopRef}
               className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-right-4 duration-300"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -1199,7 +1198,8 @@ const Index = () => {
             <div>
               {filteredRequests.map((request, index) => (
                 <Card 
-                  key={request.id} 
+                  key={request.id}
+                  ref={index === 0 ? contentTopRef : null}
                   className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
@@ -1362,7 +1362,6 @@ const Index = () => {
 
         {activeTab === 'offers' && (
           <div 
-            ref={offersTopRef}
             className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-left-4 duration-300"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -1398,7 +1397,8 @@ const Index = () => {
             <div>
               {filteredOffers.map((offer, index) => (
                 <Card 
-                  key={offer.id} 
+                  key={offer.id}
+                  ref={index === 0 ? offersTopRef : null}
                   className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
@@ -1561,7 +1561,6 @@ const Index = () => {
 
         {activeTab === 'favorites' && (
           <div 
-            ref={favoritesTopRef}
             className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -1591,7 +1590,8 @@ const Index = () => {
               <div className="grid gap-3 sm:gap-4">
                 {mockRequests.filter(req => favorites.includes(`request-${req.id}`)).map((request, index) => (
                   <Card 
-                    key={request.id} 
+                    key={request.id}
+                    ref={index === 0 ? favoritesTopRef : null}
                     className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
