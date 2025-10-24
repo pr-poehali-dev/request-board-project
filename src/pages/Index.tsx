@@ -1040,53 +1040,6 @@ const Index = () => {
               </div>
 
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <button
-                  onClick={() => setIsSortOpen(!isSortOpen)}
-                  className="w-full flex items-center justify-between mb-3"
-                >
-                  <h3 className="font-semibold text-gray-900 text-sm">Сортировка</h3>
-                  <Icon name={isSortOpen ? "ChevronUp" : "ChevronDown"} size={16} className="text-gray-500" />
-                </button>
-                {isSortOpen && (
-                  <div className="space-y-2">
-                    <button
-                      onClick={() => setSortBy('date')}
-                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
-                        sortBy === 'date' 
-                          ? 'bg-emerald-600 text-white shadow-md' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      <Icon name="Calendar" size={14} className="inline mr-2" />
-                      По дате
-                    </button>
-                    <button
-                      onClick={() => setSortBy('popular')}
-                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
-                        sortBy === 'popular' 
-                          ? 'bg-emerald-600 text-white shadow-md' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      <Icon name="TrendingUp" size={14} className="inline mr-2" />
-                      По популярности
-                    </button>
-                    <button
-                      onClick={() => setSortBy('price')}
-                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
-                        sortBy === 'price' 
-                          ? 'bg-emerald-600 text-white shadow-md' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      <Icon name="DollarSign" size={14} className="inline mr-2" />
-                      По цене
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                 <h3 className="font-semibold text-gray-900 mb-3 text-sm">Город</h3>
                 <div className="relative">
                   <Icon name="MapPin" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
