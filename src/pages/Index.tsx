@@ -2470,10 +2470,17 @@ const Index = () => {
       )}
 
       <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
-            <DialogTitle className="text-2xl">Вход</DialogTitle>
-            <p className="text-white/90 text-sm mt-1">Войдите в свой аккаунт</p>
+        <DialogContent className="max-w-md rounded-2xl overflow-hidden shadow-2xl">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                <Icon name="LogIn" size={22} className="text-white" />
+              </div>
+              <div>
+                <DialogTitle className="text-xl font-bold">Вход</DialogTitle>
+                <p className="text-gray-300 text-sm">Войдите в свой аккаунт</p>
+              </div>
+            </div>
           </DialogHeader>
           <div className="space-y-4">
             <div>
@@ -2483,7 +2490,7 @@ const Index = () => {
                 value={loginData.email}
                 onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
               />
             </div>
             <div>
@@ -2493,11 +2500,11 @@ const Index = () => {
                 value={loginData.password}
                 onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                 placeholder="••••••••"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
               />
             </div>
             <div className="flex gap-3 pt-2">
-              <Button onClick={() => setIsLoginOpen(false)} variant="outline" className="flex-1">
+              <Button onClick={() => setIsLoginOpen(false)} variant="outline" className="flex-1 rounded-xl">
                 Отмена
               </Button>
               <Button 
@@ -2510,7 +2517,7 @@ const Index = () => {
                     alert('Заполните все поля');
                   }
                 }}
-                className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
+                className="flex-1 bg-gradient-to-br from-gray-700 to-gray-800 text-white hover:from-gray-800 hover:to-gray-900 rounded-xl shadow-lg"
               >
                 Войти
               </Button>
@@ -2532,10 +2539,17 @@ const Index = () => {
       </Dialog>
 
       <Dialog open={isRegisterOpen} onOpenChange={setIsRegisterOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
-            <DialogTitle className="text-2xl">Регистрация</DialogTitle>
-            <p className="text-white/90 text-sm mt-1">Создайте новый аккаунт</p>
+        <DialogContent className="max-w-md rounded-2xl overflow-hidden shadow-2xl">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                <Icon name="UserPlus" size={22} className="text-white" />
+              </div>
+              <div>
+                <DialogTitle className="text-xl font-bold">Регистрация</DialogTitle>
+                <p className="text-gray-300 text-sm">Создайте новый аккаунт</p>
+              </div>
+            </div>
           </DialogHeader>
           <div className="space-y-4">
             <div>
@@ -2545,7 +2559,7 @@ const Index = () => {
                 value={registerData.name}
                 onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
                 placeholder="Александр"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
               />
             </div>
             <div>
@@ -2555,7 +2569,7 @@ const Index = () => {
                 value={registerData.email}
                 onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
               />
             </div>
             <div>
@@ -2565,11 +2579,11 @@ const Index = () => {
                 value={registerData.password}
                 onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
                 placeholder="••••••••"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
               />
             </div>
             <div className="flex gap-3 pt-2">
-              <Button onClick={() => setIsRegisterOpen(false)} variant="outline" className="flex-1">
+              <Button onClick={() => setIsRegisterOpen(false)} variant="outline" className="flex-1 rounded-xl">
                 Отмена
               </Button>
               <Button 
@@ -2582,7 +2596,7 @@ const Index = () => {
                     alert('Заполните все поля');
                   }
                 }}
-                className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
+                className="flex-1 bg-gradient-to-br from-gray-700 to-gray-800 text-white hover:from-gray-800 hover:to-gray-900 rounded-xl shadow-lg"
               >
                 Зарегистрироваться
               </Button>
@@ -2604,9 +2618,14 @@ const Index = () => {
       </Dialog>
 
       <Dialog open={isProfileEditOpen} onOpenChange={setIsProfileEditOpen}>
-        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
-          <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
-            <DialogTitle className="text-2xl">Редактирование профиля</DialogTitle>
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                <Icon name="Settings" size={22} className="text-white" />
+              </div>
+              <DialogTitle className="text-xl font-bold">Редактирование профиля</DialogTitle>
+            </div>
           </DialogHeader>
           <div className="space-y-4">
               <div>
@@ -2666,7 +2685,7 @@ const Index = () => {
                   type="text"
                   value={profileData.name}
                   onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
                 />
               </div>
               <div>
@@ -2675,7 +2694,7 @@ const Index = () => {
                   type="email"
                   value={profileData.email}
                   onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
                 />
               </div>
               <hr className="my-4" />
@@ -2687,7 +2706,7 @@ const Index = () => {
                   value={profileData.currentPassword}
                   onChange={(e) => setProfileData({ ...profileData, currentPassword: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
                 />
               </div>
               <div>
@@ -2697,11 +2716,11 @@ const Index = () => {
                   value={profileData.newPassword}
                   onChange={(e) => setProfileData({ ...profileData, newPassword: e.target.value })}
                 placeholder="••••••••"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
               />
             </div>
             <div className="flex gap-3 pt-2">
-              <Button onClick={() => setIsProfileEditOpen(false)} variant="outline" className="flex-1">
+              <Button onClick={() => setIsProfileEditOpen(false)} variant="outline" className="flex-1 rounded-xl">
                 Отмена
               </Button>
               <Button 
@@ -2709,7 +2728,7 @@ const Index = () => {
                   alert('Профиль обновлён!');
                   setIsProfileEditOpen(false);
                 }}
-                className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
+                className="flex-1 bg-gradient-to-br from-gray-700 to-gray-800 text-white hover:from-gray-800 hover:to-gray-900 rounded-xl shadow-lg"
               >
                 Сохранить
               </Button>
@@ -2724,11 +2743,16 @@ const Index = () => {
           setSelectedItem(null);
         }
       }}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
           {selectedItem && (
             <>
-              <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg sticky top-0 z-10">
-                <DialogTitle className="text-2xl line-clamp-2">{selectedItem.title}</DialogTitle>
+              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 sticky top-0 z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
+                    <Icon name="Eye" size={22} className="text-white" />
+                  </div>
+                  <DialogTitle className="text-xl font-bold line-clamp-2">{selectedItem.title}</DialogTitle>
+                </div>
               </DialogHeader>
               <div className="space-y-6">
                   {'photos' in selectedItem && selectedItem.photos && selectedItem.photos.length > 0 && (
@@ -2836,11 +2860,16 @@ const Index = () => {
           setResponseData({ price: '', comment: '' });
         }
       }}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md rounded-2xl shadow-2xl">
           {selectedItem && (
             <>
-              <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
-                <DialogTitle className="text-2xl">Откликнуться</DialogTitle>
+              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                    <Icon name="MessageSquare" size={22} className="text-white" />
+                  </div>
+                  <DialogTitle className="text-xl font-bold">Откликнуться</DialogTitle>
+                </div>
               </DialogHeader>
               <div className="space-y-4">
               <div>
@@ -2854,7 +2883,7 @@ const Index = () => {
                   value={responseData.price}
                   onChange={(e) => setResponseData({ ...responseData, price: e.target.value })}
                   placeholder="Например: 100 000 ₽"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
                 />
               </div>
 
@@ -2865,7 +2894,7 @@ const Index = () => {
                   onChange={(e) => setResponseData({ ...responseData, comment: e.target.value })}
                   placeholder="Расскажите подробнее о вашем предложении..."
                   rows={4}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent resize-none transition-all bg-gray-50"
                 />
               </div>
 
@@ -2979,11 +3008,16 @@ const Index = () => {
           setSelectedUserProfile(null);
         }
       }}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
           {selectedUserProfile && (
             <>
-              <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg sticky top-0 z-10">
-                <DialogTitle className="text-2xl">Профиль пользователя</DialogTitle>
+              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 sticky top-0 z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                    <Icon name="User" size={22} className="text-white" />
+                  </div>
+                  <DialogTitle className="text-xl font-bold">Профиль пользователя</DialogTitle>
+                </div>
               </DialogHeader>
               <div className="space-y-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-start gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl">
@@ -3119,9 +3153,14 @@ const Index = () => {
       </Dialog>
 
       <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
-            <DialogTitle className="text-2xl text-center text-white">Мой Профиль</DialogTitle>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                <Icon name="User" size={22} className="text-white" />
+              </div>
+              <DialogTitle className="text-xl font-bold text-center">Мой Профиль</DialogTitle>
+            </div>
           </DialogHeader>
           <div className="space-y-6">
             <div className="text-center">
