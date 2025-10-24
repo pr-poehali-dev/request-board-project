@@ -1239,7 +1239,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                          className="w-full sm:w-auto bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
