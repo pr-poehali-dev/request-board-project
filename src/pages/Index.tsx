@@ -308,6 +308,7 @@ const Index = () => {
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isSortOpen, setIsSortOpen] = useState(true);
   const contentTopRef = useRef<HTMLDivElement>(null);
   
   const scrollToTop = () => {
@@ -330,6 +331,8 @@ const Index = () => {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<'date' | 'popular' | 'price'>('date');
   const [dialogs, setDialogs] = useState<ChatDialog[]>([
     {
       id: 1,
@@ -1004,79 +1007,95 @@ const Index = () => {
         </div>
       </div>
       
-      <div className="hidden lg:block sticky top-[72px] z-40 bg-gray-50 border-b border-gray-200 shadow-sm -mt-px">
-        <div className="py-4">
-          <div className="container mx-auto" style={{ maxWidth: '1400px' }}>
-            <div className="flex gap-3 mb-5 flex-wrap items-center justify-between">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setActiveTab('requests')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    activeTab === 'requests' 
-                      ? 'bg-emerald-600 text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <Icon name="Search" size={18} className="inline mr-2" />
-                  Запросы
-                </button>
-                <button
-                  onClick={() => setActiveTab('offers')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    activeTab === 'offers' 
-                      ? 'bg-emerald-600 text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <Icon name="Package" size={18} className="inline mr-2" />
-                  Предложения
-                </button>
+
+
+      <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
+        <div className="flex gap-6">
+          <aside className="hidden lg:block w-64 flex-shrink-0">
+            <div className="sticky top-24 space-y-4">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <h3 className="font-semibold text-gray-900 mb-3 text-sm">Тип</h3>
+                <div className="space-y-2">
+                  <button
+                    onClick={() => setActiveTab('requests')}
+                    className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                      activeTab === 'requests' 
+                        ? 'bg-emerald-600 text-white shadow-md' 
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <Icon name="Search" size={16} className="inline mr-2" />
+                    Запросы
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('offers')}
+                    className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                      activeTab === 'offers' 
+                        ? 'bg-emerald-600 text-white shadow-md' 
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <Icon name="Package" size={16} className="inline mr-2" />
+                    Предложения
+                  </button>
+                </div>
               </div>
 
-              <div className="flex gap-2 items-center">
-                <span className="text-sm text-gray-600 mr-2">Сортировка:</span>
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                 <button
-                  onClick={() => setSortBy('date')}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    sortBy === 'date' 
-                      ? 'bg-emerald-600 text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                  onClick={() => setIsSortOpen(!isSortOpen)}
+                  className="w-full flex items-center justify-between mb-3"
                 >
-                  <Icon name="Calendar" size={14} className="inline mr-1.5" />
-                  По дате
+                  <h3 className="font-semibold text-gray-900 text-sm">Сортировка</h3>
+                  <Icon name={isSortOpen ? "ChevronUp" : "ChevronDown"} size={16} className="text-gray-500" />
                 </button>
-                <button
-                  onClick={() => setSortBy('popular')}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    sortBy === 'popular' 
-                      ? 'bg-emerald-600 text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <Icon name="TrendingUp" size={14} className="inline mr-1.5" />
-                  По популярности
-                </button>
-                <button
-                  onClick={() => setSortBy('price')}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    sortBy === 'price' 
-                      ? 'bg-emerald-600 text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <Icon name="DollarSign" size={14} className="inline mr-1.5" />
-                  По цене
-                </button>
+                {isSortOpen && (
+                  <div className="space-y-2">
+                    <button
+                      onClick={() => setSortBy('date')}
+                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                        sortBy === 'date' 
+                          ? 'bg-emerald-600 text-white shadow-md' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Icon name="Calendar" size={14} className="inline mr-2" />
+                      По дате
+                    </button>
+                    <button
+                      onClick={() => setSortBy('popular')}
+                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                        sortBy === 'popular' 
+                          ? 'bg-emerald-600 text-white shadow-md' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Icon name="TrendingUp" size={14} className="inline mr-2" />
+                      По популярности
+                    </button>
+                    <button
+                      onClick={() => setSortBy('price')}
+                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                        sortBy === 'price' 
+                          ? 'bg-emerald-600 text-white shadow-md' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Icon name="DollarSign" size={14} className="inline mr-2" />
+                      По цене
+                    </button>
+                  </div>
+                )}
               </div>
 
-              <div className="flex gap-2 items-center">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <h3 className="font-semibold text-gray-900 mb-3 text-sm">Город</h3>
                 <div className="relative">
-                  <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
+                  <Icon name="MapPin" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
                   <select
                     value={selectedCity || ''}
                     onChange={(e) => setSelectedCity(e.target.value || null)}
-                    className="appearance-none pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
+                    className="w-full appearance-none pl-9 pr-8 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
                   >
                     <option value="">Все города</option>
                     {cities.map((city) => (
@@ -1085,73 +1104,71 @@ const Index = () => {
                       </option>
                     ))}
                   </select>
-                  <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                  <Icon name="ChevronDown" size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 </div>
               </div>
-            </div>
 
-            <div className="flex gap-2 flex-wrap">
-              <button
-                onClick={() => {
-                  setSelectedCategory(null);
-                  scrollToTop();
-                }}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  selectedCategory === null 
-                    ? 'bg-gray-800 text-white shadow-md' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                <Icon name="Grid3x3" size={16} className="inline mr-1.5" />
-                Все категории
-              </button>
-              {categories.map((category) => {
-                const getCategoryColor = (name: string) => {
-                  const colors: Record<string, string> = {
-                    'Электроника': 'bg-blue-600',
-                    'Одежда': 'bg-pink-600',
-                    'Услуги': 'bg-orange-600',
-                    'Недвижимость': 'bg-emerald-600',
-                    'Транспорт': 'bg-purple-600',
-                    'Мебель': 'bg-amber-600',
-                    'Детские товары': 'bg-sky-500',
-                    'Спорт': 'bg-green-600',
-                    'Красота': 'bg-fuchsia-600',
-                    'Животные': 'bg-yellow-600',
-                    'Хобби': 'bg-indigo-600',
-                    'Книги': 'bg-slate-600',
-                    'Строительство': 'bg-yellow-700',
-                    'Работа': 'bg-cyan-600',
-                    'Еда и напитки': 'bg-rose-600'
-                  };
-                  return colors[name] || 'bg-violet-600';
-                };
-                
-                return (
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <h3 className="font-semibold text-gray-900 mb-3 text-sm">Категории</h3>
+                <div className="space-y-1.5 max-h-[400px] overflow-y-auto">
                   <button
-                    key={category.name}
                     onClick={() => {
-                      setSelectedCategory(category.name);
+                      setSelectedCategory(null);
                       scrollToTop();
                     }}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      selectedCategory === category.name 
-                        ? `${getCategoryColor(category.name)} text-white shadow-md` 
+                    className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                      selectedCategory === null 
+                        ? 'bg-gray-800 text-white shadow-md' 
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
-                    <Icon name={category.icon as any} size={16} className="inline mr-1.5" />
-                    {category.name}
+                    <Icon name="Grid3x3" size={14} className="inline mr-2" />
+                    Все категории
                   </button>
-                );
-              })}
+                  {categories.map((category) => {
+                    const getCategoryColor = (name: string) => {
+                      const colors: Record<string, string> = {
+                        'Электроника': 'bg-blue-600',
+                        'Одежда': 'bg-pink-600',
+                        'Услуги': 'bg-orange-600',
+                        'Недвижимость': 'bg-emerald-600',
+                        'Транспорт': 'bg-purple-600',
+                        'Мебель': 'bg-amber-600',
+                        'Детские товары': 'bg-sky-500',
+                        'Спорт': 'bg-green-600',
+                        'Красота': 'bg-fuchsia-600',
+                        'Животные': 'bg-yellow-600',
+                        'Хобби': 'bg-indigo-600',
+                        'Книги': 'bg-slate-600',
+                        'Строительство': 'bg-yellow-700',
+                        'Работа': 'bg-cyan-600',
+                        'Еда и напитки': 'bg-rose-600'
+                      };
+                      return colors[name] || 'bg-violet-600';
+                    };
+                    
+                    return (
+                      <button
+                        key={category.name}
+                        onClick={() => {
+                          setSelectedCategory(category.name);
+                          scrollToTop();
+                        }}
+                        className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                          selectedCategory === category.name 
+                            ? `${getCategoryColor(category.name)} text-white shadow-md` 
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        <Icon name={category.icon as any} size={14} className="inline mr-2" />
+                        {category.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
-        <div className="flex gap-6">
+          </aside>
           <div className="flex-1 min-w-0 relative">
             {swipeDirection && (
               <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
