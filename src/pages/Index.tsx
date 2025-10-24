@@ -1366,9 +1366,10 @@ const Index = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <div className="flex items-center gap-1.5 text-gray-600">
-                            <Icon name="MessageCircle" size={16} />
-                            <span className="text-sm font-medium">{Math.floor(Math.random() * 30) + 5}</span>
+                          <div className="bg-indigo-50 border border-indigo-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
+                            <Icon name="MessageCircle" size={16} className="text-indigo-600" />
+                            <span className="text-sm font-bold text-indigo-700">{Math.floor(Math.random() * 30) + 5}</span>
+                            <span className="text-xs text-indigo-600 font-medium">откликов</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-gray-600">
                             <Icon name="Eye" size={16} />
