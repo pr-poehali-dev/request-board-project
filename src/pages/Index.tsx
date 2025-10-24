@@ -2561,97 +2561,98 @@ const Index = () => {
                 <DialogTitle className="text-2xl line-clamp-2">{selectedItem.title}</DialogTitle>
               </DialogHeader>
               <div className="space-y-6">
-              {'photos' in selectedItem && selectedItem.photos && selectedItem.photos.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-3">Фотографии</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {selectedItem.photos.map((photo, idx) => (
-                      <img 
-                        key={idx}
-                        src={photo} 
-                        alt={`${selectedItem.title} ${idx + 1}`}
-                        className="w-full h-48 object-cover rounded-xl"
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Описание</h3>
-                <p className="text-gray-600">{'description' in selectedItem && selectedItem.description}</p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">{'budget' in selectedItem ? 'Бюджет' : 'Цена'}</h3>
-                  <p className="text-lg sm:text-xl font-bold text-primary break-words">{'budget' in selectedItem ? selectedItem.budget : 'price' in selectedItem ? selectedItem.price : ''}</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">Город</h3>
-                  <p className="text-base sm:text-lg font-medium text-gray-800">{selectedItem.city}</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-bold text-gray-800 mb-3">Автор</h3>
-                <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
-                  <div 
-                    className="flex items-center space-x-4 flex-1 cursor-pointer hover:bg-gray-100 -m-4 p-4 rounded-xl transition-colors"
-                    onClick={() => {
-                      if (mockUserProfiles[selectedItem.author]) {
-                        setSelectedUserProfile(mockUserProfiles[selectedItem.author]);
-                        setIsUserProfileOpen(true);
-                      }
-                    }}
-                  >
-                    <Avatar className="w-16 h-16 bg-gradient-orange-pink">
-                      <AvatarFallback className="bg-transparent text-white text-xl font-bold">
-                        {selectedItem.author[0]}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <p className="text-lg font-bold text-gray-800 hover:underline">{selectedItem.author}</p>
-                      <div className="flex items-center gap-2">
-                        <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
-                        <span className="text-gray-600">Рейтинг: {selectedItem.rating}</span>
-                      </div>
+                  {'photos' in selectedItem && selectedItem.photos && selectedItem.photos.length > 0 && (
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-800 mb-3">Фотографии</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {selectedItem.photos.map((photo, idx) => (
+                        <img 
+                          key={idx}
+                          src={photo} 
+                          alt={`${selectedItem.title} ${idx + 1}`}
+                          className="w-full h-48 object-cover rounded-xl"
+                        />
+                      ))}
                     </div>
                   </div>
-                  <Button 
-                    onClick={() => {
-                      if (!isAuthenticated) {
-                        setIsViewModalOpen(false);
-                        setIsLoginOpen(true);
-                      } else {
-                        setIsChatOpen(true);
-                        setIsViewModalOpen(false);
-                      }
-                    }}
-                    className="bg-gradient-orange-pink text-white hover:opacity-90"
-                  >
-                    <Icon name="MessageCircle" size={16} className="mr-2" />
-                    Написать
-                  </Button>
-                </div>
-              </div>
+                )}
 
-              <div className="flex gap-2 flex-wrap">
-                <Badge className="bg-gradient-orange-pink text-white border-0">
-                  {selectedItem.category}
-                </Badge>
-                {selectedItem.delivery && (
-                  <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50">
-                    <Icon name="Truck" size={14} className="mr-1" />
-                    Доставка
+                <div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">Описание</h3>
+                  <p className="text-gray-600">{'description' in selectedItem && selectedItem.description}</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 mb-1">{'budget' in selectedItem ? 'Бюджет' : 'Цена'}</h3>
+                    <p className="text-lg sm:text-xl font-bold text-primary break-words">{'budget' in selectedItem ? selectedItem.budget : 'price' in selectedItem ? selectedItem.price : ''}</p>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 mb-1">Город</h3>
+                    <p className="text-base sm:text-lg font-medium text-gray-800">{selectedItem.city}</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-3">Автор</h3>
+                  <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
+                    <div 
+                      className="flex items-center space-x-4 flex-1 cursor-pointer hover:bg-gray-100 -m-4 p-4 rounded-xl transition-colors"
+                      onClick={() => {
+                        if (mockUserProfiles[selectedItem.author]) {
+                          setSelectedUserProfile(mockUserProfiles[selectedItem.author]);
+                          setIsUserProfileOpen(true);
+                        }
+                      }}
+                    >
+                      <Avatar className="w-16 h-16 bg-gradient-orange-pink">
+                        <AvatarFallback className="bg-transparent text-white text-xl font-bold">
+                          {selectedItem.author[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <p className="text-lg font-bold text-gray-800 hover:underline">{selectedItem.author}</p>
+                        <div className="flex items-center gap-2">
+                          <Icon name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                          <span className="text-gray-600">Рейтинг: {selectedItem.rating}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <Button 
+                      onClick={() => {
+                        if (!isAuthenticated) {
+                          setIsViewModalOpen(false);
+                          setIsLoginOpen(true);
+                        } else {
+                          setIsChatOpen(true);
+                          setIsViewModalOpen(false);
+                        }
+                      }}
+                      className="bg-gradient-orange-pink text-white hover:opacity-90"
+                    >
+                      <Icon name="MessageCircle" size={16} className="mr-2" />
+                      Написать
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="flex gap-2 flex-wrap">
+                  <Badge className="bg-gradient-orange-pink text-white border-0">
+                    {selectedItem.category}
                   </Badge>
-                )}
-                {selectedItem.exchange && (
-                  <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50">
-                    <Icon name="ArrowLeftRight" size={14} className="mr-1" />
-                    Обмен
-                  </Badge>
-                )}
+                  {selectedItem.delivery && (
+                    <Badge variant="outline" className="font-medium text-green-600 border-green-300 bg-green-50">
+                      <Icon name="Truck" size={14} className="mr-1" />
+                      Доставка
+                    </Badge>
+                  )}
+                  {selectedItem.exchange && (
+                    <Badge variant="outline" className="font-medium text-blue-600 border-blue-300 bg-blue-50">
+                      <Icon name="ArrowLeftRight" size={14} className="mr-1" />
+                      Обмен
+                    </Badge>
+                  )}
+                </div>
               </div>
             </>
           )}
