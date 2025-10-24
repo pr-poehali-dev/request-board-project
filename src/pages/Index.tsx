@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import Icon from '@/components/ui/icon';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 interface Request {
   id: number;
@@ -277,6 +278,7 @@ const Index = () => {
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
   const [selectedUserProfile, setSelectedUserProfile] = useState<UserProfile | null>(null);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Request | Offer | null>(null);
   const [responseData, setResponseData] = useState({ price: '', comment: '' });
   const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -701,7 +703,7 @@ const Index = () => {
               </Button>
             ) : (
               <button
-                onClick={() => setActiveTab('profile')}
+                onClick={() => setIsProfileOpen(true)}
                 className="flex items-center space-x-2 px-3 py-1.5 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
                 title="Профиль"
               >
@@ -784,10 +786,8 @@ const Index = () => {
                 <span className="text-xs mt-1">Избранное</span>
               </button>
               <button 
-                onClick={() => setActiveTab('profile')}
-                className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
-                  activeTab === 'profile' ? 'bg-primary text-white' : 'text-gray-600'
-                }`}
+                onClick={() => setIsProfileOpen(true)}
+                className="flex flex-col items-center py-2 px-1 rounded-lg transition-colors text-gray-600"
               >
                 <Avatar className="w-5 h-5 bg-gradient-orange-pink">
                   {avatarPreview ? (
@@ -1566,75 +1566,7 @@ const Index = () => {
 
 
 
-        {activeTab === 'profile' && (
-          <div className="space-y-4 sm:space-y-6 animate-in fade-in zoom-in-95 duration-300">
-            <Card className="max-w-2xl mx-auto">
-              <CardHeader className="text-center">
-                <Avatar className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 bg-gradient-orange-pink">
-                  {avatarPreview ? (
-                    <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
-                  ) : (
-                    <AvatarFallback className="bg-transparent text-white text-2xl sm:text-3xl font-bold">
-                      {profileData.name.charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  )}
-                </Avatar>
-                <CardTitle className="text-2xl sm:text-3xl">Александр</CardTitle>
-                <CardDescription className="text-sm sm:text-base">Пользователь с октября 2024</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-3 gap-3 sm:gap-4 text-center">
-                  <div className="p-3 sm:p-4 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl">
-                    <Icon name="FileText" size={20} className="mx-auto mb-2 text-primary" />
-                    <p className="text-xl sm:text-2xl font-bold text-gray-800">5</p>
-                    <p className="text-xs sm:text-sm text-gray-600">Запросов</p>
-                  </div>
-                  <div className="p-3 sm:p-4 bg-gradient-to-br from-pink-100 to-pink-50 rounded-xl">
-                    <Icon name="MessageCircle" size={20} className="mx-auto mb-2 text-secondary" />
-                    <p className="text-xl sm:text-2xl font-bold text-gray-800">12</p>
-                    <p className="text-xs sm:text-sm text-gray-600">Откликов</p>
-                  </div>
-                  <div className="p-3 sm:p-4 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl">
-                    <Icon name="Star" size={20} className="mx-auto mb-2 text-accent" />
-                    <p className="text-xl sm:text-2xl font-bold text-gray-800">4.8</p>
-                    <p className="text-xs sm:text-sm text-gray-600">Рейтинг</p>
-                  </div>
-                </div>
 
-                <div className="space-y-2 sm:space-y-3">
-                  <Button 
-                    onClick={() => setIsProfileEditOpen(true)}
-                    variant="outline" 
-                    className="w-full justify-start text-sm sm:text-base font-medium"
-                  >
-                    <Icon name="Settings" size={18} className="mr-2 sm:mr-3" />
-                    Настройки профиля
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start text-sm sm:text-base font-medium">
-                    <Icon name="Bell" size={18} className="mr-2 sm:mr-3" />
-                    Уведомления
-                  </Button>
-                  <Button 
-                    onClick={() => setIsSupportOpen(true)}
-                    variant="outline" 
-                    className="w-full justify-start text-sm sm:text-base font-medium"
-                  >
-                    <Icon name="HelpCircle" size={18} className="mr-2 sm:mr-3" />
-                    Помощь
-                  </Button>
-                  <Button 
-                    onClick={() => setIsAuthenticated(false)}
-                    variant="outline" 
-                    className="w-full justify-start text-sm sm:text-base font-medium text-red-600 hover:text-red-700"
-                  >
-                    <Icon name="LogOut" size={18} className="mr-2 sm:mr-3" />
-                    Выйти
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
           </div>
         </div>
       </main>
@@ -3043,6 +2975,87 @@ const Index = () => {
           </div>
         </div>
       )}
+
+      <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-center">Профиль</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-6">
+            <div className="text-center">
+              <Avatar className="w-24 h-24 mx-auto mb-4 bg-gradient-orange-pink">
+                {avatarPreview ? (
+                  <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <AvatarFallback className="bg-transparent text-white text-3xl font-bold">
+                    {profileData.name.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                )}
+              </Avatar>
+              <h2 className="text-3xl font-bold">Александр</h2>
+              <p className="text-gray-600 mt-1">Пользователь с октября 2024</p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="p-4 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl">
+                <Icon name="FileText" size={20} className="mx-auto mb-2 text-primary" />
+                <p className="text-2xl font-bold text-gray-800">5</p>
+                <p className="text-sm text-gray-600">Запросов</p>
+              </div>
+              <div className="p-4 bg-gradient-to-br from-pink-100 to-pink-50 rounded-xl">
+                <Icon name="MessageCircle" size={20} className="mx-auto mb-2 text-secondary" />
+                <p className="text-2xl font-bold text-gray-800">12</p>
+                <p className="text-sm text-gray-600">Откликов</p>
+              </div>
+              <div className="p-4 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl">
+                <Icon name="Star" size={20} className="mx-auto mb-2 text-accent" />
+                <p className="text-2xl font-bold text-gray-800">4.8</p>
+                <p className="text-sm text-gray-600">Рейтинг</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <Button 
+                onClick={() => {
+                  setIsProfileOpen(false);
+                  setIsProfileEditOpen(true);
+                }}
+                variant="outline" 
+                className="w-full justify-start font-medium"
+              >
+                <Icon name="Settings" size={18} className="mr-3" />
+                Настройки профиля
+              </Button>
+              <Button variant="outline" className="w-full justify-start font-medium">
+                <Icon name="Bell" size={18} className="mr-3" />
+                Уведомления
+              </Button>
+              <Button 
+                onClick={() => {
+                  setIsProfileOpen(false);
+                  setIsSupportOpen(true);
+                }}
+                variant="outline" 
+                className="w-full justify-start font-medium"
+              >
+                <Icon name="HelpCircle" size={18} className="mr-3" />
+                Помощь
+              </Button>
+              <Button 
+                onClick={() => {
+                  setIsProfileOpen(false);
+                  setIsAuthenticated(false);
+                }}
+                variant="outline" 
+                className="w-full justify-start font-medium text-red-600 hover:text-red-700"
+              >
+                <Icon name="LogOut" size={18} className="mr-3" />
+                Выйти
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <button
         onClick={() => setIsSupportOpen(true)}
