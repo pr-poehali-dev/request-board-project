@@ -2471,7 +2471,7 @@ const Index = () => {
 
       <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>
         <DialogContent className="max-w-md rounded-2xl overflow-hidden shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <Icon name="LogIn" size={22} className="text-white" />
@@ -2540,7 +2540,7 @@ const Index = () => {
 
       <Dialog open={isRegisterOpen} onOpenChange={setIsRegisterOpen}>
         <DialogContent className="max-w-md rounded-2xl overflow-hidden shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <Icon name="UserPlus" size={22} className="text-white" />
@@ -2619,7 +2619,7 @@ const Index = () => {
 
       <Dialog open={isProfileEditOpen} onOpenChange={setIsProfileEditOpen}>
         <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <Icon name="Settings" size={22} className="text-white" />
@@ -2746,7 +2746,7 @@ const Index = () => {
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
           {selectedItem && (
             <>
-              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 sticky top-0 z-10">
+              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
                     <Icon name="Eye" size={22} className="text-white" />
@@ -2863,7 +2863,7 @@ const Index = () => {
         <DialogContent className="max-w-md rounded-2xl shadow-2xl">
           {selectedItem && (
             <>
-              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl rounded-t-2xl">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                     <Icon name="MessageSquare" size={22} className="text-white" />
@@ -2930,7 +2930,7 @@ const Index = () => {
 
       <Dialog open={isSupportOpen} onOpenChange={setIsSupportOpen}>
         <DialogContent className="max-w-md h-[600px] flex flex-col p-0 rounded-2xl overflow-hidden shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-5 flex-shrink-0 border-b border-gray-700">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-5 flex-shrink-0 border-b border-gray-700 rounded-t-2xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
@@ -3011,7 +3011,7 @@ const Index = () => {
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
           {selectedUserProfile && (
             <>
-              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 sticky top-0 z-10">
+              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                     <Icon name="User" size={22} className="text-white" />
@@ -3154,7 +3154,7 @@ const Index = () => {
 
       <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl">
             <div className="flex items-center justify-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <Icon name="User" size={22} className="text-white" />
