@@ -2299,154 +2299,146 @@ const Index = () => {
         </div>
       )}
 
-      {isLoginOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
-              <h2 className="text-xl sm:text-2xl font-bold">Вход</h2>
-              <p className="text-white/80 text-sm mt-1">Войдите в свой аккаунт</p>
+      <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
+            <DialogTitle className="text-2xl">Вход</DialogTitle>
+            <p className="text-white/90 text-sm mt-1">Войдите в свой аккаунт</p>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+              <input
+                type="email"
+                value={loginData.email}
+                onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                placeholder="your@email.com"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              />
             </div>
-            <div className="p-4 sm:p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                <input
-                  type="email"
-                  value={loginData.email}
-                  onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Пароль</label>
-                <input
-                  type="password"
-                  value={loginData.password}
-                  onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                  placeholder="••••••••"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-              </div>
-              <div className="flex gap-3 pt-4">
-                <Button onClick={() => setIsLoginOpen(false)} variant="outline" className="flex-1">
-                  Отмена
-                </Button>
-                <Button 
-                  onClick={() => {
-                    if (loginData.email && loginData.password) {
-                      setIsAuthenticated(true);
-                      setIsLoginOpen(false);
-                      setLoginData({ email: '', password: '' });
-                    } else {
-                      alert('Заполните все поля');
-                    }
-                  }}
-                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
-                >
-                  Войти
-                </Button>
-              </div>
-              <p className="text-center text-sm text-gray-600">
-                Нет аккаунта?{' '}
-                <button 
-                  onClick={() => {
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Пароль</label>
+              <input
+                type="password"
+                value={loginData.password}
+                onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                placeholder="••••••••"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              />
+            </div>
+            <div className="flex gap-3 pt-2">
+              <Button onClick={() => setIsLoginOpen(false)} variant="outline" className="flex-1">
+                Отмена
+              </Button>
+              <Button 
+                onClick={() => {
+                  if (loginData.email && loginData.password) {
+                    setIsAuthenticated(true);
                     setIsLoginOpen(false);
-                    setIsRegisterOpen(true);
-                  }}
-                  className="text-primary font-semibold hover:underline"
-                >
-                  Зарегистрируйтесь
-                </button>
-              </p>
+                    setLoginData({ email: '', password: '' });
+                  } else {
+                    alert('Заполните все поля');
+                  }
+                }}
+                className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
+              >
+                Войти
+              </Button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {isRegisterOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
-              <h2 className="text-xl sm:text-2xl font-bold">Регистрация</h2>
-              <p className="text-white/80 text-sm mt-1">Создайте новый аккаунт</p>
-            </div>
-            <div className="p-4 sm:p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Имя</label>
-                <input
-                  type="text"
-                  value={registerData.name}
-                  onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
-                  placeholder="Александр"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                <input
-                  type="email"
-                  value={registerData.email}
-                  onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Пароль</label>
-                <input
-                  type="password"
-                  value={registerData.password}
-                  onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
-                  placeholder="••••••••"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-              </div>
-              <div className="flex gap-3 pt-4">
-                <Button onClick={() => setIsRegisterOpen(false)} variant="outline" className="flex-1">
-                  Отмена
-                </Button>
-                <Button 
-                  onClick={() => {
-                    if (registerData.name && registerData.email && registerData.password) {
-                      setIsAuthenticated(true);
-                      setIsRegisterOpen(false);
-                      setRegisterData({ email: '', password: '', name: '' });
-                    } else {
-                      alert('Заполните все поля');
-                    }
-                  }}
-                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
-                >
-                  Зарегистрироваться
-                </Button>
-              </div>
-              <p className="text-center text-sm text-gray-600">
-                Уже есть аккаунт?{' '}
-                <button 
-                  onClick={() => {
-                    setIsRegisterOpen(false);
-                    setIsLoginOpen(true);
-                  }}
-                  className="text-primary font-semibold hover:underline"
-                >
-                  Войдите
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {isProfileEditOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-6 rounded-t-2xl flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Редактирование профиля</h2>
-              <button onClick={() => setIsProfileEditOpen(false)} className="p-2 hover:bg-white/20 rounded-lg">
-                <Icon name="X" size={24} />
+            <p className="text-center text-sm text-gray-600 pt-2">
+              Нет аккаунта?{' '}
+              <button 
+                onClick={() => {
+                  setIsLoginOpen(false);
+                  setIsRegisterOpen(true);
+                }}
+                className="text-primary font-semibold hover:underline"
+              >
+                Зарегистрируйтесь
               </button>
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isRegisterOpen} onOpenChange={setIsRegisterOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
+            <DialogTitle className="text-2xl">Регистрация</DialogTitle>
+            <p className="text-white/90 text-sm mt-1">Создайте новый аккаунт</p>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Имя</label>
+              <input
+                type="text"
+                value={registerData.name}
+                onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
+                placeholder="Александр"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              />
             </div>
-            <div className="p-6 space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+              <input
+                type="email"
+                value={registerData.email}
+                onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                placeholder="your@email.com"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Пароль</label>
+              <input
+                type="password"
+                value={registerData.password}
+                onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
+                placeholder="••••••••"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              />
+            </div>
+            <div className="flex gap-3 pt-2">
+              <Button onClick={() => setIsRegisterOpen(false)} variant="outline" className="flex-1">
+                Отмена
+              </Button>
+              <Button 
+                onClick={() => {
+                  if (registerData.name && registerData.email && registerData.password) {
+                    setIsAuthenticated(true);
+                    setIsRegisterOpen(false);
+                    setRegisterData({ email: '', password: '', name: '' });
+                  } else {
+                    alert('Заполните все поля');
+                  }
+                }}
+                className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
+              >
+                Зарегистрироваться
+              </Button>
+            </div>
+            <p className="text-center text-sm text-gray-600 pt-2">
+              Уже есть аккаунт?{' '}
+              <button 
+                onClick={() => {
+                  setIsRegisterOpen(false);
+                  setIsLoginOpen(true);
+                }}
+                className="text-primary font-semibold hover:underline"
+              >
+                Войдите
+              </button>
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isProfileEditOpen} onOpenChange={setIsProfileEditOpen}>
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
+            <DialogTitle className="text-2xl">Редактирование профиля</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Фото профиля</label>
                 <div className="flex items-center gap-4">
@@ -2504,7 +2496,7 @@ const Index = () => {
                   type="text"
                   value={profileData.name}
                   onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 />
               </div>
               <div>
@@ -2513,7 +2505,7 @@ const Index = () => {
                   type="email"
                   value={profileData.email}
                   onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 />
               </div>
               <hr className="my-4" />
@@ -2525,7 +2517,7 @@ const Index = () => {
                   value={profileData.currentPassword}
                   onChange={(e) => setProfileData({ ...profileData, currentPassword: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 />
               </div>
               <div>
@@ -2534,46 +2526,41 @@ const Index = () => {
                   type="password"
                   value={profileData.newPassword}
                   onChange={(e) => setProfileData({ ...profileData, newPassword: e.target.value })}
-                  placeholder="••••••••"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-              </div>
-              <div className="flex gap-3 pt-4">
-                <Button onClick={() => setIsProfileEditOpen(false)} variant="outline" className="flex-1">
-                  Отмена
-                </Button>
-                <Button 
-                  onClick={() => {
-                    alert('Профиль обновлён!');
-                    setIsProfileEditOpen(false);
-                  }}
-                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
-                >
-                  Сохранить
-                </Button>
-              </div>
+                placeholder="••••••••"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              />
+            </div>
+            <div className="flex gap-3 pt-2">
+              <Button onClick={() => setIsProfileEditOpen(false)} variant="outline" className="flex-1">
+                Отмена
+              </Button>
+              <Button 
+                onClick={() => {
+                  alert('Профиль обновлён!');
+                  setIsProfileEditOpen(false);
+                }}
+                className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
+              >
+                Сохранить
+              </Button>
             </div>
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
 
-      {isViewModalOpen && selectedItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="sticky top-0 bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between z-10">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-bold line-clamp-2">{selectedItem.title}</h2>
-              <button 
-                onClick={() => {
-                  setIsViewModalOpen(false);
-                  setSelectedItem(null);
-                }}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-              >
-                <Icon name="X" size={24} />
-              </button>
-            </div>
-
-            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <Dialog open={isViewModalOpen && !!selectedItem} onOpenChange={(open) => {
+        if (!open) {
+          setIsViewModalOpen(false);
+          setSelectedItem(null);
+        }
+      }}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          {selectedItem && (
+            <>
+              <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg sticky top-0 z-10">
+                <DialogTitle className="text-2xl line-clamp-2">{selectedItem.title}</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-6">
               {'photos' in selectedItem && selectedItem.photos && selectedItem.photos.length > 0 && (
                 <div>
                   <h3 className="text-lg font-bold text-gray-800 mb-3">Фотографии</h3>
@@ -2666,29 +2653,25 @@ const Index = () => {
                   </Badge>
                 )}
               </div>
-            </div>
-          </div>
-        </div>
-      )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
-      {isResponseModalOpen && selectedItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
-              <h2 className="text-xl sm:text-2xl font-bold">Откликнуться</h2>
-              <button 
-                onClick={() => {
-                  setIsResponseModalOpen(false);
-                  setSelectedItem(null);
-                  setResponseData({ price: '', comment: '' });
-                }}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-              >
-                <Icon name="X" size={24} />
-              </button>
-            </div>
-            
-            <div className="p-4 sm:p-6 space-y-4">
+      <Dialog open={isResponseModalOpen && !!selectedItem} onOpenChange={(open) => {
+        if (!open) {
+          setIsResponseModalOpen(false);
+          setSelectedItem(null);
+          setResponseData({ price: '', comment: '' });
+        }
+      }}>
+        <DialogContent className="max-w-md">
+          {selectedItem && (
+            <>
+              <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
+                <DialogTitle className="text-2xl">Откликнуться</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
               <div>
                 <p className="text-sm text-gray-600 mb-4">Откликаетесь на: <span className="font-bold text-gray-800 break-words">{selectedItem.title}</span></p>
               </div>
@@ -2700,7 +2683,7 @@ const Index = () => {
                   value={responseData.price}
                   onChange={(e) => setResponseData({ ...responseData, price: e.target.value })}
                   placeholder="Например: 100 000 ₽"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 />
               </div>
 
@@ -2711,11 +2694,11 @@ const Index = () => {
                   onChange={(e) => setResponseData({ ...responseData, comment: e.target.value })}
                   placeholder="Расскажите подробнее о вашем предложении..."
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none transition-all"
                 />
               </div>
 
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-3 pt-2">
                 <Button 
                   onClick={() => {
                     setIsResponseModalOpen(false);
@@ -2740,29 +2723,26 @@ const Index = () => {
                 </Button>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
-      {isSupportOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4">
-          <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl w-full max-w-2xl h-full sm:h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white p-4 rounded-t-none sm:rounded-t-2xl flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Avatar className="w-10 h-10 bg-white/20">
-                  <AvatarFallback className="bg-transparent text-white font-bold text-xl">👮</AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="font-bold text-lg">Поддержка</h3>
-                  <p className="text-xs text-white/80">Онлайн 24/7</p>
-                </div>
+      <Dialog open={isSupportOpen} onOpenChange={setIsSupportOpen}>
+        <DialogContent className="max-w-2xl h-[600px] flex flex-col p-0">
+          <DialogHeader className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white p-4 rounded-t-lg flex-shrink-0">
+            <div className="flex items-center space-x-3">
+              <Avatar className="w-10 h-10 bg-white/20">
+                <AvatarFallback className="bg-transparent text-white font-bold text-xl">👮</AvatarFallback>
+              </Avatar>
+              <div>
+                <DialogTitle className="font-bold text-lg text-white">Поддержка</DialogTitle>
+                <p className="text-xs text-white/80">Онлайн 24/7</p>
               </div>
-              <button onClick={() => setIsSupportOpen(false)} className="p-2 hover:bg-white/20 rounded-lg">
-                <Icon name="X" size={24} />
-              </button>
             </div>
-            
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+          </DialogHeader>
+          
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
               {supportMessages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
@@ -2779,72 +2759,67 @@ const Index = () => {
                   </div>
                 </div>
               ))}
-              <div ref={chatEndRef} />
-            </div>
+            <div ref={chatEndRef} />
+          </div>
 
-            <div className="p-4 bg-white border-t rounded-b-2xl">
-              <div className="flex items-center space-x-2">
-                <input
-                  type="text"
-                  value={newMessage}
-                  onChange={(e) => setNewMessage(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter' && newMessage.trim()) {
-                      const msg: ChatMessage = {
-                        id: supportMessages.length + 1,
-                        text: newMessage,
-                        sender: 'me',
-                        timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
-                        author: 'Вы'
-                      };
-                      setSupportMessages([...supportMessages, msg]);
-                      setNewMessage('');
-                    }
-                  }}
-                  placeholder="Напишите ваш вопрос..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
-                />
-                <Button 
-                  onClick={() => {
-                    if (newMessage.trim()) {
-                      const msg: ChatMessage = {
-                        id: supportMessages.length + 1,
-                        text: newMessage,
-                        sender: 'me',
-                        timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
-                        author: 'Вы'
-                      };
-                      setSupportMessages([...supportMessages, msg]);
-                      setNewMessage('');
-                    }
-                  }}
-                  className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600 px-4 py-2 rounded-xl transition-all duration-300"
-                >
-                  <Icon name="Send" size={18} />
-                </Button>
-              </div>
+          <div className="p-4 bg-white border-t flex-shrink-0">
+            <div className="flex items-center space-x-2">
+              <input
+                type="text"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' && newMessage.trim()) {
+                    const msg: ChatMessage = {
+                      id: supportMessages.length + 1,
+                      text: newMessage,
+                      sender: 'me',
+                      timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+                      author: 'Вы'
+                    };
+                    setSupportMessages([...supportMessages, msg]);
+                    setNewMessage('');
+                  }
+                }}
+                placeholder="Напишите ваш вопрос..."
+                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm transition-all"
+              />
+              <Button 
+                onClick={() => {
+                  if (newMessage.trim()) {
+                    const msg: ChatMessage = {
+                      id: supportMessages.length + 1,
+                      text: newMessage,
+                      sender: 'me',
+                      timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+                      author: 'Вы'
+                    };
+                    setSupportMessages([...supportMessages, msg]);
+                    setNewMessage('');
+                  }
+                }}
+                className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600 px-4 py-2.5 rounded-lg"
+              >
+                <Icon name="Send" size={18} />
+              </Button>
             </div>
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
 
-      {isUserProfileOpen && selectedUserProfile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between sticky top-0 z-10">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-bold">Профиль пользователя</h2>
-              <button 
-                onClick={() => {
-                  setIsUserProfileOpen(false);
-                  setSelectedUserProfile(null);
-                }}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-              >
-                <Icon name="X" size={24} />
-              </button>
-            </div>
-            
-            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <Dialog open={isUserProfileOpen && !!selectedUserProfile} onOpenChange={(open) => {
+        if (!open) {
+          setIsUserProfileOpen(false);
+          setSelectedUserProfile(null);
+        }
+      }}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          {selectedUserProfile && (
+            <>
+              <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg sticky top-0 z-10">
+                <DialogTitle className="text-2xl">Профиль пользователя</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-start gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl">
                 <Avatar className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-orange-pink flex-shrink-0">
                   <AvatarFallback className="bg-transparent text-white text-2xl sm:text-3xl font-bold">
@@ -2972,14 +2947,15 @@ const Index = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-center">Профиль</DialogTitle>
+          <DialogHeader className="bg-gradient-orange-pink text-white -m-6 mb-6 p-6 rounded-t-lg">
+            <DialogTitle className="text-2xl text-center text-white">Мой Профиль</DialogTitle>
           </DialogHeader>
           <div className="space-y-6">
             <div className="text-center">
