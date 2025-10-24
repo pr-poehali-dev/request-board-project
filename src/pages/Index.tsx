@@ -879,7 +879,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="bg-white py-6 sm:py-8 mb-6">
+      <div className="bg-gray-50 py-6 sm:py-8">
         <div className="text-center mb-6">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
@@ -997,10 +997,10 @@ const Index = () => {
         </div>
       </div>
       
-      <div className="hidden lg:block sticky top-[72px] z-40 bg-white border-b border-gray-200 shadow-sm">
+      <div className="hidden lg:block sticky top-[72px] z-40 bg-gray-50 border-b border-gray-200 shadow-sm">
         <div className="py-4">
           <div className="container mx-auto" style={{ maxWidth: '1400px' }}>
-            <div className="flex gap-3 mb-4 flex-wrap items-center justify-between">
+            <div className="flex gap-3 mb-5 flex-wrap items-center justify-between">
               <div className="flex gap-2">
                 <button
                   onClick={() => setActiveTab('requests')}
