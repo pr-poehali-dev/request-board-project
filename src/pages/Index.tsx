@@ -1098,7 +1098,7 @@ const Index = () => {
                 }}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === null 
-                    ? 'bg-gradient-to-r from-pink-600 to-orange-500 text-white shadow-md' 
+                    ? 'bg-gray-800 text-white shadow-md' 
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
