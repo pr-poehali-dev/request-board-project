@@ -1144,6 +1144,18 @@ const Index = () => {
                   })}
                 </div>
               </div>
+
+              <button
+                onClick={() => {
+                  setSelectedCategory(null);
+                  setSelectedCity(null);
+                  scrollToTop();
+                }}
+                className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-medium py-2.5 px-4 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
+              >
+                <Icon name="X" size={16} className="inline mr-2" />
+                Сбросить фильтры
+              </button>
             </div>
           </aside>
           <div className="flex-1 min-w-0 relative">
