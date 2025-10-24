@@ -995,103 +995,98 @@ const Index = () => {
             })}
           </div>
         </div>
-        <div className="flex gap-6">
-          <aside className="hidden lg:block w-56 flex-shrink-0">
-            <div className="sticky top-[88px] space-y-4 max-h-[calc(100vh-100px)] overflow-y-auto pr-2 custom-scrollbar" style={{scrollbarWidth: 'thin', scrollbarColor: '#e0e7ff #f8fafc'}}>
-              <div className="space-y-1">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Навигация</h3>
-                <Button
-                  variant={activeTab === 'requests' ? 'default' : 'ghost'}
-                  onClick={() => setActiveTab('requests')}
-                  className="w-full justify-start font-medium"
-                >
-                  <Icon name="Search" size={18} className="mr-2" />
-                  Запросы
-                </Button>
-                <Button
-                  variant={activeTab === 'offers' ? 'default' : 'ghost'}
-                  onClick={() => setActiveTab('offers')}
-                  className="w-full justify-start font-medium"
-                >
-                  <Icon name="Package" size={18} className="mr-2" />
-                  Предложения
-                </Button>
-              </div>
+        
+        <div className="hidden lg:flex gap-3 mb-6 flex-wrap items-center justify-between bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+          <div className="flex gap-2">
+            <Button
+              variant={activeTab === 'requests' ? 'default' : 'ghost'}
+              onClick={() => setActiveTab('requests')}
+              className="font-medium"
+            >
+              <Icon name="Search" size={18} className="mr-2" />
+              Запросы
+            </Button>
+            <Button
+              variant={activeTab === 'offers' ? 'default' : 'ghost'}
+              onClick={() => setActiveTab('offers')}
+              className="font-medium"
+            >
+              <Icon name="Package" size={18} className="mr-2" />
+              Предложения
+            </Button>
+          </div>
 
-              <div className="space-y-1 pt-4 border-t">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Сортировать</h3>
-                <Button
-                  variant={sortBy === 'date' ? 'default' : 'ghost'}
-                  onClick={() => setSortBy('date')}
-                  className="w-full justify-start font-medium text-sm"
-                >
-                  <Icon name="Calendar" size={16} className="mr-2" />
-                  По дате
-                </Button>
-                <Button
-                  variant={sortBy === 'popular' ? 'default' : 'ghost'}
-                  onClick={() => setSortBy('popular')}
-                  className="w-full justify-start font-medium text-sm"
-                >
-                  <Icon name="TrendingUp" size={16} className="mr-2" />
-                  По популярности
-                </Button>
-                <Button
-                  variant={sortBy === 'price' ? 'default' : 'ghost'}
-                  onClick={() => setSortBy('price')}
-                  className="w-full justify-start font-medium text-sm"
-                >
-                  <Icon name="DollarSign" size={16} className="mr-2" />
-                  По цене
-                </Button>
-              </div>
+          <div className="flex gap-2 items-center">
+            <span className="text-sm text-gray-600 mr-2">Сортировка:</span>
+            <Button
+              variant={sortBy === 'date' ? 'default' : 'outline'}
+              onClick={() => setSortBy('date')}
+              size="sm"
+            >
+              <Icon name="Calendar" size={14} className="mr-1.5" />
+              По дате
+            </Button>
+            <Button
+              variant={sortBy === 'popular' ? 'default' : 'outline'}
+              onClick={() => setSortBy('popular')}
+              size="sm"
+            >
+              <Icon name="TrendingUp" size={14} className="mr-1.5" />
+              По популярности
+            </Button>
+            <Button
+              variant={sortBy === 'price' ? 'default' : 'outline'}
+              onClick={() => setSortBy('price')}
+              size="sm"
+            >
+              <Icon name="DollarSign" size={14} className="mr-1.5" />
+              По цене
+            </Button>
+          </div>
 
-              <div className="space-y-1 pt-4 border-t">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Фильтры</h3>
-                <div className="px-3">
-                  <div className="relative">
-                    <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
-                    <select
-                      value={selectedCity || ''}
-                      onChange={(e) => setSelectedCity(e.target.value || null)}
-                      className="appearance-none w-full pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
-                    >
-                      <option value="">Все города</option>
-                      {cities.map((city) => (
-                        <option key={city} value={city}>
-                          {city}
-                        </option>
-                      ))}
-                    </select>
-                    <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-1 pt-4 border-t">
-                <h3 className="text-sm font-bold text-gray-700 mb-3 px-3">Категории</h3>
-                <Button
-                  variant={selectedCategory === null ? 'default' : 'ghost'}
-                  onClick={() => setSelectedCategory(null)}
-                  className="w-full justify-start"
-                >
-                  <Icon name="Grid3x3" size={18} className="mr-2" />
-                  Все категории
-                </Button>
-                {categories.map((category) => (
-                  <Button
-                    key={category.name}
-                    variant={selectedCategory === category.name ? 'default' : 'ghost'}
-                    onClick={() => setSelectedCategory(category.name)}
-                    className="w-full justify-start"
-                  >
-                    <Icon name={category.icon as any} size={18} className="mr-2" />
-                    {category.name}
-                  </Button>
+          <div className="flex gap-2 items-center">
+            <div className="relative">
+              <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
+              <select
+                value={selectedCity || ''}
+                onChange={(e) => setSelectedCity(e.target.value || null)}
+                className="appearance-none pl-9 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
+              >
+                <option value="">Все города</option>
+                {cities.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
                 ))}
-              </div>
+              </select>
+              <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             </div>
-          </aside>
+          </div>
+        </div>
+
+        <div className="hidden lg:flex gap-2 mb-6 flex-wrap">
+          <Button
+            variant={selectedCategory === null ? 'default' : 'outline'}
+            onClick={() => setSelectedCategory(null)}
+            size="sm"
+          >
+            <Icon name="Grid3x3" size={16} className="mr-1.5" />
+            Все категории
+          </Button>
+          {categories.map((category) => (
+            <Button
+              key={category.name}
+              variant={selectedCategory === category.name ? 'default' : 'outline'}
+              onClick={() => setSelectedCategory(category.name)}
+              size="sm"
+            >
+              <Icon name={category.icon as any} size={16} className="mr-1.5" />
+              {category.name}
+            </Button>
+          ))}
+        </div>
+
+        <div className="flex gap-6">
           <div className="flex-1 min-w-0 relative">
             {swipeDirection && (
               <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
