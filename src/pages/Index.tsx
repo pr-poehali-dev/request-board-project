@@ -1061,7 +1061,7 @@ const Index = () => {
 
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                 <h3 className="font-semibold text-gray-900 mb-3 text-sm">Категории</h3>
-                <div className="space-y-1.5">
+                <div className="space-y-1.5 max-h-[400px] overflow-y-auto">
                   <button
                     onClick={() => {
                       setSelectedCategory(null);
