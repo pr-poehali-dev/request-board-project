@@ -623,8 +623,8 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50/50 via-indigo-50/50 to-purple-50/50">
-      <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50/50 via-pink-50/50 to-orange-50/50">
+      <nav className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 border-b border-purple-700 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{ maxWidth: '1400px' }}>
           <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
             <button 
@@ -760,7 +760,7 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600 font-bold shadow-xl hover:shadow-2xl transition-all duration-300 px-6 h-11 rounded-2xl hover:scale-105 border border-white/40 overflow-hidden group backdrop-blur-sm"
+                className="relative bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 font-bold shadow-xl hover:shadow-2xl transition-all duration-300 px-6 h-11 rounded-2xl hover:scale-105 border border-white/40 overflow-hidden group backdrop-blur-sm"
                 title="Создать объявление"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
@@ -883,7 +883,7 @@ const Index = () => {
 
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
         <div className="mb-6 sm:mb-8 text-center">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
           </h1>
           <p className="text-sm sm:text-base text-black max-w-2xl mx-auto font-medium mb-8">
@@ -1184,10 +1184,10 @@ const Index = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <div className="bg-indigo-50 border border-indigo-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                            <Icon name="MessageCircle" size={16} className="text-indigo-600" />
-                            <span className="text-sm font-bold text-indigo-700">{request.responses}</span>
-                            <span className="text-xs text-indigo-600 font-medium">откликов</span>
+                          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
+                            <Icon name="MessageCircle" size={16} className="text-purple-600" />
+                            <span className="text-sm font-bold text-purple-700">{request.responses}</span>
+                            <span className="text-xs text-purple-600 font-medium">откликов</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-gray-600">
                             <Icon name="Eye" size={16} />
@@ -1366,10 +1366,10 @@ const Index = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <div className="bg-indigo-50 border border-indigo-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                            <Icon name="MessageCircle" size={16} className="text-indigo-600" />
-                            <span className="text-sm font-bold text-indigo-700">{Math.floor(Math.random() * 30) + 5}</span>
-                            <span className="text-xs text-indigo-600 font-medium">откликов</span>
+                          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
+                            <Icon name="MessageCircle" size={16} className="text-purple-600" />
+                            <span className="text-sm font-bold text-purple-700">{Math.floor(Math.random() * 30) + 5}</span>
+                            <span className="text-xs text-purple-600 font-medium">откликов</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-gray-600">
                             <Icon name="Eye" size={16} />
