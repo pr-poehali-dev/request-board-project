@@ -1177,7 +1177,7 @@ const Index = () => {
                             }
                           }}
                         >
-                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 ring-2 ring-violet-200">
+                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-pink-500 to-orange-500 ring-2 ring-pink-200">
                             <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                               {request.author[0]}
                             </AvatarFallback>
@@ -1369,7 +1369,7 @@ const Index = () => {
                             }
                           }}
                         >
-                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-blue-purple">
+                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-pink-500 to-orange-500 ring-2 ring-pink-200">
                             <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                               {offer.author[0]}
                             </AvatarFallback>
