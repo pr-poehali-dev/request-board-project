@@ -863,7 +863,7 @@ const Index = () => {
               const categoryImages: Record<string, string> = {
                 'Электроника': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/bbc49705-5890-4006-92ff-30a49ce12701.jpg',
                 'Одежда': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/096cb481-d5f5-4c79-b61c-d9073e7570e8.jpg',
-                'Услуги': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/8ffad844-e1ba-4c3c-918a-e8e774b855bf.jpg',
+                'Услуги': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/90c8af62-622c-4bb6-8217-4efbded72ea4.jpg',
                 'Недвижимость': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/59b3e8ee-2b58-4b07-b924-7d1a7adc892f.jpg',
                 'Транспорт': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/e35bceed-0e7e-432f-87d6-dec7712cce0b.jpg',
                 'Мебель': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7b11d7af-2698-4214-8d53-9db3b7f68313.jpg',
