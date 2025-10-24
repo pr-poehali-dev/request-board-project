@@ -402,9 +402,7 @@ const Index = () => {
     { id: 1, text: 'Здравствуйте! Я бот-помощник. Чем могу помочь?', sender: 'other', timestamp: 'сейчас', author: 'Поддержка' },
   ]);
   const [newMessage, setNewMessage] = useState('');
-  const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [language, setLanguage] = useState<'ru' | 'ua'>('ru');
-  const [sortBy, setSortBy] = useState<'date' | 'popular' | 'price'>('date');
   const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
