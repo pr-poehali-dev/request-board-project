@@ -902,7 +902,7 @@ const Index = () => {
           className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 px-3 sm:px-6 lg:px-8"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-            {[...categories, ...categories].map((category, index) => {
+            {categories.slice(0, 9).map((category, index) => {
               const categoryImages: Record<string, string> = {
                 'Электроника': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/bbc49705-5890-4006-92ff-30a49ce12701.jpg',
                 'Одежда': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/096cb481-d5f5-4c79-b61c-d9073e7570e8.jpg',
@@ -1010,7 +1010,7 @@ const Index = () => {
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-24 space-y-4">
+            <div className="sticky top-20 space-y-4">
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                 <h3 className="font-semibold text-gray-900 mb-3 text-sm">Тип</h3>
                 <div className="space-y-2">
