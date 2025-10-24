@@ -1013,7 +1013,7 @@ const Index = () => {
                   onClick={() => setActiveTab('requests')}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     activeTab === 'requests' 
-                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
+                      ? 'bg-emerald-600 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1024,7 +1024,7 @@ const Index = () => {
                   onClick={() => setActiveTab('offers')}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     activeTab === 'offers' 
-                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
+                      ? 'bg-emerald-600 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1039,7 +1039,7 @@ const Index = () => {
                   onClick={() => setSortBy('date')}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     sortBy === 'date' 
-                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
+                      ? 'bg-emerald-600 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1050,7 +1050,7 @@ const Index = () => {
                   onClick={() => setSortBy('popular')}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     sortBy === 'popular' 
-                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
+                      ? 'bg-emerald-600 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1061,7 +1061,7 @@ const Index = () => {
                   onClick={() => setSortBy('price')}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     sortBy === 'price' 
-                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
+                      ? 'bg-emerald-600 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
