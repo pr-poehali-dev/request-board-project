@@ -1123,6 +1123,16 @@ const Index = () => {
                               request.category === 'Услуги' ? 'bg-orange-600' :
                               request.category === 'Недвижимость' ? 'bg-emerald-600' :
                               request.category === 'Транспорт' ? 'bg-purple-600' :
+                              request.category === 'Мебель' ? 'bg-amber-600' :
+                              request.category === 'Детские товары' ? 'bg-sky-500' :
+                              request.category === 'Спорт' ? 'bg-green-600' :
+                              request.category === 'Красота' ? 'bg-fuchsia-600' :
+                              request.category === 'Животные' ? 'bg-yellow-600' :
+                              request.category === 'Хобби' ? 'bg-indigo-600' :
+                              request.category === 'Книги' ? 'bg-slate-600' :
+                              request.category === 'Строительство' ? 'bg-yellow-700' :
+                              request.category === 'Работа' ? 'bg-cyan-600' :
+                              request.category === 'Еда и напитки' ? 'bg-rose-600' :
                               'bg-violet-600'
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
@@ -1305,6 +1315,16 @@ const Index = () => {
                               offer.category === 'Услуги' ? 'bg-orange-600' :
                               offer.category === 'Недвижимость' ? 'bg-emerald-600' :
                               offer.category === 'Транспорт' ? 'bg-purple-600' :
+                              offer.category === 'Мебель' ? 'bg-amber-600' :
+                              offer.category === 'Детские товары' ? 'bg-sky-500' :
+                              offer.category === 'Спорт' ? 'bg-green-600' :
+                              offer.category === 'Красота' ? 'bg-fuchsia-600' :
+                              offer.category === 'Животные' ? 'bg-yellow-600' :
+                              offer.category === 'Хобби' ? 'bg-indigo-600' :
+                              offer.category === 'Книги' ? 'bg-slate-600' :
+                              offer.category === 'Строительство' ? 'bg-yellow-700' :
+                              offer.category === 'Работа' ? 'bg-cyan-600' :
+                              offer.category === 'Еда и напитки' ? 'bg-rose-600' :
                               'bg-violet-600'
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {offer.category}
