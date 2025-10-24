@@ -2900,31 +2900,36 @@ const Index = () => {
       </Dialog>
 
       <Dialog open={isSupportOpen} onOpenChange={setIsSupportOpen}>
-        <DialogContent className="max-w-2xl h-[600px] flex flex-col p-0">
-          <DialogHeader className="bg-gray-800 text-white p-4 rounded-t-lg flex-shrink-0">
-            <div className="flex items-center space-x-3">
-              <Avatar className="w-10 h-10 bg-white/20">
-                <AvatarFallback className="bg-transparent text-white font-bold text-xl">👮</AvatarFallback>
-              </Avatar>
-              <div>
-                <DialogTitle className="font-bold text-lg text-white">Поддержка</DialogTitle>
-                <p className="text-xs text-white/80">Онлайн 24/7</p>
+        <DialogContent className="max-w-md h-[600px] flex flex-col p-0 rounded-2xl overflow-hidden shadow-2xl">
+          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-5 flex-shrink-0 border-b border-gray-700">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                  <Icon name="Headphones" size={22} className="text-white" />
+                </div>
+                <div>
+                  <DialogTitle className="font-bold text-lg text-white">Поддержка</DialogTitle>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <p className="text-xs text-gray-300">Онлайн</p>
+                  </div>
+                </div>
               </div>
             </div>
           </DialogHeader>
           
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+          <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-gradient-to-b from-gray-50 to-gray-100">
               {supportMessages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
-                    <div className={`rounded-2xl px-4 py-2 ${
+                  <div className={`max-w-[80%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
+                    <div className={`rounded-2xl px-4 py-3 shadow-sm ${
                       msg.sender === 'me' 
-                        ? 'bg-gray-700 text-white' 
+                        ? 'bg-gradient-to-br from-gray-700 to-gray-800 text-white' 
                         : 'bg-white text-gray-800 border border-gray-200'
                     }`}>
-                      <p className="text-sm">{msg.text}</p>
+                      <p className="text-sm leading-relaxed">{msg.text}</p>
                     </div>
-                    <p className={`text-xs text-gray-500 mt-1 ${msg.sender === 'me' ? 'text-right' : 'text-left'}`}>
+                    <p className={`text-xs text-gray-400 mt-1.5 ${msg.sender === 'me' ? 'text-right' : 'text-left'}`}>
                       {msg.timestamp}
                     </p>
                   </div>
@@ -2933,31 +2938,33 @@ const Index = () => {
             <div ref={chatEndRef} />
           </div>
 
-          <div className="p-4 bg-white border-t flex-shrink-0">
+          <div className="p-4 bg-white border-t border-gray-200 flex-shrink-0">
             <div className="flex items-center space-x-2">
-              <input
-                type="text"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter' && newMessage.trim()) {
-                    const msg: ChatMessage = {
-                      id: supportMessages.length + 1,
-                      text: newMessage,
-                      sender: 'me',
-                      timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
-                      author: 'Вы'
-                    };
-                    setSupportMessages([...supportMessages, msg]);
-                    setNewMessage('');
-                  }
-                }}
-                placeholder="Напишите ваш вопрос..."
-                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm transition-all"
-              />
+              <div className="flex-1 relative">
+                <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' && newMessage.trim()) {
+                      const msg: ChatMessage = {
+                        id: supportMessages.length + 1,
+                        text: newMessage,
+                        sender: 'me',
+                        timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+                        author: 'Вы'
+                      };
+                      setSupportMessages([...supportMessages, msg]);
+                      setNewMessage('');
+                    }
+                  }}
+                  placeholder="Сообщение..."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent text-sm transition-all bg-gray-50"
+                />
+              </div>
               <Button 
                 onClick={handleSendSupportMessage}
-                className="bg-gray-700 text-white hover:bg-gray-800 px-4 py-2.5 rounded-lg"
+                className="bg-gradient-to-br from-gray-700 to-gray-800 text-white hover:from-gray-800 hover:to-gray-900 px-4 py-3 rounded-xl shadow-lg transition-all hover:shadow-xl"
               >
                 <Icon name="Send" size={18} />
               </Button>
