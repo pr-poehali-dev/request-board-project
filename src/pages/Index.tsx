@@ -879,20 +879,21 @@ const Index = () => {
         </div>
       </div>
 
-      <main className="container mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
-        <div className="mb-6 sm:mb-8 text-center">
+      <div className="bg-white py-6 sm:py-8 mb-6">
+        <div className="text-center mb-6">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
           </h1>
-          <p className="text-sm sm:text-base text-black max-w-2xl mx-auto font-medium mb-8">
+          <p className="text-sm sm:text-base text-black max-w-2xl mx-auto font-medium">
             Доска объявлений нового поколения — где запросы встречаются с предложениями
           </p>
-          
-          <div 
-            ref={carouselRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide pb-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
+        </div>
+        
+        <div 
+          ref={carouselRef}
+          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 px-3 sm:px-6 lg:px-8"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
             {[...categories, ...categories].map((category, index) => {
               const categoryImages: Record<string, string> = {
                 'Электроника': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/bbc49705-5890-4006-92ff-30a49ce12701.jpg',
@@ -993,10 +994,11 @@ const Index = () => {
               </div>
             );
             })}
-          </div>
         </div>
-        
-        <div className="hidden lg:block sticky top-[72px] z-40 bg-white border-b border-gray-200 shadow-sm left-0 right-0 -mx-[50vw] px-[50vw] py-4 mb-6">
+      </div>
+      
+      <div className="hidden lg:block sticky top-[72px] z-40 bg-white border-b border-gray-200 shadow-sm">
+        <div className="py-4">
           <div className="container mx-auto" style={{ maxWidth: '1400px' }}>
             <div className="flex gap-3 mb-4 flex-wrap items-center justify-between">
               <div className="flex gap-2">
@@ -1110,7 +1112,9 @@ const Index = () => {
             </div>
           </div>
         </div>
+      </div>
 
+      <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <div className="flex-1 min-w-0 relative">
             {swipeDirection && (
