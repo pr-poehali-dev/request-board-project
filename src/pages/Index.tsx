@@ -1118,12 +1118,12 @@ const Index = () => {
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
                             <Badge className={`${
-                              request.category === 'Электроника' ? 'bg-gradient-to-r from-blue-500 to-indigo-600' :
-                              request.category === 'Одежда' ? 'bg-gradient-to-r from-pink-500 to-rose-500' :
-                              request.category === 'Услуги' ? 'bg-gradient-to-r from-orange-500 to-yellow-500' :
-                              request.category === 'Недвижимость' ? 'bg-gradient-to-r from-emerald-500 to-teal-500' :
-                              request.category === 'Транспорт' ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500' :
-                              'bg-gradient-to-r from-blue-500 to-purple-500'
+                              request.category === 'Электроника' ? 'bg-purple-600' :
+                              request.category === 'Одежда' ? 'bg-pink-600' :
+                              request.category === 'Услуги' ? 'bg-orange-500' :
+                              request.category === 'Недвижимость' ? 'bg-emerald-600' :
+                              request.category === 'Транспорт' ? 'bg-violet-600' :
+                              'bg-purple-600'
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
                             </Badge>
@@ -1132,13 +1132,13 @@ const Index = () => {
                               {request.city}
                             </Badge>
                             {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-emerald-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-gradient-to-r from-violet-50 to-purple-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-purple-700 border-purple-300 bg-purple-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
@@ -1239,7 +1239,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                          className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
@@ -1300,12 +1300,12 @@ const Index = () => {
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
                             <Badge className={`${
-                              offer.category === 'Электроника' ? 'bg-gradient-to-r from-blue-500 to-indigo-600' :
-                              offer.category === 'Одежда' ? 'bg-gradient-to-r from-pink-500 to-rose-500' :
-                              offer.category === 'Услуги' ? 'bg-gradient-to-r from-orange-500 to-yellow-500' :
-                              offer.category === 'Недвижимость' ? 'bg-gradient-to-r from-emerald-500 to-teal-500' :
-                              offer.category === 'Транспорт' ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500' :
-                              'bg-gradient-to-r from-blue-500 to-purple-500'
+                              offer.category === 'Электроника' ? 'bg-purple-600' :
+                              offer.category === 'Одежда' ? 'bg-pink-600' :
+                              offer.category === 'Услуги' ? 'bg-orange-500' :
+                              offer.category === 'Недвижимость' ? 'bg-emerald-600' :
+                              offer.category === 'Транспорт' ? 'bg-violet-600' :
+                              'bg-purple-600'
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {offer.category}
                             </Badge>
@@ -1314,13 +1314,13 @@ const Index = () => {
                               {offer.city}
                             </Badge>
                             {offer.delivery && (
-                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-emerald-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {offer.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-gradient-to-r from-violet-50 to-purple-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-purple-700 border-purple-300 bg-purple-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
@@ -1421,7 +1421,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                          className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                         >
                           Написать
                           <Icon name="MessageCircle" size={14} className="ml-1.5" />
