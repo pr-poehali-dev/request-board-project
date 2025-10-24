@@ -308,6 +308,7 @@ const Index = () => {
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const contentTopRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState<number>(1);
@@ -997,7 +998,7 @@ const Index = () => {
         </div>
       </div>
       
-      <div className="hidden lg:block sticky top-[72px] z-40 bg-gray-50 border-b border-gray-200 shadow-sm">
+      <div className="hidden lg:block sticky top-[72px] z-40 bg-gray-50 border-b border-gray-200 shadow-sm -mt-px">
         <div className="py-4">
           <div className="container mx-auto" style={{ maxWidth: '1400px' }}>
             <div className="flex gap-3 mb-5 flex-wrap items-center justify-between">
@@ -1006,7 +1007,7 @@ const Index = () => {
                   onClick={() => setActiveTab('requests')}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     activeTab === 'requests' 
-                      ? 'bg-gradient-to-r from-pink-600 to-orange-500 text-white shadow-md' 
+                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1017,7 +1018,7 @@ const Index = () => {
                   onClick={() => setActiveTab('offers')}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     activeTab === 'offers' 
-                      ? 'bg-gradient-to-r from-pink-600 to-orange-500 text-white shadow-md' 
+                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1032,7 +1033,7 @@ const Index = () => {
                   onClick={() => setSortBy('date')}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     sortBy === 'date' 
-                      ? 'bg-gradient-to-r from-pink-600 to-orange-500 text-white shadow-md' 
+                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1043,7 +1044,7 @@ const Index = () => {
                   onClick={() => setSortBy('popular')}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     sortBy === 'popular' 
-                      ? 'bg-gradient-to-r from-pink-600 to-orange-500 text-white shadow-md' 
+                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1054,7 +1055,7 @@ const Index = () => {
                   onClick={() => setSortBy('price')}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     sortBy === 'price' 
-                      ? 'bg-gradient-to-r from-pink-600 to-orange-500 text-white shadow-md' 
+                      ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -1085,7 +1086,10 @@ const Index = () => {
 
             <div className="flex gap-2 flex-wrap">
               <button
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => {
+                  setSelectedCategory(null);
+                  contentTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === null 
                     ? 'bg-gradient-to-r from-pink-600 to-orange-500 text-white shadow-md' 
@@ -1120,7 +1124,10 @@ const Index = () => {
                 return (
                   <button
                     key={category.name}
-                    onClick={() => setSelectedCategory(category.name)}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                      contentTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       selectedCategory === category.name 
                         ? `${getCategoryColor(category.name)} text-white shadow-md` 
@@ -1138,6 +1145,7 @@ const Index = () => {
       </div>
 
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
+        <div ref={contentTopRef}></div>
         <div className="flex gap-6">
           <div className="flex-1 min-w-0 relative">
             {swipeDirection && (
