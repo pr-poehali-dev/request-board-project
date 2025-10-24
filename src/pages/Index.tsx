@@ -309,6 +309,8 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const contentTopRef = useRef<HTMLDivElement>(null);
+  const offersTopRef = useRef<HTMLDivElement>(null);
+  const favoritesTopRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState<number>(1);
@@ -1145,7 +1147,6 @@ const Index = () => {
       </div>
 
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
-        <div ref={contentTopRef}></div>
         <div className="flex gap-6">
           <div className="flex-1 min-w-0 relative">
             {swipeDirection && (
@@ -1162,6 +1163,7 @@ const Index = () => {
             )}
           {activeTab === 'requests' && (
             <div 
+              ref={contentTopRef}
               className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-right-4 duration-300"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -1170,7 +1172,10 @@ const Index = () => {
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
               <Button
                 variant={selectedCategory === null ? 'default' : 'outline'}
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => {
+                  setSelectedCategory(null);
+                  contentTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="whitespace-nowrap font-medium text-sm"
               >
                 Все
@@ -1179,7 +1184,10 @@ const Index = () => {
                 <Button
                   key={category.name}
                   variant={selectedCategory === category.name ? 'default' : 'outline'}
-                  onClick={() => setSelectedCategory(category.name)}
+                  onClick={() => {
+                    setSelectedCategory(category.name);
+                    contentTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="whitespace-nowrap font-medium text-sm"
                 >
                   <Icon name={category.icon as any} size={14} className="mr-1.5" />
@@ -1354,6 +1362,7 @@ const Index = () => {
 
         {activeTab === 'offers' && (
           <div 
+            ref={offersTopRef}
             className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-left-4 duration-300"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -1362,7 +1371,10 @@ const Index = () => {
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
               <Button
                 variant={selectedCategory === null ? 'default' : 'outline'}
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => {
+                  setSelectedCategory(null);
+                  offersTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="whitespace-nowrap font-medium text-sm"
               >
                 Все
@@ -1371,7 +1383,10 @@ const Index = () => {
                 <Button
                   key={category.name}
                   variant={selectedCategory === category.name ? 'default' : 'outline'}
-                  onClick={() => setSelectedCategory(category.name)}
+                  onClick={() => {
+                    setSelectedCategory(category.name);
+                    offersTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="whitespace-nowrap font-medium text-sm"
                 >
                   <Icon name={category.icon as any} size={14} className="mr-1.5" />
@@ -1546,6 +1561,7 @@ const Index = () => {
 
         {activeTab === 'favorites' && (
           <div 
+            ref={favoritesTopRef}
             className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
