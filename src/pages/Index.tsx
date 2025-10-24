@@ -1118,27 +1118,27 @@ const Index = () => {
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
                             <Badge className={`${
-                              request.category === 'Электроника' ? 'bg-purple-600' :
+                              request.category === 'Электроника' ? 'bg-blue-600' :
                               request.category === 'Одежда' ? 'bg-pink-600' :
-                              request.category === 'Услуги' ? 'bg-orange-500' :
+                              request.category === 'Услуги' ? 'bg-orange-600' :
                               request.category === 'Недвижимость' ? 'bg-emerald-600' :
-                              request.category === 'Транспорт' ? 'bg-violet-600' :
-                              'bg-purple-600'
+                              request.category === 'Транспорт' ? 'bg-purple-600' :
+                              'bg-violet-600'
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-purple-700 border-purple-200 bg-purple-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {request.city}
                             </Badge>
                             {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-emerald-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-purple-700 border-purple-300 bg-purple-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
@@ -1300,27 +1300,27 @@ const Index = () => {
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
                             <Badge className={`${
-                              offer.category === 'Электроника' ? 'bg-purple-600' :
+                              offer.category === 'Электроника' ? 'bg-blue-600' :
                               offer.category === 'Одежда' ? 'bg-pink-600' :
-                              offer.category === 'Услуги' ? 'bg-orange-500' :
+                              offer.category === 'Услуги' ? 'bg-orange-600' :
                               offer.category === 'Недвижимость' ? 'bg-emerald-600' :
-                              offer.category === 'Транспорт' ? 'bg-violet-600' :
-                              'bg-purple-600'
+                              offer.category === 'Транспорт' ? 'bg-purple-600' :
+                              'bg-violet-600'
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {offer.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-purple-700 border-purple-200 bg-purple-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {offer.city}
                             </Badge>
                             {offer.delivery && (
-                              <Badge variant="outline" className="font-medium text-emerald-700 border-emerald-300 bg-emerald-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
                                 <Icon name="Truck" size={10} className="mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {offer.exchange && (
-                              <Badge variant="outline" className="font-medium text-purple-700 border-purple-300 bg-purple-50 text-xs whitespace-nowrap">
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
                                 <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                                 Обмен
                               </Badge>
