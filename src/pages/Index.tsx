@@ -1103,7 +1103,7 @@ const Index = () => {
               {filteredRequests.map((request, index) => (
                 <Card 
                   key={request.id} 
-                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-indigo-300 hover:-translate-y-1 transition-all duration-300"
+                  className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1127,7 +1127,7 @@ const Index = () => {
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-indigo-700 border-indigo-200 bg-indigo-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-purple-700 border-purple-200 bg-purple-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {request.city}
                             </Badge>
@@ -1223,7 +1223,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 transition-all duration-300"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
@@ -1239,7 +1239,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 text-white hover:from-blue-600 hover:via-blue-700 hover:to-indigo-700 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                          className="w-full sm:w-auto bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                         >
                           Откликнуться
                           <Icon name="Send" size={14} className="ml-1.5" />
@@ -1285,7 +1285,7 @@ const Index = () => {
               {filteredOffers.map((offer, index) => (
                 <Card 
                   key={offer.id} 
-                  className="border border-indigo-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-indigo-300 hover:-translate-y-1 transition-all duration-300"
+                  className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
                 >
                   <CardHeader className="pb-3 sm:pb-6">
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -1309,7 +1309,7 @@ const Index = () => {
                             } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {offer.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-indigo-700 border-indigo-200 bg-indigo-50 text-xs whitespace-nowrap">
+                            <Badge variant="outline" className="font-medium text-purple-700 border-purple-200 bg-purple-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {offer.city}
                             </Badge>
@@ -1405,7 +1405,7 @@ const Index = () => {
                             }}
                             variant="outline" 
                             size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 transition-all duration-300"
+                            className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
                           >
                             <Icon name="Eye" size={14} className="sm:mr-1.5" />
                             <span className="hidden sm:inline">Смотреть</span>
@@ -1421,7 +1421,7 @@ const Index = () => {
                             }
                           }}
                           size="sm"
-                          className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 text-white hover:from-blue-600 hover:via-blue-700 hover:to-indigo-700 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                          className="w-full sm:w-auto bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                         >
                           Написать
                           <Icon name="MessageCircle" size={14} className="ml-1.5" />
