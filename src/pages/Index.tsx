@@ -624,7 +624,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50/50 via-pink-50/50 to-orange-50/50">
-      <nav className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 border-b border-purple-700 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
+      <nav className="bg-white border-b sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{ maxWidth: '1400px' }}>
           <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
             <button 
