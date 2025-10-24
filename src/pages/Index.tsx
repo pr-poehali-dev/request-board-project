@@ -418,7 +418,6 @@ const Index = () => {
   });
   const chatEndRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [isCarouselHovered, setIsCarouselHovered] = useState(false);
 
   const currentDialog = dialogs.find(d => d.id === selectedDialog);
 
@@ -563,7 +562,7 @@ const Index = () => {
 
   useEffect(() => {
     const carousel = carouselRef.current;
-    if (!carousel || isCarouselHovered) return;
+    if (!carousel) return;
 
     let scrollPosition = 0;
     const scrollSpeed = 0.5;
@@ -583,7 +582,7 @@ const Index = () => {
 
     const intervalId = setInterval(animate, 16);
     return () => clearInterval(intervalId);
-  }, [isCarouselHovered]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50/50 via-indigo-50/50 to-purple-50/50">
@@ -857,8 +856,6 @@ const Index = () => {
           
           <div 
             ref={carouselRef}
-            onMouseEnter={() => setIsCarouselHovered(true)}
-            onMouseLeave={() => setIsCarouselHovered(false)}
             className="flex gap-4 overflow-x-auto scrollbar-hide pb-4"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
@@ -1151,9 +1148,10 @@ const Index = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <div className="flex items-center gap-1.5 text-gray-600">
-                            <Icon name="MessageCircle" size={16} />
-                            <span className="text-sm font-medium">{request.responses}</span>
+                          <div className="bg-indigo-50 border border-indigo-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
+                            <Icon name="MessageCircle" size={16} className="text-indigo-600" />
+                            <span className="text-sm font-bold text-indigo-700">{request.responses}</span>
+                            <span className="text-xs text-indigo-600 font-medium">откликов</span>
                           </div>
                           <div className="flex items-center gap-1.5 text-gray-600">
                             <Icon name="Eye" size={16} />
