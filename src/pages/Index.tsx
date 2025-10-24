@@ -309,6 +309,10 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const contentTopRef = useRef<HTMLDivElement>(null);
+  
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const offersTopRef = useRef<HTMLDivElement>(null);
   const favoritesTopRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -1090,7 +1094,7 @@ const Index = () => {
               <button
                 onClick={() => {
                   setSelectedCategory(null);
-                  contentTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToTop();
                 }}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === null 
@@ -1128,7 +1132,7 @@ const Index = () => {
                     key={category.name}
                     onClick={() => {
                       setSelectedCategory(category.name);
-                      contentTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                      scrollToTop();
                     }}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       selectedCategory === category.name 
@@ -1173,7 +1177,7 @@ const Index = () => {
                 variant={selectedCategory === null ? 'default' : 'outline'}
                 onClick={() => {
                   setSelectedCategory(null);
-                  contentTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToTop();
                 }}
                 className="whitespace-nowrap font-medium text-sm"
               >
@@ -1185,7 +1189,7 @@ const Index = () => {
                   variant={selectedCategory === category.name ? 'default' : 'outline'}
                   onClick={() => {
                     setSelectedCategory(category.name);
-                    contentTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToTop();
                   }}
                   className="whitespace-nowrap font-medium text-sm"
                 >
@@ -1372,7 +1376,7 @@ const Index = () => {
                 variant={selectedCategory === null ? 'default' : 'outline'}
                 onClick={() => {
                   setSelectedCategory(null);
-                  offersTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToTop();
                 }}
                 className="whitespace-nowrap font-medium text-sm"
               >
@@ -1384,7 +1388,7 @@ const Index = () => {
                   variant={selectedCategory === category.name ? 'default' : 'outline'}
                   onClick={() => {
                     setSelectedCategory(category.name);
-                    offersTopRef.current?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToTop();
                   }}
                   className="whitespace-nowrap font-medium text-sm"
                 >
