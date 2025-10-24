@@ -2901,7 +2901,7 @@ const Index = () => {
 
       <Dialog open={isSupportOpen} onOpenChange={setIsSupportOpen}>
         <DialogContent className="max-w-2xl h-[600px] flex flex-col p-0">
-          <DialogHeader className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white p-4 rounded-t-lg flex-shrink-0">
+          <DialogHeader className="bg-gray-800 text-white p-4 rounded-t-lg flex-shrink-0">
             <div className="flex items-center space-x-3">
               <Avatar className="w-10 h-10 bg-white/20">
                 <AvatarFallback className="bg-transparent text-white font-bold text-xl">👮</AvatarFallback>
@@ -2919,7 +2919,7 @@ const Index = () => {
                   <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                     <div className={`rounded-2xl px-4 py-2 ${
                       msg.sender === 'me' 
-                        ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' 
+                        ? 'bg-gray-700 text-white' 
                         : 'bg-white text-gray-800 border border-gray-200'
                     }`}>
                       <p className="text-sm">{msg.text}</p>
@@ -2957,7 +2957,7 @@ const Index = () => {
               />
               <Button 
                 onClick={handleSendSupportMessage}
-                className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600 px-4 py-2.5 rounded-lg"
+                className="bg-gray-700 text-white hover:bg-gray-800 px-4 py-2.5 rounded-lg"
               >
                 <Icon name="Send" size={18} />
               </Button>
@@ -3194,7 +3194,7 @@ const Index = () => {
 
       <button
         onClick={() => setIsSupportOpen(true)}
-        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 animate-bounce hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600"
+        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 animate-bounce hover:from-purple-700 hover:via-pink-700 hover:to-orange-600"
         style={{ animationDuration: '3s' }}
       >
         <Icon name="HelpCircle" size={28} />
