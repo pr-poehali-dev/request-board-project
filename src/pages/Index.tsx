@@ -928,12 +928,46 @@ const Index = () => {
                 
                 <div className="relative z-10 h-full flex flex-col justify-between p-4">
                   <div className="flex items-start justify-between">
-                    <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xl">
-                      <Icon name={category.icon as any} size={28} />
+                    <div className={`w-14 h-14 rounded-xl backdrop-blur-md border border-white/30 flex items-center justify-center shadow-xl ${
+                      category.name === 'Электроника' ? 'bg-blue-600' :
+                      category.name === 'Одежда' ? 'bg-pink-600' :
+                      category.name === 'Услуги' ? 'bg-orange-600' :
+                      category.name === 'Недвижимость' ? 'bg-emerald-600' :
+                      category.name === 'Транспорт' ? 'bg-purple-600' :
+                      category.name === 'Мебель' ? 'bg-amber-600' :
+                      category.name === 'Детские товары' ? 'bg-sky-500' :
+                      category.name === 'Спорт' ? 'bg-green-600' :
+                      category.name === 'Красота' ? 'bg-fuchsia-600' :
+                      category.name === 'Животные' ? 'bg-yellow-600' :
+                      category.name === 'Хобби' ? 'bg-indigo-600' :
+                      category.name === 'Книги' ? 'bg-slate-600' :
+                      category.name === 'Строительство' ? 'bg-yellow-700' :
+                      category.name === 'Работа' ? 'bg-cyan-600' :
+                      category.name === 'Еда и напитки' ? 'bg-rose-600' :
+                      'bg-violet-600'
+                    }`}>
+                      <Icon name={category.icon as any} size={28} className="text-white" />
                     </div>
                   </div>
                   <div className="text-left space-y-2.5">
-                    <h3 className="font-bold text-lg text-white drop-shadow-lg">{category.name}</h3>
+                    <h3 className={`font-bold text-lg drop-shadow-lg ${
+                      category.name === 'Электроника' ? 'text-blue-100' :
+                      category.name === 'Одежда' ? 'text-pink-100' :
+                      category.name === 'Услуги' ? 'text-orange-100' :
+                      category.name === 'Недвижимость' ? 'text-emerald-100' :
+                      category.name === 'Транспорт' ? 'text-purple-100' :
+                      category.name === 'Мебель' ? 'text-amber-100' :
+                      category.name === 'Детские товары' ? 'text-sky-100' :
+                      category.name === 'Спорт' ? 'text-green-100' :
+                      category.name === 'Красота' ? 'text-fuchsia-100' :
+                      category.name === 'Животные' ? 'text-yellow-100' :
+                      category.name === 'Хобби' ? 'text-indigo-100' :
+                      category.name === 'Книги' ? 'text-slate-100' :
+                      category.name === 'Строительство' ? 'text-yellow-100' :
+                      category.name === 'Работа' ? 'text-cyan-100' :
+                      category.name === 'Еда и напитки' ? 'text-rose-100' :
+                      'text-violet-100'
+                    }`}>{category.name}</h3>
                     <div className="flex gap-2">
                       <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
                         <div className="flex items-center justify-between gap-1">
