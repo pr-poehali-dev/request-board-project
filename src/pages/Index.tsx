@@ -268,6 +268,27 @@ const mockUserProfiles: Record<string, UserProfile> = {
   }
 };
 
+const getCategoryColor = (category: string): string => {
+  const colorMap: Record<string, string> = {
+    'Электроника': 'bg-gradient-to-r from-blue-500 to-indigo-600',
+    'Одежда': 'bg-gradient-to-r from-pink-500 to-rose-500',
+    'Услуги': 'bg-gradient-to-r from-orange-500 to-yellow-500',
+    'Недвижимость': 'bg-gradient-to-r from-emerald-500 to-teal-500',
+    'Транспорт': 'bg-gradient-to-r from-violet-500 to-fuchsia-500',
+    'Мебель': 'bg-gradient-to-r from-amber-600 to-red-600',
+    'Детские товары': 'bg-gradient-to-r from-sky-400 to-blue-400',
+    'Спорт': 'bg-gradient-to-r from-lime-500 to-emerald-600',
+    'Красота': 'bg-gradient-to-r from-fuchsia-500 to-rose-500',
+    'Животные': 'bg-gradient-to-r from-amber-500 to-amber-600',
+    'Хобби': 'bg-gradient-to-r from-indigo-500 to-pink-500',
+    'Книги': 'bg-gradient-to-r from-slate-600 to-zinc-600',
+    'Строительство': 'bg-gradient-to-r from-yellow-600 to-red-600',
+    'Работа': 'bg-gradient-to-r from-cyan-600 to-indigo-700',
+    'Еда и напитки': 'bg-gradient-to-r from-rose-500 to-orange-500',
+  };
+  return colorMap[category] || 'bg-gradient-to-r from-blue-500 to-purple-500';
+};
+
 const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -291,6 +312,12 @@ const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState<number>(1);
   const [favorites, setFavorites] = useState<number[]>([]);
+  
+  const toggleFavorite = (itemId: number) => {
+    setFavorites(prev => 
+      prev.includes(itemId) ? prev.filter(id => id !== itemId) : [...prev, itemId]
+    );
+  };
   
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -535,25 +562,34 @@ const Index = () => {
     setTouchEnd(null);
   };
 
+  const createChatMessage = (text: string, messagesLength: number): ChatMessage => ({
+    id: messagesLength + 1,
+    text,
+    sender: 'me',
+    timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+    author: 'Вы'
+  });
+
   const handleSendMessage = () => {
-    if (newMessage.trim() && currentDialog) {
-      const message: ChatMessage = {
-        id: currentDialog.messages.length + 1,
-        text: newMessage,
-        sender: 'me',
-        timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
-        author: 'Вы'
-      };
-      
-      const updatedDialogs = dialogs.map(d => 
-        d.id === selectedDialog 
-          ? { ...d, messages: [...d.messages, message], lastMessage: newMessage, lastTime: 'только что' }
-          : d
-      );
-      
-      setDialogs(updatedDialogs);
-      setNewMessage('');
-    }
+    if (!newMessage.trim() || !currentDialog) return;
+    
+    const message = createChatMessage(newMessage, currentDialog.messages.length);
+    const updatedDialogs = dialogs.map(d => 
+      d.id === selectedDialog 
+        ? { ...d, messages: [...d.messages, message], lastMessage: newMessage, lastTime: 'только что' }
+        : d
+    );
+    
+    setDialogs(updatedDialogs);
+    setNewMessage('');
+  };
+
+  const handleSendSupportMessage = () => {
+    if (!newMessage.trim()) return;
+    
+    const msg = createChatMessage(newMessage, supportMessages.length);
+    setSupportMessages([...supportMessages, msg]);
+    setNewMessage('');
   };
 
   useEffect(() => {
@@ -2786,19 +2822,7 @@ const Index = () => {
                 className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm transition-all"
               />
               <Button 
-                onClick={() => {
-                  if (newMessage.trim()) {
-                    const msg: ChatMessage = {
-                      id: supportMessages.length + 1,
-                      text: newMessage,
-                      sender: 'me',
-                      timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
-                      author: 'Вы'
-                    };
-                    setSupportMessages([...supportMessages, msg]);
-                    setNewMessage('');
-                  }
-                }}
+                onClick={handleSendSupportMessage}
                 className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-blue-600 px-4 py-2.5 rounded-lg"
               >
                 <Icon name="Send" size={18} />
