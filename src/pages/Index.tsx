@@ -916,7 +916,7 @@ const Index = () => {
               <div
                 key={`${category.name}-${index}`}
                 className="flex-shrink-0 relative overflow-hidden rounded-2xl border border-indigo-100 shadow-lg transition-all duration-300"
-                style={{ width: '280px', height: '200px' }}
+                style={{ width: '340px', height: '200px' }}
               >
                 <img 
                   src={categoryImages[category.name] || 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg'} 
