@@ -611,6 +611,32 @@ const Index = () => {
     if (!carousel) return;
 
     let scrollPosition = 0;
+    const scrollSpeed = 1;
+    let animationFrameId: number;
+
+    const autoScroll = () => {
+      scrollPosition += scrollSpeed;
+      
+      if (scrollPosition >= carousel.scrollWidth / 2) {
+        scrollPosition = 0;
+      }
+      
+      carousel.scrollLeft = scrollPosition;
+      animationFrameId = requestAnimationFrame(autoScroll);
+    };
+
+    animationFrameId = requestAnimationFrame(autoScroll);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    let scrollPosition = 0;
     const scrollSpeed = 0.5;
     const cardWidth = 280;
     const gap = 16;
@@ -902,7 +928,7 @@ const Index = () => {
           className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 px-3 sm:px-6 lg:px-8"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-            {categories.slice(0, 9).map((category, index) => {
+            {[...categories.slice(0, 9), ...categories.slice(0, 9)].map((category, index) => {
               const categoryImages: Record<string, string> = {
                 'Электроника': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/bbc49705-5890-4006-92ff-30a49ce12701.jpg',
                 'Одежда': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/096cb481-d5f5-4c79-b61c-d9073e7570e8.jpg',
