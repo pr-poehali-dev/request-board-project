@@ -1220,14 +1220,14 @@ const Index = () => {
                       <div 
                         key={category.name}
                         className="relative"
-                        onMouseEnter={() => setHoveredCategory(category.name)}
-                        onMouseLeave={() => setHoveredCategory(null)}
                       >
                         <button
                           onClick={() => {
-                            setSelectedCategory(category.name);
-                            setSelectedSubcategory(null);
-                            scrollToTop();
+                            if (hoveredCategory === category.name) {
+                              setHoveredCategory(null);
+                            } else {
+                              setHoveredCategory(category.name);
+                            }
                           }}
                           className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
                             selectedCategory === category.name 
@@ -1243,36 +1243,56 @@ const Index = () => {
                         </button>
                         
                         {hoveredCategory === category.name && category.subcategories && (
-                          <div 
-                            className="fixed left-[280px] w-56 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-3 z-[9999] animate-in slide-in-from-left-2 duration-200"
-                            style={{ top: `${(categories.findIndex(c => c.name === category.name) + 1) * 44 + 290}px` }}
-                          >
-                            <h4 className="text-xs font-bold text-gray-900 mb-2 pb-2 border-b border-gray-200 flex items-center gap-2">
-                              <Icon name="Grid2x2" size={12} />
-                              Подразделы
-                            </h4>
-                            <div className="space-y-1 max-h-64 overflow-y-auto scrollbar-thin">
-                              {category.subcategories.map((subcategory) => (
+                          <>
+                            <div 
+                              className="fixed inset-0 z-[9998]"
+                              onClick={() => setHoveredCategory(null)}
+                            />
+                            <div 
+                              className="fixed left-[280px] w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[9999] animate-in slide-in-from-left-2 duration-200"
+                              style={{ top: `${(categories.findIndex(c => c.name === category.name) + 1) * 44 + 290}px` }}
+                            >
+                              <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
+                                <Icon name="Grid2x2" size={14} />
+                                {category.name}
+                              </h4>
+                              <div className="space-y-1 max-h-80 overflow-y-auto scrollbar-thin">
                                 <button
-                                  key={subcategory}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
+                                  onClick={() => {
                                     setSelectedCategory(category.name);
-                                    setSelectedSubcategory(subcategory);
+                                    setSelectedSubcategory(null);
                                     setHoveredCategory(null);
                                     scrollToTop();
                                   }}
-                                  className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all font-medium ${
-                                    selectedSubcategory === subcategory && selectedCategory === category.name
+                                  className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
+                                    selectedCategory === category.name && !selectedSubcategory
                                       ? `${getCategoryColor(category.name)} text-white shadow-md`
                                       : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
                                   }`}
                                 >
-                                  {subcategory}
+                                  Все в категории
                                 </button>
-                              ))}
+                                {category.subcategories.map((subcategory) => (
+                                  <button
+                                    key={subcategory}
+                                    onClick={() => {
+                                      setSelectedCategory(category.name);
+                                      setSelectedSubcategory(subcategory);
+                                      setHoveredCategory(null);
+                                      scrollToTop();
+                                    }}
+                                    className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
+                                      selectedSubcategory === subcategory && selectedCategory === category.name
+                                        ? `${getCategoryColor(category.name)} text-white shadow-md`
+                                        : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
+                                    }`}
+                                  >
+                                    {subcategory}
+                                  </button>
+                                ))}
+                              </div>
                             </div>
-                          </div>
+                          </>
                         )}
                       </div>
                     );
