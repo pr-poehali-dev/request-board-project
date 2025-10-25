@@ -2536,14 +2536,14 @@ const Index = () => {
 
       <Dialog open={isRegisterOpen} onOpenChange={setIsRegisterOpen}>
         <DialogContent className="max-w-md rounded-2xl overflow-hidden shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl">
+          <DialogHeader className="bg-gray-100 p-6 border-b border-gray-200 -m-6 mb-6 rounded-t-2xl shadow-sm">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <Icon name="UserPlus" size={22} className="text-white" />
               </div>
               <div>
-                <DialogTitle className="text-xl font-bold">Регистрация</DialogTitle>
-                <p className="text-gray-300 text-sm">Создайте новый аккаунт</p>
+                <DialogTitle className="text-xl font-bold text-gray-900">Регистрация</DialogTitle>
+                <p className="text-gray-600 text-sm">Создайте новый аккаунт</p>
               </div>
             </div>
           </DialogHeader>
@@ -2859,12 +2859,12 @@ const Index = () => {
         <DialogContent className="max-w-md rounded-2xl shadow-2xl">
           {selectedItem && (
             <>
-              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl rounded-t-2xl">
+              <DialogHeader className="bg-gray-100 p-6 border-b border-gray-200 -m-6 mb-6 rounded-t-2xl shadow-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                     <Icon name="MessageSquare" size={22} className="text-white" />
                   </div>
-                  <DialogTitle className="text-xl font-bold">Откликнуться</DialogTitle>
+                  <DialogTitle className="text-xl font-bold text-gray-900">Откликнуться</DialogTitle>
                 </div>
               </DialogHeader>
               <div className="space-y-4">
@@ -3007,12 +3007,12 @@ const Index = () => {
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
           {selectedUserProfile && (
             <>
-              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl sticky top-0 z-10">
+              <DialogHeader className="bg-gray-100 p-6 border-b border-gray-200 -m-6 mb-6 rounded-t-2xl sticky top-0 z-10 shadow-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                     <Icon name="User" size={22} className="text-white" />
                   </div>
-                  <DialogTitle className="text-xl font-bold">Профиль пользователя</DialogTitle>
+                  <DialogTitle className="text-xl font-bold text-gray-900">Профиль пользователя</DialogTitle>
                 </div>
               </DialogHeader>
               <div className="space-y-6">
@@ -3150,12 +3150,12 @@ const Index = () => {
 
       <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl">
+          <DialogHeader className="bg-gray-100 p-6 border-b border-gray-200 -m-6 mb-6 rounded-t-2xl shadow-sm">
             <div className="flex items-center justify-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <Icon name="User" size={22} className="text-white" />
               </div>
-              <DialogTitle className="text-xl font-bold text-center">Мой Профиль</DialogTitle>
+              <DialogTitle className="text-xl font-bold text-center text-gray-900">Мой Профиль</DialogTitle>
             </div>
           </DialogHeader>
           <div className="space-y-6">
