@@ -478,7 +478,6 @@ const Index = () => {
     photos: [] as string[],
   });
   const chatEndRef = useRef<HTMLDivElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
   const currentDialog = dialogs.find(d => d.id === selectedDialog);
 
@@ -606,55 +605,7 @@ const Index = () => {
     }
   }, [currentDialog?.messages, isChatOpen]);
 
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
 
-    let scrollPosition = 0;
-    const scrollSpeed = 1;
-    let animationFrameId: number;
-
-    const autoScroll = () => {
-      scrollPosition += scrollSpeed;
-      
-      if (scrollPosition >= carousel.scrollWidth / 2) {
-        scrollPosition = 0;
-      }
-      
-      carousel.scrollLeft = scrollPosition;
-      animationFrameId = requestAnimationFrame(autoScroll);
-    };
-
-    animationFrameId = requestAnimationFrame(autoScroll);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-
-    let scrollPosition = 0;
-    const scrollSpeed = 0.5;
-    const cardWidth = 280;
-    const gap = 16;
-    const totalWidth = (cardWidth + gap) * categories.length;
-
-    const animate = () => {
-      scrollPosition += scrollSpeed;
-      if (scrollPosition >= totalWidth / 2) {
-        scrollPosition = 0;
-      }
-      if (carousel) {
-        carousel.scrollLeft = scrollPosition;
-      }
-    };
-
-    const intervalId = setInterval(animate, 16);
-    return () => clearInterval(intervalId);
-  }, []);
 
   useEffect(() => {
     // При переключении вкладок сбрасываем только фильтры категорий, но НЕ поиск и НЕ город
@@ -904,101 +855,7 @@ const Index = () => {
           </p>
         </div>
         
-        <div 
-          ref={carouselRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 px-3 sm:px-6 lg:px-8"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-            {[...categories.slice(0, 9), ...categories.slice(0, 9)].map((category, index) => {
-              const categoryImages: Record<string, string> = {
-                'Электроника': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/bbc49705-5890-4006-92ff-30a49ce12701.jpg',
-                'Одежда': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/096cb481-d5f5-4c79-b61c-d9073e7570e8.jpg',
-                'Услуги': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/f0501526-bc7a-40c0-a412-26d028dc667a.jpg',
-                'Недвижимость': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/59b3e8ee-2b58-4b07-b924-7d1a7adc892f.jpg',
-                'Транспорт': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/e35bceed-0e7e-432f-87d6-dec7712cce0b.jpg',
-                'Мебель': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/7b11d7af-2698-4214-8d53-9db3b7f68313.jpg',
-                'Детские товары': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/76eb21bc-38d7-40f8-bee6-46bfc6c50874.jpg',
-                'Спорт': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/b7139cab-3b88-4e74-984e-45f3bdc9a4fe.jpg',
-                'Красота': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/8cb774be-1f69-45ad-97e0-a7d52d76fa69.jpg',
-                'Животные': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/49f76a76-5dde-4099-a4d8-ada024529525.jpg',
-                'Хобби': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/1067ba74-289e-401f-a094-2fef71b0467d.jpg',
-                'Книги': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/62256620-d3d3-47ae-ba0c-c1b5325b44fe.jpg',
-                'Строительство': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/20c7994b-f37c-42d2-8f46-fbb7cbc0ee96.jpg',
-                'Работа': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/dc541f89-4bfd-4192-95c2-d362958a78be.jpg',
-                'Еда и напитки': 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/eabdaf20-db7d-47b1-9458-79351a65e50d.jpg'
-              };
-              const stats = getCategoryStats(category.name);
-              return (
-              <div
-                key={`${category.name}-${index}`}
-                className="flex-shrink-0 relative overflow-hidden rounded-2xl border border-indigo-100 shadow-lg transition-all duration-300"
-                style={{ width: '340px', height: '200px' }}
-              >
-                <img 
-                  src={categoryImages[category.name] || 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg'} 
-                  alt={category.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
-                <div className="absolute inset-0 bg-indigo-900/20"></div>
-                
-                <div className="relative z-10 h-full flex flex-col justify-between p-4">
-                  <div className="flex items-start justify-between">
-                    <div className={`w-14 h-14 rounded-xl backdrop-blur-md border border-white/30 flex items-center justify-center shadow-xl ${
-                      category.name === 'Электроника' ? 'bg-blue-600' :
-                      category.name === 'Одежда' ? 'bg-pink-600' :
-                      category.name === 'Услуги' ? 'bg-orange-600' :
-                      category.name === 'Недвижимость' ? 'bg-emerald-600' :
-                      category.name === 'Транспорт' ? 'bg-purple-600' :
-                      category.name === 'Мебель' ? 'bg-amber-600' :
-                      category.name === 'Детские товары' ? 'bg-sky-500' :
-                      category.name === 'Спорт' ? 'bg-green-600' :
-                      category.name === 'Красота' ? 'bg-fuchsia-600' :
-                      category.name === 'Животные' ? 'bg-yellow-600' :
-                      category.name === 'Хобби' ? 'bg-indigo-600' :
-                      category.name === 'Книги' ? 'bg-slate-600' :
-                      category.name === 'Строительство' ? 'bg-yellow-700' :
-                      category.name === 'Работа' ? 'bg-cyan-600' :
-                      category.name === 'Еда и напитки' ? 'bg-rose-600' :
-                      'bg-violet-600'
-                    }`}>
-                      <Icon name={category.icon as any} size={28} className="text-white" />
-                    </div>
-                  </div>
-                  <div className="text-left space-y-2.5">
-                    <h3 className={`font-bold text-lg drop-shadow-lg ${
-                      category.name === 'Электроника' ? 'text-blue-100' :
-                      category.name === 'Одежда' ? 'text-pink-100' :
-                      category.name === 'Услуги' ? 'text-orange-100' :
-                      category.name === 'Недвижимость' ? 'text-emerald-100' :
-                      category.name === 'Транспорт' ? 'text-purple-100' :
-                      category.name === 'Мебель' ? 'text-amber-100' :
-                      category.name === 'Детские товары' ? 'text-sky-100' :
-                      category.name === 'Спорт' ? 'text-green-100' :
-                      category.name === 'Красота' ? 'text-fuchsia-100' :
-                      category.name === 'Животные' ? 'text-yellow-100' :
-                      category.name === 'Хобби' ? 'text-indigo-100' :
-                      category.name === 'Книги' ? 'text-slate-100' :
-                      category.name === 'Строительство' ? 'text-yellow-100' :
-                      category.name === 'Работа' ? 'text-cyan-100' :
-                      category.name === 'Еда и напитки' ? 'text-rose-100' :
-                      'text-violet-100'
-                    }`}>{category.name}</h3>
-                    <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
-                      <div className="flex items-center justify-between gap-1">
-                        <span className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
-                          <Icon name="Search" size={14} />
-                          <span>Запросов</span>
-                        </span>
-                        <span className="text-white font-bold text-sm">{stats.requestCount}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-            })}
-        </div>
+
       </div>
       
 
