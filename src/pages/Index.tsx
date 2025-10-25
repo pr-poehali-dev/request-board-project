@@ -457,7 +457,7 @@ const RequestCard = ({
                   </Badge>
                 )}
                 {request.exchange && (
-                  <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
+                  <Badge variant="outline" className="font-medium text-blue-700 border-blue-300 bg-blue-50 text-xs whitespace-nowrap">
                     <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                     Обмен
                   </Badge>
@@ -601,7 +601,7 @@ const OfferCard = ({
                   </Badge>
                 )}
                 {offer.exchange && (
-                  <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
+                  <Badge variant="outline" className="font-medium text-blue-700 border-blue-300 bg-blue-50 text-xs whitespace-nowrap">
                     <Icon name="ArrowLeftRight" size={10} className="mr-1" />
                     Обмен
                   </Badge>
