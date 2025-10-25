@@ -1112,9 +1112,7 @@ const Index = () => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/20 via-transparent to-transparent pointer-events-none"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-100/20 via-transparent to-transparent pointer-events-none"></div>
+    <div className="min-h-screen relative">
       <div className="relative z-0">
       <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-black border-b border-gray-700/50 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{ maxWidth: '1400px' }}>
