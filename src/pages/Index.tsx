@@ -1359,15 +1359,6 @@ const Index = () => {
                 <span className="text-xs mt-1">Избранное</span>
               </button>
               <button 
-                onClick={() => setActiveTab('myads')}
-                className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
-                  activeTab === 'myads' ? 'bg-primary text-white' : 'text-gray-600'
-                }`}
-              >
-                <Icon name="Star" size={20} />
-                <span className="text-xs mt-1">Мои</span>
-              </button>
-              <button 
                 onClick={() => setIsProfileOpen(true)}
                 className="flex flex-col items-center py-2 px-1 rounded-lg transition-colors text-gray-600"
               >
@@ -1576,19 +1567,7 @@ const Index = () => {
                     <Icon name="Package" size={16} className="inline mr-2" />
                     Предложения
                   </button>
-                  {isAuthenticated && (
-                    <button
-                      onClick={() => setActiveTab('myads')}
-                      className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
-                        activeTab === 'myads' 
-                          ? 'bg-emerald-600 text-white shadow-md' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      <Icon name="Star" size={16} className="inline mr-2" />
-                      Мои объявления
-                    </button>
-                  )}
+
                 </div>
               </div>
 
@@ -3890,6 +3869,17 @@ const Index = () => {
             </div>
 
             <div className="space-y-2">
+              <Button 
+                onClick={() => {
+                  setIsProfileOpen(false);
+                  setActiveTab('myads');
+                }}
+                variant="outline" 
+                className="w-full justify-start h-12 rounded-xl hover:bg-gray-50"
+              >
+                <Icon name="Star" size={20} className="mr-3 text-gray-600" />
+                <span className="font-medium">Мои объявления</span>
+              </Button>
               <Button 
                 onClick={() => {
                   setIsProfileOpen(false);
