@@ -2279,9 +2279,9 @@ const Index = () => {
                     onClick={() => setSelectedDialog(dialog.id)}
                     className={`p-4 border-b cursor-pointer transition-colors ${
                       dialog.type === 'support'
-                        ? 'bg-gradient-to-r from-purple-50 to-pink-50 border-l-4 border-l-purple-500'
+                        ? 'bg-blue-50 border-l-4 border-l-blue-600'
                         : selectedDialog === dialog.id 
-                          ? 'bg-primary/10 border-l-4 border-l-primary' 
+                          ? 'bg-gray-100 border-l-4 border-l-gray-700' 
                           : 'hover:bg-gray-100'
                     }`}
                   >
@@ -2296,7 +2296,7 @@ const Index = () => {
                           }
                         }}
                       >
-                        <Avatar className="w-12 h-12 bg-gradient-orange-pink hover:opacity-80 transition-opacity">
+                        <Avatar className="w-12 h-12 bg-gray-600 hover:opacity-80 transition-opacity">
                           <AvatarFallback className="bg-transparent text-white font-bold">
                             {dialog.avatar}
                           </AvatarFallback>
@@ -2325,10 +2325,10 @@ const Index = () => {
                           <Badge 
                             className={`text-[10px] px-2 py-0.5 ${
                               dialog.type === 'support'
-                                ? 'bg-purple-100 text-purple-700 border-purple-200'
+                                ? 'bg-blue-100 text-blue-700 border-blue-200'
                                 : dialog.type === 'request' 
-                                  ? 'bg-blue-100 text-blue-700 border-blue-200' 
-                                  : 'bg-green-100 text-green-700 border-green-200'
+                                  ? 'bg-gray-100 text-gray-700 border-gray-300' 
+                                  : 'bg-slate-100 text-slate-700 border-slate-300'
                             }`}
                           >
                             {dialog.type === 'support' ? 'Поддержка' : dialog.type === 'request' ? 'Запрос' : 'Предложение'}
@@ -2355,7 +2355,7 @@ const Index = () => {
                         }
                       }}
                     >
-                      <Avatar className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500">
+                      <Avatar className="w-10 h-10 bg-gray-600">
                         <AvatarFallback className="bg-transparent text-white font-bold">
                           {currentDialog.avatar}
                         </AvatarFallback>
@@ -2403,7 +2403,7 @@ const Index = () => {
                             <h4 className="font-bold text-sm text-gray-800 mb-1 line-clamp-1">{currentDialog.relatedItem.title}</h4>
                             <p className="text-xs text-gray-600 mb-2 line-clamp-2">{currentDialog.relatedItem.description}</p>
                             <div className="flex items-center justify-between">
-                              <Badge className="bg-gradient-orange-pink text-white border-0 text-xs">
+                              <Badge className="bg-gray-600 text-white border-0 text-xs">
                                 {currentDialog.relatedItem.category}
                               </Badge>
                               <p className="text-sm font-bold text-black">
@@ -2420,12 +2420,12 @@ const Index = () => {
                         className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
                       >
                         <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
-                          <div className={`rounded-2xl px-4 py-2 ${
+                          <div className={`rounded-2xl px-4 py-2.5 shadow-sm ${
                             msg.sender === 'me' 
-                              ? 'bg-gradient-orange-pink text-white' 
+                              ? 'bg-gray-700 text-white' 
                               : 'bg-white text-gray-800 border border-gray-200'
                           }`}>
-                            <p className="text-sm">{msg.text}</p>
+                            <p className="text-sm leading-relaxed">{msg.text}</p>
                           </div>
                           <p className={`text-xs text-gray-500 mt-1 ${
                             msg.sender === 'me' ? 'text-right' : 'text-left'
@@ -2443,7 +2443,7 @@ const Index = () => {
                       <div className="flex items-center space-x-2 mb-3">
                         <Button
                           onClick={() => setIsReviewFormOpen(true)}
-                          className="bg-gradient-purple-pink text-white hover:opacity-90 font-semibold text-sm px-4 py-2 rounded-xl"
+                          className="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm px-4 py-2 rounded-xl"
                         >
                           <Icon name="CheckCircle" size={16} className="mr-2" />
                           Заключить сделку
@@ -2461,7 +2461,7 @@ const Index = () => {
                       />
                       <Button 
                         onClick={handleSendMessage}
-                        className="bg-gradient-orange-pink text-white hover:opacity-90 px-4 py-2 rounded-xl"
+                        className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-xl"
                       >
                         <Icon name="Send" size={18} />
                       </Button>
