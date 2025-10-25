@@ -2471,14 +2471,14 @@ const Index = () => {
 
       <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>
         <DialogContent className="max-w-md rounded-2xl overflow-hidden shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl">
+          <DialogHeader className="bg-gray-100 p-6 border-b border-gray-200 -m-6 mb-6 rounded-t-2xl">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <Icon name="LogIn" size={22} className="text-white" />
               </div>
               <div>
-                <DialogTitle className="text-xl font-bold">Вход</DialogTitle>
-                <p className="text-gray-300 text-sm">Войдите в свой аккаунт</p>
+                <DialogTitle className="text-xl font-bold text-gray-900">Вход</DialogTitle>
+                <p className="text-gray-600 text-sm">Войдите в свой аккаунт</p>
               </div>
             </div>
           </DialogHeader>
@@ -2619,12 +2619,12 @@ const Index = () => {
 
       <Dialog open={isProfileEditOpen} onOpenChange={setIsProfileEditOpen}>
         <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl">
+          <DialogHeader className="bg-gray-100 p-6 border-b border-gray-200 -m-6 mb-6 rounded-t-2xl">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <Icon name="Settings" size={22} className="text-white" />
               </div>
-              <DialogTitle className="text-xl font-bold">Редактирование профиля</DialogTitle>
+              <DialogTitle className="text-xl font-bold text-gray-900">Редактирование профиля</DialogTitle>
             </div>
           </DialogHeader>
           <div className="space-y-4">
@@ -2746,12 +2746,12 @@ const Index = () => {
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
           {selectedItem && (
             <>
-              <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-6 border-b border-gray-700 -m-6 mb-6 rounded-t-2xl sticky top-0 z-10">
+              <DialogHeader className="bg-gray-100 p-6 border-b border-gray-200 -m-6 mb-6 rounded-t-2xl sticky top-0 z-10">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
                     <Icon name="Eye" size={22} className="text-white" />
                   </div>
-                  <DialogTitle className="text-xl font-bold line-clamp-2">{selectedItem.title}</DialogTitle>
+                  <DialogTitle className="text-xl font-bold text-gray-900 line-clamp-2">{selectedItem.title}</DialogTitle>
                 </div>
               </DialogHeader>
               <div className="space-y-6">
@@ -2930,17 +2930,17 @@ const Index = () => {
 
       <Dialog open={isSupportOpen} onOpenChange={setIsSupportOpen}>
         <DialogContent className="max-w-md h-[600px] flex flex-col p-0 rounded-2xl overflow-hidden shadow-2xl">
-          <DialogHeader className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-5 flex-shrink-0 border-b border-gray-700 rounded-t-2xl">
+          <DialogHeader className="bg-gray-100 p-5 flex-shrink-0 border-b border-gray-200 rounded-t-2xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                   <Icon name="Headphones" size={22} className="text-white" />
                 </div>
                 <div>
-                  <DialogTitle className="font-bold text-lg text-white">Поддержка</DialogTitle>
+                  <DialogTitle className="font-bold text-lg text-gray-900">Поддержка</DialogTitle>
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                    <p className="text-xs text-gray-300">Онлайн</p>
+                    <p className="text-xs text-gray-600">Онлайн</p>
                   </div>
                 </div>
               </div>
