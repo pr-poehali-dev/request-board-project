@@ -2604,7 +2604,7 @@ const Index = () => {
                     <div ref={chatEndRef} />
                   </div>
 
-                  <div className="p-4 bg-white/95 backdrop-blur-md border-t"
+                  <div className="p-4 bg-white/95 backdrop-blur-md border-t">
                     {currentDialog.type !== 'support' && (
                       <div className="flex items-center space-x-2 mb-3">
                         <Button
