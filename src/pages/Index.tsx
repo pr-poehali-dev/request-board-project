@@ -1813,7 +1813,7 @@ const Index = () => {
                     <img 
                       src="https://cdn.poehali.dev/files/38354c02-a50d-4c8a-be42-53e5ca23cbfd.png" 
                       alt="Albeweb" 
-                      className="h-6"
+                      className="h-12"
                     />
                   </a>
                 </div>
