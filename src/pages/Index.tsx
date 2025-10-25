@@ -1242,7 +1242,12 @@ const Index = () => {
         </div>
         <div className={`grid ${isAuthenticated ? 'grid-cols-5' : 'grid-cols-3'} gap-1 p-2`}>
           <button 
-            onClick={() => setActiveTab('requests')}
+            onClick={() => {
+              setActiveTab('requests');
+              setSelectedCategory(null);
+              setSearchQuery('');
+              setSelectedCity(null);
+            }}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
               activeTab === 'requests' ? 'bg-primary text-white' : 'text-gray-600'
             }`}
@@ -1251,7 +1256,12 @@ const Index = () => {
             <span className="text-xs mt-1">Запросы</span>
           </button>
           <button 
-            onClick={() => setActiveTab('offers')}
+            onClick={() => {
+              setActiveTab('offers');
+              setSelectedCategory(null);
+              setSearchQuery('');
+              setSelectedCity(null);
+            }}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
               activeTab === 'offers' ? 'bg-primary text-white' : 'text-gray-600'
             }`}
