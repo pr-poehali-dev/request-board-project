@@ -1059,18 +1059,21 @@ const Index = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    if (activeTab === 'requests') {
+      setSelectedCategory(null);
+      setSearchQuery('');
+      setSelectedCity(null);
+    }
+  }, [activeTab]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50/50 via-pink-50/50 to-orange-50/50">
       <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-black border-b border-gray-700/50 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{ maxWidth: '1400px' }}>
           <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
             <button 
-              onClick={() => {
-                setActiveTab('requests');
-                setSelectedCategory(null);
-                setSearchQuery('');
-                setSelectedCity(null);
-              }}
+              onClick={() => setActiveTab('requests')}
               className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 hover:opacity-80 transition-opacity"
             >
               <img 
@@ -1242,12 +1245,7 @@ const Index = () => {
         </div>
         <div className={`grid ${isAuthenticated ? 'grid-cols-5' : 'grid-cols-3'} gap-1 p-2`}>
           <button 
-            onClick={() => {
-              setActiveTab('requests');
-              setSelectedCategory(null);
-              setSearchQuery('');
-              setSelectedCity(null);
-            }}
+            onClick={() => setActiveTab('requests')}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
               activeTab === 'requests' ? 'bg-primary text-white' : 'text-gray-600'
             }`}
@@ -1256,12 +1254,7 @@ const Index = () => {
             <span className="text-xs mt-1">Запросы</span>
           </button>
           <button 
-            onClick={() => {
-              setActiveTab('offers');
-              setSelectedCategory(null);
-              setSearchQuery('');
-              setSelectedCity(null);
-            }}
+            onClick={() => setActiveTab('offers')}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
               activeTab === 'offers' ? 'bg-primary text-white' : 'text-gray-600'
             }`}
