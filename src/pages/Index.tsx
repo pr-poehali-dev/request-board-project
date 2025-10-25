@@ -1389,7 +1389,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="bg-gradient-to-b from-white/60 to-gray-50/80 backdrop-blur-sm py-12 sm:py-16">
+      <div className="py-12 sm:py-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
