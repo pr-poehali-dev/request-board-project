@@ -1070,11 +1070,13 @@ const Index = () => {
                 setSelectedCategory(null);
                 setSearchQuery('');
               }}
-              className="flex items-center space-x-2 flex-shrink-0 hover:opacity-80 transition-opacity"
+              className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 hover:opacity-80 transition-opacity"
             >
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center ring-2 ring-white/30">
-                <Icon name="MessageSquare" className="text-white" size={20} />
-              </div>
+              <img 
+                src="https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d2f7801c-af44-4162-850f-93d100ad17ae.jpg" 
+                alt="Логотип"
+                className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl shadow-lg ring-2 ring-white/30"
+              />
               <span className="text-lg sm:text-2xl font-bold text-white">Доска запросов</span>
             </button>
 
@@ -1190,7 +1192,7 @@ const Index = () => {
             {!isAuthenticated ? (
               <Button 
                 onClick={() => setIsLoginOpen(true)}
-                className="bg-primary hover:bg-primary/90 text-white font-medium text-sm px-6 h-9"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-sm px-6 h-9 shadow-lg hover:shadow-xl transition-all"
               >
                 Войти
               </Button>
@@ -1200,7 +1202,7 @@ const Index = () => {
                 className="flex items-center space-x-2 px-3 py-1.5 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
                 title="Профиль"
               >
-                <Avatar className="w-7 h-7 bg-gradient-orange-pink">
+                <Avatar className="w-7 h-7 bg-gradient-to-r from-purple-600 to-pink-600">
                   {avatarPreview ? (
                     <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
@@ -1217,7 +1219,7 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="bg-primary hover:bg-primary/90 text-white font-medium text-sm px-6 h-9"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-sm px-6 h-9 shadow-lg hover:shadow-xl transition-all"
                 title="Создать объявление"
               >
                 <Icon name="Sparkles" size={18} className="mr-1.5" />
@@ -2229,7 +2231,7 @@ const Index = () => {
 
           <div className="border-t border-gray-800 pt-6 sm:pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p className="text-xs sm:text-sm text-gray-400">© 2024 Доска запросов. Все права защищены.</p>
+              <p className="text-xs sm:text-sm text-gray-400">© 2025 Доска запросов. Все права защищены.</p>
               <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
                 <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm">
                   <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
