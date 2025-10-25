@@ -1370,12 +1370,12 @@ const Index = () => {
             )}
           </div>
           
-          <div className="relative max-w-xs">
-            <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+          <div className="relative max-w-[200px]">
+            <Icon name="MapPin" size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             <select
               value={selectedCity || ''}
               onChange={(e) => setSelectedCity(e.target.value || null)}
-              className="appearance-none w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
+              className="appearance-none w-full pl-8 pr-8 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
             >
               <option value="">Все города</option>
               {cities.map((city) => (
@@ -1384,7 +1384,7 @@ const Index = () => {
                 </option>
               ))}
             </select>
-            <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            <Icon name="ChevronDown" size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
           </div>
         </div>
       </div>
