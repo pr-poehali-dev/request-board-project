@@ -1080,9 +1080,8 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // При переключении вкладок сбрасываем поиск и фильтры категорий, но НЕ город
+    // При переключении вкладок сбрасываем только фильтры категорий, но НЕ поиск и НЕ город
     if (prevActiveTab.current !== activeTab) {
-      setSearchQuery('');
       setSelectedCategory(null);
       setSelectedSubcategory(null);
       prevActiveTab.current = activeTab;
