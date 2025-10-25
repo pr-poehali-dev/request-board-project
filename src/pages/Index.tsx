@@ -714,6 +714,14 @@ const Index = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const scrollToFeed = () => {
+    const feedElement = document.getElementById('feed-start');
+    if (feedElement) {
+      const offsetTop = feedElement.offsetTop - 20;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    }
+  };
   const offersTopRef = useRef<HTMLDivElement>(null);
   const favoritesTopRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -1492,7 +1500,7 @@ const Index = () => {
       
 
 
-      <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
+      <main id="feed-start" className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 relative">
             <div className="sticky top-20 space-y-3 relative z-10">
@@ -1722,7 +1730,7 @@ const Index = () => {
                     onClick={() => {
                       setSelectedCategory(null);
                       setSelectedSubcategory(null);
-                      scrollToTop();
+                      scrollToFeed();
                     }}
                     className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
                       selectedCategory === null 
@@ -1792,7 +1800,7 @@ const Index = () => {
                                     setSelectedCategory(category.name);
                                     setSelectedSubcategory(null);
                                     setHoveredCategory(null);
-                                    scrollToTop();
+                                    scrollToFeed();
                                   }}
                                   className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
                                     selectedCategory === category.name && !selectedSubcategory
@@ -1809,7 +1817,7 @@ const Index = () => {
                                       setSelectedCategory(category.name);
                                       setSelectedSubcategory(subcategory);
                                       setHoveredCategory(null);
-                                      scrollToTop();
+                                      scrollToFeed();
                                     }}
                                     className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
                                       selectedSubcategory === subcategory && selectedCategory === category.name
@@ -1836,7 +1844,7 @@ const Index = () => {
                   setSelectedSubcategory(null);
                   setSortBy('date');
                   setSortDirection('desc');
-                  scrollToTop();
+                  scrollToFeed();
                 }}
                 className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-medium py-2 px-3 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
               >
@@ -1870,7 +1878,7 @@ const Index = () => {
                 variant={selectedCategory === null ? 'default' : 'outline'}
                 onClick={() => {
                   setSelectedCategory(null);
-                  scrollToTop();
+                  scrollToFeed();
                 }}
                 className="whitespace-nowrap font-medium text-sm"
               >
@@ -1882,7 +1890,7 @@ const Index = () => {
                   variant={selectedCategory === category.name ? 'default' : 'outline'}
                   onClick={() => {
                     setSelectedCategory(category.name);
-                    scrollToTop();
+                    scrollToFeed();
                   }}
                   className="whitespace-nowrap font-medium text-sm"
                 >
@@ -2314,6 +2322,7 @@ const Index = () => {
                       onClick={() => {
                         setSelectedCategory(cat.name);
                         setActiveTab('requests');
+                        scrollToFeed();
                       }} 
                       className="hover:text-white transition-colors text-left"
                     >
