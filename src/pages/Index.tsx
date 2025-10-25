@@ -61,60 +61,6 @@ const mockRequests: Request[] = [
   { id: 32, title: 'Ищу доставку еды', category: 'Еда и напитки', budget: 'договорная', author: 'Ольга', rating: 4.5, responses: 5, description: 'Здоровое питание на неделю', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] }
 ];
 
-const mockOffers: Offer[] = [
-  { id: 1, title: 'Продаю iPhone 15 Pro', category: 'Электроника', price: '95 000 ₽', author: 'Сергей', rating: 4.9, views: 145, description: 'iPhone 15 Pro 256GB, титановый, отличное состояние', city: 'Москва', delivery: true, exchange: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 2, title: 'MacBook Pro 16" M1 Pro', category: 'Электроника', price: '150 000 ₽', author: 'Игорь', rating: 4.8, views: 234, description: 'MacBook Pro 16" M1 Pro, 32GB RAM, 1TB SSD', city: 'Москва', delivery: true, exchange: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 3, title: 'Samsung Galaxy S24', category: 'Электроника', price: '65 000 ₽', author: 'Михаил', rating: 4.7, views: 98, description: 'Новый телефон, все аксессуары в комплекте', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 4, title: 'Услуги дизайнера интерьера', category: 'Услуги', price: 'от 3000 ₽', author: 'Анна', rating: 5.0, views: 89, description: 'Профессиональный дизайн интерьера квартир и домов', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 5, title: 'Ремонт квартир', category: 'Услуги', price: 'договорная', author: 'Строймастер', rating: 4.8, views: 156, description: 'Все виды ремонтных работ под ключ', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 6, title: 'Уборка квартир', category: 'Услуги', price: 'от 2000 ₽', author: 'Клининг Сервис', rating: 4.9, views: 78, description: 'Профессиональная уборка квартир и офисов', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 7, title: 'Зимнее пальто женское', category: 'Одежда', price: '12 000 ₽', author: 'Елена', rating: 4.6, views: 45, description: 'Пальто, размер 44, почти новое', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 8, title: 'Кроссовки Adidas', category: 'Одежда', price: '6 500 ₽', author: 'Петр', rating: 4.5, views: 67, description: 'Оригинальные кроссовки, размер 42', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 9, title: 'Куртка кожаная', category: 'Одежда', price: '8 000 ₽', author: 'Алина', rating: 4.7, views: 52, description: 'Натуральная кожа, размер M', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 10, title: 'Сдаю квартиру 2-комн', category: 'Недвижимость', price: '45 000 ₽/мес', author: 'Владелец', rating: 4.8, views: 189, description: '2-комнатная квартира в центре, евроремонт', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 11, title: 'Продаю дачу', category: 'Недвижимость', price: '3 500 000 ₽', author: 'Александр', rating: 4.6, views: 134, description: 'Участок 8 соток, дом 80 кв.м', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 12, title: 'BMW 5 series 2020', category: 'Транспорт', price: '3 200 000 ₽', author: 'Автосалон', rating: 4.9, views: 267, description: 'BMW 5 series, один владелец, пробег 45 000 км', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 13, title: 'Электросамокат Xiaomi', category: 'Транспорт', price: '18 000 ₽', author: 'Олег', rating: 4.5, views: 92, description: 'Xiaomi Mi Electric Scooter Pro 2', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 14, title: 'Велосипед детский', category: 'Транспорт', price: '4 500 ₽', author: 'Мария', rating: 4.6, views: 56, description: 'Для ребенка 6-8 лет, в отличном состоянии', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 15, title: 'Продаю шкаф-купе', category: 'Мебель', price: '35 000 ₽', author: 'Виктория', rating: 4.7, views: 67, description: 'Шкаф-купе 2.5м, зеркальные двери', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 16, title: 'Диван угловой', category: 'Мебель', price: '42 000 ₽', author: 'Анатолий', rating: 4.6, views: 89, description: 'Угловой диван с механизмом трансформации', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 17, title: 'Обеденный стол', category: 'Мебель', price: '15 000 ₽', author: 'Наталья', rating: 4.5, views: 45, description: 'Стол на 6 персон, массив дуба', city: 'Новосибирск', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 18, title: 'Детская кроватка с матрасом', category: 'Детские товары', price: '8 000 ₽', author: 'Татьяна', rating: 5.0, views: 89, description: 'Кроватка-маятник с ортопедическим матрасом', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 19, title: 'Коляска-трансформер', category: 'Детские товары', price: '12 000 ₽', author: 'Светлана', rating: 4.8, views: 78, description: 'Коляска 3 в 1, в отличном состоянии', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 20, title: 'Горный велосипед Trek', category: 'Спорт', price: '45 000 ₽', author: 'Николай', rating: 4.8, views: 112, description: 'Trek X-Caliber 8, карбоновая вилка', city: 'Казань', delivery: true, exchange: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 21, title: 'Беговая дорожка', category: 'Спорт', price: '25 000 ₽', author: 'Валерий', rating: 4.7, views: 95, description: 'Электрическая беговая дорожка', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 22, title: 'Гантели 20 кг', category: 'Спорт', price: '6 000 ₽', author: 'Дмитрий', rating: 4.6, views: 67, description: 'Разборные гантели, почти новые', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 23, title: 'Маникюр на дом', category: 'Красота', price: '1 500 ₽', author: 'Мастер Юлия', rating: 4.9, views: 134, description: 'Профессиональный маникюр и педикюр', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 24, title: 'Фен Dyson', category: 'Красота', price: '22 000 ₽', author: 'Анна', rating: 4.8, views: 56, description: 'Фен Dyson Supersonic, как новый', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 25, title: 'Продаю котенка британца', category: 'Животные', price: '15 000 ₽', author: 'Питомник', rating: 4.9, views: 178, description: 'Британский котенок, 2 месяца, с документами', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 26, title: 'Щенок йорка', category: 'Животные', price: '25 000 ₽', author: 'Заводчик', rating: 5.0, views: 145, description: 'Йоркширский терьер, привит', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 27, title: 'PlayStation 5', category: 'Хобби', price: '45 000 ₽', author: 'Геймер', rating: 4.7, views: 234, description: 'PS5 в отличном состоянии, 2 джойстика', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 28, title: 'Настольная игра Монополия', category: 'Хобби', price: '2 500 ₽', author: 'Коллекционер', rating: 4.5, views: 67, description: 'Новая настольная игра в упаковке', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 29, title: 'Коллекция марок', category: 'Хобби', price: '10 000 ₽', author: 'Филателист', rating: 4.6, views: 89, description: 'Редкая коллекция советских марок', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 30, title: 'Учебники по Python', category: 'Книги', price: '1 500 ₽', author: 'Студент', rating: 4.5, views: 78, description: 'Комплект учебников по программированию', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 31, title: 'Классическая литература', category: 'Книги', price: '3 000 ₽', author: 'Библиофил', rating: 4.8, views: 56, description: 'Собрание сочинений Толстого', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 32, title: 'Бригада строителей', category: 'Строительство', price: 'договорная', author: 'Стройкомпания', rating: 4.8, views: 167, description: 'Все виды строительных работ', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 33, title: 'Кирпич керамический', category: 'Строительство', price: '25 ₽/шт', author: 'Стройбаза', rating: 4.6, views: 89, description: 'Кирпич керамический, качественный', city: 'Новосибирск', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 34, title: 'Вакансия: Junior разработчик', category: 'Работа', price: 'от 80 000 ₽', author: 'IT Компания', rating: 4.9, views: 234, description: 'Ищем Junior Python разработчика', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 35, title: 'Требуется дизайнер', category: 'Работа', price: 'от 100 000 ₽', author: 'Агентство', rating: 4.8, views: 189, description: 'UX/UI дизайнер в штат', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 36, title: 'Кофе арабика', category: 'Еда и напитки', price: '1 500 ₽/кг', author: 'Кофейня', rating: 4.7, views: 123, description: 'Свежеобжаренный кофе в зернах', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 37, title: 'Доставка здорового питания', category: 'Еда и напитки', price: 'от 2 000 ₽/день', author: 'ЗОЖ-кухня', rating: 4.9, views: 145, description: 'Рационы на неделю, доставка', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] }
-];
-
 interface ChatMessage {
   id: number;
   text: string;
@@ -193,7 +139,7 @@ const mockUserProfiles: Record<string, UserProfile> = {
     city: 'Москва',
     description: 'Специализируюсь на продаже техники Apple. Все товары с гарантией.',
     requests: [],
-    offers: [mockOffers[0]],
+    offers: [],
     reviews: [
       { id: 1, author: 'Петр', rating: 5, text: 'Надежный продавец, все как описано!', date: '20 янв 2024' },
       { id: 2, author: 'Анна', rating: 5, text: 'Отлично упаковано, быстрая доставка', date: '18 янв 2024' },
@@ -264,9 +210,7 @@ interface RequestCardProps {
   request: Request;
   index: number;
   contentTopRef: React.RefObject<HTMLDivElement> | null;
-  favorites: any[];
   isAuthenticated: boolean;
-  onToggleFavorite: () => void;
   onViewClick: () => void;
   onResponseClick: () => void;
   onAuthorClick: () => void;
@@ -276,15 +220,11 @@ const RequestCard = ({
   request, 
   index, 
   contentTopRef, 
-  favorites, 
   isAuthenticated, 
-  onToggleFavorite, 
   onViewClick, 
   onResponseClick,
   onAuthorClick 
 }: RequestCardProps) => {
-  const isFavorited = favorites.includes(`request-${request.id}`);
-  
   return (
     <Card 
       key={request.id}
@@ -369,26 +309,15 @@ const RequestCard = ({
           </div>
 
           <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-            <div className="flex gap-2">
-              <Button 
-                onClick={onToggleFavorite}
-                variant="outline" 
-                size="sm"
-                className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${isFavorited ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700'}`}
-              >
-                <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${isFavorited ? 'fill-rose-500 text-rose-600' : ''}`} />
-                <span className="hidden sm:inline">{isFavorited ? 'В избранном' : 'В избранное'}</span>
-              </Button>
-              <Button 
-                onClick={onViewClick}
-                variant="outline" 
-                size="sm"
-                className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
-              >
-                <Icon name="Eye" size={14} className="sm:mr-1.5" />
-                <span className="hidden sm:inline">Смотреть</span>
-              </Button>
-            </div>
+            <Button 
+              onClick={onViewClick}
+              variant="outline" 
+              size="sm"
+              className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
+            >
+              <Icon name="Eye" size={14} className="sm:mr-1.5" />
+              <span className="hidden sm:inline">Смотреть</span>
+            </Button>
             <Button 
               onClick={onResponseClick}
               size="sm"
@@ -404,145 +333,7 @@ const RequestCard = ({
   );
 };
 
-interface OfferCardProps {
-  offer: Offer;
-  index: number;
-  offersTopRef: React.RefObject<HTMLDivElement> | null;
-  favorites: any[];
-  isAuthenticated: boolean;
-  onToggleFavorite: () => void;
-  onViewClick: () => void;
-  onContactClick: () => void;
-  onAuthorClick: () => void;
-}
 
-const OfferCard = ({ 
-  offer, 
-  index, 
-  offersTopRef, 
-  favorites, 
-  isAuthenticated, 
-  onToggleFavorite, 
-  onViewClick, 
-  onContactClick,
-  onAuthorClick 
-}: OfferCardProps) => {
-  const isFavorited = favorites.includes(`offer-${offer.id}`);
-  
-  return (
-    <Card 
-      key={offer.id}
-      ref={index === 0 ? offersTopRef : null}
-      className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
-    >
-      <CardHeader className="pb-3 sm:pb-6">
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-          {offer.photos && offer.photos.length > 0 && (
-            <img 
-              src={offer.photos[0]} 
-              alt={offer.title}
-              className="w-full h-48 sm:w-32 sm:h-32 object-contain rounded-xl flex-shrink-0 bg-white"
-            />
-          )}
-          <div className="flex flex-col gap-2 flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
-                <Badge className={`${getCategoryColor(offer.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
-                  {offer.category}
-                </Badge>
-                <Badge variant="outline" className="font-medium text-gray-700 border-gray-200 bg-gray-50 text-xs whitespace-nowrap">
-                  <Icon name="MapPin" size={10} className="mr-1" />
-                  {offer.city}
-                </Badge>
-                {offer.delivery && (
-                  <Badge variant="outline" className="font-medium text-green-700 border-green-300 bg-green-50 text-xs whitespace-nowrap">
-                    <Icon name="Truck" size={10} className="mr-1" />
-                    Доставка
-                  </Badge>
-                )}
-                {offer.exchange && (
-                  <Badge variant="outline" className="font-medium text-blue-700 border-blue-300 bg-blue-50 text-xs whitespace-nowrap">
-                    <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                    Обмен
-                  </Badge>
-                )}
-              </div>
-              <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
-                {offer.price}
-              </div>
-            </div>
-            <CardTitle className="text-lg sm:text-2xl mb-1">{offer.title}</CardTitle>
-            <CardDescription className="text-sm sm:text-base line-clamp-2">
-              {offer.description}
-            </CardDescription>
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-          <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
-            <div 
-              className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={onAuthorClick}
-            >
-              <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-600 to-pink-600 ring-2 ring-purple-200">
-                <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
-                  {offer.author[0]}
-                </AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="font-medium text-xs sm:text-sm hover:underline">{offer.author}</p>
-                <div className="flex items-center gap-1">
-                  <Icon name="Star" size={12} className="fill-yellow-400 text-yellow-400" />
-                  <span className="text-xs sm:text-sm text-gray-600">{offer.rating}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                <Icon name="Eye" size={16} className="text-blue-600" />
-                <span className="text-sm font-bold text-blue-700">{offer.views}</span>
-                <span className="text-xs text-blue-600 font-medium">просмотров</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-            <div className="flex gap-2">
-              <Button 
-                onClick={onToggleFavorite}
-                variant="outline" 
-                size="sm"
-                className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${isFavorited ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700'}`}
-              >
-                <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${isFavorited ? 'fill-rose-500 text-rose-600' : ''}`} />
-                <span className="hidden sm:inline">{isFavorited ? 'В избранном' : 'В избранное'}</span>
-              </Button>
-              <Button 
-                onClick={onViewClick}
-                variant="outline" 
-                size="sm"
-                className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
-              >
-                <Icon name="Eye" size={14} className="sm:mr-1.5" />
-                <span className="hidden sm:inline">Смотреть</span>
-              </Button>
-            </div>
-            <Button 
-              onClick={onContactClick}
-              size="sm"
-              className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
-            >
-              Связаться
-              <Icon name="MessageCircle" size={14} className="ml-1.5" />
-            </Button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
 
 const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -562,7 +353,6 @@ const Index = () => {
   const [profileData, setProfileData] = useState({ name: 'Александр', email: 'user@example.com', currentPassword: '', newPassword: '', avatar: '' });
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
-  const [favoritesTab, setFavoritesTab] = useState<'requests' | 'offers'>('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
@@ -582,18 +372,9 @@ const Index = () => {
       window.scrollTo({ top: offsetTop, behavior: 'smooth' });
     }
   };
-  const offersTopRef = useRef<HTMLDivElement>(null);
-  const favoritesTopRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState<number>(1);
-  const [favorites, setFavorites] = useState<number[]>([]);
-  
-  const toggleFavorite = (itemId: number) => {
-    setFavorites(prev => 
-      prev.includes(itemId) ? prev.filter(id => id !== itemId) : [...prev, itemId]
-    );
-  };
   
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -638,44 +419,14 @@ const Index = () => {
         { id: 2, text: 'Да, нужен мастер по ремонту квартиры', sender: 'me', timestamp: 'вчера 15:25', author: 'Вы' },
         { id: 3, text: 'Могу выполнить работу качественно, опыт 8 лет', sender: 'other', timestamp: 'вчера 15:30', author: 'Мария' },
       ]
-    },
-    {
-      id: 3,
-      name: 'Анна',
-      avatar: 'А',
-      lastMessage: 'Спасибо за покупку!',
-      lastTime: '2 дня назад',
-      type: 'offer',
-      unread: 0,
-      relatedItem: mockOffers[1],
-      messages: [
-        { id: 1, text: 'Здравствуйте! Интересуют услуги дизайнера?', sender: 'other', timestamp: '2 дня 10:00', author: 'Анна' },
-        { id: 2, text: 'Да, расскажите подробнее о ваших услугах', sender: 'me', timestamp: '2 дня 10:15', author: 'Вы' },
-        { id: 3, text: 'Спасибо за покупку!', sender: 'other', timestamp: '2 дня 11:00', author: 'Анна' },
-      ]
-    },
-    {
-      id: 4,
-      name: 'Игорь',
-      avatar: 'И',
-      lastMessage: 'Могу обменять на что-то интересное',
-      lastTime: '3 дня назад',
-      type: 'offer',
-      unread: 2,
-      relatedItem: mockOffers[2],
-      messages: [
-        { id: 1, text: 'Привет! Видел твоё предложение MacBook Pro', sender: 'other', timestamp: '3 дня 14:00', author: 'Игорь' },
-        { id: 2, text: 'Да, доступен для обмена', sender: 'me', timestamp: '3 дня 14:10', author: 'Вы' },
-        { id: 3, text: 'Могу обменять на что-то интересное', sender: 'other', timestamp: '3 дня 14:20', author: 'Игорь' },
-      ]
-    },
+    }
   ]);  
   
   const [supportMessages, setSupportMessages] = useState<ChatMessage[]>([
     { id: 1, text: 'Здравствуйте! Я бот-помощник. Чем могу помочь?', sender: 'other', timestamp: 'сейчас', author: 'Поддержка' },
   ]);
   const [newMessage, setNewMessage] = useState('');
-  const [language, setLanguage] = useState<'ru' | 'ua'>('ru');
+
   const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
@@ -765,56 +516,22 @@ const Index = () => {
     return 0;
   });
 
-  const filteredOffers = mockOffers.filter(offer => {
-    const matchesSearch = searchQuery ? 
-      offer.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      offer.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      offer.category.toLowerCase().includes(searchQuery.toLowerCase())
-      : true;
-    
-    // Город работает всегда, независимо от других фильтров
-    const matchesCity = selectedCity ? offer.city === selectedCity : true;
-    const matchesDelivery = filterDelivery ? offer.delivery === true : true;
-    const matchesExchange = filterExchange ? offer.exchange === true : true;
-    
-    // Если есть поиск, игнорируем фильтры категорий, но учитываем город, доставку и обмен
-    if (searchQuery) {
-      return matchesSearch && matchesCity && matchesDelivery && matchesExchange;
-    }
-    
-    // Иначе применяем все фильтры
-    const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
-    const matchesSubcategory = selectedSubcategory ? offer.category === selectedCategory : true;
-    return matchesCategory && matchesSubcategory && matchesCity && matchesDelivery && matchesExchange;
-  }).sort((a, b) => {
-    if (sortBy === 'date') {
-      return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
-    } else if (sortBy === 'popular') {
-      return sortDirection === 'desc' ? b.views - a.views : a.views - b.views;
-    } else if (sortBy === 'price') {
-      const priceA = parseInt(a.price.replace(/[^0-9]/g, '')) || 0;
-      const priceB = parseInt(b.price.replace(/[^0-9]/g, '')) || 0;
-      return sortDirection === 'desc' ? priceB - priceA : priceA - priceB;
-    }
-    return 0;
-  });
+
 
   const getCategoryCount = (categoryName: string) => {
     const requestCount = mockRequests.filter(req => req.category === categoryName).length;
-    const offerCount = mockOffers.filter(offer => offer.category === categoryName).length;
-    return requestCount + offerCount;
+    return requestCount;
   };
 
   const getAllListingsCount = () => {
-    return mockRequests.length + mockOffers.length;
+    return mockRequests.length;
   };
 
   const popularCategories = categories.filter(c => c.popular);
 
   const getCategoryStats = (categoryName: string) => {
     const requestCount = mockRequests.filter(r => r.category === categoryName).length;
-    const offerCount = mockOffers.filter(o => o.category === categoryName).length;
-    return { requestCount, offerCount, total: requestCount + offerCount };
+    return { requestCount, offerCount: 0, total: requestCount };
   };
 
   const minSwipeDistance = 50;
@@ -846,21 +563,7 @@ const Index = () => {
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
     
-    if (isLeftSwipe) {
-      if (activeTab === 'requests') {
-        setActiveTab('offers');
-      } else if (activeTab === 'offers' && isAuthenticated) {
-        setActiveTab('favorites');
-      }
-    }
-    
-    if (isRightSwipe) {
-      if (activeTab === 'favorites' && isAuthenticated) {
-        setActiveTab('offers');
-      } else if (activeTab === 'offers') {
-        setActiveTab('requests');
-      }
-    }
+    // Swipe navigation removed
     
     setSwipeDirection(null);
     setTouchStart(null);
@@ -1036,18 +739,6 @@ const Index = () => {
             {isAuthenticated && (
               <div className="flex items-center space-x-1 text-white">
                 <button 
-                  onClick={() => setActiveTab('favorites')}
-                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
-                  title="Избранное"
-                >
-                  <Icon name="Heart" size={22} />
-                  {favorites.length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold shadow-lg">
-                      {favorites.length}
-                    </span>
-                  )}
-                </button>
-                <button 
                   onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
                   className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
                   title="Уведомления"
@@ -1073,32 +764,6 @@ const Index = () => {
                 </button>
               </div>
             )}
-
-            <div className="h-6 w-px bg-white/30"></div>
-
-            <div className="relative flex items-center bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-full p-1 border border-white/20 shadow-lg">
-              <div 
-                className={`absolute top-1 bottom-1 bg-white rounded-full shadow-md transition-all duration-300 ease-out ${
-                  language === 'ru' ? 'left-1 w-[38px]' : 'left-[calc(50%)] w-[38px]'
-                }`}
-              />
-              <button
-                onClick={() => setLanguage('ru')}
-                className={`relative z-10 w-[38px] py-1 rounded-full text-xs font-bold transition-colors duration-300 ${
-                  language === 'ru' ? 'text-gray-900' : 'text-white/70 hover:text-white'
-                }`}
-              >
-                RU
-              </button>
-              <button
-                onClick={() => setLanguage('ua')}
-                className={`relative z-10 w-[38px] py-1 rounded-full text-xs font-bold transition-colors duration-300 ${
-                  language === 'ua' ? 'text-gray-900' : 'text-white/70 hover:text-white'
-                }`}
-              >
-                UA
-              </button>
-            </div>
 
             {!isAuthenticated ? (
               <Button 
@@ -1150,7 +815,7 @@ const Index = () => {
             <span>Свайпайте влево/вправо для переключения</span>
           </p>
         </div>
-        <div className={`grid ${isAuthenticated ? 'grid-cols-5' : 'grid-cols-3'} gap-1 p-2`}>
+        <div className={`grid ${isAuthenticated ? 'grid-cols-3' : 'grid-cols-2'} gap-1 p-2`}>
           <button 
             onClick={() => setActiveTab('requests')}
             className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
@@ -1159,15 +824,6 @@ const Index = () => {
           >
             <Icon name="Search" size={20} />
             <span className="text-xs mt-1">Запросы</span>
-          </button>
-          <button 
-            onClick={() => setActiveTab('offers')}
-            className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
-              activeTab === 'offers' ? 'bg-primary text-white' : 'text-gray-600'
-            }`}
-          >
-            <Icon name="Package" size={20} />
-            <span className="text-xs mt-1">Предложения</span>
           </button>
           <button 
             onClick={() => setActiveTab('categories')}
@@ -1179,32 +835,21 @@ const Index = () => {
             <span className="text-xs mt-1">Все</span>
           </button>
           {isAuthenticated && (
-            <>
-              <button 
-                onClick={() => setActiveTab('favorites')}
-                className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
-                  activeTab === 'favorites' ? 'bg-primary text-white' : 'text-gray-600'
-                }`}
-              >
-                <Icon name="Heart" size={20} />
-                <span className="text-xs mt-1">Избранное</span>
-              </button>
-              <button 
-                onClick={() => setIsProfileOpen(true)}
-                className="flex flex-col items-center py-2 px-1 rounded-lg transition-colors text-gray-600"
-              >
-                <Avatar className="w-5 h-5 bg-gradient-to-br from-purple-600 to-pink-600">
-                  {avatarPreview ? (
-                    <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
-                  ) : (
-                    <AvatarFallback className="bg-transparent text-white text-xs font-bold">
-                      {profileData.name.charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  )}
-                </Avatar>
-                <span className="text-xs mt-1">Профиль</span>
-              </button>
-            </>
+            <button 
+              onClick={() => setIsProfileOpen(true)}
+              className="flex flex-col items-center py-2 px-1 rounded-lg transition-colors text-gray-600"
+            >
+              <Avatar className="w-5 h-5 bg-gradient-to-br from-purple-600 to-pink-600">
+                {avatarPreview ? (
+                  <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <AvatarFallback className="bg-transparent text-white text-xs font-bold">
+                    {profileData.name.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                )}
+              </Avatar>
+              <span className="text-xs mt-1">Профиль</span>
+            </button>
           )}
         </div>
       </div>
