@@ -1905,11 +1905,7 @@ const Index = () => {
             <div className="flex-1 flex flex-col w-full">
               {currentDialog && (
                 <>
-                  <div className={`${
-                    currentDialog.type === 'support' 
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600' 
-                      : 'bg-gradient-orange-pink'
-                  } text-white p-4 flex items-center justify-between`}>
+                  <div className="bg-gray-100 p-4 flex items-center justify-between border-b border-gray-200">
                     <div 
                       className={`flex items-center space-x-3 ${currentDialog.type !== 'support' ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}`}
                       onClick={() => {
@@ -1919,16 +1915,16 @@ const Index = () => {
                         }
                       }}
                     >
-                      <Avatar className="w-10 h-10 bg-white/20">
+                      <Avatar className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500">
                         <AvatarFallback className="bg-transparent text-white font-bold">
                           {currentDialog.avatar}
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <h3 className={`font-bold text-lg ${currentDialog.type !== 'support' ? 'hover:underline' : ''}`}>{currentDialog.name}</h3>
+                        <h3 className={`font-bold text-lg text-gray-900 ${currentDialog.type !== 'support' ? 'hover:underline' : ''}`}>{currentDialog.name}</h3>
                         <div className="flex items-center space-x-2">
-                          <p className="text-xs text-white/80">онлайн</p>
-                          <Badge className="text-[10px] px-2 py-0.5 bg-white/20 text-white border-white/30">
+                          <p className="text-xs text-gray-600">онлайн</p>
+                          <Badge className="text-[10px] px-2 py-0.5 bg-gray-200 text-gray-700 border-gray-300">
                             {currentDialog.type === 'support' ? 'Поддержка' : currentDialog.type === 'request' ? 'Запрос' : 'Предложение'}
                           </Badge>
                         </div>
@@ -1936,9 +1932,9 @@ const Index = () => {
                     </div>
                     <button 
                       onClick={() => setIsChatOpen(false)}
-                      className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                      className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
                     >
-                      <Icon name="X" size={24} />
+                      <Icon name="X" size={24} className="text-gray-700" />
                     </button>
                   </div>
 
@@ -2267,17 +2263,17 @@ const Index = () => {
       {isReviewFormOpen && currentDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
           <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
-              <h2 className="text-lg sm:text-xl font-bold">Оставить отзыв</h2>
+            <div className="bg-gray-100 p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between border-b border-gray-200">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Оставить отзыв</h2>
               <button 
                 onClick={() => {
                   setIsReviewFormOpen(false);
                   setReviewRating(0);
                   setReviewText('');
                 }}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
               >
-                <Icon name="X" size={24} />
+                <Icon name="X" size={24} className="text-gray-700" />
               </button>
             </div>
 
@@ -2372,18 +2368,18 @@ const Index = () => {
       {isNotificationsOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
           <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in">
-            <div className="bg-gradient-orange-pink text-white p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between">
+            <div className="bg-gray-100 p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between border-b border-gray-200">
               <div>
-                <h2 className="text-lg sm:text-xl font-bold">Уведомления</h2>
-                <p className="text-xs text-white/80 mt-1">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900">Уведомления</h2>
+                <p className="text-xs text-gray-600 mt-1">
                   {notifications.filter(n => !n.read).length} новых
                 </p>
               </div>
               <button 
                 onClick={() => setIsNotificationsOpen(false)}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
               >
-                <Icon name="X" size={24} />
+                <Icon name="X" size={24} className="text-gray-700" />
               </button>
             </div>
 
