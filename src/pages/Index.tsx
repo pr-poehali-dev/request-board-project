@@ -731,6 +731,9 @@ const Index = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'date' | 'popular' | 'price'>('date');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
+  const [hoveredSort, setHoveredSort] = useState<string | null>(null);
+  const [sortMenuPosition, setSortMenuPosition] = useState({ top: 0, left: 0 });
   const [dialogs, setDialogs] = useState<ChatDialog[]>([
     {
       id: 1,
@@ -858,44 +861,46 @@ const Index = () => {
 
   const filteredRequests = mockRequests.filter(req => {
     const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
+    const matchesSubcategory = selectedSubcategory ? req.category === selectedCategory : true;
     const matchesCity = selectedCity ? req.city === selectedCity : true;
     const matchesSearch = searchQuery ? 
       req.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       req.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       req.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    return matchesCategory && matchesCity && matchesSearch;
+    return matchesCategory && matchesSubcategory && matchesCity && matchesSearch;
   }).sort((a, b) => {
     if (sortBy === 'date') {
-      return b.id - a.id;
+      return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
     } else if (sortBy === 'popular') {
-      return b.responses - a.responses;
+      return sortDirection === 'desc' ? b.responses - a.responses : a.responses - b.responses;
     } else if (sortBy === 'price') {
       const priceA = parseInt(a.budget.replace(/[^0-9]/g, '')) || 0;
       const priceB = parseInt(b.budget.replace(/[^0-9]/g, '')) || 0;
-      return priceB - priceA;
+      return sortDirection === 'desc' ? priceB - priceA : priceA - priceB;
     }
     return 0;
   });
 
   const filteredOffers = mockOffers.filter(offer => {
     const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
+    const matchesSubcategory = selectedSubcategory ? offer.category === selectedCategory : true;
     const matchesCity = selectedCity ? offer.city === selectedCity : true;
     const matchesSearch = searchQuery ? 
       offer.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       offer.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       offer.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    return matchesCategory && matchesCity && matchesSearch;
+    return matchesCategory && matchesSubcategory && matchesCity && matchesSearch;
   }).sort((a, b) => {
     if (sortBy === 'date') {
-      return b.id - a.id;
+      return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
     } else if (sortBy === 'popular') {
-      return b.views - a.views;
+      return sortDirection === 'desc' ? b.views - a.views : a.views - b.views;
     } else if (sortBy === 'price') {
       const priceA = parseInt(a.price.replace(/[^0-9]/g, '')) || 0;
       const priceB = parseInt(b.price.replace(/[^0-9]/g, '')) || 0;
-      return priceB - priceA;
+      return sortDirection === 'desc' ? priceB - priceA : priceA - priceB;
     }
     return 0;
   });
@@ -1464,6 +1469,197 @@ const Index = () => {
               </div>
 
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <h3 className="font-semibold text-gray-900 mb-3 text-sm">Сортировка</h3>
+                <div className="space-y-1.5">
+                  <div className="relative">
+                    <button
+                      onClick={(e) => {
+                        const menuElement = e.currentTarget;
+                        if (menuElement) {
+                          const menuRect = menuElement.getBoundingClientRect();
+                          const viewportHeight = window.innerHeight;
+                          setSortMenuPosition({
+                            top: viewportHeight / 2 - 160,
+                            left: menuRect.right + 8
+                          });
+                        }
+                        if (hoveredSort === 'price') {
+                          setHoveredSort(null);
+                        } else {
+                          setHoveredSort('price');
+                        }
+                      }}
+                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
+                        sortBy === 'price' 
+                          ? 'bg-purple-600 text-white shadow-md' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <span>
+                        <Icon name="DollarSign" size={14} className="inline mr-2" />
+                        По цене
+                      </span>
+                      <Icon name="ChevronRight" size={14} className="opacity-50" />
+                    </button>
+                    
+                    {hoveredSort === 'price' && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-[99998]"
+                          onClick={() => setHoveredSort(null)}
+                        />
+                        <div 
+                          className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                          style={{ 
+                            top: `${sortMenuPosition.top}px`,
+                            left: `${sortMenuPosition.left}px`
+                          }}
+                        >
+                          <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
+                            <Icon name="DollarSign" size={14} />
+                            Сортировка по цене
+                          </h4>
+                          <div className="space-y-1">
+                            <button
+                              onClick={() => {
+                                setSortBy('price');
+                                setSortDirection('desc');
+                                setHoveredSort(null);
+                                scrollToTop();
+                              }}
+                              className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
+                                sortBy === 'price' && sortDirection === 'desc'
+                                  ? 'bg-purple-600 text-white shadow-md'
+                                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
+                              }`}
+                            >
+                              От большей к меньшей
+                            </button>
+                            <button
+                              onClick={() => {
+                                setSortBy('price');
+                                setSortDirection('asc');
+                                setHoveredSort(null);
+                                scrollToTop();
+                              }}
+                              className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
+                                sortBy === 'price' && sortDirection === 'asc'
+                                  ? 'bg-purple-600 text-white shadow-md'
+                                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
+                              }`}
+                            >
+                              От меньшей к большей
+                            </button>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  <div className="relative">
+                    <button
+                      onClick={(e) => {
+                        const menuElement = e.currentTarget;
+                        if (menuElement) {
+                          const menuRect = menuElement.getBoundingClientRect();
+                          const viewportHeight = window.innerHeight;
+                          setSortMenuPosition({
+                            top: viewportHeight / 2 - 160,
+                            left: menuRect.right + 8
+                          });
+                        }
+                        if (hoveredSort === 'date') {
+                          setHoveredSort(null);
+                        } else {
+                          setHoveredSort('date');
+                        }
+                      }}
+                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
+                        sortBy === 'date' 
+                          ? 'bg-purple-600 text-white shadow-md' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <span>
+                        <Icon name="Calendar" size={14} className="inline mr-2" />
+                        По дате
+                      </span>
+                      <Icon name="ChevronRight" size={14} className="opacity-50" />
+                    </button>
+                    
+                    {hoveredSort === 'date' && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-[99998]"
+                          onClick={() => setHoveredSort(null)}
+                        />
+                        <div 
+                          className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                          style={{ 
+                            top: `${sortMenuPosition.top}px`,
+                            left: `${sortMenuPosition.left}px`
+                          }}
+                        >
+                          <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
+                            <Icon name="Calendar" size={14} />
+                            Сортировка по дате
+                          </h4>
+                          <div className="space-y-1">
+                            <button
+                              onClick={() => {
+                                setSortBy('date');
+                                setSortDirection('desc');
+                                setHoveredSort(null);
+                                scrollToTop();
+                              }}
+                              className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
+                                sortBy === 'date' && sortDirection === 'desc'
+                                  ? 'bg-purple-600 text-white shadow-md'
+                                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
+                              }`}
+                            >
+                              От нового к старому
+                            </button>
+                            <button
+                              onClick={() => {
+                                setSortBy('date');
+                                setSortDirection('asc');
+                                setHoveredSort(null);
+                                scrollToTop();
+                              }}
+                              className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
+                                sortBy === 'date' && sortDirection === 'asc'
+                                  ? 'bg-purple-600 text-white shadow-md'
+                                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
+                              }`}
+                            >
+                              От старого к новому
+                            </button>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      setSortBy('popular');
+                      setSortDirection('desc');
+                      scrollToTop();
+                    }}
+                    className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                      sortBy === 'popular' 
+                        ? 'bg-purple-600 text-white shadow-md' 
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <Icon name="TrendingUp" size={14} className="inline mr-2" />
+                    По популярности
+                  </button>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                 <h3 className="font-semibold text-gray-900 mb-3 text-sm">Город</h3>
                 <div className="relative">
                   <Icon name="MapPin" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
@@ -1600,7 +1796,10 @@ const Index = () => {
               <button
                 onClick={() => {
                   setSelectedCategory(null);
+                  setSelectedSubcategory(null);
                   setSelectedCity(null);
+                  setSortBy('date');
+                  setSortDirection('desc');
                   scrollToTop();
                 }}
                 className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-medium py-2.5 px-4 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
