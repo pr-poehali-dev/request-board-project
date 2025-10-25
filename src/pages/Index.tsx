@@ -1370,7 +1370,7 @@ const Index = () => {
             )}
           </div>
           
-          <div className="relative">
+          <div className="relative max-w-xs">
             <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             <select
               value={selectedCity || ''}
