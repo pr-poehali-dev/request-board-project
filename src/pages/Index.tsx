@@ -1511,8 +1511,9 @@ const Index = () => {
                             const menuElement = document.getElementById('categories-menu');
                             if (menuElement) {
                               const menuRect = menuElement.getBoundingClientRect();
+                              const viewportHeight = window.innerHeight;
                               setMenuPosition({
-                                top: menuRect.top + (menuRect.height / 2) - 160,
+                                top: viewportHeight / 2 - 160,
                                 left: menuRect.right + 8
                               });
                             }
