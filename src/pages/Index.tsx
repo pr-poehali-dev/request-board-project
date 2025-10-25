@@ -2486,7 +2486,7 @@ const Index = () => {
                 value={loginData.email}
                 onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
               />
             </div>
             <div>
@@ -2496,7 +2496,7 @@ const Index = () => {
                 value={loginData.password}
                 onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
               />
             </div>
             <div className="flex gap-3 pt-2">
@@ -2513,7 +2513,7 @@ const Index = () => {
                     alert('Заполните все поля');
                   }
                 }}
-                className="flex-1 bg-gradient-to-br from-gray-700 to-gray-800 text-white hover:from-gray-800 hover:to-gray-900 rounded-xl shadow-lg"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 rounded-xl shadow-lg hover:shadow-xl transition-all"
               >
                 Войти
               </Button>
@@ -2555,7 +2555,7 @@ const Index = () => {
                 value={registerData.name}
                 onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
                 placeholder="Александр"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
               />
             </div>
             <div>
@@ -2565,7 +2565,7 @@ const Index = () => {
                 value={registerData.email}
                 onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
               />
             </div>
             <div>
@@ -2575,7 +2575,7 @@ const Index = () => {
                 value={registerData.password}
                 onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
               />
             </div>
             <div className="flex gap-3 pt-2">
@@ -2592,7 +2592,7 @@ const Index = () => {
                     alert('Заполните все поля');
                   }
                 }}
-                className="flex-1 bg-gradient-to-br from-gray-700 to-gray-800 text-white hover:from-gray-800 hover:to-gray-900 rounded-xl shadow-lg"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 rounded-xl shadow-lg hover:shadow-xl transition-all"
               >
                 Зарегистрироваться
               </Button>
@@ -2724,7 +2724,7 @@ const Index = () => {
                   alert('Профиль обновлён!');
                   setIsProfileEditOpen(false);
                 }}
-                className="flex-1 bg-gradient-to-br from-gray-700 to-gray-800 text-white hover:from-gray-800 hover:to-gray-900 rounded-xl shadow-lg"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 rounded-xl shadow-lg hover:shadow-xl transition-all"
               >
                 Сохранить
               </Button>
@@ -2890,7 +2890,7 @@ const Index = () => {
                   onChange={(e) => setResponseData({ ...responseData, comment: e.target.value })}
                   placeholder="Расскажите подробнее о вашем предложении..."
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-transparent resize-none transition-all bg-gray-50"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 resize-none transition-all bg-gray-50"
                 />
               </div>
 
@@ -2913,7 +2913,7 @@ const Index = () => {
                     setSelectedItem(null);
                     setResponseData({ price: '', comment: '' });
                   }}
-                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90"
+                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 transition-all shadow-md hover:shadow-lg"
                 >
                   Отправить
                 </Button>
