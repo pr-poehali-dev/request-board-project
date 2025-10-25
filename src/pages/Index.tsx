@@ -432,7 +432,7 @@ const Index = () => {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
-  const [formType, setFormType] = useState<'request' | 'offer'>('request');
+
   const [notifications, setNotifications] = useState<Notification[]>([
     {
       id: 1,
@@ -701,7 +701,7 @@ const Index = () => {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Поиск объявлений..."
+                  placeholder="Поиск запросов..."
                   className="w-full pl-10 pr-4 py-2 border border-white/30 bg-white/10 backdrop-blur-md text-white placeholder-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-sm"
                 />
                 {searchQuery && (
@@ -796,10 +796,10 @@ const Index = () => {
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-sm px-6 h-9 shadow-lg hover:shadow-xl transition-all"
-                title="Создать объявление"
+                title="Создать запрос"
               >
-                <Icon name="Sparkles" size={18} className="mr-1.5" />
-                Создать
+                <Icon name="Search" size={18} className="mr-1.5" />
+                Создать запрос
               </Button>
             )}
             </div>
@@ -1799,7 +1799,7 @@ const Index = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
             <div className="sticky top-0 bg-gray-100 p-4 sm:p-6 rounded-t-2xl flex items-center justify-between z-10 border-b border-gray-200 shadow-sm">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Создать объявление</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Создать запрос</h2>
               <button 
                 onClick={() => setIsCreateFormOpen(false)}
                 className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
@@ -1810,42 +1810,12 @@ const Index = () => {
 
             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Тип объявления</label>
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    onClick={() => setFormType('request')}
-                    className={`p-4 rounded-xl border-2 transition-all ${
-                      formType === 'request'
-                        ? 'border-primary bg-primary/10 text-primary'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <Icon name="Search" size={24} className="mx-auto mb-2" />
-                    <p className="font-semibold">Запрос</p>
-                    <p className="text-xs text-gray-500 mt-1">Я ищу товар/услугу</p>
-                  </button>
-                  <button
-                    onClick={() => setFormType('offer')}
-                    className={`p-4 rounded-xl border-2 transition-all ${
-                      formType === 'offer'
-                        ? 'border-secondary bg-secondary/10 text-secondary'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <Icon name="Package" size={24} className="mx-auto mb-2" />
-                    <p className="font-semibold">Предложение</p>
-                    <p className="text-xs text-gray-500 mt-1">Я предлагаю товар/услугу</p>
-                  </button>
-                </div>
-              </div>
-
-              <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Заголовок *</label>
                 <input
                   type="text"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  placeholder={formType === 'request' ? 'Например: Ищу iPhone 15 Pro' : 'Например: Продаю iPhone 14 Pro Max'}
+                  placeholder="Например: Ищу iPhone 15 Pro"
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
                 />
               </div>
@@ -1865,14 +1835,12 @@ const Index = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  {formType === 'request' ? 'Бюджет' : 'Цена'}
-                </label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Бюджет (опционально)</label>
                 <input
                   type="text"
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  placeholder={formType === 'request' ? 'Например: до 120 000 ₽' : 'Например: 85 000 ₽'}
+                  placeholder="Например: до 120 000 ₽"
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
                 />
               </div>
@@ -1881,11 +1849,20 @@ const Index = () => {
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Описание *</label>
                 <textarea
                   value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Подробно опишите что вы ищете или предлагаете..."
+                  onChange={(e) => {
+                    const text = e.target.value;
+                    if (text.length <= 1000) {
+                      setFormData({ ...formData, description: text });
+                    }
+                  }}
+                  placeholder="Подробно опишите что вы ищете..."
                   rows={4}
+                  maxLength={1000}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 resize-none transition-all bg-gray-50"
                 />
+                <div className="text-sm text-gray-500 mt-1 text-right">
+                  {formData.description.length}/1000 символов
+                </div>
               </div>
 
               <div>
@@ -1994,7 +1971,7 @@ const Index = () => {
                 <Button
                   onClick={() => {
                     if (formData.title && formData.category && formData.description && formData.city) {
-                      alert('Объявление создано!');
+                      alert('Запрос создан!');
                       setIsCreateFormOpen(false);
                       setFormData({
                         title: '',
