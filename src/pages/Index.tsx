@@ -1088,6 +1088,13 @@ const Index = () => {
     }
   }, [activeTab]);
 
+  useEffect(() => {
+    // При смене категории сбрасываем строку поиска
+    if (selectedCategory) {
+      setSearchQuery('');
+    }
+  }, [selectedCategory]);
+
 
 
   return (
