@@ -113,7 +113,7 @@ export default function RequestsList({
                       }
                     }}
                   >
-                    <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 ring-2 ring-violet-200">
+                    <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-600 to-pink-600 ring-2 ring-purple-200">
                       <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                         {request.author[0]}
                       </AvatarFallback>

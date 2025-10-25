@@ -113,7 +113,7 @@ export default function OffersList({
                       }
                     }}
                   >
-                    <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-emerald-500 to-teal-500 ring-2 ring-emerald-200">
+                    <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-600 to-pink-600 ring-2 ring-purple-200">
                       <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                         {offer.author[0]}
                       </AvatarFallback>

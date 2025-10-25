@@ -2461,7 +2461,7 @@ const Index = () => {
                       />
                       <Button 
                         onClick={handleSendMessage}
-                        className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-xl"
+                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl"
                       >
                         <Icon name="Send" size={18} />
                       </Button>
