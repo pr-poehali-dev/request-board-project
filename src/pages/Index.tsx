@@ -358,7 +358,7 @@ const mockUserProfiles: Record<string, UserProfile> = {
   }
 };
 
-const getCategoryColor = (category: string): string => {
+const getCategoryGradient = (category: string): string => {
   const colorMap: Record<string, string> = {
     'Электроника': 'bg-gradient-to-r from-blue-500 to-indigo-600',
     'Одежда': 'bg-gradient-to-r from-pink-500 to-rose-500',
@@ -1501,27 +1501,6 @@ const Index = () => {
                     Все категории
                   </button>
                   {categories.map((category) => {
-                    const getCategoryColor = (name: string) => {
-                      const colors: Record<string, string> = {
-                        'Электроника': 'bg-blue-600',
-                        'Одежда': 'bg-pink-600',
-                        'Услуги': 'bg-orange-600',
-                        'Недвижимость': 'bg-emerald-600',
-                        'Транспорт': 'bg-purple-600',
-                        'Мебель': 'bg-amber-600',
-                        'Детские товары': 'bg-sky-500',
-                        'Спорт': 'bg-green-600',
-                        'Красота': 'bg-fuchsia-600',
-                        'Животные': 'bg-yellow-600',
-                        'Хобби': 'bg-indigo-600',
-                        'Книги': 'bg-slate-600',
-                        'Строительство': 'bg-yellow-700',
-                        'Работа': 'bg-cyan-600',
-                        'Еда и напитки': 'bg-rose-600'
-                      };
-                      return colors[name] || 'bg-violet-600';
-                    };
-                    
                     return (
                       <div 
                         key={category.name}
