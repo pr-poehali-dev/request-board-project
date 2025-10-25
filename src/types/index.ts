@@ -12,6 +12,8 @@ export interface Request {
   exchange?: boolean;
   isFavorite?: boolean;
   photos?: string[];
+  isPromoted?: boolean;
+  promotedUntil?: string;
 }
 
 export interface Offer {
@@ -28,6 +30,8 @@ export interface Offer {
   exchange?: boolean;
   isFavorite?: boolean;
   photos?: string[];
+  isPromoted?: boolean;
+  promotedUntil?: string;
 }
 
 export interface ChatMessage {

@@ -7,6 +7,7 @@ import Icon from '@/components/ui/icon';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import type { Request, Offer } from '@/types';
 import { CITIES, CATEGORIES } from '@/constants/data';
+import MyAds from '@/components/MyAds';
 
 const cities = CITIES;
 const categories = CATEGORIES;
@@ -396,7 +397,11 @@ const RequestCard = ({
     <Card 
       key={request.id}
       ref={index === 0 ? contentTopRef : null}
-      className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
+      className={`${
+        request.isPromoted 
+          ? 'border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 shadow-lg shadow-yellow-200/50' 
+          : 'border border-purple-100 bg-white'
+      } rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300`}
     >
       <CardHeader className="pb-3 sm:pb-6">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -410,6 +415,12 @@ const RequestCard = ({
           <div className="flex flex-col gap-2 flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
               <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
+                {request.isPromoted && (
+                  <Badge className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white border-0 text-xs whitespace-nowrap shadow-md">
+                    <Icon name="Crown" size={12} className="mr-1" />
+                    Продвигается
+                  </Badge>
+                )}
                 <Badge className={`${getCategoryColor(request.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                   {request.category}
                 </Badge>
@@ -540,7 +551,11 @@ const OfferCard = ({
     <Card 
       key={offer.id}
       ref={index === 0 ? offersTopRef : null}
-      className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
+      className={`${
+        offer.isPromoted 
+          ? 'border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 shadow-lg shadow-yellow-200/50' 
+          : 'border border-purple-100 bg-white'
+      } rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300`}
     >
       <CardHeader className="pb-3 sm:pb-6">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -554,6 +569,12 @@ const OfferCard = ({
           <div className="flex flex-col gap-2 flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
               <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
+                {offer.isPromoted && (
+                  <Badge className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white border-0 text-xs whitespace-nowrap shadow-md">
+                    <Icon name="Crown" size={12} className="mr-1" />
+                    Продвигается
+                  </Badge>
+                )}
                 <Badge className={`${getCategoryColor(offer.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                   {offer.category}
                 </Badge>
@@ -670,6 +691,11 @@ const Index = () => {
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
   const [favoritesTab, setFavoritesTab] = useState<'requests' | 'offers'>('requests');
+  const [userRequests, setUserRequests] = useState<Request[]>([
+    { ...mockRequests[0], isPromoted: true, promotedUntil: '1 ноября' }, 
+    mockRequests[2]
+  ]);
+  const [userOffers, setUserOffers] = useState<Offer[]>([mockOffers[0]]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
@@ -838,28 +864,54 @@ const Index = () => {
 
   const currentDialog = dialogs.find(d => d.id === selectedDialog);
 
-  const filteredRequests = mockRequests.filter(req => {
+  const handlePromoteAd = (id: number, type: 'request' | 'offer') => {
+    const promotedUntil = new Date();
+    promotedUntil.setDate(promotedUntil.getDate() + 7);
+    const formattedDate = promotedUntil.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+
+    if (type === 'request') {
+      setUserRequests(prev => prev.map(req => 
+        req.id === id ? { ...req, isPromoted: true, promotedUntil: formattedDate } : req
+      ));
+    } else {
+      setUserOffers(prev => prev.map(offer => 
+        offer.id === id ? { ...offer, isPromoted: true, promotedUntil: formattedDate } : offer
+      ));
+    }
+  };
+
+  const allRequests = mockRequests.map(req => {
+    const userRequest = userRequests.find(ur => ur.id === req.id);
+    return userRequest || req;
+  });
+  
+  const filteredRequests = allRequests.filter(req => {
     const matchesSearch = searchQuery ? 
       req.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       req.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       req.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
     
-    // Город работает всегда, независимо от других фильтров
     const matchesCity = selectedCity ? req.city === selectedCity : true;
     const matchesDelivery = filterDelivery ? req.delivery === true : true;
     const matchesExchange = filterExchange ? req.exchange === true : true;
     
-    // Если есть поиск, игнорируем фильтры категорий, но учитываем город, доставку и обмен
     if (searchQuery) {
       return matchesSearch && matchesCity && matchesDelivery && matchesExchange;
     }
     
-    // Иначе применяем все фильтры
     const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
     const matchesSubcategory = selectedSubcategory ? req.category === selectedCategory : true;
+    
+    if (req.isPromoted && selectedCategory && req.category === selectedCategory) {
+      return true;
+    }
+    
     return matchesCategory && matchesSubcategory && matchesCity && matchesDelivery && matchesExchange;
   }).sort((a, b) => {
+    if (a.isPromoted && !b.isPromoted) return -1;
+    if (!a.isPromoted && b.isPromoted) return 1;
+    
     if (sortBy === 'date') {
       return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
     } else if (sortBy === 'popular') {
@@ -872,28 +924,38 @@ const Index = () => {
     return 0;
   });
 
-  const filteredOffers = mockOffers.filter(offer => {
+  const allOffers = mockOffers.map(offer => {
+    const userOffer = userOffers.find(uo => uo.id === offer.id);
+    return userOffer || offer;
+  });
+  
+  const filteredOffers = allOffers.filter(offer => {
     const matchesSearch = searchQuery ? 
       offer.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       offer.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       offer.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
     
-    // Город работает всегда, независимо от других фильтров
     const matchesCity = selectedCity ? offer.city === selectedCity : true;
     const matchesDelivery = filterDelivery ? offer.delivery === true : true;
     const matchesExchange = filterExchange ? offer.exchange === true : true;
     
-    // Если есть поиск, игнорируем фильтры категорий, но учитываем город, доставку и обмен
     if (searchQuery) {
       return matchesSearch && matchesCity && matchesDelivery && matchesExchange;
     }
     
-    // Иначе применяем все фильтры
     const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
     const matchesSubcategory = selectedSubcategory ? offer.category === selectedCategory : true;
+    
+    if (offer.isPromoted && selectedCategory && offer.category === selectedCategory) {
+      return true;
+    }
+    
     return matchesCategory && matchesSubcategory && matchesCity && matchesDelivery && matchesExchange;
   }).sort((a, b) => {
+    if (a.isPromoted && !b.isPromoted) return -1;
+    if (!a.isPromoted && b.isPromoted) return 1;
+    
     if (sortBy === 'date') {
       return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
     } else if (sortBy === 'popular') {
@@ -1297,6 +1359,15 @@ const Index = () => {
                 <span className="text-xs mt-1">Избранное</span>
               </button>
               <button 
+                onClick={() => setActiveTab('myads')}
+                className={`flex flex-col items-center py-2 px-1 rounded-lg transition-colors ${
+                  activeTab === 'myads' ? 'bg-primary text-white' : 'text-gray-600'
+                }`}
+              >
+                <Icon name="Star" size={20} />
+                <span className="text-xs mt-1">Мои</span>
+              </button>
+              <button 
                 onClick={() => setIsProfileOpen(true)}
                 className="flex flex-col items-center py-2 px-1 rounded-lg transition-colors text-gray-600"
               >
@@ -1505,6 +1576,19 @@ const Index = () => {
                     <Icon name="Package" size={16} className="inline mr-2" />
                     Предложения
                   </button>
+                  {isAuthenticated && (
+                    <button
+                      onClick={() => setActiveTab('myads')}
+                      className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
+                        activeTab === 'myads' 
+                          ? 'bg-emerald-600 text-white shadow-md' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Icon name="Star" size={16} className="inline mr-2" />
+                      Мои объявления
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -2095,6 +2179,30 @@ const Index = () => {
                 </>
               )}
             </div>
+          </div>
+        )}
+
+        {activeTab === 'myads' && isAuthenticated && (
+          <div 
+            className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div className="text-center mb-4 sm:mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent mb-2">
+                Мои объявления
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base">
+                Управляйте своими запросами и предложениями
+              </p>
+            </div>
+            
+            <MyAds 
+              userRequests={userRequests}
+              userOffers={userOffers}
+              onPromote={handlePromoteAd}
+            />
           </div>
         )}
 
