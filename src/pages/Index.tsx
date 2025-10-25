@@ -1062,6 +1062,7 @@ const Index = () => {
   useEffect(() => {
     if (activeTab === 'requests') {
       setSelectedCategory(null);
+      setSelectedSubcategory(null);
       setSearchQuery('');
       setSelectedCity(null);
     }
