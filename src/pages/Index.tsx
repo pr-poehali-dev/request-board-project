@@ -400,6 +400,7 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const [isSortOpen, setIsSortOpen] = useState(true);
   const contentTopRef = useRef<HTMLDivElement>(null);
   
@@ -1222,7 +1223,12 @@ const Index = () => {
                         className="relative"
                       >
                         <button
-                          onClick={() => {
+                          onClick={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            setMenuPosition({
+                              top: rect.top,
+                              left: rect.right + 8
+                            });
                             if (hoveredCategory === category.name) {
                               setHoveredCategory(null);
                             } else {
@@ -1249,8 +1255,11 @@ const Index = () => {
                               onClick={() => setHoveredCategory(null)}
                             />
                             <div 
-                              className="fixed left-[280px] w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
-                              style={{ top: `${(categories.findIndex(c => c.name === category.name) + 1) * 44 + 290}px` }}
+                              className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                              style={{ 
+                                top: `${menuPosition.top}px`,
+                                left: `${menuPosition.left}px`
+                              }}
                             >
                               <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
                                 <Icon name="Grid2x2" size={14} />
