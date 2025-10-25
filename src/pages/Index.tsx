@@ -702,6 +702,7 @@ const Index = () => {
   const [profileData, setProfileData] = useState({ name: 'Александр', email: 'user@example.com', currentPassword: '', newPassword: '', avatar: '' });
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
+  const [favoritesTab, setFavoritesTab] = useState<'requests' | 'offers'>('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
@@ -1992,13 +1993,34 @@ const Index = () => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div className="text-center mb-4 sm:mb-8">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-2 sm:mb-3">
+            <div className="text-center mb-4 sm:mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">
                 Избранное
               </h1>
-              <p className="text-base sm:text-lg text-gray-600">
+              <p className="text-base sm:text-lg text-gray-600 mb-4">
                 {favorites.length} {favorites.length === 1 ? 'объявление' : 'объявлений'}
               </p>
+              
+              {favorites.length > 0 && (
+                <div className="flex justify-center gap-2 sm:gap-4">
+                  <Button
+                    onClick={() => setFavoritesTab('requests')}
+                    variant={favoritesTab === 'requests' ? 'default' : 'outline'}
+                    className={`font-semibold ${favoritesTab === 'requests' ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : ''}`}
+                  >
+                    <Icon name="Search" size={16} className="mr-2" />
+                    Запросы ({mockRequests.filter(req => favorites.includes(`request-${req.id}`)).length})
+                  </Button>
+                  <Button
+                    onClick={() => setFavoritesTab('offers')}
+                    variant={favoritesTab === 'offers' ? 'default' : 'outline'}
+                    className={`font-semibold ${favoritesTab === 'offers' ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : ''}`}
+                  >
+                    <Icon name="Package" size={16} className="mr-2" />
+                    Предложения ({mockOffers.filter(offer => favorites.includes(`offer-${offer.id}`)).length})
+                  </Button>
+                </div>
+              )}
             </div>
             
             {favorites.length === 0 ? (
@@ -2014,7 +2036,7 @@ const Index = () => {
               </Card>
             ) : (
               <div className="grid gap-3 sm:gap-4">
-                {mockRequests.filter(req => favorites.includes(`request-${req.id}`)).map((request, index) => (
+                {favoritesTab === 'requests' && mockRequests.filter(req => favorites.includes(`request-${req.id}`)).map((request, index) => (
                   <Card 
                     key={request.id}
                     ref={index === 0 ? favoritesTopRef : null}
@@ -2092,7 +2114,7 @@ const Index = () => {
                     </CardContent>
                   </Card>
                 ))}
-                {mockOffers.filter(offer => favorites.includes(`offer-${offer.id}`)).map((offer, index) => (
+                {favoritesTab === 'offers' && mockOffers.filter(offer => favorites.includes(`offer-${offer.id}`)).map((offer, index) => (
                   <Card 
                     key={offer.id} 
                     className="hover:shadow-xl transition-all duration-300 border-2 hover:border-secondary/20 animate-scale-in"
@@ -3589,63 +3611,75 @@ const Index = () => {
       </Dialog>
 
       <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
-          <DialogHeader className="bg-gray-100 p-6 border-b border-gray-200 -m-6 mb-6 rounded-t-2xl shadow-sm">
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
-                <Icon name="User" size={22} className="text-white" />
-              </div>
-              <DialogTitle className="text-xl font-bold text-center text-gray-900">Мой Профиль</DialogTitle>
-            </div>
-          </DialogHeader>
-          <div className="space-y-6">
-            <div className="text-center">
-              <Avatar className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-purple-600 to-pink-600">
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl p-0">
+          <div className="relative">
+            <div className="h-32 bg-gradient-to-r from-purple-600 to-pink-600 rounded-t-3xl"></div>
+            <button 
+              onClick={() => setIsProfileOpen(false)}
+              className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center transition-all"
+            >
+              <Icon name="X" size={18} className="text-white" />
+            </button>
+            <div className="absolute -bottom-16 left-1/2 -translate-x-1/2">
+              <Avatar className="w-32 h-32 bg-gradient-to-br from-purple-600 to-pink-600 ring-4 ring-white shadow-xl">
                 {avatarPreview ? (
                   <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                 ) : (
-                  <AvatarFallback className="bg-transparent text-white text-3xl font-bold">
+                  <AvatarFallback className="bg-transparent text-white text-4xl font-bold">
                     {profileData.name.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 )}
               </Avatar>
-              <h2 className="text-3xl font-bold">Александр</h2>
-              <p className="text-gray-600 mt-1">Пользователь с октября 2024</p>
             </div>
-
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div className="p-4 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl">
-                <Icon name="FileText" size={20} className="mx-auto mb-2 text-primary" />
-                <p className="text-2xl font-bold text-gray-800">5</p>
-                <p className="text-sm text-gray-600">Запросов</p>
-              </div>
-              <div className="p-4 bg-gradient-to-br from-pink-100 to-pink-50 rounded-xl">
-                <Icon name="MessageCircle" size={20} className="mx-auto mb-2 text-secondary" />
-                <p className="text-2xl font-bold text-gray-800">12</p>
-                <p className="text-sm text-gray-600">Откликов</p>
-              </div>
-              <div className="p-4 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl">
-                <Icon name="Star" size={20} className="mx-auto mb-2 text-accent" />
-                <p className="text-2xl font-bold text-gray-800">4.8</p>
-                <p className="text-sm text-gray-600">Рейтинг</p>
+          </div>
+          
+          <div className="pt-20 px-6 pb-6 space-y-6">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-gray-900">Александр</h2>
+              <p className="text-gray-500 text-sm mt-1">user@example.com</p>
+              <div className="flex items-center justify-center gap-2 mt-2">
+                <div className="flex items-center gap-1 text-yellow-500">
+                  <Icon name="Star" size={16} className="fill-current" />
+                  <span className="font-semibold text-gray-900">4.8</span>
+                </div>
+                <span className="text-gray-400">•</span>
+                <span className="text-sm text-gray-600">На сайте с октября 2024</span>
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="grid grid-cols-3 gap-3 bg-gray-50 rounded-2xl p-4">
+              <div className="text-center">
+                <p className="text-2xl font-bold text-gray-900">5</p>
+                <p className="text-xs text-gray-600 mt-1">Запросов</p>
+              </div>
+              <div className="text-center border-l border-r border-gray-200">
+                <p className="text-2xl font-bold text-gray-900">12</p>
+                <p className="text-xs text-gray-600 mt-1">Откликов</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-gray-900">3</p>
+                <p className="text-xs text-gray-600 mt-1">Сделок</p>
+              </div>
+            </div>
+
+            <div className="space-y-2">
               <Button 
                 onClick={() => {
                   setIsProfileOpen(false);
                   setIsProfileEditOpen(true);
                 }}
                 variant="outline" 
-                className="w-full justify-start font-medium"
+                className="w-full justify-start h-12 rounded-xl hover:bg-gray-50"
               >
-                <Icon name="Settings" size={18} className="mr-3" />
-                Настройки профиля
+                <Icon name="Settings" size={20} className="mr-3 text-gray-600" />
+                <span className="font-medium">Настройки профиля</span>
               </Button>
-              <Button variant="outline" className="w-full justify-start font-medium">
-                <Icon name="Bell" size={18} className="mr-3" />
-                Уведомления
+              <Button 
+                variant="outline" 
+                className="w-full justify-start h-12 rounded-xl hover:bg-gray-50"
+              >
+                <Icon name="Bell" size={20} className="mr-3 text-gray-600" />
+                <span className="font-medium">Уведомления</span>
               </Button>
               <Button 
                 onClick={() => {
@@ -3653,22 +3687,24 @@ const Index = () => {
                   setIsSupportOpen(true);
                 }}
                 variant="outline" 
-                className="w-full justify-start font-medium"
+                className="w-full justify-start h-12 rounded-xl hover:bg-gray-50"
               >
-                <Icon name="HelpCircle" size={18} className="mr-3" />
-                Помощь
+                <Icon name="HelpCircle" size={20} className="mr-3 text-gray-600" />
+                <span className="font-medium">Помощь и поддержка</span>
               </Button>
-              <Button 
-                onClick={() => {
-                  setIsProfileOpen(false);
-                  setIsAuthenticated(false);
-                }}
-                variant="outline" 
-                className="w-full justify-start font-medium text-red-600 hover:text-red-700"
-              >
-                <Icon name="LogOut" size={18} className="mr-3" />
-                Выйти
-              </Button>
+              <div className="pt-2 border-t border-gray-200">
+                <Button 
+                  onClick={() => {
+                    setIsProfileOpen(false);
+                    setIsAuthenticated(false);
+                  }}
+                  variant="outline" 
+                  className="w-full justify-start h-12 rounded-xl hover:bg-red-50 border-red-200 text-red-600 hover:text-red-700 hover:border-red-300"
+                >
+                  <Icon name="LogOut" size={20} className="mr-3" />
+                  <span className="font-medium">Выйти из аккаунта</span>
+                </Button>
+              </div>
             </div>
           </div>
         </DialogContent>
