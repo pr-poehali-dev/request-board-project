@@ -1244,7 +1244,8 @@ const Index = () => {
                         
                         {hoveredCategory === category.name && category.subcategories && (
                           <div 
-                            className="absolute left-full top-0 ml-2 w-56 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-3 z-50 animate-in slide-in-from-left-2 duration-200"
+                            className="fixed left-[280px] w-56 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-3 z-[9999] animate-in slide-in-from-left-2 duration-200"
+                            style={{ top: `${(categories.findIndex(c => c.name === category.name) + 1) * 44 + 290}px` }}
                           >
                             <h4 className="text-xs font-bold text-gray-900 mb-2 pb-2 border-b border-gray-200 flex items-center gap-2">
                               <Icon name="Grid2x2" size={12} />
