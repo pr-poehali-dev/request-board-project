@@ -861,15 +861,22 @@ const Index = () => {
   const currentDialog = dialogs.find(d => d.id === selectedDialog);
 
   const filteredRequests = mockRequests.filter(req => {
-    const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
-    const matchesSubcategory = selectedSubcategory ? req.category === selectedCategory : true;
-    const matchesCity = selectedCity ? req.city === selectedCity : true;
     const matchesSearch = searchQuery ? 
       req.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       req.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       req.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    return matchesCategory && matchesSubcategory && matchesCity && matchesSearch;
+    
+    // Если есть поиск, игнорируем фильтры
+    if (searchQuery) {
+      return matchesSearch;
+    }
+    
+    // Иначе применяем фильтры
+    const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
+    const matchesSubcategory = selectedSubcategory ? req.category === selectedCategory : true;
+    const matchesCity = selectedCity ? req.city === selectedCity : true;
+    return matchesCategory && matchesSubcategory && matchesCity;
   }).sort((a, b) => {
     if (sortBy === 'date') {
       return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
@@ -884,15 +891,22 @@ const Index = () => {
   });
 
   const filteredOffers = mockOffers.filter(offer => {
-    const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
-    const matchesSubcategory = selectedSubcategory ? offer.category === selectedCategory : true;
-    const matchesCity = selectedCity ? offer.city === selectedCity : true;
     const matchesSearch = searchQuery ? 
       offer.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       offer.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       offer.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    return matchesCategory && matchesSubcategory && matchesCity && matchesSearch;
+    
+    // Если есть поиск, игнорируем фильтры
+    if (searchQuery) {
+      return matchesSearch;
+    }
+    
+    // Иначе применяем фильтры
+    const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
+    const matchesSubcategory = selectedSubcategory ? offer.category === selectedCategory : true;
+    const matchesCity = selectedCity ? offer.city === selectedCity : true;
+    return matchesCategory && matchesSubcategory && matchesCity;
   }).sort((a, b) => {
     if (sortBy === 'date') {
       return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
@@ -1068,6 +1082,15 @@ const Index = () => {
       setSelectedCity(null);
     }
   }, [activeTab]);
+
+  useEffect(() => {
+    // Когда начинаем поиск, сбрасываем фильтры
+    if (searchQuery) {
+      setSelectedCategory(null);
+      setSelectedSubcategory(null);
+      setSelectedCity(null);
+    }
+  }, [searchQuery]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50/50 via-pink-50/50 to-orange-50/50">
@@ -1864,7 +1887,30 @@ const Index = () => {
             </div>
 
             <div>
-              {filteredRequests.map((request, index) => (
+              {filteredRequests.length === 0 ? (
+                <Card className="max-w-2xl mx-auto my-8">
+                  <CardContent className="p-8 sm:p-12 text-center">
+                    <Icon name="SearchX" size={64} className="mx-auto mb-4 text-gray-300" />
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">По вашему запросу ничего не найдено</h3>
+                    <p className="text-gray-600 mb-6">Попробуйте изменить запрос или сбросить фильтры</p>
+                    <Button 
+                      onClick={() => {
+                        setSearchQuery('');
+                        setSelectedCategory(null);
+                        setSelectedSubcategory(null);
+                        setSelectedCity(null);
+                        scrollToTop();
+                      }}
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold"
+                    >
+                      <Icon name="RefreshCw" size={18} className="mr-2" />
+                      Сбросить все фильтры
+                    </Button>
+                  </CardContent>
+                </Card>
+              ) : (
+                <>
+                  {filteredRequests.map((request, index) => (
                 <RequestCard
                   key={request.id}
                   request={request}
@@ -1904,6 +1950,8 @@ const Index = () => {
                   }}
                 />
               ))}
+                </>
+              )}
             </div>
           </div>
         )}
@@ -1943,8 +1991,31 @@ const Index = () => {
             </div>
 
             <div>
-              {filteredOffers.map((offer, index) => (
-                <OfferCard
+              {filteredOffers.length === 0 ? (
+                <Card className="max-w-2xl mx-auto my-8">
+                  <CardContent className="p-8 sm:p-12 text-center">
+                    <Icon name="SearchX" size={64} className="mx-auto mb-4 text-gray-300" />
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">По вашему запросу ничего не найдено</h3>
+                    <p className="text-gray-600 mb-6">Попробуйте изменить запрос или сбросить фильтры</p>
+                    <Button 
+                      onClick={() => {
+                        setSearchQuery('');
+                        setSelectedCategory(null);
+                        setSelectedSubcategory(null);
+                        setSelectedCity(null);
+                        scrollToTop();
+                      }}
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold"
+                    >
+                      <Icon name="RefreshCw" size={18} className="mr-2" />
+                      Сбросить все фильтры
+                    </Button>
+                  </CardContent>
+                </Card>
+              ) : (
+                <>
+                  {filteredOffers.map((offer, index) => (
+                    <OfferCard
                   key={offer.id}
                   offer={offer}
                   index={index}
@@ -1982,6 +2053,8 @@ const Index = () => {
                   }}
                 />
               ))}
+                </>
+              )}
             </div>
           </div>
         )}
