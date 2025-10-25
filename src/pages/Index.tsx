@@ -153,106 +153,106 @@ const categories = [
 ];
 
 const mockRequests: Request[] = [
-  { id: 1, title: 'Ищу iPhone 15 Pro', category: 'Электроника', budget: 'до 120 000 ₽', author: 'Александр', rating: 4.8, responses: 12, description: 'Нужен iPhone 15 Pro в хорошем состоянии, желательно с гарантией', city: 'Москва', delivery: true, exchange: true, photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/20f91e3c-6b83-4a91-8518-c44b398b628e.jpg'] },
-  { id: 2, title: 'Куплю MacBook Air M2', category: 'Электроника', budget: 'до 90 000 ₽', author: 'Дмитрий', rating: 4.7, responses: 15, description: 'Интересует MacBook Air на M2, новый или б/у в отличном состоянии', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/20f91e3c-6b83-4a91-8518-c44b398b628e.jpg'] },
-  { id: 3, title: 'Ищу AirPods Pro 2', category: 'Электроника', budget: 'до 20 000 ₽', author: 'Игорь', rating: 4.6, responses: 8, description: 'Нужны наушники AirPods Pro 2 поколения', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/20f91e3c-6b83-4a91-8518-c44b398b628e.jpg'] },
+  { id: 1, title: 'Ищу iPhone 15 Pro', category: 'Электроника', budget: 'до 120 000 ₽', author: 'Александр', rating: 4.8, responses: 12, description: 'Нужен iPhone 15 Pro в хорошем состоянии, желательно с гарантией', city: 'Москва', delivery: true, exchange: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 2, title: 'Куплю MacBook Air M2', category: 'Электроника', budget: 'до 90 000 ₽', author: 'Дмитрий', rating: 4.7, responses: 15, description: 'Интересует MacBook Air на M2, новый или б/у в отличном состоянии', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 3, title: 'Ищу AirPods Pro 2', category: 'Электроника', budget: 'до 20 000 ₽', author: 'Игорь', rating: 4.6, responses: 8, description: 'Нужны наушники AirPods Pro 2 поколения', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 4, title: 'Требуется мастер по ремонту', category: 'Услуги', budget: 'договорная', author: 'Мария', rating: 4.9, responses: 8, description: 'Ремонт квартиры, необходим опытный специалист', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/20f91e3c-6b83-4a91-8518-c44b398b628e.jpg'] },
-  { id: 5, title: 'Ищу репетитора английского', category: 'Услуги', budget: '1500 ₽/час', author: 'Елена', rating: 5.0, responses: 23, description: 'Нужен репетитор для подготовки к IELTS, уровень Intermediate', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/20f91e3c-6b83-4a91-8518-c44b398b628e.jpg'] },
-  { id: 6, title: 'Нужен веб-разработчик', category: 'Услуги', budget: 'от 50 000 ₽', author: 'Артем', rating: 4.8, responses: 18, description: 'Разработка сайта для стартапа', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/20f91e3c-6b83-4a91-8518-c44b398b628e.jpg'] },
+  { id: 4, title: 'Требуется мастер по ремонту', category: 'Услуги', budget: 'договорная', author: 'Мария', rating: 4.9, responses: 8, description: 'Ремонт квартиры, необходим опытный специалист', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 5, title: 'Ищу репетитора английского', category: 'Услуги', budget: '1500 ₽/час', author: 'Елена', rating: 5.0, responses: 23, description: 'Нужен репетитор для подготовки к IELTS, уровень Intermediate', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 6, title: 'Нужен веб-разработчик', category: 'Услуги', budget: 'от 50 000 ₽', author: 'Артем', rating: 4.8, responses: 18, description: 'Разработка сайта для стартапа', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 7, title: 'Куплю пальто зимнее', category: 'Одежда', budget: 'до 15 000 ₽', author: 'Светлана', rating: 4.5, responses: 6, description: 'Ищу женское зимнее пальто, размер 44-46', city: 'Санкт-Петербург', delivery: true },
-  { id: 8, title: 'Ищу кроссовки Nike', category: 'Одежда', budget: 'до 8 000 ₽', author: 'Роман', rating: 4.7, responses: 11, description: 'Нужны кроссовки Nike, размер 42', city: 'Москва', delivery: true },
+  { id: 7, title: 'Куплю пальто зимнее', category: 'Одежда', budget: 'до 15 000 ₽', author: 'Светлана', rating: 4.5, responses: 6, description: 'Ищу женское зимнее пальто, размер 44-46', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 8, title: 'Ищу кроссовки Nike', category: 'Одежда', budget: 'до 8 000 ₽', author: 'Роман', rating: 4.7, responses: 11, description: 'Нужны кроссовки Nike, размер 42', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 9, title: 'Сниму квартиру 2-комн', category: 'Недвижимость', budget: 'до 50 000 ₽/мес', author: 'Андрей', rating: 4.9, responses: 14, description: 'Ищу 2-комнатную квартиру в центре', city: 'Москва', delivery: false },
-  { id: 10, title: 'Куплю участок под дачу', category: 'Недвижимость', budget: 'до 1 500 000 ₽', author: 'Владимир', rating: 4.6, responses: 9, description: 'Ищу земельный участок 6-10 соток', city: 'Москва', delivery: false },
+  { id: 9, title: 'Сниму квартиру 2-комн', category: 'Недвижимость', budget: 'до 50 000 ₽/мес', author: 'Андрей', rating: 4.9, responses: 14, description: 'Ищу 2-комнатную квартиру в центре', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 10, title: 'Куплю участок под дачу', category: 'Недвижимость', budget: 'до 1 500 000 ₽', author: 'Владимир', rating: 4.6, responses: 9, description: 'Ищу земельный участок 6-10 соток', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 11, title: 'Куплю BMW 3 series', category: 'Транспорт', budget: 'до 2 000 000 ₽', author: 'Сергей', rating: 4.8, responses: 16, description: 'Ищу BMW 3 series в хорошем состоянии', city: 'Москва', delivery: false },
-  { id: 12, title: 'Нужен самокат', category: 'Транспорт', budget: 'до 15 000 ₽', author: 'Денис', rating: 4.5, responses: 7, description: 'Электросамокат для города', city: 'Санкт-Петербург', delivery: true },
+  { id: 11, title: 'Куплю BMW 3 series', category: 'Транспорт', budget: 'до 2 000 000 ₽', author: 'Сергей', rating: 4.8, responses: 16, description: 'Ищу BMW 3 series в хорошем состоянии', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 12, title: 'Нужен самокат', category: 'Транспорт', budget: 'до 15 000 ₽', author: 'Денис', rating: 4.5, responses: 7, description: 'Электросамокат для города', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 13, title: 'Куплю диван для гостиной', category: 'Мебель', budget: 'до 50 000 ₽', author: 'Анастасия', rating: 4.6, responses: 7, description: 'Ищу угловой диван в хорошем состоянии', city: 'Новосибирск', delivery: true },
-  { id: 14, title: 'Ищу кровать двуспальную', category: 'Мебель', budget: 'до 30 000 ₽', author: 'Татьяна', rating: 4.7, responses: 10, description: 'Нужна кровать с матрасом', city: 'Казань', delivery: true },
+  { id: 13, title: 'Куплю диван для гостиной', category: 'Мебель', budget: 'до 50 000 ₽', author: 'Анастасия', rating: 4.6, responses: 7, description: 'Ищу угловой диван в хорошем состоянии', city: 'Новосибирск', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 14, title: 'Ищу кровать двуспальную', category: 'Мебель', budget: 'до 30 000 ₽', author: 'Татьяна', rating: 4.7, responses: 10, description: 'Нужна кровать с матрасом', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 15, title: 'Нужна коляска для ребенка', category: 'Детские товары', budget: 'до 15 000 ₽', author: 'Ольга', rating: 4.9, responses: 12, description: 'Трансформер или прогулочная коляска', city: 'Екатеринбург', delivery: false },
-  { id: 16, title: 'Куплю детский велосипед', category: 'Детские товары', budget: 'до 5 000 ₽', author: 'Евгений', rating: 4.5, responses: 8, description: 'Для ребенка 5-7 лет', city: 'Москва', delivery: true },
+  { id: 15, title: 'Нужна коляска для ребенка', category: 'Детские товары', budget: 'до 15 000 ₽', author: 'Ольга', rating: 4.9, responses: 12, description: 'Трансформер или прогулочная коляска', city: 'Екатеринбург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 16, title: 'Куплю детский велосипед', category: 'Детские товары', budget: 'до 5 000 ₽', author: 'Евгений', rating: 4.5, responses: 8, description: 'Для ребенка 5-7 лет', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 17, title: 'Ищу велосипед горный', category: 'Спорт', budget: 'до 30 000 ₽', author: 'Максим', rating: 4.7, responses: 9, description: 'Нужен горный велосипед для трейлов', city: 'Москва', delivery: true },
-  { id: 18, title: 'Куплю гантели разборные', category: 'Спорт', budget: 'до 8 000 ₽', author: 'Алексей', rating: 4.6, responses: 5, description: 'Для домашних тренировок', city: 'Санкт-Петербург', delivery: true },
+  { id: 17, title: 'Ищу велосипед горный', category: 'Спорт', budget: 'до 30 000 ₽', author: 'Максим', rating: 4.7, responses: 9, description: 'Нужен горный велосипед для трейлов', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 18, title: 'Куплю гантели разборные', category: 'Спорт', budget: 'до 8 000 ₽', author: 'Алексей', rating: 4.6, responses: 5, description: 'Для домашних тренировок', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 19, title: 'Нужен мастер маникюра', category: 'Красота', budget: '2000 ₽', author: 'Юлия', rating: 4.8, responses: 15, description: 'Ищу мастера маникюра на дом', city: 'Москва', delivery: false },
-  { id: 20, title: 'Куплю фен для волос', category: 'Красота', budget: 'до 5 000 ₽', author: 'Марина', rating: 4.5, responses: 6, description: 'Профессиональный фен', city: 'Казань', delivery: true },
+  { id: 19, title: 'Нужен мастер маникюра', category: 'Красота', budget: '2000 ₽', author: 'Юлия', rating: 4.8, responses: 15, description: 'Ищу мастера маникюра на дом', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 20, title: 'Куплю фен для волос', category: 'Красота', budget: 'до 5 000 ₽', author: 'Марина', rating: 4.5, responses: 6, description: 'Профессиональный фен', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 21, title: 'Ищу щенка хаски', category: 'Животные', budget: 'до 30 000 ₽', author: 'Павел', rating: 4.7, responses: 12, description: 'Хочу купить щенка хаски с документами', city: 'Москва', delivery: false },
-  { id: 22, title: 'Нужен корм для кошки', category: 'Животные', budget: 'договорная', author: 'Наталья', rating: 4.6, responses: 4, description: 'Ищу премиальный корм для кошки', city: 'Санкт-Петербург', delivery: true },
+  { id: 21, title: 'Ищу щенка хаски', category: 'Животные', budget: 'до 30 000 ₽', author: 'Павел', rating: 4.7, responses: 12, description: 'Хочу купить щенка хаски с документами', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 22, title: 'Нужен корм для кошки', category: 'Животные', budget: 'договорная', author: 'Наталья', rating: 4.6, responses: 4, description: 'Ищу премиальный корм для кошки', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 23, title: 'Куплю PS5', category: 'Хобби', budget: 'до 50 000 ₽', author: 'Артур', rating: 4.8, responses: 20, description: 'Ищу PlayStation 5 в хорошем состоянии', city: 'Москва', delivery: true },
-  { id: 24, title: 'Ищу настольные игры', category: 'Хобби', budget: 'до 3 000 ₽', author: 'Кирилл', rating: 4.5, responses: 7, description: 'Для семейных вечеров', city: 'Казань', delivery: true },
+  { id: 23, title: 'Куплю PS5', category: 'Хобби', budget: 'до 50 000 ₽', author: 'Артур', rating: 4.8, responses: 20, description: 'Ищу PlayStation 5 в хорошем состоянии', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 24, title: 'Ищу настольные игры', category: 'Хобби', budget: 'до 3 000 ₽', author: 'Кирилл', rating: 4.5, responses: 7, description: 'Для семейных вечеров', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 25, title: 'Куплю учебники по программированию', category: 'Книги', budget: 'до 2 000 ₽', author: 'Иван', rating: 4.6, responses: 9, description: 'Учебники по Python и JavaScript', city: 'Москва', delivery: true },
-  { id: 26, title: 'Ищу классическую литературу', category: 'Книги', budget: 'договорная', author: 'Екатерина', rating: 4.7, responses: 5, description: 'Собрание сочинений классиков', city: 'Санкт-Петербург', delivery: true },
+  { id: 25, title: 'Куплю учебники по программированию', category: 'Книги', budget: 'до 2 000 ₽', author: 'Иван', rating: 4.6, responses: 9, description: 'Учебники по Python и JavaScript', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 26, title: 'Ищу классическую литературу', category: 'Книги', budget: 'договорная', author: 'Екатерина', rating: 4.7, responses: 5, description: 'Собрание сочинений классиков', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 27, title: 'Нужен строитель', category: 'Строительство', budget: 'договорная', author: 'Николай', rating: 4.8, responses: 11, description: 'Строительство загородного дома', city: 'Москва', delivery: false },
-  { id: 28, title: 'Куплю стройматериалы', category: 'Строительство', budget: 'до 100 000 ₽', author: 'Виктор', rating: 4.5, responses: 6, description: 'Кирпич, цемент, песок', city: 'Новосибирск', delivery: true },
+  { id: 27, title: 'Нужен строитель', category: 'Строительство', budget: 'договорная', author: 'Николай', rating: 4.8, responses: 11, description: 'Строительство загородного дома', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 28, title: 'Куплю стройматериалы', category: 'Строительство', budget: 'до 100 000 ₽', author: 'Виктор', rating: 4.5, responses: 6, description: 'Кирпич, цемент, песок', city: 'Новосибирск', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 29, title: 'Ищу программиста Python', category: 'Работа', budget: 'от 150 000 ₽/мес', author: 'IT Компания', rating: 4.9, responses: 35, description: 'Требуется Senior Python разработчик', city: 'Москва', delivery: false },
-  { id: 30, title: 'Вакансия дизайнера', category: 'Работа', budget: 'от 80 000 ₽/мес', author: 'Студия дизайна', rating: 4.7, responses: 22, description: 'Ищем UX/UI дизайнера', city: 'Санкт-Петербург', delivery: false },
+  { id: 29, title: 'Ищу программиста Python', category: 'Работа', budget: 'от 150 000 ₽/мес', author: 'IT Компания', rating: 4.9, responses: 35, description: 'Требуется Senior Python разработчик', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 30, title: 'Вакансия дизайнера', category: 'Работа', budget: 'от 80 000 ₽/мес', author: 'Студия дизайна', rating: 4.7, responses: 22, description: 'Ищем UX/UI дизайнера', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 31, title: 'Куплю кофе в зернах', category: 'Еда и напитки', budget: 'до 2 000 ₽/кг', author: 'Дмитрий', rating: 4.6, responses: 8, description: 'Арабика, свежая обжарка', city: 'Москва', delivery: true },
-  { id: 32, title: 'Ищу доставку еды', category: 'Еда и напитки', budget: 'договорная', author: 'Ольга', rating: 4.5, responses: 5, description: 'Здоровое питание на неделю', city: 'Санкт-Петербург', delivery: true }
+  { id: 31, title: 'Куплю кофе в зернах', category: 'Еда и напитки', budget: 'до 2 000 ₽/кг', author: 'Дмитрий', rating: 4.6, responses: 8, description: 'Арабика, свежая обжарка', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 32, title: 'Ищу доставку еды', category: 'Еда и напитки', budget: 'договорная', author: 'Ольга', rating: 4.5, responses: 5, description: 'Здоровое питание на неделю', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] }
 ];
 
 const mockOffers: Offer[] = [
-  { id: 1, title: 'Продаю iPhone 15 Pro', category: 'Электроника', price: '95 000 ₽', author: 'Сергей', rating: 4.9, views: 145, description: 'iPhone 15 Pro 256GB, титановый, отличное состояние', city: 'Москва', delivery: true, exchange: true },
-  { id: 2, title: 'MacBook Pro 16" M1 Pro', category: 'Электроника', price: '150 000 ₽', author: 'Игорь', rating: 4.8, views: 234, description: 'MacBook Pro 16" M1 Pro, 32GB RAM, 1TB SSD', city: 'Москва', delivery: true, exchange: true },
-  { id: 3, title: 'Samsung Galaxy S24', category: 'Электроника', price: '65 000 ₽', author: 'Михаил', rating: 4.7, views: 98, description: 'Новый телефон, все аксессуары в комплекте', city: 'Казань', delivery: true },
+  { id: 1, title: 'Продаю iPhone 15 Pro', category: 'Электроника', price: '95 000 ₽', author: 'Сергей', rating: 4.9, views: 145, description: 'iPhone 15 Pro 256GB, титановый, отличное состояние', city: 'Москва', delivery: true, exchange: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 2, title: 'MacBook Pro 16" M1 Pro', category: 'Электроника', price: '150 000 ₽', author: 'Игорь', rating: 4.8, views: 234, description: 'MacBook Pro 16" M1 Pro, 32GB RAM, 1TB SSD', city: 'Москва', delivery: true, exchange: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 3, title: 'Samsung Galaxy S24', category: 'Электроника', price: '65 000 ₽', author: 'Михаил', rating: 4.7, views: 98, description: 'Новый телефон, все аксессуары в комплекте', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 4, title: 'Услуги дизайнера интерьера', category: 'Услуги', price: 'от 3000 ₽', author: 'Анна', rating: 5.0, views: 89, description: 'Профессиональный дизайн интерьера квартир и домов', city: 'Санкт-Петербург', delivery: false },
-  { id: 5, title: 'Ремонт квартир', category: 'Услуги', price: 'договорная', author: 'Строймастер', rating: 4.8, views: 156, description: 'Все виды ремонтных работ под ключ', city: 'Москва', delivery: false },
-  { id: 6, title: 'Уборка квартир', category: 'Услуги', price: 'от 2000 ₽', author: 'Клининг Сервис', rating: 4.9, views: 78, description: 'Профессиональная уборка квартир и офисов', city: 'Санкт-Петербург', delivery: false },
+  { id: 4, title: 'Услуги дизайнера интерьера', category: 'Услуги', price: 'от 3000 ₽', author: 'Анна', rating: 5.0, views: 89, description: 'Профессиональный дизайн интерьера квартир и домов', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 5, title: 'Ремонт квартир', category: 'Услуги', price: 'договорная', author: 'Строймастер', rating: 4.8, views: 156, description: 'Все виды ремонтных работ под ключ', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 6, title: 'Уборка квартир', category: 'Услуги', price: 'от 2000 ₽', author: 'Клининг Сервис', rating: 4.9, views: 78, description: 'Профессиональная уборка квартир и офисов', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 7, title: 'Зимнее пальто женское', category: 'Одежда', price: '12 000 ₽', author: 'Елена', rating: 4.6, views: 45, description: 'Пальто, размер 44, почти новое', city: 'Москва', delivery: true },
-  { id: 8, title: 'Кроссовки Adidas', category: 'Одежда', price: '6 500 ₽', author: 'Петр', rating: 4.5, views: 67, description: 'Оригинальные кроссовки, размер 42', city: 'Санкт-Петербург', delivery: true },
-  { id: 9, title: 'Куртка кожаная', category: 'Одежда', price: '8 000 ₽', author: 'Алина', rating: 4.7, views: 52, description: 'Натуральная кожа, размер M', city: 'Казань', delivery: true },
+  { id: 7, title: 'Зимнее пальто женское', category: 'Одежда', price: '12 000 ₽', author: 'Елена', rating: 4.6, views: 45, description: 'Пальто, размер 44, почти новое', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 8, title: 'Кроссовки Adidas', category: 'Одежда', price: '6 500 ₽', author: 'Петр', rating: 4.5, views: 67, description: 'Оригинальные кроссовки, размер 42', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 9, title: 'Куртка кожаная', category: 'Одежда', price: '8 000 ₽', author: 'Алина', rating: 4.7, views: 52, description: 'Натуральная кожа, размер M', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 10, title: 'Сдаю квартиру 2-комн', category: 'Недвижимость', price: '45 000 ₽/мес', author: 'Владелец', rating: 4.8, views: 189, description: '2-комнатная квартира в центре, евроремонт', city: 'Москва', delivery: false },
-  { id: 11, title: 'Продаю дачу', category: 'Недвижимость', price: '3 500 000 ₽', author: 'Александр', rating: 4.6, views: 134, description: 'Участок 8 соток, дом 80 кв.м', city: 'Москва', delivery: false },
+  { id: 10, title: 'Сдаю квартиру 2-комн', category: 'Недвижимость', price: '45 000 ₽/мес', author: 'Владелец', rating: 4.8, views: 189, description: '2-комнатная квартира в центре, евроремонт', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 11, title: 'Продаю дачу', category: 'Недвижимость', price: '3 500 000 ₽', author: 'Александр', rating: 4.6, views: 134, description: 'Участок 8 соток, дом 80 кв.м', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 12, title: 'BMW 5 series 2020', category: 'Транспорт', price: '3 200 000 ₽', author: 'Автосалон', rating: 4.9, views: 267, description: 'BMW 5 series, один владелец, пробег 45 000 км', city: 'Москва', delivery: false },
-  { id: 13, title: 'Электросамокат Xiaomi', category: 'Транспорт', price: '18 000 ₽', author: 'Олег', rating: 4.5, views: 92, description: 'Xiaomi Mi Electric Scooter Pro 2', city: 'Санкт-Петербург', delivery: true },
-  { id: 14, title: 'Велосипед детский', category: 'Транспорт', price: '4 500 ₽', author: 'Мария', rating: 4.6, views: 56, description: 'Для ребенка 6-8 лет, в отличном состоянии', city: 'Казань', delivery: true },
+  { id: 12, title: 'BMW 5 series 2020', category: 'Транспорт', price: '3 200 000 ₽', author: 'Автосалон', rating: 4.9, views: 267, description: 'BMW 5 series, один владелец, пробег 45 000 км', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 13, title: 'Электросамокат Xiaomi', category: 'Транспорт', price: '18 000 ₽', author: 'Олег', rating: 4.5, views: 92, description: 'Xiaomi Mi Electric Scooter Pro 2', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 14, title: 'Велосипед детский', category: 'Транспорт', price: '4 500 ₽', author: 'Мария', rating: 4.6, views: 56, description: 'Для ребенка 6-8 лет, в отличном состоянии', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 15, title: 'Продаю шкаф-купе', category: 'Мебель', price: '35 000 ₽', author: 'Виктория', rating: 4.7, views: 67, description: 'Шкаф-купе 2.5м, зеркальные двери', city: 'Москва', delivery: false },
-  { id: 16, title: 'Диван угловой', category: 'Мебель', price: '42 000 ₽', author: 'Анатолий', rating: 4.6, views: 89, description: 'Угловой диван с механизмом трансформации', city: 'Санкт-Петербург', delivery: true },
-  { id: 17, title: 'Обеденный стол', category: 'Мебель', price: '15 000 ₽', author: 'Наталья', rating: 4.5, views: 45, description: 'Стол на 6 персон, массив дуба', city: 'Новосибирск', delivery: false },
+  { id: 15, title: 'Продаю шкаф-купе', category: 'Мебель', price: '35 000 ₽', author: 'Виктория', rating: 4.7, views: 67, description: 'Шкаф-купе 2.5м, зеркальные двери', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 16, title: 'Диван угловой', category: 'Мебель', price: '42 000 ₽', author: 'Анатолий', rating: 4.6, views: 89, description: 'Угловой диван с механизмом трансформации', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 17, title: 'Обеденный стол', category: 'Мебель', price: '15 000 ₽', author: 'Наталья', rating: 4.5, views: 45, description: 'Стол на 6 персон, массив дуба', city: 'Новосибирск', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 18, title: 'Детская кроватка с матрасом', category: 'Детские товары', price: '8 000 ₽', author: 'Татьяна', rating: 5.0, views: 89, description: 'Кроватка-маятник с ортопедическим матрасом', city: 'Санкт-Петербург', delivery: true },
-  { id: 19, title: 'Коляска-трансформер', category: 'Детские товары', price: '12 000 ₽', author: 'Светлана', rating: 4.8, views: 78, description: 'Коляска 3 в 1, в отличном состоянии', city: 'Москва', delivery: true },
+  { id: 18, title: 'Детская кроватка с матрасом', category: 'Детские товары', price: '8 000 ₽', author: 'Татьяна', rating: 5.0, views: 89, description: 'Кроватка-маятник с ортопедическим матрасом', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 19, title: 'Коляска-трансформер', category: 'Детские товары', price: '12 000 ₽', author: 'Светлана', rating: 4.8, views: 78, description: 'Коляска 3 в 1, в отличном состоянии', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 20, title: 'Горный велосипед Trek', category: 'Спорт', price: '45 000 ₽', author: 'Николай', rating: 4.8, views: 112, description: 'Trek X-Caliber 8, карбоновая вилка', city: 'Казань', delivery: true, exchange: true },
-  { id: 21, title: 'Беговая дорожка', category: 'Спорт', price: '25 000 ₽', author: 'Валерий', rating: 4.7, views: 95, description: 'Электрическая беговая дорожка', city: 'Москва', delivery: true },
-  { id: 22, title: 'Гантели 20 кг', category: 'Спорт', price: '6 000 ₽', author: 'Дмитрий', rating: 4.6, views: 67, description: 'Разборные гантели, почти новые', city: 'Санкт-Петербург', delivery: true },
+  { id: 20, title: 'Горный велосипед Trek', category: 'Спорт', price: '45 000 ₽', author: 'Николай', rating: 4.8, views: 112, description: 'Trek X-Caliber 8, карбоновая вилка', city: 'Казань', delivery: true, exchange: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 21, title: 'Беговая дорожка', category: 'Спорт', price: '25 000 ₽', author: 'Валерий', rating: 4.7, views: 95, description: 'Электрическая беговая дорожка', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 22, title: 'Гантели 20 кг', category: 'Спорт', price: '6 000 ₽', author: 'Дмитрий', rating: 4.6, views: 67, description: 'Разборные гантели, почти новые', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 23, title: 'Маникюр на дом', category: 'Красота', price: '1 500 ₽', author: 'Мастер Юлия', rating: 4.9, views: 134, description: 'Профессиональный маникюр и педикюр', city: 'Москва', delivery: false },
-  { id: 24, title: 'Фен Dyson', category: 'Красота', price: '22 000 ₽', author: 'Анна', rating: 4.8, views: 56, description: 'Фен Dyson Supersonic, как новый', city: 'Санкт-Петербург', delivery: true },
+  { id: 23, title: 'Маникюр на дом', category: 'Красота', price: '1 500 ₽', author: 'Мастер Юлия', rating: 4.9, views: 134, description: 'Профессиональный маникюр и педикюр', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 24, title: 'Фен Dyson', category: 'Красота', price: '22 000 ₽', author: 'Анна', rating: 4.8, views: 56, description: 'Фен Dyson Supersonic, как новый', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 25, title: 'Продаю котенка британца', category: 'Животные', price: '15 000 ₽', author: 'Питомник', rating: 4.9, views: 178, description: 'Британский котенок, 2 месяца, с документами', city: 'Москва', delivery: false },
-  { id: 26, title: 'Щенок йорка', category: 'Животные', price: '25 000 ₽', author: 'Заводчик', rating: 5.0, views: 145, description: 'Йоркширский терьер, привит', city: 'Санкт-Петербург', delivery: false },
+  { id: 25, title: 'Продаю котенка британца', category: 'Животные', price: '15 000 ₽', author: 'Питомник', rating: 4.9, views: 178, description: 'Британский котенок, 2 месяца, с документами', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 26, title: 'Щенок йорка', category: 'Животные', price: '25 000 ₽', author: 'Заводчик', rating: 5.0, views: 145, description: 'Йоркширский терьер, привит', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 27, title: 'PlayStation 5', category: 'Хобби', price: '45 000 ₽', author: 'Геймер', rating: 4.7, views: 234, description: 'PS5 в отличном состоянии, 2 джойстика', city: 'Москва', delivery: true },
-  { id: 28, title: 'Настольная игра Монополия', category: 'Хобби', price: '2 500 ₽', author: 'Коллекционер', rating: 4.5, views: 67, description: 'Новая настольная игра в упаковке', city: 'Казань', delivery: true },
-  { id: 29, title: 'Коллекция марок', category: 'Хобби', price: '10 000 ₽', author: 'Филателист', rating: 4.6, views: 89, description: 'Редкая коллекция советских марок', city: 'Москва', delivery: true },
+  { id: 27, title: 'PlayStation 5', category: 'Хобби', price: '45 000 ₽', author: 'Геймер', rating: 4.7, views: 234, description: 'PS5 в отличном состоянии, 2 джойстика', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 28, title: 'Настольная игра Монополия', category: 'Хобби', price: '2 500 ₽', author: 'Коллекционер', rating: 4.5, views: 67, description: 'Новая настольная игра в упаковке', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 29, title: 'Коллекция марок', category: 'Хобби', price: '10 000 ₽', author: 'Филателист', rating: 4.6, views: 89, description: 'Редкая коллекция советских марок', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 30, title: 'Учебники по Python', category: 'Книги', price: '1 500 ₽', author: 'Студент', rating: 4.5, views: 78, description: 'Комплект учебников по программированию', city: 'Москва', delivery: true },
-  { id: 31, title: 'Классическая литература', category: 'Книги', price: '3 000 ₽', author: 'Библиофил', rating: 4.8, views: 56, description: 'Собрание сочинений Толстого', city: 'Санкт-Петербург', delivery: true },
+  { id: 30, title: 'Учебники по Python', category: 'Книги', price: '1 500 ₽', author: 'Студент', rating: 4.5, views: 78, description: 'Комплект учебников по программированию', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 31, title: 'Классическая литература', category: 'Книги', price: '3 000 ₽', author: 'Библиофил', rating: 4.8, views: 56, description: 'Собрание сочинений Толстого', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 32, title: 'Бригада строителей', category: 'Строительство', price: 'договорная', author: 'Стройкомпания', rating: 4.8, views: 167, description: 'Все виды строительных работ', city: 'Москва', delivery: false },
-  { id: 33, title: 'Кирпич керамический', category: 'Строительство', price: '25 ₽/шт', author: 'Стройбаза', rating: 4.6, views: 89, description: 'Кирпич керамический, качественный', city: 'Новосибирск', delivery: true },
+  { id: 32, title: 'Бригада строителей', category: 'Строительство', price: 'договорная', author: 'Стройкомпания', rating: 4.8, views: 167, description: 'Все виды строительных работ', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 33, title: 'Кирпич керамический', category: 'Строительство', price: '25 ₽/шт', author: 'Стройбаза', rating: 4.6, views: 89, description: 'Кирпич керамический, качественный', city: 'Новосибирск', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 34, title: 'Вакансия: Junior разработчик', category: 'Работа', price: 'от 80 000 ₽', author: 'IT Компания', rating: 4.9, views: 234, description: 'Ищем Junior Python разработчика', city: 'Москва', delivery: false },
-  { id: 35, title: 'Требуется дизайнер', category: 'Работа', price: 'от 100 000 ₽', author: 'Агентство', rating: 4.8, views: 189, description: 'UX/UI дизайнер в штат', city: 'Санкт-Петербург', delivery: false },
+  { id: 34, title: 'Вакансия: Junior разработчик', category: 'Работа', price: 'от 80 000 ₽', author: 'IT Компания', rating: 4.9, views: 234, description: 'Ищем Junior Python разработчика', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 35, title: 'Требуется дизайнер', category: 'Работа', price: 'от 100 000 ₽', author: 'Агентство', rating: 4.8, views: 189, description: 'UX/UI дизайнер в штат', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 36, title: 'Кофе арабика', category: 'Еда и напитки', price: '1 500 ₽/кг', author: 'Кофейня', rating: 4.7, views: 123, description: 'Свежеобжаренный кофе в зернах', city: 'Москва', delivery: true },
-  { id: 37, title: 'Доставка здорового питания', category: 'Еда и напитки', price: 'от 2 000 ₽/день', author: 'ЗОЖ-кухня', rating: 4.9, views: 145, description: 'Рационы на неделю, доставка', city: 'Санкт-Петербург', delivery: true }
+  { id: 36, title: 'Кофе арабика', category: 'Еда и напитки', price: '1 500 ₽/кг', author: 'Кофейня', rating: 4.7, views: 123, description: 'Свежеобжаренный кофе в зернах', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
+  { id: 37, title: 'Доставка здорового питания', category: 'Еда и напитки', price: 'от 2 000 ₽/день', author: 'ЗОЖ-кухня', rating: 4.9, views: 145, description: 'Рационы на неделю, доставка', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] }
 ];
 
 interface ChatMessage {
@@ -434,18 +434,11 @@ const RequestCard = ({
       <CardHeader className="pb-3 sm:pb-6">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           {request.photos && request.photos.length > 0 && (
-            <div className="relative w-full h-48 sm:w-32 sm:h-32 flex-shrink-0">
-              <img 
-                src={request.photos[0]} 
-                alt={request.title}
-                className="w-full h-full object-cover rounded-xl"
-              />
-              <img 
-                src="https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png"
-                alt="Albe"
-                className="absolute top-2 right-2 w-8 h-8 sm:w-6 sm:h-6 rounded-full bg-black/80 p-1"
-              />
-            </div>
+            <img 
+              src={request.photos[0]} 
+              alt={request.title}
+              className="w-full h-48 sm:w-32 sm:h-32 object-contain rounded-xl flex-shrink-0 bg-white"
+            />
           )}
           <div className="flex flex-col gap-2 flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
@@ -585,18 +578,11 @@ const OfferCard = ({
       <CardHeader className="pb-3 sm:pb-6">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           {offer.photos && offer.photos.length > 0 && (
-            <div className="relative w-full h-48 sm:w-32 sm:h-32 flex-shrink-0">
-              <img 
-                src={offer.photos[0]} 
-                alt={offer.title}
-                className="w-full h-full object-cover rounded-xl"
-              />
-              <img 
-                src="https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png"
-                alt="Albe"
-                className="absolute top-2 right-2 w-8 h-8 sm:w-6 sm:h-6 rounded-full bg-black/80 p-1"
-              />
-            </div>
+            <img 
+              src={offer.photos[0]} 
+              alt={offer.title}
+              className="w-full h-48 sm:w-32 sm:h-32 object-contain rounded-xl flex-shrink-0 bg-white"
+            />
           )}
           <div className="flex flex-col gap-2 flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
