@@ -86,10 +86,10 @@ export interface Category {
   icon: string;
   color: string;
   popular: boolean;
-  subcategories?: string[];
+  subcategories: string[];
 }
 
-export type TabType = 'requests' | 'offers';
-export type LanguageType = 'RU' | 'EN';
-export type SortByType = 'date' | 'responses' | 'rating' | 'budget' | 'views' | 'price';
+export type TabType = 'requests' | 'offers' | 'favorites';
+export type LanguageType = 'ru' | 'en';
+export type SortByType = 'date' | 'price' | 'popular';
 export type SortDirectionType = 'asc' | 'desc';
