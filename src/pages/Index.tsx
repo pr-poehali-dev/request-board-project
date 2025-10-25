@@ -867,15 +867,17 @@ const Index = () => {
       req.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
     
-    // Если есть поиск, игнорируем фильтры
+    // Город работает всегда, независимо от других фильтров
+    const matchesCity = selectedCity ? req.city === selectedCity : true;
+    
+    // Если есть поиск, игнорируем фильтры категорий, но учитываем город
     if (searchQuery) {
-      return matchesSearch;
+      return matchesSearch && matchesCity;
     }
     
-    // Иначе применяем фильтры
+    // Иначе применяем все фильтры
     const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
     const matchesSubcategory = selectedSubcategory ? req.category === selectedCategory : true;
-    const matchesCity = selectedCity ? req.city === selectedCity : true;
     return matchesCategory && matchesSubcategory && matchesCity;
   }).sort((a, b) => {
     if (sortBy === 'date') {
@@ -897,15 +899,17 @@ const Index = () => {
       offer.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
     
-    // Если есть поиск, игнорируем фильтры
+    // Город работает всегда, независимо от других фильтров
+    const matchesCity = selectedCity ? offer.city === selectedCity : true;
+    
+    // Если есть поиск, игнорируем фильтры категорий, но учитываем город
     if (searchQuery) {
-      return matchesSearch;
+      return matchesSearch && matchesCity;
     }
     
-    // Иначе применяем фильтры
+    // Иначе применяем все фильтры
     const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
     const matchesSubcategory = selectedSubcategory ? offer.category === selectedCategory : true;
-    const matchesCity = selectedCity ? offer.city === selectedCity : true;
     return matchesCategory && matchesSubcategory && matchesCity;
   }).sort((a, b) => {
     if (sortBy === 'date') {
@@ -1075,20 +1079,17 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    if (activeTab === 'requests') {
-      setSelectedCategory(null);
-      setSelectedSubcategory(null);
-      setSearchQuery('');
-      setSelectedCity(null);
-    }
+    // При переключении вкладок сбрасываем поиск и фильтры категорий, но НЕ город
+    setSearchQuery('');
+    setSelectedCategory(null);
+    setSelectedSubcategory(null);
   }, [activeTab]);
 
   useEffect(() => {
-    // Когда начинаем поиск, сбрасываем фильтры
+    // Когда начинаем поиск, сбрасываем только фильтры категорий, но НЕ город
     if (searchQuery) {
       setSelectedCategory(null);
       setSelectedSubcategory(null);
-      setSelectedCity(null);
     }
   }, [searchQuery]);
 
@@ -1892,7 +1893,7 @@ const Index = () => {
                   <CardContent className="p-8 sm:p-12 text-center">
                     <Icon name="SearchX" size={64} className="mx-auto mb-4 text-gray-300" />
                     <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">По вашему запросу ничего не найдено</h3>
-                    <p className="text-gray-600 mb-6">Попробуйте изменить запрос или сбросить фильтры</p>
+                    <p className="text-gray-600 mb-6">Попробуйте изменить поисковый запрос, выбрать другой город или сбросить все фильтры</p>
                     <Button 
                       onClick={() => {
                         setSearchQuery('');
@@ -1996,7 +1997,7 @@ const Index = () => {
                   <CardContent className="p-8 sm:p-12 text-center">
                     <Icon name="SearchX" size={64} className="mx-auto mb-4 text-gray-300" />
                     <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">По вашему запросу ничего не найдено</h3>
-                    <p className="text-gray-600 mb-6">Попробуйте изменить запрос или сбросить фильтры</p>
+                    <p className="text-gray-600 mb-6">Попробуйте изменить поисковый запрос, выбрать другой город или сбросить все фильтры</p>
                     <Button 
                       onClick={() => {
                         setSearchQuery('');
