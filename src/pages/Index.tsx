@@ -1649,7 +1649,7 @@ const Index = () => {
                                 setSortBy('price');
                                 setSortDirection('desc');
                                 setHoveredSort(null);
-                                scrollToTop();
+                                scrollToFeed();
                               }}
                               className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
                                 sortBy === 'price' && sortDirection === 'desc'
@@ -1664,7 +1664,7 @@ const Index = () => {
                                 setSortBy('price');
                                 setSortDirection('asc');
                                 setHoveredSort(null);
-                                scrollToTop();
+                                scrollToFeed();
                               }}
                               className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
                                 sortBy === 'price' && sortDirection === 'asc'
@@ -1734,7 +1734,7 @@ const Index = () => {
                                 setSortBy('date');
                                 setSortDirection('desc');
                                 setHoveredSort(null);
-                                scrollToTop();
+                                scrollToFeed();
                               }}
                               className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
                                 sortBy === 'date' && sortDirection === 'desc'
@@ -1749,7 +1749,7 @@ const Index = () => {
                                 setSortBy('date');
                                 setSortDirection('asc');
                                 setHoveredSort(null);
-                                scrollToTop();
+                                scrollToFeed();
                               }}
                               className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
                                 sortBy === 'date' && sortDirection === 'asc'
@@ -1769,7 +1769,7 @@ const Index = () => {
                     onClick={() => {
                       setSortBy('popular');
                       setSortDirection('desc');
-                      scrollToTop();
+                      scrollToFeed();
                     }}
                     className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
                       sortBy === 'popular' 
