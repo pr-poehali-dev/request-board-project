@@ -1245,11 +1245,11 @@ const Index = () => {
                         {hoveredCategory === category.name && category.subcategories && (
                           <>
                             <div 
-                              className="fixed inset-0 z-[9998]"
+                              className="fixed inset-0 z-[99998]"
                               onClick={() => setHoveredCategory(null)}
                             />
                             <div 
-                              className="fixed left-[280px] w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[9999] animate-in slide-in-from-left-2 duration-200"
+                              className="fixed left-[280px] w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
                               style={{ top: `${(categories.findIndex(c => c.name === category.name) + 1) * 44 + 290}px` }}
                             >
                               <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
