@@ -273,5 +273,15 @@
       padding-left: 1rem;
       padding-right: 1rem;
     }
+
+    /* Hide scrollbars on mobile */
+    * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    *::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

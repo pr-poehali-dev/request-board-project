@@ -21,7 +21,7 @@ export default function OfferCard({ offer, onCardClick }: OfferCardProps) {
     >
       <div className="relative">
         {offer.photos && offer.photos.length > 0 && (
-          <div className="aspect-video w-full overflow-hidden bg-muted">
+          <div className="aspect-video w-full overflow-hidden bg-muted md:block hidden">
             <img
               src={offer.photos[0]}
               alt={offer.title}
@@ -47,19 +47,30 @@ export default function OfferCard({ offer, onCardClick }: OfferCardProps) {
       </div>
 
       <CardHeader className="pb-3">
-        <div className="flex items-start justify-between gap-2">
-          <CardTitle className="text-lg line-clamp-2 group-hover:text-primary transition-colors">
-            {offer.title}
-          </CardTitle>
+        <div className="flex gap-2 md:block">
+          {offer.photos && offer.photos.length > 0 && (
+            <img
+              src={offer.photos[0]}
+              alt={offer.title}
+              className="w-12 h-12 md:hidden object-cover rounded-lg flex-shrink-0"
+            />
+          )}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <CardTitle className="text-sm md:text-lg line-clamp-2 group-hover:text-primary transition-colors">
+                {offer.title}
+              </CardTitle>
+            </div>
+            <CardDescription className="line-clamp-2 text-xs md:text-sm">
+              {offer.description}
+            </CardDescription>
+          </div>
         </div>
-        <CardDescription className="line-clamp-2">
-          {offer.description}
-        </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-3">
-        <div className="flex items-center gap-2 text-sm">
-          <Icon name="MapPin" className="h-4 w-4 text-muted-foreground" />
+      <CardContent className="space-y-2 md:space-y-3">
+        <div className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
+          <Icon name="MapPin" className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
           <span className="text-muted-foreground">{offer.city}</span>
         </div>
 
@@ -88,22 +99,22 @@ export default function OfferCard({ offer, onCardClick }: OfferCardProps) {
           </div>
         </div>
 
-        <div className="flex gap-2 pt-2 flex-wrap">
+        <div className="grid grid-cols-2 md:flex md:flex-wrap gap-1 md:gap-2 pt-2">
           {offer.delivery && (
-            <Badge variant="secondary" className="gap-1">
-              <Icon name="Truck" className="h-3 w-3" />
+            <Badge variant="secondary" className="gap-1 text-[10px] md:text-xs">
+              <Icon name="Truck" className="h-2 w-2 md:h-3 md:w-3" />
               Доставка
             </Badge>
           )}
           {offer.exchange && (
-            <Badge variant="secondary" className="gap-1">
-              <Icon name="Repeat" className="h-3 w-3" />
+            <Badge variant="secondary" className="gap-1 text-[10px] md:text-xs">
+              <Icon name="Repeat" className="h-2 w-2 md:h-3 md:w-3" />
               Обмен
             </Badge>
           )}
           {offer.warranty && (
-            <Badge variant="secondary" className="gap-1">
-              <Icon name="ShieldCheck" className="h-3 w-3" />
+            <Badge variant="secondary" className="gap-1 text-[10px] md:text-xs">
+              <Icon name="ShieldCheck" className="h-2 w-2 md:h-3 md:w-3" />
               Гарантия
             </Badge>
           )}

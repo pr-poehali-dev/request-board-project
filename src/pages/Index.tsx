@@ -1157,7 +1157,7 @@ const Index = () => {
                 alt="Логотип"
                 className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl shadow-lg ring-1 sm:ring-2 ring-white/30"
               />
-              <span className="text-sm sm:text-2xl font-bold text-white whitespace-nowrap">Доска запросов</span>
+              <span className="hidden sm:inline text-2xl font-bold text-white">Доска запросов</span>
             </button>
 
             <div className="hidden md:flex flex-1 max-w-2xl items-center gap-3">
@@ -1400,21 +1400,36 @@ const Index = () => {
             )}
           </div>
           
-          <div className="relative max-w-[200px]">
-            <Icon name="MapPin" size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-            <select
-              value={selectedCity || ''}
-              onChange={(e) => setSelectedCity(e.target.value || null)}
-              className="appearance-none w-full pl-8 pr-8 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
-            >
-              <option value="">Все города</option>
-              {cities.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select>
-            <Icon name="ChevronDown" size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Icon name="MapPin" size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
+              <select
+                value={selectedCity || ''}
+                onChange={(e) => setSelectedCity(e.target.value || null)}
+                className="appearance-none w-full pl-8 pr-7 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
+              >
+                <option value="">Все города</option>
+                {cities.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
+              <Icon name="ChevronDown" size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
+            
+            <div className="relative flex-1">
+              <Icon name="Filter" size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
+              <select
+                value={activeTab === 'requests' ? 'requests' : 'offers'}
+                onChange={(e) => setActiveTab(e.target.value as 'requests' | 'offers')}
+                className="appearance-none w-full pl-8 pr-7 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
+              >
+                <option value="requests">Запросы</option>
+                <option value="offers">Предложения</option>
+              </select>
+              <Icon name="ChevronDown" size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
           </div>
         </div>
       </div>
@@ -2255,12 +2270,12 @@ const Index = () => {
                           <img 
                             src={request.photos[0]} 
                             alt={request.title}
-                            className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover rounded-lg sm:rounded-xl flex-shrink-0"
+                            className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover rounded-lg sm:rounded-xl flex-shrink-0"
                           />
                         )}
                         <div className="flex justify-between items-start flex-1">
                         <div className="flex-1">
-                          <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 mb-1 sm:mb-2 flex-wrap">
+                          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1 sm:gap-1.5 md:gap-2 mb-1 sm:mb-2">
                             <Badge className={`${getCategoryColor(request.category)} text-white border-0 text-[10px] sm:text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
                             </Badge>
@@ -2332,7 +2347,7 @@ const Index = () => {
                           <img 
                             src={offer.photos[0]} 
                             alt={offer.title}
-                            className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover rounded-lg sm:rounded-xl flex-shrink-0"
+                            className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover rounded-lg sm:rounded-xl flex-shrink-0"
                           />
                         )}
                         <div className="flex justify-between items-start flex-1">
