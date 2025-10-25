@@ -1069,6 +1069,7 @@ const Index = () => {
                 setActiveTab('requests');
                 setSelectedCategory(null);
                 setSearchQuery('');
+                setSelectedCity(null);
               }}
               className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 hover:opacity-80 transition-opacity"
             >
