@@ -1439,13 +1439,13 @@ const Index = () => {
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 relative">
-            <div className="sticky top-20 space-y-4 relative z-10 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-thin">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <h3 className="font-semibold text-gray-900 mb-3 text-sm">Тип</h3>
-                <div className="space-y-2">
+            <div className="sticky top-20 space-y-3 relative z-10">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm">Тип</h3>
+                <div className="space-y-1.5">
                   <button
                     onClick={() => setActiveTab('requests')}
-                    className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                    className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
                       activeTab === 'requests' 
                         ? 'bg-emerald-600 text-white shadow-md' 
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1456,7 +1456,7 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveTab('offers')}
-                    className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                    className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
                       activeTab === 'offers' 
                         ? 'bg-emerald-600 text-white shadow-md' 
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1468,8 +1468,8 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <h3 className="font-semibold text-gray-900 mb-3 text-sm">Сортировка</h3>
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm">Сортировка</h3>
                 <div className="space-y-1.5">
                   <div className="relative">
                     <button
@@ -1489,7 +1489,7 @@ const Index = () => {
                           setHoveredSort('price');
                         }
                       }}
-                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
+                      className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
                         sortBy === 'price' 
                           ? 'bg-purple-600 text-white shadow-md' 
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1574,7 +1574,7 @@ const Index = () => {
                           setHoveredSort('date');
                         }
                       }}
-                      className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
+                      className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
                         sortBy === 'date' 
                           ? 'bg-purple-600 text-white shadow-md' 
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1647,7 +1647,7 @@ const Index = () => {
                       setSortDirection('desc');
                       scrollToTop();
                     }}
-                    className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                    className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
                       sortBy === 'popular' 
                         ? 'bg-purple-600 text-white shadow-md' 
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1659,8 +1659,8 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <h3 className="font-semibold text-gray-900 mb-3 text-sm">Город</h3>
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm">Город</h3>
                 <div className="relative">
                   <Icon name="MapPin" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
                   <select
@@ -1679,15 +1679,15 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4" id="categories-menu">
-                <h3 className="font-semibold text-gray-900 mb-3 text-sm">Категории</h3>
-                <div className="space-y-1.5 max-h-[200px] overflow-y-auto scrollbar-thin">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3" id="categories-menu">
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm">Категории</h3>
+                <div className="space-y-1 max-h-[140px] overflow-y-auto scrollbar-thin">
                   <button
                     onClick={() => {
                       setSelectedCategory(null);
                       scrollToTop();
                     }}
-                    className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
+                    className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
                       selectedCategory === null 
                         ? 'bg-gray-800 text-white shadow-md' 
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1719,7 +1719,7 @@ const Index = () => {
                               setHoveredCategory(category.name);
                             }
                           }}
-                          className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
+                          className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
                             selectedCategory === category.name 
                               ? `${getCategoryColor(category.name)} text-white shadow-md` 
                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1802,7 +1802,7 @@ const Index = () => {
                   setSortDirection('desc');
                   scrollToTop();
                 }}
-                className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-medium py-2.5 px-4 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
+                className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-medium py-2 px-3 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
               >
                 <Icon name="X" size={16} className="inline mr-2" />
                 Сбросить фильтры
