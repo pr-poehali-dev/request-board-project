@@ -429,7 +429,7 @@ const RequestCard = ({
     <Card 
       key={request.id}
       ref={index === 0 ? contentTopRef : null}
-      className="border border-purple-100 bg-white/95 backdrop-blur-md rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
+      className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
     >
       <CardHeader className="pb-3 sm:pb-6">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -437,7 +437,7 @@ const RequestCard = ({
             <img 
               src={request.photos[0]} 
               alt={request.title}
-              className="w-full h-48 sm:w-32 sm:h-32 object-contain rounded-xl flex-shrink-0 bg-white/95 backdrop-blur-sm"
+              className="w-full h-48 sm:w-32 sm:h-32 object-contain rounded-xl flex-shrink-0 bg-white"
             />
           )}
           <div className="flex flex-col gap-2 flex-1 min-w-0">
@@ -573,7 +573,7 @@ const OfferCard = ({
     <Card 
       key={offer.id}
       ref={index === 0 ? offersTopRef : null}
-      className="border border-purple-100 bg-white/95 backdrop-blur-md rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
+      className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
     >
       <CardHeader className="pb-3 sm:pb-6">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -581,7 +581,7 @@ const OfferCard = ({
             <img 
               src={offer.photos[0]} 
               alt={offer.title}
-              className="w-full h-48 sm:w-32 sm:h-32 object-contain rounded-xl flex-shrink-0 bg-white/95 backdrop-blur-sm"
+              className="w-full h-48 sm:w-32 sm:h-32 object-contain rounded-xl flex-shrink-0 bg-white"
             />
           )}
           <div className="flex flex-col gap-2 flex-1 min-w-0">
@@ -1112,7 +1112,9 @@ const Index = () => {
 
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50 relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/20 via-transparent to-transparent pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-100/20 via-transparent to-transparent pointer-events-none"></div>
       <div className="relative z-0">
       <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-black border-b border-gray-700/50 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{ maxWidth: '1400px' }}>
@@ -1281,7 +1283,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t z-50 shadow-lg">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50 shadow-lg">
         <div className="text-center py-1 bg-gradient-to-r from-purple-50 to-pink-50">
           <p className="text-[10px] text-gray-500 flex items-center justify-center gap-1">
             <Icon name="MoveHorizontal" size={12} />
@@ -1347,7 +1349,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="md:hidden bg-white/95 backdrop-blur-md border-b px-3 py-3">
+      <div className="md:hidden bg-white border-b px-3 py-3">
         <div className="space-y-2">
           <div className="relative">
             <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -1368,12 +1370,12 @@ const Index = () => {
             )}
           </div>
           
-          <div className="relative max-w-[200px]">
-            <Icon name="MapPin" size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+          <div className="relative max-w-xs">
+            <Icon name="MapPin" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             <select
               value={selectedCity || ''}
               onChange={(e) => setSelectedCity(e.target.value || null)}
-              className="appearance-none w-full pl-8 pr-8 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white/95 backdrop-blur-md cursor-pointer"
+              className="appearance-none w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent bg-white cursor-pointer"
             >
               <option value="">Все города</option>
               {cities.map((city) => (
@@ -1382,12 +1384,12 @@ const Index = () => {
                 </option>
               ))}
             </select>
-            <Icon name="ChevronDown" size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            <Icon name="ChevronDown" size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
           </div>
         </div>
       </div>
 
-      <div className="py-12 sm:py-16">
+      <div className="bg-gradient-to-b from-white/60 to-gray-50/80 backdrop-blur-sm py-12 sm:py-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
@@ -1511,7 +1513,7 @@ const Index = () => {
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 relative">
             <div className="sticky top-20 space-y-3 relative z-10">
-              <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-sm border border-gray-200 p-3">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm">Тип</h3>
                 <div className="space-y-1.5">
                   <button
@@ -1539,7 +1541,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-sm border border-gray-200 p-3">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm">Сортировка</h3>
                 <div className="space-y-1.5">
                   <div className="relative">
@@ -1580,7 +1582,7 @@ const Index = () => {
                           onClick={() => setHoveredSort(null)}
                         />
                         <div 
-                          className="fixed w-64 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                          className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
                           style={{ 
                             top: `${sortMenuPosition.top}px`,
                             left: `${sortMenuPosition.left}px`
@@ -1665,7 +1667,7 @@ const Index = () => {
                           onClick={() => setHoveredSort(null)}
                         />
                         <div 
-                          className="fixed w-64 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                          className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
                           style={{ 
                             top: `${sortMenuPosition.top}px`,
                             left: `${sortMenuPosition.left}px`
@@ -1730,7 +1732,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-sm border border-gray-200 p-3" id="categories-menu">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3" id="categories-menu">
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm">Категории</h3>
                 <div className="space-y-1 max-h-[320px] overflow-y-auto scrollbar-thin">
                   <button
@@ -1791,7 +1793,7 @@ const Index = () => {
                               onClick={() => setHoveredCategory(null)}
                             />
                             <div 
-                              className="fixed w-64 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                              className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
                               style={{ 
                                 top: `${menuPosition.top}px`,
                                 left: `${menuPosition.left}px`
@@ -1845,7 +1847,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-sm border border-gray-200 p-3">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm">Дополнительно</h3>
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 cursor-pointer group">
@@ -2589,7 +2591,7 @@ const Index = () => {
                           <div className={`rounded-2xl px-4 py-2.5 shadow-sm ${
                             msg.sender === 'me' 
                               ? 'bg-blue-500 text-white' 
-                              : 'bg-white/95 backdrop-blur-sm text-gray-800 border border-gray-200'
+                              : 'bg-white text-gray-800 border border-gray-200'
                           }`}>
                             <p className="text-sm leading-relaxed">{msg.text}</p>
                           </div>
@@ -2604,7 +2606,7 @@ const Index = () => {
                     <div ref={chatEndRef} />
                   </div>
 
-                  <div className="p-4 bg-white/95 backdrop-blur-md border-t">
+                  <div className="p-4 bg-white border-t">
                     {currentDialog.type !== 'support' && (
                       <div className="flex items-center space-x-2 mb-3">
                         <Button
@@ -2642,7 +2644,7 @@ const Index = () => {
 
       {isCreateFormOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
             <div className="sticky top-0 bg-gray-100 p-4 sm:p-6 rounded-t-2xl flex items-center justify-between z-10 border-b border-gray-200 shadow-sm">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Создать объявление</h2>
               <button 
@@ -2868,7 +2870,7 @@ const Index = () => {
 
       {isReviewFormOpen && currentDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
             <div className="bg-gray-100 p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between border-b border-gray-200 shadow-sm">
               <h2 className="text-lg sm:text-xl font-bold text-gray-900">Оставить отзыв</h2>
               <button 
@@ -2973,7 +2975,7 @@ const Index = () => {
 
       {isNotificationsOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in"
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] sm:max-h-[600px] flex flex-col animate-scale-in">
             <div className="bg-gray-100 p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between border-b border-gray-200 shadow-sm">
               <div>
                 <h2 className="text-lg sm:text-xl font-bold text-gray-900">Уведомления</h2>
@@ -3556,7 +3558,7 @@ const Index = () => {
                     <div className={`rounded-2xl px-4 py-3 shadow-sm ${
                       msg.sender === 'me' 
                         ? 'bg-gradient-to-br from-gray-700 to-gray-800 text-white' 
-                        : 'bg-white/95 backdrop-blur-sm text-gray-800 border border-gray-200'
+                        : 'bg-white text-gray-800 border border-gray-200'
                     }`}>
                       <p className="text-sm leading-relaxed">{msg.text}</p>
                     </div>
@@ -3569,7 +3571,7 @@ const Index = () => {
             <div ref={chatEndRef} />
           </div>
 
-          <div className="p-4 bg-white/95 backdrop-blur-md border-t border-gray-200 flex-shrink-0">
+          <div className="p-4 bg-white border-t border-gray-200 flex-shrink-0">
             <div className="flex items-center space-x-2">
               <div className="flex-1 relative">
                 <input
