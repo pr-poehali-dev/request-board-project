@@ -740,6 +740,8 @@ const Index = () => {
   const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [filterDelivery, setFilterDelivery] = useState(false);
+  const [filterExchange, setFilterExchange] = useState(false);
   const [sortBy, setSortBy] = useState<'date' | 'popular' | 'price'>('date');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
   const [hoveredSort, setHoveredSort] = useState<string | null>(null);
@@ -878,16 +880,18 @@ const Index = () => {
     
     // Город работает всегда, независимо от других фильтров
     const matchesCity = selectedCity ? req.city === selectedCity : true;
+    const matchesDelivery = filterDelivery ? req.delivery === true : true;
+    const matchesExchange = filterExchange ? req.exchange === true : true;
     
-    // Если есть поиск, игнорируем фильтры категорий, но учитываем город
+    // Если есть поиск, игнорируем фильтры категорий, но учитываем город, доставку и обмен
     if (searchQuery) {
-      return matchesSearch && matchesCity;
+      return matchesSearch && matchesCity && matchesDelivery && matchesExchange;
     }
     
     // Иначе применяем все фильтры
     const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
     const matchesSubcategory = selectedSubcategory ? req.category === selectedCategory : true;
-    return matchesCategory && matchesSubcategory && matchesCity;
+    return matchesCategory && matchesSubcategory && matchesCity && matchesDelivery && matchesExchange;
   }).sort((a, b) => {
     if (sortBy === 'date') {
       return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
@@ -910,16 +914,18 @@ const Index = () => {
     
     // Город работает всегда, независимо от других фильтров
     const matchesCity = selectedCity ? offer.city === selectedCity : true;
+    const matchesDelivery = filterDelivery ? offer.delivery === true : true;
+    const matchesExchange = filterExchange ? offer.exchange === true : true;
     
-    // Если есть поиск, игнорируем фильтры категорий, но учитываем город
+    // Если есть поиск, игнорируем фильтры категорий, но учитываем город, доставку и обмен
     if (searchQuery) {
-      return matchesSearch && matchesCity;
+      return matchesSearch && matchesCity && matchesDelivery && matchesExchange;
     }
     
     // Иначе применяем все фильтры
     const matchesCategory = selectedCategory ? offer.category === selectedCategory : true;
     const matchesSubcategory = selectedSubcategory ? offer.category === selectedCategory : true;
-    return matchesCategory && matchesSubcategory && matchesCity;
+    return matchesCategory && matchesSubcategory && matchesCity && matchesDelivery && matchesExchange;
   }).sort((a, b) => {
     if (sortBy === 'date') {
       return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
@@ -1841,10 +1847,49 @@ const Index = () => {
                 </div>
               </div>
 
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm">Дополнительно</h3>
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={filterDelivery}
+                      onChange={(e) => {
+                        setFilterDelivery(e.target.checked);
+                        scrollToFeed();
+                      }}
+                      className="w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-500 cursor-pointer"
+                    />
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-green-600 transition-colors flex items-center gap-1.5">
+                      <Icon name="Truck" size={14} />
+                      Доставка
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={filterExchange}
+                      onChange={(e) => {
+                        setFilterExchange(e.target.checked);
+                        scrollToFeed();
+                      }}
+                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                    />
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                      <Icon name="ArrowLeftRight" size={14} />
+                      Возможен обмен
+                    </span>
+                  </label>
+                </div>
+              </div>
+
               <button
                 onClick={() => {
                   setSelectedCategory(null);
                   setSelectedSubcategory(null);
+                  setSelectedCity(null);
+                  setFilterDelivery(false);
+                  setFilterExchange(false);
                   setSortBy('date');
                   setSortDirection('desc');
                   scrollToFeed();
@@ -1919,6 +1964,8 @@ const Index = () => {
                         setSelectedCategory(null);
                         setSelectedSubcategory(null);
                         setSelectedCity(null);
+                        setFilterDelivery(false);
+                        setFilterExchange(false);
                         scrollToTop();
                       }}
                       className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold"
@@ -2026,6 +2073,8 @@ const Index = () => {
                         setSelectedCategory(null);
                         setSelectedSubcategory(null);
                         setSelectedCity(null);
+                        setFilterDelivery(false);
+                        setFilterExchange(false);
                         scrollToTop();
                       }}
                       className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold"
