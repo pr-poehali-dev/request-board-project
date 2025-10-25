@@ -984,24 +984,13 @@ const Index = () => {
                       category.name === 'Еда и напитки' ? 'text-rose-100' :
                       'text-violet-100'
                     }`}>{category.name}</h3>
-                    <div className="flex gap-2">
-                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
-                        <div className="flex items-center justify-between gap-1">
-                          <span className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
-                            <Icon name="Search" size={14} />
-                            <span>Запросы</span>
-                          </span>
-                          <span className="text-white font-bold text-sm">{stats.requestCount}</span>
-                        </div>
-                      </div>
-                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
-                        <div className="flex items-center justify-between gap-1">
-                          <span className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
-                            <Icon name="Package" size={14} />
-                            <span>Предложения</span>
-                          </span>
-                          <span className="text-white font-bold text-sm">{stats.offerCount}</span>
-                        </div>
+                    <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
+                          <Icon name="Search" size={14} />
+                          <span>Запросов</span>
+                        </span>
+                        <span className="text-white font-bold text-sm">{stats.requestCount}</span>
                       </div>
                     </div>
                   </div>
@@ -1031,17 +1020,6 @@ const Index = () => {
                   >
                     <Icon name="Search" size={16} className="inline mr-2" />
                     Запросы
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('offers')}
-                    className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
-                      activeTab === 'offers' 
-                        ? 'bg-emerald-600 text-white shadow-md' 
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    <Icon name="Package" size={16} className="inline mr-2" />
-                    Предложения
                   </button>
                 </div>
               </div>
@@ -1411,10 +1389,8 @@ const Index = () => {
               <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
                 <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
                 <span className="font-semibold">
-                  {swipeDirection === 'left' && activeTab === 'requests' && 'Предложения'}
-                  {swipeDirection === 'left' && activeTab === 'offers' && isAuthenticated && 'Избранное'}
-                  {swipeDirection === 'right' && activeTab === 'offers' && 'Запросы'}
-                  {swipeDirection === 'right' && activeTab === 'favorites' && 'Предложения'}
+                  {swipeDirection === 'left' && activeTab === 'requests' && 'Категории'}
+                  {swipeDirection === 'right' && activeTab === 'categories' && 'Запросы'}
                 </span>
                 <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
               </div>
@@ -1488,20 +1464,7 @@ const Index = () => {
                   request={request}
                   index={index}
                   contentTopRef={contentTopRef}
-                  favorites={favorites}
                   isAuthenticated={isAuthenticated}
-                  onToggleFavorite={() => {
-                    if (!isAuthenticated) {
-                      setIsLoginOpen(true);
-                    } else {
-                      const itemKey = `request-${request.id}`;
-                      if (favorites.includes(itemKey)) {
-                        setFavorites(favorites.filter(id => id !== itemKey));
-                      } else {
-                        setFavorites([...favorites, itemKey]);
-                      }
-                    }
-                  }}
                   onViewClick={() => {
                     setSelectedItem(request);
                     setIsViewModalOpen(true);
@@ -1528,323 +1491,9 @@ const Index = () => {
           </div>
         )}
 
-        {activeTab === 'offers' && (
-          <div 
-            className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-left-4 duration-300"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-              Предложения
-            </h2>
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
-              <Button
-                variant={selectedCategory === null ? 'default' : 'outline'}
-                onClick={() => {
-                  setSelectedCategory(null);
-                  scrollToTop();
-                }}
-                className="whitespace-nowrap font-medium text-sm"
-              >
-                Все
-              </Button>
-              {categories.map((category) => (
-                <Button
-                  key={category.name}
-                  variant={selectedCategory === category.name ? 'default' : 'outline'}
-                  onClick={() => {
-                    setSelectedCategory(category.name);
-                    scrollToTop();
-                  }}
-                  className="whitespace-nowrap font-medium text-sm"
-                >
-                  <Icon name={category.icon as any} size={14} className="mr-1.5" />
-                  {category.name}
-                </Button>
-              ))}
-            </div>
 
-            <div>
-              {filteredOffers.length === 0 ? (
-                <Card className="max-w-2xl mx-auto my-8">
-                  <CardContent className="p-8 sm:p-12 text-center">
-                    <Icon name="SearchX" size={64} className="mx-auto mb-4 text-gray-300" />
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">По вашему запросу ничего не найдено</h3>
-                    <p className="text-gray-600 mb-6">Попробуйте изменить поисковый запрос, выбрать другой город или сбросить все фильтры</p>
-                    <Button 
-                      onClick={() => {
-                        setSearchQuery('');
-                        setSelectedCategory(null);
-                        setSelectedSubcategory(null);
-                        setSelectedCity(null);
-                        setFilterDelivery(false);
-                        setFilterExchange(false);
-                        scrollToTop();
-                      }}
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold"
-                    >
-                      <Icon name="RefreshCw" size={18} className="mr-2" />
-                      Сбросить все фильтры
-                    </Button>
-                  </CardContent>
-                </Card>
-              ) : (
-                <>
-                  {filteredOffers.map((offer, index) => (
-                    <OfferCard
-                  key={offer.id}
-                  offer={offer}
-                  index={index}
-                  offersTopRef={offersTopRef}
-                  favorites={favorites}
-                  isAuthenticated={isAuthenticated}
-                  onToggleFavorite={() => {
-                    if (!isAuthenticated) {
-                      setIsLoginOpen(true);
-                    } else {
-                      const itemKey = `offer-${offer.id}`;
-                      if (favorites.includes(itemKey)) {
-                        setFavorites(favorites.filter(id => id !== itemKey));
-                      } else {
-                        setFavorites([...favorites, itemKey]);
-                      }
-                    }
-                  }}
-                  onViewClick={() => {
-                    setSelectedItem(offer);
-                    setIsViewModalOpen(true);
-                  }}
-                  onContactClick={() => {
-                    if (!isAuthenticated) {
-                      setIsLoginOpen(true);
-                    } else {
-                      setIsChatOpen(true);
-                    }
-                  }}
-                  onAuthorClick={() => {
-                    if (mockUserProfiles[offer.author]) {
-                      setSelectedUserProfile(mockUserProfiles[offer.author]);
-                      setIsUserProfileOpen(true);
-                    }
-                  }}
-                />
-              ))}
-                </>
-              )}
-            </div>
-          </div>
-        )}
 
-        {activeTab === 'favorites' && (
-          <div 
-            className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <div className="text-center mb-4 sm:mb-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4">
-                Избранное
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600 mb-4">
-                {favorites.length} {favorites.length === 1 ? 'объявление' : 'объявлений'}
-              </p>
-              
-              {favorites.length > 0 && (
-                <div className="flex justify-center gap-2 sm:gap-4">
-                  <Button
-                    onClick={() => setFavoritesTab('requests')}
-                    variant={favoritesTab === 'requests' ? 'default' : 'outline'}
-                    className={`font-semibold ${favoritesTab === 'requests' ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : ''}`}
-                  >
-                    <Icon name="Search" size={16} className="mr-2" />
-                    Запросы ({mockRequests.filter(req => favorites.includes(`request-${req.id}`)).length})
-                  </Button>
-                  <Button
-                    onClick={() => setFavoritesTab('offers')}
-                    variant={favoritesTab === 'offers' ? 'default' : 'outline'}
-                    className={`font-semibold ${favoritesTab === 'offers' ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : ''}`}
-                  >
-                    <Icon name="Package" size={16} className="mr-2" />
-                    Предложения ({mockOffers.filter(offer => favorites.includes(`offer-${offer.id}`)).length})
-                  </Button>
-                </div>
-              )}
-            </div>
-            
-            {favorites.length === 0 ? (
-              <Card className="max-w-md mx-auto">
-                <CardContent className="p-8 text-center">
-                  <Icon name="Heart" size={64} className="mx-auto mb-4 text-gray-300" />
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">Избранное пусто</h3>
-                  <p className="text-gray-600 mb-4">Добавьте объявления в избранное, чтобы быстро находить их</p>
-                  <Button onClick={() => setActiveTab('requests')} className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90">
-                    Посмотреть объявления
-                  </Button>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="grid gap-3 sm:gap-4">
-                {favoritesTab === 'requests' && mockRequests.filter(req => favorites.includes(`request-${req.id}`)).map((request, index) => (
-                  <Card 
-                    key={request.id}
-                    ref={index === 0 ? favoritesTopRef : null}
-                    className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <CardHeader className="pb-3 sm:pb-6">
-                      <div className="flex gap-4">
-                        {request.photos && request.photos.length > 0 && (
-                          <img 
-                            src={request.photos[0]} 
-                            alt={request.title}
-                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
-                          />
-                        )}
-                        <div className="flex justify-between items-start flex-1">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                            <Badge className={`${getCategoryColor(request.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
-                              {request.category}
-                            </Badge>
-                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
-                              <Icon name="MapPin" size={10} className="mr-1" />
-                              {request.city}
-                            </Badge>
-                            {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
-                                <Icon name="Truck" size={10} className="mr-1" />
-                                Доставка
-                              </Badge>
-                            )}
-                            {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
-                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                                Обмен
-                              </Badge>
-                            )}
-                          </div>
-                          <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{request.title}</CardTitle>
-                          <CardDescription className="text-sm sm:text-base">
-                            {request.description}
-                          </CardDescription>
-                        </div>
-                        <div className="ml-3 sm:ml-4">
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
-                            {request.budget}
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="flex flex-col sm:flex-row gap-2">
-                        <Button 
-                          onClick={() => {
-                            setFavorites(favorites.filter(id => id !== `request-${request.id}`));
-                          }}
-                          variant="outline" 
-                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-xs sm:text-sm w-full sm:w-auto"
-                        >
-                          <Icon name="X" size={14} className="mr-1.5" />
-                          <span className="hidden sm:inline">Удалить из избранного</span>
-                          <span className="sm:hidden">Удалить</span>
-                        </Button>
-                        <Button 
-                          onClick={() => {
-                            setSelectedItem(request);
-                            setIsViewModalOpen(true);
-                          }}
-                          className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
-                        >
-                          Смотреть
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-                {favoritesTab === 'offers' && mockOffers.filter(offer => favorites.includes(`offer-${offer.id}`)).map((offer, index) => (
-                  <Card 
-                    key={offer.id} 
-                    className="hover:shadow-xl transition-all duration-300 border-2 hover:border-secondary/20 animate-scale-in"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <CardHeader className="pb-3 sm:pb-6">
-                      <div className="flex gap-4">
-                        {offer.photos && offer.photos.length > 0 && (
-                          <img 
-                            src={offer.photos[0]} 
-                            alt={offer.title}
-                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
-                          />
-                        )}
-                        <div className="flex justify-between items-start flex-1">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                            <Badge className={`${getCategoryColor(offer.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
-                              {offer.category}
-                            </Badge>
-                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
-                              <Icon name="MapPin" size={10} className="mr-1" />
-                              {offer.city}
-                            </Badge>
-                            {offer.delivery && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
-                                <Icon name="Truck" size={10} className="mr-1" />
-                                Доставка
-                              </Badge>
-                            )}
-                            {offer.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
-                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                                Обмен
-                              </Badge>
-                            )}
-                          </div>
-                          <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{offer.title}</CardTitle>
-                          <CardDescription className="text-sm sm:text-base">
-                            {offer.description}
-                          </CardDescription>
-                        </div>
-                        <div className="ml-3 sm:ml-4">
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
-                            {offer.price}
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="flex flex-col sm:flex-row gap-2">
-                        <Button 
-                          onClick={() => {
-                            setFavorites(favorites.filter(id => id !== `offer-${offer.id}`));
-                          }}
-                          variant="outline" 
-                          className="text-muted-foreground border-muted-foreground hover:text-gray-700 hover:border-gray-700 font-semibold text-xs sm:text-sm w-full sm:w-auto"
-                        >
-                          <Icon name="X" size={14} className="mr-1.5" />
-                          <span className="hidden sm:inline">Удалить из избранного</span>
-                          <span className="sm:hidden">Удалить</span>
-                        </Button>
-                        <Button 
-                          onClick={() => {
-                            setSelectedItem(offer);
-                            setIsViewModalOpen(true);
-                          }}
-                          className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
-                        >
-                          Смотреть
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+
 
 
 
@@ -1870,7 +1519,6 @@ const Index = () => {
               <h4 className="text-white font-bold mb-3 sm:mb-4">Разделы</h4>
               <ul className="space-y-2 text-sm">
                 <li><button onClick={() => setActiveTab('requests')} className="hover:text-white transition-colors">Запросы</button></li>
-                <li><button onClick={() => setActiveTab('offers')} className="hover:text-white transition-colors">Предложения</button></li>
                 <li><button onClick={() => setActiveTab('categories')} className="hover:text-white transition-colors">Категории</button></li>
                 <li><button onClick={() => setActiveTab('profile')} className="hover:text-white transition-colors">Профиль</button></li>
               </ul>
