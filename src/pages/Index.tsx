@@ -1439,7 +1439,7 @@ const Index = () => {
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 relative">
-            <div className="sticky top-20 space-y-4 relative z-10">
+            <div className="sticky top-20 space-y-4 relative z-10 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-thin">
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                 <h3 className="font-semibold text-gray-900 mb-3 text-sm">Тип</h3>
                 <div className="space-y-2">
@@ -1681,7 +1681,7 @@ const Index = () => {
 
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4" id="categories-menu">
                 <h3 className="font-semibold text-gray-900 mb-3 text-sm">Категории</h3>
-                <div className="space-y-1.5 max-h-[400px] overflow-y-auto">
+                <div className="space-y-1.5 max-h-[200px] overflow-y-auto scrollbar-thin">
                   <button
                     onClick={() => {
                       setSelectedCategory(null);
