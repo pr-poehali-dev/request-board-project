@@ -1078,8 +1078,8 @@ const Index = () => {
               <span className="text-lg sm:text-2xl font-bold text-white">Доска запросов</span>
             </button>
 
-            <div className="hidden md:flex flex-1 max-w-xl">
-              <div className="relative w-full">
+            <div className="hidden md:flex flex-1 max-w-2xl items-center gap-3">
+              <div className="relative flex-1">
                 <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
@@ -1096,6 +1096,26 @@ const Index = () => {
                     <Icon name="X" size={16} />
                   </button>
                 )}
+              </div>
+              
+              <div className="relative w-48 flex-shrink-0">
+                <Icon name="MapPin" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
+                <select
+                  value={selectedCity || ''}
+                  onChange={(e) => setSelectedCity(e.target.value || null)}
+                  className="w-full appearance-none pl-9 pr-8 py-2 border border-white/30 bg-white/10 backdrop-blur-md text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-sm cursor-pointer"
+                  style={{
+                    backgroundImage: 'none'
+                  }}
+                >
+                  <option value="" className="bg-gray-800">Все города</option>
+                  {cities.map((city) => (
+                    <option key={city} value={city} className="bg-gray-800">
+                      {city}
+                    </option>
+                  ))}
+                </select>
+                <Icon name="ChevronDown" size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
@@ -1659,29 +1679,9 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
-                <h3 className="font-semibold text-gray-900 mb-2 text-sm">Город</h3>
-                <div className="relative">
-                  <Icon name="MapPin" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
-                  <select
-                    value={selectedCity || ''}
-                    onChange={(e) => setSelectedCity(e.target.value || null)}
-                    className="w-full appearance-none pl-9 pr-8 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm bg-white cursor-pointer"
-                  >
-                    <option value="">Все города</option>
-                    {cities.map((city) => (
-                      <option key={city} value={city}>
-                        {city}
-                      </option>
-                    ))}
-                  </select>
-                  <Icon name="ChevronDown" size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                </div>
-              </div>
-
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3" id="categories-menu">
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm">Категории</h3>
-                <div className="space-y-1 max-h-[140px] overflow-y-auto scrollbar-thin">
+                <div className="space-y-1 max-h-[320px] overflow-y-auto scrollbar-thin">
                   <button
                     onClick={() => {
                       setSelectedCategory(null);
@@ -1797,7 +1797,6 @@ const Index = () => {
                 onClick={() => {
                   setSelectedCategory(null);
                   setSelectedSubcategory(null);
-                  setSelectedCity(null);
                   setSortBy('date');
                   setSortDirection('desc');
                   scrollToTop();
