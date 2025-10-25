@@ -1418,7 +1418,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="bg-gradient-to-b from-white/60 to-gray-50/80 backdrop-blur-sm py-12 sm:py-16">
+      <div className="hidden md:block bg-gradient-to-b from-white/60 to-gray-50/80 backdrop-blur-sm py-12 sm:py-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
@@ -1538,7 +1538,7 @@ const Index = () => {
       
 
 
-      <main id="feed-start" className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8 pt-12" style={{ maxWidth: '1400px' }}>
+      <main id="feed-start" className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8 pt-4 md:pt-12" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 relative">
             <div className="sticky top-20 space-y-3 relative z-10">
@@ -1612,10 +1612,10 @@ const Index = () => {
                           onClick={() => setHoveredSort(null)}
                         />
                         <div 
-                          className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                          className="fixed w-[calc(100vw-2rem)] sm:w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200 left-4 sm:left-auto"
                           style={{ 
                             top: `${sortMenuPosition.top}px`,
-                            left: `${sortMenuPosition.left}px`
+                            left: window.innerWidth >= 640 ? `${sortMenuPosition.left}px` : undefined
                           }}
                         >
                           <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
@@ -1697,10 +1697,10 @@ const Index = () => {
                           onClick={() => setHoveredSort(null)}
                         />
                         <div 
-                          className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                          className="fixed w-[calc(100vw-2rem)] sm:w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200 left-4 sm:left-auto"
                           style={{ 
                             top: `${sortMenuPosition.top}px`,
-                            left: `${sortMenuPosition.left}px`
+                            left: window.innerWidth >= 640 ? `${sortMenuPosition.left}px` : undefined
                           }}
                         >
                           <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
@@ -1823,10 +1823,10 @@ const Index = () => {
                               onClick={() => setHoveredCategory(null)}
                             />
                             <div 
-                              className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
+                              className="fixed w-[calc(100vw-2rem)] sm:w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200 left-4 sm:left-auto"
                               style={{ 
                                 top: `${menuPosition.top}px`,
-                                left: `${menuPosition.left}px`
+                                left: window.innerWidth >= 640 ? `${menuPosition.left}px` : undefined
                               }}
                             >
                               <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
@@ -1951,7 +1951,7 @@ const Index = () => {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-            <h2 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-pink-600 mb-4">
               Запросы
             </h2>
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
@@ -2063,7 +2063,7 @@ const Index = () => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
               Предложения
             </h2>
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
@@ -2175,7 +2175,7 @@ const Index = () => {
             onTouchEnd={handleTouchEnd}
           >
             <div className="text-center mb-4 sm:mb-6">
-              <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent mb-2">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent mb-2">
                 Мои объявления
               </h2>
               <p className="text-gray-600 text-sm sm:text-base">
@@ -2199,7 +2199,7 @@ const Index = () => {
             onTouchEnd={handleTouchEnd}
           >
             <div className="text-center mb-4 sm:mb-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4">
                 Избранное
               </h1>
               <p className="text-base sm:text-lg text-gray-600 mb-4">
@@ -2493,7 +2493,7 @@ const Index = () => {
 
       {isChatOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4">
-          <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl w-full max-w-5xl h-full sm:h-[90vh] sm:max-h-[600px] flex animate-scale-in overflow-hidden">
+          <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl w-full max-w-5xl h-full sm:h-[90vh] flex animate-scale-in overflow-hidden">
             <div className="hidden sm:flex w-full sm:w-80 bg-gray-50 border-r flex-col">
               <div className="p-4 border-b bg-white">
                 <h3 className="font-bold text-lg text-gray-800">Сообщения</h3>
