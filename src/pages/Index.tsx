@@ -5,46 +5,13 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import Icon from '@/components/ui/icon';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import type { Request, Offer } from '@/types';
+import { CITIES, CATEGORIES } from '@/constants/data';
 
-interface Request {
-  id: number;
-  title: string;
-  category: string;
-  budget: string;
-  author: string;
-  rating: number;
-  responses: number;
-  description: string;
-  city: string;
-  delivery: boolean;
-  exchange?: boolean;
-  isFavorite?: boolean;
-  photos?: string[];
-}
+const cities = CITIES;
+const categories = CATEGORIES;
 
-interface Offer {
-  id: number;
-  title: string;
-  category: string;
-  price: string;
-  author: string;
-  rating: number;
-  views: number;
-  description: string;
-  city: string;
-  delivery: boolean;
-  exchange?: boolean;
-  isFavorite?: boolean;
-  photos?: string[];
-}
-
-const cities = [
-  'Москва', 'Санкт-Петербург', 'Казань', 'Новосибирск', 'Екатеринбург', 
-  'Нижний Новгород', 'Самара', 'Омск', 'Челябинск', 'Ростов-на-Дону',
-  'Уфа', 'Красноярск', 'Воронеж', 'Пермь', 'Волгоград'
-];
-
-const categories = [
+const oldCategories = [
   { 
     name: 'Электроника', 
     icon: 'Smartphone', 
