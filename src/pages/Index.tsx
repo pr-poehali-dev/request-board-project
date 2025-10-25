@@ -1500,7 +1500,7 @@ const Index = () => {
       
 
 
-      <main id="feed-start" className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
+      <main id="feed-start" className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8 pt-6" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 relative">
             <div className="sticky top-20 space-y-3 relative z-10">
