@@ -1811,9 +1811,9 @@ const Index = () => {
                     className="hover:opacity-80 transition-opacity"
                   >
                     <img 
-                      src="https://cdn.poehali.dev/files/0a180c27-7df9-40c0-a8e1-bcea0325f94b.png" 
+                      src="https://cdn.poehali.dev/files/38354c02-a50d-4c8a-be42-53e5ca23cbfd.png" 
                       alt="Albeweb" 
-                      className="h-4"
+                      className="h-6"
                     />
                   </a>
                 </div>
