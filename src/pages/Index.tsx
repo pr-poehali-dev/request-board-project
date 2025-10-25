@@ -2085,7 +2085,7 @@ const Index = () => {
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   placeholder={formType === 'request' ? 'Например: Ищу iPhone 15 Pro' : 'Например: Продаю iPhone 14 Pro Max'}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
                 />
               </div>
 
@@ -2094,7 +2094,7 @@ const Index = () => {
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
                 >
                   <option value="">Выберите категорию</option>
                   {categories.map((cat) => (
@@ -2112,7 +2112,7 @@ const Index = () => {
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                   placeholder={formType === 'request' ? 'Например: до 120 000 ₽' : 'Например: 85 000 ₽'}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
                 />
               </div>
 
@@ -2123,7 +2123,7 @@ const Index = () => {
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Подробно опишите что вы ищете или предлагаете..."
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 resize-none transition-all bg-gray-50"
                 />
               </div>
 
@@ -2134,7 +2134,7 @@ const Index = () => {
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   placeholder="Например: Москва"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all bg-gray-50"
                 />
               </div>
 
@@ -2249,7 +2249,7 @@ const Index = () => {
                       alert('Заполните все обязательные поля');
                     }
                   }}
-                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90 py-3 text-base font-semibold"
+                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 py-3 text-base font-semibold shadow-md hover:shadow-lg transition-all"
                 >
                   <Icon name="Plus" size={18} className="mr-2" />
                   Создать
