@@ -1140,6 +1140,7 @@ const Index = () => {
                         <Icon name="Calendar" size={14} className="inline mr-2" />
                         По дате
                       </span>
+                      <Icon name="ChevronRight" size={14} className="opacity-50" />
                     </button>
                     
                     {hoveredSort === 'date' && (
@@ -1404,6 +1405,32 @@ const Index = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-4">
               Запросы
             </h2>
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
+              <Button
+                variant={selectedCategory === null ? 'default' : 'outline'}
+                onClick={() => {
+                  setSelectedCategory(null);
+                  scrollToFeed();
+                }}
+                className="whitespace-nowrap font-medium text-sm"
+              >
+                Все
+              </Button>
+              {categories.map((category) => (
+                <Button
+                  key={category.name}
+                  variant={selectedCategory === category.name ? 'default' : 'outline'}
+                  onClick={() => {
+                    setSelectedCategory(category.name);
+                    scrollToFeed();
+                  }}
+                  className="whitespace-nowrap font-medium text-sm"
+                >
+                  <Icon name={category.icon as any} size={14} className="mr-1.5" />
+                  {category.name}
+                </Button>
+              ))}
+            </div>
 
             <div>
               {filteredRequests.length === 0 ? (
