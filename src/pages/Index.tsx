@@ -1389,7 +1389,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="py-12 sm:py-16">
+      <div className="bg-gradient-to-b from-white/60 to-gray-50/80 backdrop-blur-sm py-12 sm:py-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-2">
             Найди. Предложи. Обменяй.
@@ -1426,19 +1426,20 @@ const Index = () => {
               return (
               <div
                 key={`${category.name}-${index}`}
-                className="flex-shrink-0 relative overflow-hidden rounded-2xl bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300"
+                className="flex-shrink-0 relative overflow-hidden rounded-2xl border border-indigo-100 shadow-lg transition-all duration-300"
                 style={{ width: '340px', height: '200px' }}
               >
                 <img 
                   src={categoryImages[category.name] || 'https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d7e8b965-eec4-4ce9-af3d-59b386e6678c.jpg'} 
                   alt={category.name}
-                  className="absolute inset-0 w-full h-full object-cover opacity-20"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/60 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                <div className="absolute inset-0 bg-indigo-900/20"></div>
                 
                 <div className="relative z-10 h-full flex flex-col justify-between p-4">
                   <div className="flex items-start justify-between">
-                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-lg ${
+                    <div className={`w-14 h-14 rounded-xl backdrop-blur-md border border-white/30 flex items-center justify-center shadow-xl ${
                       category.name === 'Электроника' ? 'bg-blue-600' :
                       category.name === 'Одежда' ? 'bg-pink-600' :
                       category.name === 'Услуги' ? 'bg-orange-600' :
@@ -1456,45 +1457,45 @@ const Index = () => {
                       category.name === 'Еда и напитки' ? 'bg-rose-600' :
                       'bg-violet-600'
                     }`}>
-                      <Icon name={category.icon as any} size={28} className="text-white drop-shadow" />
+                      <Icon name={category.icon as any} size={28} className="text-white" />
                     </div>
                   </div>
                   <div className="text-left space-y-2.5">
-                    <h3 className={`font-bold text-2xl ${
-                      category.name === 'Электроника' ? 'text-blue-700' :
-                      category.name === 'Одежда' ? 'text-pink-700' :
-                      category.name === 'Услуги' ? 'text-orange-700' :
-                      category.name === 'Недвижимость' ? 'text-emerald-700' :
-                      category.name === 'Транспорт' ? 'text-purple-700' :
-                      category.name === 'Мебель' ? 'text-amber-700' :
-                      category.name === 'Детские товары' ? 'text-sky-700' :
-                      category.name === 'Спорт' ? 'text-green-700' :
-                      category.name === 'Красота' ? 'text-fuchsia-700' :
-                      category.name === 'Животные' ? 'text-yellow-700' :
-                      category.name === 'Хобби' ? 'text-indigo-700' :
-                      category.name === 'Книги' ? 'text-slate-700' :
-                      category.name === 'Строительство' ? 'text-yellow-800' :
-                      category.name === 'Работа' ? 'text-cyan-700' :
-                      category.name === 'Еда и напитки' ? 'text-rose-700' :
-                      'text-violet-700'
+                    <h3 className={`font-bold text-lg drop-shadow-lg ${
+                      category.name === 'Электроника' ? 'text-blue-100' :
+                      category.name === 'Одежда' ? 'text-pink-100' :
+                      category.name === 'Услуги' ? 'text-orange-100' :
+                      category.name === 'Недвижимость' ? 'text-emerald-100' :
+                      category.name === 'Транспорт' ? 'text-purple-100' :
+                      category.name === 'Мебель' ? 'text-amber-100' :
+                      category.name === 'Детские товары' ? 'text-sky-100' :
+                      category.name === 'Спорт' ? 'text-green-100' :
+                      category.name === 'Красота' ? 'text-fuchsia-100' :
+                      category.name === 'Животные' ? 'text-yellow-100' :
+                      category.name === 'Хобби' ? 'text-indigo-100' :
+                      category.name === 'Книги' ? 'text-slate-100' :
+                      category.name === 'Строительство' ? 'text-yellow-100' :
+                      category.name === 'Работа' ? 'text-cyan-100' :
+                      category.name === 'Еда и напитки' ? 'text-rose-100' :
+                      'text-violet-100'
                     }`}>{category.name}</h3>
                     <div className="flex gap-2">
-                      <div className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-2">
+                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
                         <div className="flex items-center justify-between gap-1">
-                          <span className="flex items-center gap-1.5 text-gray-600 text-xs font-medium">
+                          <span className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
                             <Icon name="Search" size={14} />
                             <span>Запросы</span>
                           </span>
-                          <span className="text-gray-900 font-bold text-sm">{stats.requestCount}</span>
+                          <span className="text-white font-bold text-sm">{stats.requestCount}</span>
                         </div>
                       </div>
-                      <div className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-2">
+                      <div className="flex-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-2.5 py-2">
                         <div className="flex items-center justify-between gap-1">
-                          <span className="flex items-center gap-1.5 text-gray-600 text-xs font-medium">
+                          <span className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
                             <Icon name="Package" size={14} />
                             <span>Предложения</span>
                           </span>
-                          <span className="text-gray-900 font-bold text-sm">{stats.offerCount}</span>
+                          <span className="text-white font-bold text-sm">{stats.offerCount}</span>
                         </div>
                       </div>
                     </div>
