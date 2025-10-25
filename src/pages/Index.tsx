@@ -1128,23 +1128,24 @@ const Index = () => {
                 )}
               </div>
               
-              <div className="relative">
+              <div className="relative w-48 flex-shrink-0">
+                <Icon name="MapPin" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10" />
                 <select
                   value={selectedCity || ''}
                   onChange={(e) => setSelectedCity(e.target.value || null)}
-                  className="appearance-none pl-3 pr-7 py-2 border-2 border-orange-500/50 bg-gradient-to-r from-orange-500/20 to-amber-500/20 backdrop-blur-md text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 text-sm cursor-pointer hover:border-orange-400 transition-all shadow-lg"
+                  className="w-full appearance-none pl-9 pr-8 py-2 border border-white/30 bg-white/10 backdrop-blur-md text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-sm cursor-pointer"
                   style={{
                     backgroundImage: 'none'
                   }}
                 >
-                  <option value="" className="bg-gray-800">🌍 Все города</option>
+                  <option value="" className="bg-gray-800">Все города</option>
                   {cities.map((city) => (
                     <option key={city} value={city} className="bg-gray-800">
-                      📍 {city}
+                      {city}
                     </option>
                   ))}
                 </select>
-                <Icon name="ChevronDown" size={14} className="absolute right-2 top-1/2 -translate-y-1/2 text-orange-300 pointer-events-none" />
+                <Icon name="ChevronDown" size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
