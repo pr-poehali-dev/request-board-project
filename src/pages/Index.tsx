@@ -481,7 +481,7 @@ const RequestCard = ({
               className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
               onClick={onAuthorClick}
             >
-              <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-pink-500 to-orange-500 ring-2 ring-pink-200">
+              <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-600 to-pink-600 ring-2 ring-purple-200">
                 <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                   {request.author[0]}
                 </AvatarFallback>
@@ -625,7 +625,7 @@ const OfferCard = ({
               className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
               onClick={onAuthorClick}
             >
-              <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-blue-500 ring-2 ring-purple-200">
+              <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-600 to-pink-600 ring-2 ring-purple-200">
                 <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
                   {offer.author[0]}
                 </AvatarFallback>
@@ -1207,7 +1207,7 @@ const Index = () => {
                 className="flex items-center space-x-2 px-3 py-1.5 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
                 title="Профиль"
               >
-                <Avatar className="w-7 h-7 bg-gradient-to-r from-purple-600 to-pink-600">
+                <Avatar className="w-7 h-7 bg-gradient-to-br from-purple-600 to-pink-600">
                   {avatarPreview ? (
                     <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
@@ -1287,7 +1287,7 @@ const Index = () => {
                 onClick={() => setIsProfileOpen(true)}
                 className="flex flex-col items-center py-2 px-1 rounded-lg transition-colors text-gray-600"
               >
-                <Avatar className="w-5 h-5 bg-gradient-orange-pink">
+                <Avatar className="w-5 h-5 bg-gradient-to-br from-purple-600 to-pink-600">
                   {avatarPreview ? (
                     <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
@@ -2007,7 +2007,7 @@ const Index = () => {
                   <Icon name="Heart" size={64} className="mx-auto mb-4 text-gray-300" />
                   <h3 className="text-xl font-bold text-gray-800 mb-2">Избранное пусто</h3>
                   <p className="text-gray-600 mb-4">Добавьте объявления в избранное, чтобы быстро находить их</p>
-                  <Button onClick={() => setActiveTab('requests')} className="bg-gradient-orange-pink text-white hover:opacity-90">
+                  <Button onClick={() => setActiveTab('requests')} className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90">
                     Посмотреть объявления
                   </Button>
                 </CardContent>
@@ -2084,7 +2084,7 @@ const Index = () => {
                             setSelectedItem(request);
                             setIsViewModalOpen(true);
                           }}
-                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
+                          className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
                         >
                           Смотреть
                         </Button>
@@ -2161,7 +2161,7 @@ const Index = () => {
                             setSelectedItem(offer);
                             setIsViewModalOpen(true);
                           }}
-                          className="bg-gradient-orange-pink text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
+                          className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 font-semibold text-xs sm:text-sm w-full sm:w-auto"
                         >
                           Смотреть
                         </Button>
@@ -2186,7 +2186,7 @@ const Index = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-orange-pink flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
                   <Icon name="MessageSquare" className="text-white" size={16} />
                 </div>
                 <span className="text-lg font-bold text-white">Доска запросов</span>
@@ -2719,7 +2719,7 @@ const Index = () => {
 
             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
               <div className="text-center">
-                <Avatar className="w-16 h-16 mx-auto mb-3 bg-gradient-purple-pink">
+                <Avatar className="w-16 h-16 mx-auto mb-3 bg-gradient-to-r from-purple-600 to-pink-600">
                   <AvatarFallback className="bg-transparent text-white font-bold text-xl">
                     {currentDialog.avatar}
                   </AvatarFallback>
@@ -2794,7 +2794,7 @@ const Index = () => {
                       alert('Поставьте оценку');
                     }
                   }}
-                  className="flex-1 bg-gradient-orange-pink text-white hover:opacity-90 py-3 text-base font-semibold"
+                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 py-3 text-base font-semibold"
                 >
                   <Icon name="Send" size={18} className="mr-2" />
                   Отправить
@@ -3067,7 +3067,7 @@ const Index = () => {
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Фото профиля</label>
                 <div className="flex items-center gap-4">
-                  <Avatar className="w-20 h-20 bg-gradient-orange-pink">
+                  <Avatar className="w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600">
                     {avatarPreview ? (
                       <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                     ) : (
@@ -3235,7 +3235,7 @@ const Index = () => {
                         }
                       }}
                     >
-                      <Avatar className="w-16 h-16 bg-gradient-orange-pink">
+                      <Avatar className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600">
                         <AvatarFallback className="bg-transparent text-white text-xl font-bold">
                           {selectedItem.author[0]}
                         </AvatarFallback>
@@ -3258,7 +3258,7 @@ const Index = () => {
                           setIsViewModalOpen(false);
                         }
                       }}
-                      className="bg-gradient-orange-pink text-white hover:opacity-90"
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90"
                     >
                       <Icon name="MessageCircle" size={16} className="mr-2" />
                       Написать
@@ -3267,7 +3267,7 @@ const Index = () => {
                 </div>
 
                 <div className="flex gap-2 flex-wrap">
-                  <Badge className="bg-gradient-orange-pink text-white border-0">
+                  <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0">
                     {selectedItem.category}
                   </Badge>
                   {selectedItem.delivery && (
@@ -3457,7 +3457,7 @@ const Index = () => {
               </DialogHeader>
               <div className="space-y-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-start gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl">
-                <Avatar className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-orange-pink flex-shrink-0">
+                <Avatar className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-purple-600 to-pink-600 flex-shrink-0">
                   <AvatarFallback className="bg-transparent text-white text-2xl sm:text-3xl font-bold">
                     {selectedUserProfile.avatar}
                   </AvatarFallback>
@@ -3559,7 +3559,7 @@ const Index = () => {
                     <div key={review.id} className="p-4 bg-gray-50 rounded-xl">
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-3">
-                          <Avatar className="w-10 h-10 bg-gradient-purple-pink">
+                          <Avatar className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600">
                             <AvatarFallback className="bg-transparent text-white font-bold text-sm">
                               {review.author[0]}
                             </AvatarFallback>
@@ -3600,7 +3600,7 @@ const Index = () => {
           </DialogHeader>
           <div className="space-y-6">
             <div className="text-center">
-              <Avatar className="w-24 h-24 mx-auto mb-4 bg-gradient-orange-pink">
+              <Avatar className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-purple-600 to-pink-600">
                 {avatarPreview ? (
                   <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                 ) : (

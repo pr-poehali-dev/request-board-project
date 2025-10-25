@@ -173,7 +173,7 @@ export default function Header({
               className="flex items-center space-x-2 px-3 py-1.5 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
               title="Профиль"
             >
-              <Avatar className="w-7 h-7 bg-gradient-orange-pink">
+              <Avatar className="w-7 h-7 bg-gradient-to-br from-purple-600 to-pink-600">
                 {avatarPreview ? (
                   <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
                 ) : (
