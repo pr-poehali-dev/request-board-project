@@ -2027,7 +2027,10 @@ const Index = () => {
                   </CardContent>
                 </Card>
               ) : (
-                <>
+                <div 
+                  key={`requests-${selectedCategory}-${sortBy}-${sortDirection}`}
+                  className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+                >
                   {filteredRequests.map((request, index) => (
                 <RequestCard
                   key={request.id}
@@ -2068,7 +2071,7 @@ const Index = () => {
                   }}
                 />
               ))}
-                </>
+                </div>
               )}
             </div>
           </div>
@@ -2089,7 +2092,7 @@ const Index = () => {
                 variant={selectedCategory === null ? 'default' : 'outline'}
                 onClick={() => {
                   setSelectedCategory(null);
-                  scrollToTop();
+                  scrollToFeed();
                 }}
                 className="whitespace-nowrap font-medium text-sm"
               >
@@ -2101,7 +2104,7 @@ const Index = () => {
                   variant={selectedCategory === category.name ? 'default' : 'outline'}
                   onClick={() => {
                     setSelectedCategory(category.name);
-                    scrollToTop();
+                    scrollToFeed();
                   }}
                   className="whitespace-nowrap font-medium text-sm"
                 >
@@ -2136,7 +2139,10 @@ const Index = () => {
                   </CardContent>
                 </Card>
               ) : (
-                <>
+                <div 
+                  key={`offers-${selectedCategory}-${sortBy}-${sortDirection}`}
+                  className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+                >
                   {filteredOffers.map((offer, index) => (
                     <OfferCard
                   key={offer.id}
@@ -2176,7 +2182,7 @@ const Index = () => {
                   }}
                 />
               ))}
-                </>
+                </div>
               )}
             </div>
           </div>
