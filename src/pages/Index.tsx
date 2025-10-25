@@ -2868,7 +2868,7 @@ const Index = () => {
 
       {isReviewFormOpen && currentDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4">
-          <div className="bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in"
+          <div className="bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md animate-scale-in">
             <div className="bg-gray-100 p-4 rounded-t-xl sm:rounded-t-2xl flex items-center justify-between border-b border-gray-200 shadow-sm">
               <h2 className="text-lg sm:text-xl font-bold text-gray-900">Оставить отзыв</h2>
               <button 
