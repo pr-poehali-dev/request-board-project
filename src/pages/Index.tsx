@@ -709,6 +709,7 @@ const Index = () => {
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const [isSortOpen, setIsSortOpen] = useState(true);
   const contentTopRef = useRef<HTMLDivElement>(null);
+  const prevActiveTab = useRef(activeTab);
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1080,14 +1081,18 @@ const Index = () => {
 
   useEffect(() => {
     // При переключении вкладок сбрасываем поиск и фильтры категорий, но НЕ город
-    setSearchQuery('');
-    setSelectedCategory(null);
-    setSelectedSubcategory(null);
+    if (prevActiveTab.current !== activeTab) {
+      setSearchQuery('');
+      setSelectedCategory(null);
+      setSelectedSubcategory(null);
+      prevActiveTab.current = activeTab;
+    }
   }, [activeTab]);
 
   useEffect(() => {
-    // Когда начинаем поиск, сбрасываем только фильтры категорий, но НЕ город
-    if (searchQuery) {
+    // Когда начинаем поиск (вводим текст), сбрасываем только фильтры категорий, но НЕ город
+    // Проверяем что searchQuery не пустой, чтобы не мешать сбросу при переключении вкладок
+    if (searchQuery && searchQuery.length > 0) {
       setSelectedCategory(null);
       setSelectedSubcategory(null);
     }
