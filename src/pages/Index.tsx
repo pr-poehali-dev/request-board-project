@@ -1876,7 +1876,7 @@ const Index = () => {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-            <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
               Запросы
             </h2>
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
@@ -1983,7 +1983,7 @@ const Index = () => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-4">
               Предложения
             </h2>
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:hidden">
@@ -2090,7 +2090,7 @@ const Index = () => {
             onTouchEnd={handleTouchEnd}
           >
             <div className="text-center mb-4 sm:mb-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-3 sm:mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4">
                 Избранное
               </h1>
               <p className="text-base sm:text-lg text-gray-600 mb-4">
