@@ -1127,8 +1127,8 @@ const Index = () => {
 
       <main className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
-          <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-20 space-y-4">
+          <aside className="hidden lg:block w-64 flex-shrink-0 relative">
+            <div className="sticky top-20 space-y-4 relative z-10">
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                 <h3 className="font-semibold text-gray-900 mb-3 text-sm">Тип</h3>
                 <div className="space-y-2">
@@ -1313,7 +1313,7 @@ const Index = () => {
               </button>
             </div>
           </aside>
-          <div className="flex-1 min-w-0 relative">
+          <div className="flex-1 min-w-0 relative z-0">
             {swipeDirection && (
               <div className="md:hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm flex items-center gap-2 pointer-events-none">
                 <Icon name={swipeDirection === 'left' ? 'ChevronLeft' : 'ChevronRight'} size={24} />
