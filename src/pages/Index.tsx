@@ -434,11 +434,18 @@ const RequestCard = ({
       <CardHeader className="pb-3 sm:pb-6">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           {request.photos && request.photos.length > 0 && (
-            <img 
-              src={request.photos[0]} 
-              alt={request.title}
-              className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
-            />
+            <div className="relative w-full h-48 sm:w-32 sm:h-32 flex-shrink-0">
+              <img 
+                src={request.photos[0]} 
+                alt={request.title}
+                className="w-full h-full object-cover rounded-xl"
+              />
+              <img 
+                src="https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png"
+                alt="Albe"
+                className="absolute top-2 right-2 w-8 h-8 sm:w-6 sm:h-6 rounded-full bg-black/80 p-1"
+              />
+            </div>
           )}
           <div className="flex flex-col gap-2 flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
@@ -578,11 +585,18 @@ const OfferCard = ({
       <CardHeader className="pb-3 sm:pb-6">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           {offer.photos && offer.photos.length > 0 && (
-            <img 
-              src={offer.photos[0]} 
-              alt={offer.title}
-              className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
-            />
+            <div className="relative w-full h-48 sm:w-32 sm:h-32 flex-shrink-0">
+              <img 
+                src={offer.photos[0]} 
+                alt={offer.title}
+                className="w-full h-full object-cover rounded-xl"
+              />
+              <img 
+                src="https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png"
+                alt="Albe"
+                className="absolute top-2 right-2 w-8 h-8 sm:w-6 sm:h-6 rounded-full bg-black/80 p-1"
+              />
+            </div>
           )}
           <div className="flex flex-col gap-2 flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
