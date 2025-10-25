@@ -45,21 +45,111 @@ const cities = [
 ];
 
 const categories = [
-  { name: 'Электроника', icon: 'Smartphone', color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600', popular: true },
-  { name: 'Одежда', icon: 'ShoppingBag', color: 'bg-gradient-to-br from-pink-500 via-rose-500 to-red-500', popular: true },
-  { name: 'Услуги', icon: 'Wrench', color: 'bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500', popular: true },
-  { name: 'Недвижимость', icon: 'Home', color: 'bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500', popular: true },
-  { name: 'Транспорт', icon: 'Car', color: 'bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500', popular: true },
-  { name: 'Мебель', icon: 'Armchair', color: 'bg-gradient-to-br from-amber-600 via-orange-600 to-red-600', popular: false },
-  { name: 'Детские товары', icon: 'Baby', color: 'bg-gradient-to-br from-sky-400 via-cyan-400 to-blue-400', popular: false },
-  { name: 'Спорт', icon: 'Dumbbell', color: 'bg-gradient-to-br from-lime-500 via-green-500 to-emerald-600', popular: false },
-  { name: 'Красота', icon: 'Sparkles', color: 'bg-gradient-to-br from-fuchsia-500 via-pink-500 to-rose-500', popular: false },
-  { name: 'Животные', icon: 'Dog', color: 'bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600', popular: false },
-  { name: 'Хобби', icon: 'Gamepad2', color: 'bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500', popular: false },
-  { name: 'Книги', icon: 'BookOpen', color: 'bg-gradient-to-br from-slate-600 via-gray-600 to-zinc-600', popular: false },
-  { name: 'Строительство', icon: 'HardHat', color: 'bg-gradient-to-br from-yellow-600 via-orange-600 to-red-600', popular: false },
-  { name: 'Работа', icon: 'Briefcase', color: 'bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700', popular: true },
-  { name: 'Еда и напитки', icon: 'Coffee', color: 'bg-gradient-to-br from-rose-500 via-red-500 to-orange-500', popular: false },
+  { 
+    name: 'Электроника', 
+    icon: 'Smartphone', 
+    color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600', 
+    popular: true,
+    subcategories: ['Телефоны', 'Ноутбуки', 'Планшеты', 'Наушники', 'Часы', 'Камеры']
+  },
+  { 
+    name: 'Одежда', 
+    icon: 'ShoppingBag', 
+    color: 'bg-gradient-to-br from-pink-500 via-rose-500 to-red-500', 
+    popular: true,
+    subcategories: ['Мужская', 'Женская', 'Детская', 'Обувь', 'Аксессуары', 'Верхняя одежда']
+  },
+  { 
+    name: 'Услуги', 
+    icon: 'Wrench', 
+    color: 'bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500', 
+    popular: true,
+    subcategories: ['Ремонт', 'Репетиторы', 'Красота', 'IT-услуги', 'Фото/Видео', 'Доставка']
+  },
+  { 
+    name: 'Недвижимость', 
+    icon: 'Home', 
+    color: 'bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500', 
+    popular: true,
+    subcategories: ['Аренда квартир', 'Продажа квартир', 'Дома', 'Участки', 'Коммерческая', 'Гаражи']
+  },
+  { 
+    name: 'Транспорт', 
+    icon: 'Car', 
+    color: 'bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500', 
+    popular: true,
+    subcategories: ['Автомобили', 'Мотоциклы', 'Велосипеды', 'Запчасти', 'Самокаты', 'Спецтехника']
+  },
+  { 
+    name: 'Мебель', 
+    icon: 'Armchair', 
+    color: 'bg-gradient-to-br from-amber-600 via-orange-600 to-red-600', 
+    popular: false,
+    subcategories: ['Диваны', 'Кровати', 'Столы', 'Шкафы', 'Кухни', 'Кресла']
+  },
+  { 
+    name: 'Детские товары', 
+    icon: 'Baby', 
+    color: 'bg-gradient-to-br from-sky-400 via-cyan-400 to-blue-400', 
+    popular: false,
+    subcategories: ['Коляски', 'Игрушки', 'Одежда', 'Мебель', 'Кормление', 'Автокресла']
+  },
+  { 
+    name: 'Спорт', 
+    icon: 'Dumbbell', 
+    color: 'bg-gradient-to-br from-lime-500 via-green-500 to-emerald-600', 
+    popular: false,
+    subcategories: ['Тренажеры', 'Велосипеды', 'Зимний спорт', 'Фитнес', 'Туризм', 'Единоборства']
+  },
+  { 
+    name: 'Красота', 
+    icon: 'Sparkles', 
+    color: 'bg-gradient-to-br from-fuchsia-500 via-pink-500 to-rose-500', 
+    popular: false,
+    subcategories: ['Косметика', 'Парфюмерия', 'Уход за телом', 'Салоны', 'Ногти', 'Волосы']
+  },
+  { 
+    name: 'Животные', 
+    icon: 'Dog', 
+    color: 'bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600', 
+    popular: false,
+    subcategories: ['Собаки', 'Кошки', 'Птицы', 'Аквариум', 'Грызуны', 'Товары для животных']
+  },
+  { 
+    name: 'Хобби', 
+    icon: 'Gamepad2', 
+    color: 'bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500', 
+    popular: false,
+    subcategories: ['Игровые приставки', 'Настольные игры', 'Коллекционирование', 'Музыка', 'Рукоделие', 'Рыбалка']
+  },
+  { 
+    name: 'Книги', 
+    icon: 'BookOpen', 
+    color: 'bg-gradient-to-br from-slate-600 via-gray-600 to-zinc-600', 
+    popular: false,
+    subcategories: ['Художественная', 'Учебная', 'Детская', 'Бизнес', 'Комиксы', 'Журналы']
+  },
+  { 
+    name: 'Строительство', 
+    icon: 'HardHat', 
+    color: 'bg-gradient-to-br from-yellow-600 via-orange-600 to-red-600', 
+    popular: false,
+    subcategories: ['Инструменты', 'Материалы', 'Сантехника', 'Электрика', 'Отделка', 'Двери и окна']
+  },
+  { 
+    name: 'Работа', 
+    icon: 'Briefcase', 
+    color: 'bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700', 
+    popular: true,
+    subcategories: ['IT', 'Продажи', 'Маркетинг', 'Административная', 'Производство', 'Образование']
+  },
+  { 
+    name: 'Еда и напитки', 
+    icon: 'Coffee', 
+    color: 'bg-gradient-to-br from-rose-500 via-red-500 to-orange-500', 
+    popular: false,
+    subcategories: ['Рестораны', 'Кафе', 'Доставка еды', 'Продукты', 'Напитки', 'Кондитерские']
+  },
 ];
 
 const mockRequests: Request[] = [
@@ -308,6 +398,8 @@ const Index = () => {
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [isSortOpen, setIsSortOpen] = useState(true);
   const contentTopRef = useRef<HTMLDivElement>(null);
   
@@ -1125,21 +1217,63 @@ const Index = () => {
                     };
                     
                     return (
-                      <button
+                      <div 
                         key={category.name}
-                        onClick={() => {
-                          setSelectedCategory(category.name);
-                          scrollToTop();
-                        }}
-                        className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
-                          selectedCategory === category.name 
-                            ? `${getCategoryColor(category.name)} text-white shadow-md` 
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
+                        className="relative"
+                        onMouseEnter={() => setHoveredCategory(category.name)}
+                        onMouseLeave={() => setHoveredCategory(null)}
                       >
-                        <Icon name={category.icon as any} size={14} className="inline mr-2" />
-                        {category.name}
-                      </button>
+                        <button
+                          onClick={() => {
+                            setSelectedCategory(category.name);
+                            setSelectedSubcategory(null);
+                            scrollToTop();
+                          }}
+                          className={`w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
+                            selectedCategory === category.name 
+                              ? `${getCategoryColor(category.name)} text-white shadow-md` 
+                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          <span>
+                            <Icon name={category.icon as any} size={14} className="inline mr-2" />
+                            {category.name}
+                          </span>
+                          <Icon name="ChevronRight" size={14} className="opacity-50" />
+                        </button>
+                        
+                        {hoveredCategory === category.name && category.subcategories && (
+                          <div 
+                            className="absolute left-full top-0 ml-2 w-56 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-3 z-50 animate-in slide-in-from-left-2 duration-200"
+                          >
+                            <h4 className="text-xs font-bold text-gray-900 mb-2 pb-2 border-b border-gray-200 flex items-center gap-2">
+                              <Icon name="Grid2x2" size={12} />
+                              Подразделы
+                            </h4>
+                            <div className="space-y-1 max-h-64 overflow-y-auto scrollbar-thin">
+                              {category.subcategories.map((subcategory) => (
+                                <button
+                                  key={subcategory}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedCategory(category.name);
+                                    setSelectedSubcategory(subcategory);
+                                    setHoveredCategory(null);
+                                    scrollToTop();
+                                  }}
+                                  className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all font-medium ${
+                                    selectedSubcategory === subcategory && selectedCategory === category.name
+                                      ? `${getCategoryColor(category.name)} text-white shadow-md`
+                                      : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
+                                  }`}
+                                >
+                                  {subcategory}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     );
                   })}
                 </div>
