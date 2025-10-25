@@ -446,12 +446,12 @@ const RequestCard = ({
                 <Badge className={`${getCategoryColor(request.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                   {request.category}
                 </Badge>
-                <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
+                <Badge variant="outline" className="font-medium text-gray-700 border-gray-200 bg-gray-50 text-xs whitespace-nowrap">
                   <Icon name="MapPin" size={10} className="mr-1" />
                   {request.city}
                 </Badge>
                 {request.delivery && (
-                  <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
+                  <Badge variant="outline" className="font-medium text-green-700 border-green-300 bg-green-50 text-xs whitespace-nowrap">
                     <Icon name="Truck" size={10} className="mr-1" />
                     Доставка
                   </Badge>
@@ -590,12 +590,12 @@ const OfferCard = ({
                 <Badge className={`${getCategoryColor(offer.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                   {offer.category}
                 </Badge>
-                <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
+                <Badge variant="outline" className="font-medium text-gray-700 border-gray-200 bg-gray-50 text-xs whitespace-nowrap">
                   <Icon name="MapPin" size={10} className="mr-1" />
                   {offer.city}
                 </Badge>
                 {offer.delivery && (
-                  <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
+                  <Badge variant="outline" className="font-medium text-green-700 border-green-300 bg-green-50 text-xs whitespace-nowrap">
                     <Icon name="Truck" size={10} className="mr-1" />
                     Доставка
                   </Badge>
