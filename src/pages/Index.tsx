@@ -379,6 +379,311 @@ const getCategoryColor = (category: string): string => {
   return colorMap[category] || 'bg-gradient-to-r from-blue-500 to-purple-500';
 };
 
+const getCategoryColor = (category: string): string => {
+  const colors: Record<string, string> = {
+    'Электроника': 'bg-blue-600',
+    'Одежда': 'bg-pink-600',
+    'Услуги': 'bg-orange-600',
+    'Недвижимость': 'bg-emerald-600',
+    'Транспорт': 'bg-purple-600',
+    'Мебель': 'bg-amber-600',
+    'Детские товары': 'bg-sky-500',
+    'Спорт': 'bg-green-600',
+    'Красота': 'bg-fuchsia-600',
+    'Животные': 'bg-yellow-600',
+    'Хобби': 'bg-indigo-600',
+    'Книги': 'bg-slate-600',
+    'Строительство': 'bg-yellow-700',
+    'Работа': 'bg-cyan-600',
+    'Еда и напитки': 'bg-rose-600'
+  };
+  return colors[category] || 'bg-violet-600';
+};
+
+interface RequestCardProps {
+  request: Request;
+  index: number;
+  contentTopRef: React.RefObject<HTMLDivElement> | null;
+  favorites: any[];
+  isAuthenticated: boolean;
+  onToggleFavorite: () => void;
+  onViewClick: () => void;
+  onResponseClick: () => void;
+  onAuthorClick: () => void;
+}
+
+const RequestCard = ({ 
+  request, 
+  index, 
+  contentTopRef, 
+  favorites, 
+  isAuthenticated, 
+  onToggleFavorite, 
+  onViewClick, 
+  onResponseClick,
+  onAuthorClick 
+}: RequestCardProps) => {
+  const isFavorited = favorites.includes(`request-${request.id}`);
+  
+  return (
+    <Card 
+      key={request.id}
+      ref={index === 0 ? contentTopRef : null}
+      className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
+    >
+      <CardHeader className="pb-3 sm:pb-6">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          {request.photos && request.photos.length > 0 && (
+            <img 
+              src={request.photos[0]} 
+              alt={request.title}
+              className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+            />
+          )}
+          <div className="flex flex-col gap-2 flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
+                <Badge className={`${getCategoryColor(request.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
+                  {request.category}
+                </Badge>
+                <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
+                  <Icon name="MapPin" size={10} className="mr-1" />
+                  {request.city}
+                </Badge>
+                {request.delivery && (
+                  <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
+                    <Icon name="Truck" size={10} className="mr-1" />
+                    Доставка
+                  </Badge>
+                )}
+                {request.exchange && (
+                  <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
+                    <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                    Обмен
+                  </Badge>
+                )}
+              </div>
+              <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
+                {request.budget}
+              </div>
+            </div>
+            <CardTitle className="text-lg sm:text-2xl mb-1">{request.title}</CardTitle>
+            <CardDescription className="text-sm sm:text-base line-clamp-2">
+              {request.description}
+            </CardDescription>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="pt-0">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+          <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
+            <div 
+              className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={onAuthorClick}
+            >
+              <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-pink-500 to-orange-500 ring-2 ring-pink-200">
+                <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
+                  {request.author[0]}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-medium text-xs sm:text-sm hover:underline">{request.author}</p>
+                <div className="flex items-center gap-1">
+                  <Icon name="Star" size={12} className="fill-yellow-400 text-yellow-400" />
+                  <span className="text-xs sm:text-sm text-gray-600">{request.rating}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
+                <Icon name="MessageCircle" size={16} className="text-purple-600" />
+                <span className="text-sm font-bold text-purple-700">{request.responses}</span>
+                <span className="text-xs text-purple-600 font-medium">откликов</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-gray-600">
+                <Icon name="Eye" size={16} />
+                <span className="text-sm font-medium">{Math.floor(Math.random() * 500) + 100}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <div className="flex gap-2">
+              <Button 
+                onClick={onToggleFavorite}
+                variant="outline" 
+                size="sm"
+                className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${isFavorited ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700'}`}
+              >
+                <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${isFavorited ? 'fill-rose-500 text-rose-600' : ''}`} />
+                <span className="hidden sm:inline">{isFavorited ? 'В избранном' : 'В избранное'}</span>
+              </Button>
+              <Button 
+                onClick={onViewClick}
+                variant="outline" 
+                size="sm"
+                className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
+              >
+                <Icon name="Eye" size={14} className="sm:mr-1.5" />
+                <span className="hidden sm:inline">Смотреть</span>
+              </Button>
+            </div>
+            <Button 
+              onClick={onResponseClick}
+              size="sm"
+              className="w-full sm:w-auto bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+            >
+              Откликнуться
+              <Icon name="Send" size={14} className="ml-1.5" />
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+interface OfferCardProps {
+  offer: Offer;
+  index: number;
+  offersTopRef: React.RefObject<HTMLDivElement> | null;
+  favorites: any[];
+  isAuthenticated: boolean;
+  onToggleFavorite: () => void;
+  onViewClick: () => void;
+  onContactClick: () => void;
+  onAuthorClick: () => void;
+}
+
+const OfferCard = ({ 
+  offer, 
+  index, 
+  offersTopRef, 
+  favorites, 
+  isAuthenticated, 
+  onToggleFavorite, 
+  onViewClick, 
+  onContactClick,
+  onAuthorClick 
+}: OfferCardProps) => {
+  const isFavorited = favorites.includes(`offer-${offer.id}`);
+  
+  return (
+    <Card 
+      key={offer.id}
+      ref={index === 0 ? offersTopRef : null}
+      className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
+    >
+      <CardHeader className="pb-3 sm:pb-6">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          {offer.photos && offer.photos.length > 0 && (
+            <img 
+              src={offer.photos[0]} 
+              alt={offer.title}
+              className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+            />
+          )}
+          <div className="flex flex-col gap-2 flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
+                <Badge className={`${getCategoryColor(offer.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
+                  {offer.category}
+                </Badge>
+                <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
+                  <Icon name="MapPin" size={10} className="mr-1" />
+                  {offer.city}
+                </Badge>
+                {offer.delivery && (
+                  <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
+                    <Icon name="Truck" size={10} className="mr-1" />
+                    Доставка
+                  </Badge>
+                )}
+                {offer.exchange && (
+                  <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
+                    <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                    Обмен
+                  </Badge>
+                )}
+              </div>
+              <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
+                {offer.price}
+              </div>
+            </div>
+            <CardTitle className="text-lg sm:text-2xl mb-1">{offer.title}</CardTitle>
+            <CardDescription className="text-sm sm:text-base line-clamp-2">
+              {offer.description}
+            </CardDescription>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="pt-0">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+          <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
+            <div 
+              className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={onAuthorClick}
+            >
+              <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-blue-500 ring-2 ring-purple-200">
+                <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
+                  {offer.author[0]}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-medium text-xs sm:text-sm hover:underline">{offer.author}</p>
+                <div className="flex items-center gap-1">
+                  <Icon name="Star" size={12} className="fill-yellow-400 text-yellow-400" />
+                  <span className="text-xs sm:text-sm text-gray-600">{offer.rating}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
+                <Icon name="Eye" size={16} className="text-blue-600" />
+                <span className="text-sm font-bold text-blue-700">{offer.views}</span>
+                <span className="text-xs text-blue-600 font-medium">просмотров</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <div className="flex gap-2">
+              <Button 
+                onClick={onToggleFavorite}
+                variant="outline" 
+                size="sm"
+                className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${isFavorited ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700'}`}
+              >
+                <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${isFavorited ? 'fill-rose-500 text-rose-600' : ''}`} />
+                <span className="hidden sm:inline">{isFavorited ? 'В избранном' : 'В избранное'}</span>
+              </Button>
+              <Button 
+                onClick={onViewClick}
+                variant="outline" 
+                size="sm"
+                className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
+              >
+                <Icon name="Eye" size={14} className="sm:mr-1.5" />
+                <span className="hidden sm:inline">Смотреть</span>
+              </Button>
+            </div>
+            <Button 
+              onClick={onContactClick}
+              size="sm"
+              className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+            >
+              Связаться
+              <Icon name="MessageCircle" size={14} className="ml-1.5" />
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
 const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -1374,164 +1679,44 @@ const Index = () => {
 
             <div>
               {filteredRequests.map((request, index) => (
-                <Card 
+                <RequestCard
                   key={request.id}
-                  ref={index === 0 ? contentTopRef : null}
-                  className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
-                >
-                  <CardHeader className="pb-3 sm:pb-6">
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                      {request.photos && request.photos.length > 0 && (
-                        <img 
-                          src={request.photos[0]} 
-                          alt={request.title}
-                          className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
-                        />
-                      )}
-                      <div className="flex flex-col gap-2 flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
-                            <Badge className={`${
-                              request.category === 'Электроника' ? 'bg-blue-600' :
-                              request.category === 'Одежда' ? 'bg-pink-600' :
-                              request.category === 'Услуги' ? 'bg-orange-600' :
-                              request.category === 'Недвижимость' ? 'bg-emerald-600' :
-                              request.category === 'Транспорт' ? 'bg-purple-600' :
-                              request.category === 'Мебель' ? 'bg-amber-600' :
-                              request.category === 'Детские товары' ? 'bg-sky-500' :
-                              request.category === 'Спорт' ? 'bg-green-600' :
-                              request.category === 'Красота' ? 'bg-fuchsia-600' :
-                              request.category === 'Животные' ? 'bg-yellow-600' :
-                              request.category === 'Хобби' ? 'bg-indigo-600' :
-                              request.category === 'Книги' ? 'bg-slate-600' :
-                              request.category === 'Строительство' ? 'bg-yellow-700' :
-                              request.category === 'Работа' ? 'bg-cyan-600' :
-                              request.category === 'Еда и напитки' ? 'bg-rose-600' :
-                              'bg-violet-600'
-                            } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
-                              {request.category}
-                            </Badge>
-                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
-                              <Icon name="MapPin" size={10} className="mr-1" />
-                              {request.city}
-                            </Badge>
-                            {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
-                                <Icon name="Truck" size={10} className="mr-1" />
-                                Доставка
-                              </Badge>
-                            )}
-                            {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
-                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                                Обмен
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
-                            {request.budget}
-                          </div>
-                        </div>
-                        <CardTitle className="text-lg sm:text-2xl mb-1">{request.title}</CardTitle>
-                        <CardDescription className="text-sm sm:text-base line-clamp-2">
-                          {request.description}
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-                      <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
-                        <div 
-                          className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
-                          onClick={() => {
-                            if (mockUserProfiles[request.author]) {
-                              setSelectedUserProfile(mockUserProfiles[request.author]);
-                              setIsUserProfileOpen(true);
-                            }
-                          }}
-                        >
-                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-pink-500 to-orange-500 ring-2 ring-pink-200">
-                            <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
-                              {request.author[0]}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <p className="font-medium text-xs sm:text-sm hover:underline">{request.author}</p>
-                            <div className="flex items-center gap-1">
-                              <Icon name="Star" size={12} className="fill-yellow-400 text-yellow-400" />
-                              <span className="text-xs sm:text-sm text-gray-600">{request.rating}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                            <Icon name="MessageCircle" size={16} className="text-purple-600" />
-                            <span className="text-sm font-bold text-purple-700">{request.responses}</span>
-                            <span className="text-xs text-purple-600 font-medium">откликов</span>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-gray-600">
-                            <Icon name="Eye" size={16} />
-                            <span className="text-sm font-medium">{Math.floor(Math.random() * 500) + 100}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                        <div className="flex gap-2">
-                          <Button 
-                            onClick={() => {
-                              if (!isAuthenticated) {
-                                setIsLoginOpen(true);
-                              } else {
-                                const itemKey = `request-${request.id}`;
-                                if (favorites.includes(itemKey)) {
-                                  setFavorites(favorites.filter(id => id !== itemKey));
-                                } else {
-                                  setFavorites([...favorites, itemKey]);
-                                }
-                              }
-                            }}
-                            variant="outline" 
-                            size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${favorites.includes(`request-${request.id}`) ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700'}`}
-                          >
-                            <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${favorites.includes(`request-${request.id}`) ? 'fill-rose-500 text-rose-600' : ''}`} />
-                            <span className="hidden sm:inline">{favorites.includes(`request-${request.id}`) ? 'В избранном' : 'В избранное'}</span>
-                          </Button>
-                          <Button 
-                            onClick={() => {
-                              setSelectedItem(request);
-                              setIsViewModalOpen(true);
-                            }}
-                            variant="outline" 
-                            size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
-                          >
-                            <Icon name="Eye" size={14} className="sm:mr-1.5" />
-                            <span className="hidden sm:inline">Смотреть</span>
-                          </Button>
-                        </div>
-                        <Button 
-                          onClick={() => {
-                            if (!isAuthenticated) {
-                              setIsLoginOpen(true);
-                            } else {
-                              setSelectedItem(request);
-                              setIsResponseModalOpen(true);
-                            }
-                          }}
-                          size="sm"
-                          className="w-full sm:w-auto bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
-                        >
-                          Откликнуться
-                          <Icon name="Send" size={14} className="ml-1.5" />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                  request={request}
+                  index={index}
+                  contentTopRef={contentTopRef}
+                  favorites={favorites}
+                  isAuthenticated={isAuthenticated}
+                  onToggleFavorite={() => {
+                    if (!isAuthenticated) {
+                      setIsLoginOpen(true);
+                    } else {
+                      const itemKey = `request-${request.id}`;
+                      if (favorites.includes(itemKey)) {
+                        setFavorites(favorites.filter(id => id !== itemKey));
+                      } else {
+                        setFavorites([...favorites, itemKey]);
+                      }
+                    }
+                  }}
+                  onViewClick={() => {
+                    setSelectedItem(request);
+                    setIsViewModalOpen(true);
+                  }}
+                  onResponseClick={() => {
+                    if (!isAuthenticated) {
+                      setIsLoginOpen(true);
+                    } else {
+                      setSelectedItem(request);
+                      setIsResponseModalOpen(true);
+                    }
+                  }}
+                  onAuthorClick={() => {
+                    if (mockUserProfiles[request.author]) {
+                      setSelectedUserProfile(mockUserProfiles[request.author]);
+                      setIsUserProfileOpen(true);
+                    }
+                  }}
+                />
               ))}
             </div>
           </div>
@@ -1573,164 +1758,43 @@ const Index = () => {
 
             <div>
               {filteredOffers.map((offer, index) => (
-                <Card 
+                <OfferCard
                   key={offer.id}
-                  ref={index === 0 ? offersTopRef : null}
-                  className="border border-purple-100 bg-white rounded-2xl overflow-hidden mb-3 sm:mb-4 shadow-sm hover:shadow-2xl hover:scale-[1.03] hover:border-purple-300 hover:-translate-y-1 transition-all duration-300"
-                >
-                  <CardHeader className="pb-3 sm:pb-6">
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                      {offer.photos && offer.photos.length > 0 && (
-                        <img 
-                          src={offer.photos[0]} 
-                          alt={offer.title}
-                          className="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
-                        />
-                      )}
-                      <div className="flex flex-col gap-2 flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1 min-w-0">
-                            <Badge className={`${
-                              offer.category === 'Электроника' ? 'bg-blue-600' :
-                              offer.category === 'Одежда' ? 'bg-pink-600' :
-                              offer.category === 'Услуги' ? 'bg-orange-600' :
-                              offer.category === 'Недвижимость' ? 'bg-emerald-600' :
-                              offer.category === 'Транспорт' ? 'bg-purple-600' :
-                              offer.category === 'Мебель' ? 'bg-amber-600' :
-                              offer.category === 'Детские товары' ? 'bg-sky-500' :
-                              offer.category === 'Спорт' ? 'bg-green-600' :
-                              offer.category === 'Красота' ? 'bg-fuchsia-600' :
-                              offer.category === 'Животные' ? 'bg-yellow-600' :
-                              offer.category === 'Хобби' ? 'bg-indigo-600' :
-                              offer.category === 'Книги' ? 'bg-slate-600' :
-                              offer.category === 'Строительство' ? 'bg-yellow-700' :
-                              offer.category === 'Работа' ? 'bg-cyan-600' :
-                              offer.category === 'Еда и напитки' ? 'bg-rose-600' :
-                              'bg-violet-600'
-                            } text-white border-0 text-xs whitespace-nowrap shadow-md`}>
-                              {offer.category}
-                            </Badge>
-                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
-                              <Icon name="MapPin" size={10} className="mr-1" />
-                              {offer.city}
-                            </Badge>
-                            {offer.delivery && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
-                                <Icon name="Truck" size={10} className="mr-1" />
-                                Доставка
-                              </Badge>
-                            )}
-                            {offer.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
-                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
-                                Обмен
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black whitespace-nowrap flex-shrink-0">
-                            {offer.price}
-                          </div>
-                        </div>
-                        <CardTitle className="text-lg sm:text-2xl mb-1">{offer.title}</CardTitle>
-                        <CardDescription className="text-sm sm:text-base line-clamp-2">
-                          {offer.description}
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-                      <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
-                        <div 
-                          className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
-                          onClick={() => {
-                            if (mockUserProfiles[offer.author]) {
-                              setSelectedUserProfile(mockUserProfiles[offer.author]);
-                              setIsUserProfileOpen(true);
-                            }
-                          }}
-                        >
-                          <Avatar className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-pink-500 to-orange-500 ring-2 ring-pink-200">
-                            <AvatarFallback className="bg-transparent text-white font-semibold text-sm">
-                              {offer.author[0]}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <p className="font-medium text-xs sm:text-sm hover:underline">{offer.author}</p>
-                            <div className="flex items-center gap-1">
-                              <Icon name="Star" size={12} className="fill-yellow-400 text-yellow-400" />
-                              <span className="text-xs sm:text-sm text-gray-600">{offer.rating}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                            <Icon name="MessageCircle" size={16} className="text-purple-600" />
-                            <span className="text-sm font-bold text-purple-700">{Math.floor(Math.random() * 30) + 5}</span>
-                            <span className="text-xs text-purple-600 font-medium">откликов</span>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-gray-600">
-                            <Icon name="Eye" size={16} />
-                            <span className="text-sm font-medium">{offer.views}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                        <div className="flex gap-2">
-                          <Button 
-                            onClick={() => {
-                              if (!isAuthenticated) {
-                                setIsLoginOpen(true);
-                              } else {
-                                const itemKey = `offer-${offer.id}`;
-                                if (favorites.includes(itemKey)) {
-                                  setFavorites(favorites.filter(id => id !== itemKey));
-                                } else {
-                                  setFavorites([...favorites, itemKey]);
-                                }
-                              }
-                            }}
-                            variant="outline" 
-                            size="sm"
-                            className={`flex-1 sm:flex-none font-semibold rounded-xl transition-all duration-300 ${favorites.includes(`offer-${offer.id}`) ? 'text-rose-600 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-50 shadow-md hover:shadow-lg' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700'}`}
-                          >
-                            <Icon name="Heart" size={14} className={`sm:mr-1.5 transition-all duration-300 ${favorites.includes(`offer-${offer.id}`) ? 'fill-rose-500 text-rose-600' : ''}`} />
-                            <span className="hidden sm:inline">{favorites.includes(`offer-${offer.id}`) ? 'В избранном' : 'В избранное'}</span>
-                          </Button>
-                          <Button 
-                            onClick={() => {
-                              setSelectedItem(offer);
-                              setIsViewModalOpen(true);
-                            }}
-                            variant="outline" 
-                            size="sm"
-                            className="flex-1 sm:flex-none font-semibold rounded-xl border-gray-300 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-all duration-300"
-                          >
-                            <Icon name="Eye" size={14} className="sm:mr-1.5" />
-                            <span className="hidden sm:inline">Смотреть</span>
-                          </Button>
-                        </div>
-                        <Button 
-                          onClick={() => {
-                            if (!isAuthenticated) {
-                              setIsLoginOpen(true);
-                            } else {
-                              setSelectedItem(offer);
-                              setIsResponseModalOpen(true);
-                            }
-                          }}
-                          size="sm"
-                          className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
-                        >
-                          Написать
-                          <Icon name="MessageCircle" size={14} className="ml-1.5" />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                  offer={offer}
+                  index={index}
+                  offersTopRef={offersTopRef}
+                  favorites={favorites}
+                  isAuthenticated={isAuthenticated}
+                  onToggleFavorite={() => {
+                    if (!isAuthenticated) {
+                      setIsLoginOpen(true);
+                    } else {
+                      const itemKey = `offer-${offer.id}`;
+                      if (favorites.includes(itemKey)) {
+                        setFavorites(favorites.filter(id => id !== itemKey));
+                      } else {
+                        setFavorites([...favorites, itemKey]);
+                      }
+                    }
+                  }}
+                  onViewClick={() => {
+                    setSelectedItem(offer);
+                    setIsViewModalOpen(true);
+                  }}
+                  onContactClick={() => {
+                    if (!isAuthenticated) {
+                      setIsLoginOpen(true);
+                    } else {
+                      setIsChatOpen(true);
+                    }
+                  }}
+                  onAuthorClick={() => {
+                    if (mockUserProfiles[offer.author]) {
+                      setSelectedUserProfile(mockUserProfiles[offer.author]);
+                      setIsUserProfileOpen(true);
+                    }
+                  }}
+                />
               ))}
             </div>
           </div>
