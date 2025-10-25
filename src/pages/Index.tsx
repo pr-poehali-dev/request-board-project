@@ -1721,6 +1721,7 @@ const Index = () => {
                   <button
                     onClick={() => {
                       setSelectedCategory(null);
+                      setSelectedSubcategory(null);
                       scrollToTop();
                     }}
                     className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
