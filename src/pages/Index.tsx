@@ -1140,7 +1140,6 @@ const Index = () => {
                         <Icon name="Calendar" size={14} className="inline mr-2" />
                         По дате
                       </span>
-                      <Icon name="ChevronRight" size={14} className="opacity-50" />
                     </button>
                     
                     {hoveredSort === 'date' && (
