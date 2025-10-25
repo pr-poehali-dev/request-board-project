@@ -2026,13 +2026,25 @@ const Index = () => {
                         <div className="flex justify-between items-start flex-1">
                         <div className="flex-1">
                           <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                            <Badge className="bg-gradient-orange-pink text-white border-0 text-xs">
+                            <Badge className={`${getCategoryColor(request.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
                             </Badge>
-                            <Badge variant="secondary" className="font-medium text-xs">
+                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {request.city}
                             </Badge>
+                            {request.delivery && (
+                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
+                                <Icon name="Truck" size={10} className="mr-1" />
+                                Доставка
+                              </Badge>
+                            )}
+                            {request.exchange && (
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
+                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                                Обмен
+                              </Badge>
+                            )}
                           </div>
                           <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{request.title}</CardTitle>
                           <CardDescription className="text-sm sm:text-base">
@@ -2091,13 +2103,25 @@ const Index = () => {
                         <div className="flex justify-between items-start flex-1">
                         <div className="flex-1">
                           <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                            <Badge className="bg-gradient-purple-pink text-white border-0 text-xs">
+                            <Badge className={`${getCategoryColor(offer.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
                               {offer.category}
                             </Badge>
-                            <Badge variant="secondary" className="font-medium text-xs">
+                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
                               <Icon name="MapPin" size={10} className="mr-1" />
                               {offer.city}
                             </Badge>
+                            {offer.delivery && (
+                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
+                                <Icon name="Truck" size={10} className="mr-1" />
+                                Доставка
+                              </Badge>
+                            )}
+                            {offer.exchange && (
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
+                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                                Обмен
+                              </Badge>
+                            )}
                           </div>
                           <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{offer.title}</CardTitle>
                           <CardDescription className="text-sm sm:text-base">
