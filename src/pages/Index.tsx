@@ -2037,13 +2037,13 @@ const Index = () => {
       {isCreateFormOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="sticky top-0 bg-gradient-orange-pink text-white p-4 sm:p-6 rounded-t-2xl flex items-center justify-between z-10">
-              <h2 className="text-xl sm:text-2xl font-bold">Создать объявление</h2>
+            <div className="sticky top-0 bg-gray-100 p-4 sm:p-6 rounded-t-2xl flex items-center justify-between z-10 border-b border-gray-200 shadow-sm">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Создать объявление</h2>
               <button 
                 onClick={() => setIsCreateFormOpen(false)}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
               >
-                <Icon name="X" size={24} />
+                <Icon name="X" size={24} className="text-gray-700" />
               </button>
             </div>
 
