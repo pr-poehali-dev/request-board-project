@@ -1178,7 +1178,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4" id="categories-menu">
                 <h3 className="font-semibold text-gray-900 mb-3 text-sm">Категории</h3>
                 <div className="space-y-1.5 max-h-[400px] overflow-y-auto">
                   <button
@@ -1224,11 +1224,14 @@ const Index = () => {
                       >
                         <button
                           onClick={(e) => {
-                            const rect = e.currentTarget.getBoundingClientRect();
-                            setMenuPosition({
-                              top: rect.top,
-                              left: rect.right + 8
-                            });
+                            const menuElement = document.getElementById('categories-menu');
+                            if (menuElement) {
+                              const menuRect = menuElement.getBoundingClientRect();
+                              setMenuPosition({
+                                top: menuRect.top + (menuRect.height / 2) - 160,
+                                left: menuRect.right + 8
+                              });
+                            }
                             if (hoveredCategory === category.name) {
                               setHoveredCategory(null);
                             } else {
