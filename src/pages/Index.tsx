@@ -8,6 +8,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import type { Request, Offer } from '@/types';
 import { CITIES, CATEGORIES } from '@/constants/data';
 
+const cities = CITIES;
+const categories = CATEGORIES;
 
 
 const mockRequests: Request[] = [
