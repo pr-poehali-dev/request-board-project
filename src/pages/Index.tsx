@@ -2296,7 +2296,7 @@ const Index = () => {
                           }
                         }}
                       >
-                        <Avatar className="w-12 h-12 bg-gray-600 hover:opacity-80 transition-opacity">
+                        <Avatar className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 hover:opacity-80 transition-opacity">
                           <AvatarFallback className="bg-transparent text-white font-bold">
                             {dialog.avatar}
                           </AvatarFallback>
@@ -2355,7 +2355,7 @@ const Index = () => {
                         }
                       }}
                     >
-                      <Avatar className="w-10 h-10 bg-gray-600">
+                      <Avatar className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600">
                         <AvatarFallback className="bg-transparent text-white font-bold">
                           {currentDialog.avatar}
                         </AvatarFallback>
@@ -2422,7 +2422,7 @@ const Index = () => {
                         <div className={`max-w-[85%] sm:max-w-[70%] ${msg.sender === 'me' ? 'order-2' : 'order-1'}`}>
                           <div className={`rounded-2xl px-4 py-2.5 shadow-sm ${
                             msg.sender === 'me' 
-                              ? 'bg-gray-700 text-white' 
+                              ? 'bg-blue-500 text-white' 
                               : 'bg-white text-gray-800 border border-gray-200'
                           }`}>
                             <p className="text-sm leading-relaxed">{msg.text}</p>
