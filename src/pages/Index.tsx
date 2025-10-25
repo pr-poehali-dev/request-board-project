@@ -30,33 +30,6 @@ const mockRequests: Request[] = [
   { id: 11, title: 'Куплю BMW 3 series', category: 'Транспорт', budget: 'до 2 000 000 ₽', author: 'Сергей', rating: 4.8, responses: 16, description: 'Ищу BMW 3 series в хорошем состоянии', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   { id: 12, title: 'Нужен самокат', category: 'Транспорт', budget: 'до 15 000 ₽', author: 'Денис', rating: 4.5, responses: 7, description: 'Электросамокат для города', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   
-  { id: 13, title: 'Куплю диван для гостиной', category: 'Мебель', budget: 'до 50 000 ₽', author: 'Анастасия', rating: 4.6, responses: 7, description: 'Ищу угловой диван в хорошем состоянии', city: 'Новосибирск', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 14, title: 'Ищу кровать двуспальную', category: 'Мебель', budget: 'до 30 000 ₽', author: 'Татьяна', rating: 4.7, responses: 10, description: 'Нужна кровать с матрасом', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 15, title: 'Нужна коляска для ребенка', category: 'Детские товары', budget: 'до 15 000 ₽', author: 'Ольга', rating: 4.9, responses: 12, description: 'Трансформер или прогулочная коляска', city: 'Екатеринбург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 16, title: 'Куплю детский велосипед', category: 'Детские товары', budget: 'до 5 000 ₽', author: 'Евгений', rating: 4.5, responses: 8, description: 'Для ребенка 5-7 лет', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 17, title: 'Ищу велосипед горный', category: 'Спорт', budget: 'до 30 000 ₽', author: 'Максим', rating: 4.7, responses: 9, description: 'Нужен горный велосипед для трейлов', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 18, title: 'Куплю гантели разборные', category: 'Спорт', budget: 'до 8 000 ₽', author: 'Алексей', rating: 4.6, responses: 5, description: 'Для домашних тренировок', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 19, title: 'Нужен мастер маникюра', category: 'Красота', budget: '2000 ₽', author: 'Юлия', rating: 4.8, responses: 15, description: 'Ищу мастера маникюра на дом', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 20, title: 'Куплю фен для волос', category: 'Красота', budget: 'до 5 000 ₽', author: 'Марина', rating: 4.5, responses: 6, description: 'Профессиональный фен', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 21, title: 'Ищу щенка хаски', category: 'Животные', budget: 'до 30 000 ₽', author: 'Павел', rating: 4.7, responses: 12, description: 'Хочу купить щенка хаски с документами', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 22, title: 'Нужен корм для кошки', category: 'Животные', budget: 'договорная', author: 'Наталья', rating: 4.6, responses: 4, description: 'Ищу премиальный корм для кошки', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 23, title: 'Куплю PS5', category: 'Хобби', budget: 'до 50 000 ₽', author: 'Артур', rating: 4.8, responses: 20, description: 'Ищу PlayStation 5 в хорошем состоянии', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 24, title: 'Ищу настольные игры', category: 'Хобби', budget: 'до 3 000 ₽', author: 'Кирилл', rating: 4.5, responses: 7, description: 'Для семейных вечеров', city: 'Казань', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 25, title: 'Куплю учебники по программированию', category: 'Книги', budget: 'до 2 000 ₽', author: 'Иван', rating: 4.6, responses: 9, description: 'Учебники по Python и JavaScript', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 26, title: 'Ищу классическую литературу', category: 'Книги', budget: 'договорная', author: 'Екатерина', rating: 4.7, responses: 5, description: 'Собрание сочинений классиков', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 27, title: 'Нужен строитель', category: 'Строительство', budget: 'договорная', author: 'Николай', rating: 4.8, responses: 11, description: 'Строительство загородного дома', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 28, title: 'Куплю стройматериалы', category: 'Строительство', budget: 'до 100 000 ₽', author: 'Виктор', rating: 4.5, responses: 6, description: 'Кирпич, цемент, песок', city: 'Новосибирск', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
-  { id: 29, title: 'Ищу программиста Python', category: 'Работа', budget: 'от 150 000 ₽/мес', author: 'IT Компания', rating: 4.9, responses: 35, description: 'Требуется Senior Python разработчик', city: 'Москва', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  { id: 30, title: 'Вакансия дизайнера', category: 'Работа', budget: 'от 80 000 ₽/мес', author: 'Студия дизайна', rating: 4.7, responses: 22, description: 'Ищем UX/UI дизайнера', city: 'Санкт-Петербург', delivery: false, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
-  
   { id: 31, title: 'Куплю кофе в зернах', category: 'Еда и напитки', budget: 'до 2 000 ₽/кг', author: 'Дмитрий', rating: 4.6, responses: 8, description: 'Арабика, свежая обжарка', city: 'Москва', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] },
   { id: 32, title: 'Ищу доставку еды', category: 'Еда и напитки', budget: 'договорная', author: 'Ольга', rating: 4.5, responses: 5, description: 'Здоровое питание на неделю', city: 'Санкт-Петербург', delivery: true, photos: ['https://cdn.poehali.dev/files/e635c0dc-edea-447d-ba7f-f02d1ec89bc8.png'] }
 ];
@@ -354,9 +327,6 @@ const Index = () => {
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [activeTab, setActiveTab] = useState('requests');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
-  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const [isSortOpen, setIsSortOpen] = useState(true);
   const contentTopRef = useRef<HTMLDivElement>(null);
   const prevActiveTab = useRef(activeTab);
@@ -500,8 +470,7 @@ const Index = () => {
     
     // Иначе применяем все фильтры
     const matchesCategory = selectedCategory ? req.category === selectedCategory : true;
-    const matchesSubcategory = selectedSubcategory ? req.category === selectedCategory : true;
-    return matchesCategory && matchesSubcategory && matchesCity && matchesDelivery && matchesExchange;
+    return matchesCategory && matchesCity && matchesDelivery && matchesExchange;
   }).sort((a, b) => {
     if (sortBy === 'date') {
       return sortDirection === 'desc' ? b.id - a.id : a.id - b.id;
@@ -611,7 +580,6 @@ const Index = () => {
     // При переключении вкладок сбрасываем только фильтры категорий, но НЕ поиск и НЕ город
     if (prevActiveTab.current !== activeTab) {
       setSelectedCategory(null);
-      setSelectedSubcategory(null);
       prevActiveTab.current = activeTab;
     }
   }, [activeTab]);
@@ -1078,7 +1046,6 @@ const Index = () => {
                   <button
                     onClick={() => {
                       setSelectedCategory(null);
-                      setSelectedSubcategory(null);
                       scrollToFeed();
                     }}
                     className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
@@ -1090,100 +1057,23 @@ const Index = () => {
                     <Icon name="Grid3x3" size={14} className="inline mr-2" />
                     Все категории
                   </button>
-                  {categories.map((category) => {
-                    return (
-                      <div 
-                        key={category.name}
-                        className="relative"
-                      >
-                        <button
-                          onClick={(e) => {
-                            const menuElement = document.getElementById('categories-menu');
-                            if (menuElement) {
-                              const menuRect = menuElement.getBoundingClientRect();
-                              const viewportHeight = window.innerHeight;
-                              setMenuPosition({
-                                top: viewportHeight / 2 - 160,
-                                left: menuRect.right + 8
-                              });
-                            }
-                            if (hoveredCategory === category.name) {
-                              setHoveredCategory(null);
-                            } else {
-                              setHoveredCategory(category.name);
-                            }
-                          }}
-                          className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left flex items-center justify-between ${
-                            selectedCategory === category.name 
-                              ? `${getCategoryColor(category.name)} text-white shadow-md` 
-                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                          }`}
-                        >
-                          <span>
-                            <Icon name={category.icon as any} size={14} className="inline mr-2" />
-                            {category.name}
-                          </span>
-                          <Icon name="ChevronRight" size={14} className="opacity-50" />
-                        </button>
-                        
-                        {hoveredCategory === category.name && category.subcategories && (
-                          <>
-                            <div 
-                              className="fixed inset-0 z-[99998]"
-                              onClick={() => setHoveredCategory(null)}
-                            />
-                            <div 
-                              className="fixed w-64 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-4 z-[99999] animate-in slide-in-from-left-2 duration-200"
-                              style={{ 
-                                top: `${menuPosition.top}px`,
-                                left: `${menuPosition.left}px`
-                              }}
-                            >
-                              <h4 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200 flex items-center gap-2">
-                                <Icon name="Grid2x2" size={14} />
-                                {category.name}
-                              </h4>
-                              <div className="space-y-1 max-h-80 overflow-y-auto scrollbar-thin">
-                                <button
-                                  onClick={() => {
-                                    setSelectedCategory(category.name);
-                                    setSelectedSubcategory(null);
-                                    setHoveredCategory(null);
-                                    scrollToFeed();
-                                  }}
-                                  className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
-                                    selectedCategory === category.name && !selectedSubcategory
-                                      ? `${getCategoryColor(category.name)} text-white shadow-md`
-                                      : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
-                                  }`}
-                                >
-                                  Все в категории
-                                </button>
-                                {category.subcategories.map((subcategory) => (
-                                  <button
-                                    key={subcategory}
-                                    onClick={() => {
-                                      setSelectedCategory(category.name);
-                                      setSelectedSubcategory(subcategory);
-                                      setHoveredCategory(null);
-                                      scrollToFeed();
-                                    }}
-                                    className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-all font-medium ${
-                                      selectedSubcategory === subcategory && selectedCategory === category.name
-                                        ? `${getCategoryColor(category.name)} text-white shadow-md`
-                                        : 'text-gray-700 hover:bg-purple-50 hover:text-purple-700'
-                                    }`}
-                                  >
-                                    {subcategory}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    );
-                  })}
+                  {categories.map((category) => (
+                    <button
+                      key={category.name}
+                      onClick={() => {
+                        setSelectedCategory(category.name);
+                        scrollToFeed();
+                      }}
+                      className={`w-full px-2.5 py-1.5 rounded-lg text-sm font-medium transition-colors text-left ${
+                        selectedCategory === category.name 
+                          ? `${getCategoryColor(category.name)} text-white shadow-md` 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Icon name={category.icon as any} size={14} className="inline mr-2" />
+                      {category.name}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -1226,7 +1116,6 @@ const Index = () => {
               <button
                 onClick={() => {
                   setSelectedCategory(null);
-                  setSelectedSubcategory(null);
                   setSelectedCity(null);
                   setFilterDelivery(false);
                   setFilterExchange(false);
