@@ -1503,7 +1503,7 @@ const Index = () => {
       <main id="feed-start" className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8 pt-12" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 relative">
-            <div className="sticky top-20 space-y-3 relative z-10">
+            <div className="space-y-3 relative z-10">
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm">Тип</h3>
                 <div className="space-y-1.5">
