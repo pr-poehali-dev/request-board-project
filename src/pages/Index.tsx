@@ -1146,18 +1146,18 @@ const Index = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-100/20 via-transparent to-transparent pointer-events-none"></div>
       <div className="relative z-0">
       <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-black border-b border-gray-700/50 sticky top-0 z-50 shadow-2xl backdrop-blur-lg">
-        <div className="container mx-auto px-3 sm:px-6 lg:px-8" style={{ maxWidth: '1400px' }}>
-          <div className="flex justify-between items-center h-14 sm:h-16 gap-4">
+        <div className="container mx-auto px-2 sm:px-6 lg:px-8" style={{ maxWidth: '1400px' }}>
+          <div className="flex justify-between items-center h-14 sm:h-16 gap-1 sm:gap-4">
             <button 
               onClick={() => setActiveTab('requests')}
-              className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 hover:opacity-80 transition-opacity"
+              className="flex items-center space-x-1 sm:space-x-3 flex-shrink-0 hover:opacity-80 transition-opacity"
             >
               <img 
                 src="https://cdn.poehali.dev/projects/5930aa02-ebd9-4af3-86f3-42ce8f831926/files/d2f7801c-af44-4162-850f-93d100ad17ae.jpg" 
                 alt="Логотип"
-                className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl shadow-lg ring-2 ring-white/30"
+                className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl shadow-lg ring-1 sm:ring-2 ring-white/30"
               />
-              <span className="text-lg sm:text-2xl font-bold text-white">Доска запросов</span>
+              <span className="text-sm sm:text-2xl font-bold text-white whitespace-nowrap">Доска запросов</span>
             </button>
 
             <div className="hidden md:flex flex-1 max-w-2xl items-center gap-3">
@@ -1201,15 +1201,15 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-3 flex-shrink-0">
+            <div className="flex items-center space-x-1 sm:space-x-3 flex-shrink-0">
             {isAuthenticated && (
-              <div className="flex items-center space-x-1 text-white">
+              <div className="flex items-center space-x-0.5 sm:space-x-1 text-white">
                 <button 
                   onClick={() => setActiveTab('favorites')}
-                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
+                  className="relative p-1.5 sm:p-2 hover:bg-white/20 rounded-lg sm:rounded-xl transition-colors backdrop-blur-sm"
                   title="Избранное"
                 >
-                  <Icon name="Heart" size={22} />
+                  <Icon name="Heart" size={18} className="sm:w-[22px] sm:h-[22px]" />
                   {favorites.length > 0 && (
                     <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold shadow-lg">
                       {favorites.length}
@@ -1218,10 +1218,10 @@ const Index = () => {
                 </button>
                 <button 
                   onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
+                  className="relative p-1.5 sm:p-2 hover:bg-white/20 rounded-lg sm:rounded-xl transition-colors backdrop-blur-sm"
                   title="Уведомления"
                 >
-                  <Icon name="Bell" size={22} />
+                  <Icon name="Bell" size={18} className="sm:w-[22px] sm:h-[22px]" />
                   {notifications.filter(n => !n.read).length > 0 && (
                     <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full text-white text-[10px] flex items-center justify-center font-semibold shadow-lg">
                       {notifications.filter(n => !n.read).length}
@@ -1230,10 +1230,10 @@ const Index = () => {
                 </button>
                 <button 
                   onClick={() => setIsChatOpen(!isChatOpen)} 
-                  className="relative p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm"
+                  className="relative p-1.5 sm:p-2 hover:bg-white/20 rounded-lg sm:rounded-xl transition-colors backdrop-blur-sm"
                   title="Сообщения"
                 >
-                  <Icon name="MessageCircle" size={22} />
+                  <Icon name="MessageCircle" size={18} className="sm:w-[22px] sm:h-[22px]" />
                   {dialogs.filter(d => d.unread > 0).length > 0 && (
                     <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg">
                       {dialogs.reduce((sum, d) => sum + d.unread, 0)}
@@ -1243,9 +1243,9 @@ const Index = () => {
               </div>
             )}
 
-            <div className="h-6 w-px bg-white/30"></div>
+            <div className="hidden sm:block h-6 w-px bg-white/30"></div>
 
-            <div className="relative flex items-center bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-full p-1 border border-white/20 shadow-lg">
+            <div className="relative flex items-center bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-full p-0.5 sm:p-1 border border-white/20 shadow-lg">
               <div 
                 className={`absolute top-1 bottom-1 bg-white rounded-full shadow-md transition-all duration-300 ease-out ${
                   language === 'ru' ? 'left-1 w-[38px]' : 'left-[calc(50%)] w-[38px]'
@@ -1253,7 +1253,7 @@ const Index = () => {
               />
               <button
                 onClick={() => setLanguage('ru')}
-                className={`relative z-10 w-[38px] py-1 rounded-full text-xs font-bold transition-colors duration-300 ${
+                className={`relative z-10 w-[30px] sm:w-[38px] py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold transition-colors duration-300 ${
                   language === 'ru' ? 'text-gray-900' : 'text-white/70 hover:text-white'
                 }`}
               >
@@ -1261,7 +1261,7 @@ const Index = () => {
               </button>
               <button
                 onClick={() => setLanguage('ua')}
-                className={`relative z-10 w-[38px] py-1 rounded-full text-xs font-bold transition-colors duration-300 ${
+                className={`relative z-10 w-[30px] sm:w-[38px] py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold transition-colors duration-300 ${
                   language === 'ua' ? 'text-gray-900' : 'text-white/70 hover:text-white'
                 }`}
               >
@@ -1272,7 +1272,7 @@ const Index = () => {
             {!isAuthenticated ? (
               <Button 
                 onClick={() => setIsLoginOpen(true)}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-sm px-6 h-9 shadow-lg hover:shadow-xl transition-all"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-xs sm:text-sm px-3 sm:px-6 h-8 sm:h-9 shadow-lg hover:shadow-xl transition-all"
               >
                 Войти
               </Button>
@@ -1299,11 +1299,12 @@ const Index = () => {
             {isAuthenticated && (
               <Button
                 onClick={() => setIsCreateFormOpen(true)}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-sm px-6 h-9 shadow-lg hover:shadow-xl transition-all"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-xs sm:text-sm px-2 sm:px-6 h-8 sm:h-9 shadow-lg hover:shadow-xl transition-all"
                 title="Создать объявление"
               >
-                <Icon name="Sparkles" size={18} className="mr-1.5" />
-                Создать
+                <Icon name="Sparkles" size={16} className="sm:w-[18px] sm:h-[18px] mr-0.5 sm:mr-1.5" />
+                <span className="hidden sm:inline">Создать</span>
+                <span className="sm:hidden">+</span>
               </Button>
             )}
             </div>
@@ -1538,7 +1539,7 @@ const Index = () => {
       
 
 
-      <main id="feed-start" className="container mx-auto px-3 sm:px-6 lg:px-8 pb-24 md:pb-8 pt-4 md:pt-12" style={{ maxWidth: '1400px' }}>
+      <main id="feed-start" className="container mx-auto px-2 sm:px-3 md:px-6 lg:px-8 pb-24 md:pb-8 pt-3 md:pt-12" style={{ maxWidth: '1400px' }}>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 relative">
             <div className="sticky top-20 space-y-3 relative z-10">
@@ -2240,7 +2241,7 @@ const Index = () => {
                 </CardContent>
               </Card>
             ) : (
-              <div className="grid gap-3 sm:gap-4">
+              <div className="grid gap-2 sm:gap-3 md:gap-4">
                 {favoritesTab === 'requests' && mockRequests.filter(req => favorites.includes(`request-${req.id}`)).map((request, index) => (
                   <Card 
                     key={request.id}
@@ -2248,45 +2249,45 @@ const Index = () => {
                     className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 animate-scale-in"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <CardHeader className="pb-3 sm:pb-6">
-                      <div className="flex gap-4">
+                    <CardHeader className="pb-2 sm:pb-3 md:pb-6">
+                      <div className="flex gap-2 sm:gap-4">
                         {request.photos && request.photos.length > 0 && (
                           <img 
                             src={request.photos[0]} 
                             alt={request.title}
-                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                            className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover rounded-lg sm:rounded-xl flex-shrink-0"
                           />
                         )}
                         <div className="flex justify-between items-start flex-1">
                         <div className="flex-1">
-                          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                            <Badge className={`${getCategoryColor(request.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
+                          <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 mb-1 sm:mb-2 flex-wrap">
+                            <Badge className={`${getCategoryColor(request.category)} text-white border-0 text-[10px] sm:text-xs whitespace-nowrap shadow-md`}>
                               {request.category}
                             </Badge>
-                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
-                              <Icon name="MapPin" size={10} className="mr-1" />
+                            <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-[10px] sm:text-xs whitespace-nowrap">
+                              <Icon name="MapPin" size={8} className="sm:w-[10px] sm:h-[10px] mr-0.5 sm:mr-1" />
                               {request.city}
                             </Badge>
                             {request.delivery && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
-                                <Icon name="Truck" size={10} className="mr-1" />
+                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-[10px] sm:text-xs whitespace-nowrap">
+                                <Icon name="Truck" size={8} className="sm:w-[10px] sm:h-[10px] mr-0.5 sm:mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {request.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
-                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-[10px] sm:text-xs whitespace-nowrap">
+                                <Icon name="ArrowLeftRight" size={8} className="sm:w-[10px] sm:h-[10px] mr-0.5 sm:mr-1" />
                                 Обмен
                               </Badge>
                             )}
                           </div>
-                          <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{request.title}</CardTitle>
-                          <CardDescription className="text-sm sm:text-base">
+                          <CardTitle className="text-sm sm:text-lg md:text-xl mb-1 sm:mb-1.5">{request.title}</CardTitle>
+                          <CardDescription className="text-xs sm:text-sm md:text-base line-clamp-2">
                             {request.description}
                           </CardDescription>
                         </div>
-                        <div className="ml-3 sm:ml-4">
-                          <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-black break-words">
+                        <div className="ml-2 sm:ml-3 md:ml-4">
+                          <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-extrabold text-black break-words">
                             {request.budget}
                           </div>
                         </div>
@@ -2325,19 +2326,19 @@ const Index = () => {
                     className="hover:shadow-xl transition-all duration-300 border-2 hover:border-secondary/20 animate-scale-in"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <CardHeader className="pb-3 sm:pb-6">
-                      <div className="flex gap-4">
+                    <CardHeader className="pb-2 sm:pb-3 md:pb-6">
+                      <div className="flex gap-2 sm:gap-4">
                         {offer.photos && offer.photos.length > 0 && (
                           <img 
                             src={offer.photos[0]} 
                             alt={offer.title}
-                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl flex-shrink-0"
+                            className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover rounded-lg sm:rounded-xl flex-shrink-0"
                           />
                         )}
                         <div className="flex justify-between items-start flex-1">
                         <div className="flex-1">
-                          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 flex-wrap">
-                            <Badge className={`${getCategoryColor(offer.category)} text-white border-0 text-xs whitespace-nowrap shadow-md`}>
+                          <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 mb-1 sm:mb-2 flex-wrap">
+                            <Badge className={`${getCategoryColor(offer.category)} text-white border-0 text-[10px] sm:text-xs whitespace-nowrap shadow-md`}>
                               {offer.category}
                             </Badge>
                             <Badge variant="outline" className="font-medium text-pink-700 border-pink-200 bg-pink-50 text-xs whitespace-nowrap">
@@ -2345,20 +2346,20 @@ const Index = () => {
                               {offer.city}
                             </Badge>
                             {offer.delivery && (
-                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-xs whitespace-nowrap">
-                                <Icon name="Truck" size={10} className="mr-1" />
+                              <Badge variant="outline" className="font-medium text-orange-700 border-orange-300 bg-orange-50 text-[10px] sm:text-xs whitespace-nowrap">
+                                <Icon name="Truck" size={8} className="sm:w-[10px] sm:h-[10px] mr-0.5 sm:mr-1" />
                                 Доставка
                               </Badge>
                             )}
                             {offer.exchange && (
-                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-xs whitespace-nowrap">
-                                <Icon name="ArrowLeftRight" size={10} className="mr-1" />
+                              <Badge variant="outline" className="font-medium text-violet-700 border-violet-300 bg-violet-50 text-[10px] sm:text-xs whitespace-nowrap">
+                                <Icon name="ArrowLeftRight" size={8} className="sm:w-[10px] sm:h-[10px] mr-0.5 sm:mr-1" />
                                 Обмен
                               </Badge>
                             )}
                           </div>
-                          <CardTitle className="text-lg sm:text-2xl mb-1.5 sm:mb-2">{offer.title}</CardTitle>
-                          <CardDescription className="text-sm sm:text-base">
+                          <CardTitle className="text-sm sm:text-lg md:text-xl mb-1 sm:mb-1.5">{offer.title}</CardTitle>
+                          <CardDescription className="text-xs sm:text-sm md:text-base line-clamp-2">
                             {offer.description}
                           </CardDescription>
                         </div>
