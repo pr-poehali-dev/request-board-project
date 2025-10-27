@@ -2215,9 +2215,9 @@ const Index = () => {
             onTouchEnd={handleTouchEnd}
           >
             <div className="text-center mb-4 sm:mb-6">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4">
                 Избранное
-              </h1>
+              </h2>
               <p className="text-base sm:text-lg text-gray-600 mb-4">
                 {favorites.length} {favorites.length === 1 ? 'объявление' : 'объявлений'}
               </p>
