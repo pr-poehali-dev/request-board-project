@@ -30,12 +30,15 @@ export default function Shop() {
   const MenuItem = ({ icon, label, onClick }: { icon: string; label: string; onClick: () => void }) => (
     <button
       onClick={onClick}
-      className="group flex flex-col items-center gap-3 p-6 transition-all duration-300 hover:scale-110 active:scale-95"
+      className="group flex flex-col items-center gap-4 p-6 transition-all duration-200 hover:scale-110 active:scale-95 relative"
     >
-      <div className="text-7xl drop-shadow-2xl filter brightness-110 group-hover:brightness-125 transition-all duration-300 transform group-hover:-translate-y-2">
-        {icon}
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-magenta-500 to-yellow-400 blur-2xl opacity-60 group-hover:opacity-100 transition-opacity"></div>
+        <div className="relative text-7xl filter drop-shadow-2xl transform group-hover:rotate-6 transition-transform duration-300">
+          {icon}
+        </div>
       </div>
-      <span className="text-white/90 text-sm font-medium tracking-wider uppercase drop-shadow-lg">
+      <span className="retro-pixel text-cyan-300 text-[10px] tracking-widest uppercase retro-glow group-hover:text-magenta-400 transition-colors">
         {label}
       </span>
     </button>
@@ -47,66 +50,89 @@ export default function Shop() {
         setSelectedProduct(product);
         setScreen('product');
       }}
-      className="group relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-105 active:scale-95"
+      className="group relative bg-gradient-to-br from-purple-900/80 via-black to-blue-900/80 rounded-none p-6 border-4 border-cyan-400 hover:border-magenta-400 transition-all duration-300 hover:scale-105 active:scale-95 retro-border overflow-hidden"
     >
+      <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,255,255,0.03)_2px,rgba(0,255,255,0.03)_4px)] pointer-events-none"></div>
+      
       {product.isDrop && (
-        <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
-          DROP
+        <div className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 via-yellow-400 to-red-500 text-black retro-pixel text-[8px] px-3 py-1 border-2 border-black animate-pulse shadow-lg">
+          ★DROP★
         </div>
       )}
-      <div className="text-6xl mb-4 filter drop-shadow-2xl group-hover:scale-110 transition-transform duration-300">
+      
+      <div className="relative text-7xl mb-4 filter drop-shadow-2xl group-hover:scale-125 transition-transform duration-500">
         {product.image}
       </div>
-      <h3 className="text-white font-bold text-lg mb-2">{product.name}</h3>
-      <p className="text-emerald-400 font-bold text-xl mb-3">{product.price}</p>
-      <div className={`inline-block px-4 py-1 rounded-full text-xs font-bold ${
+      
+      <h3 className="text-yellow-300 font-bold text-lg mb-2 retro-glow">{product.name}</h3>
+      <p className="text-lime-400 font-bold text-2xl mb-3 retro-glow retro-pixel text-[12px]">{product.price}</p>
+      
+      <div className={`inline-block px-4 py-2 border-2 retro-pixel text-[8px] ${
         product.status === 'available' 
-          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50' 
-          : 'bg-red-500/20 text-red-400 border border-red-500/50'
+          ? 'bg-lime-500 text-black border-lime-300 shadow-[0_0_20px_rgba(0,255,0,0.5)]' 
+          : 'bg-red-500 text-black border-red-300 shadow-[0_0_20px_rgba(255,0,0,0.5)]'
       }`}>
-        {product.status === 'available' ? 'В наличии' : 'Поздно'}
+        {product.status === 'available' ? '✓ ON' : '✗ OFF'}
       </div>
     </button>
   );
 
   if (screen === 'start') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+      <div className="min-h-screen bg-black relative overflow-hidden retro-scanline retro-crt">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,255,0,0.03)_2px,rgba(0,255,0,0.03)_4px)]"></div>
+        </div>
+
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-cyan-500 to-transparent rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-magenta-500 to-transparent rounded-full filter blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-br from-yellow-500 to-transparent rounded-full filter blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
         </div>
         
-        <div className="text-center z-10 space-y-12">
-          <div className="space-y-4">
-            <div className="text-white/40 text-sm font-mono tracking-widest uppercase">
-              Memory Card (PS2)/1
+        <div className="relative z-10 min-h-screen flex items-center justify-center">
+          <div className="text-center space-y-12 p-8">
+            <div className="space-y-6">
+              <div className="retro-pixel text-cyan-400 text-[10px] tracking-widest uppercase retro-glow animate-pulse">
+                &lt;&lt; MEMORY CARD (PS2)/1 &gt;&gt;
+              </div>
+              
+              <div className="relative inline-block">
+                <h1 className="retro-pixel text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-magenta-500 to-yellow-400 retro-glow animate-pulse">
+                  BRAND
+                </h1>
+                <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400 via-magenta-500 to-yellow-400 blur-2xl opacity-50"></div>
+              </div>
+              
+              <div className="retro-pixel text-lime-400 text-[12px] tracking-widest retro-glow">
+                ◀◀◀ EXCLUSIVE STORE ▶▶▶
+              </div>
             </div>
-            <h1 className="text-7xl md:text-8xl font-bold text-white drop-shadow-2xl tracking-tight">
-              BRAND
-            </h1>
-            <div className="text-white/60 text-lg font-mono tracking-wider">
-              ◀ Exclusive Store ▶
-            </div>
-          </div>
-          
-          <button
-            onClick={() => setScreen('menu')}
-            className="group relative px-12 py-4 text-white font-bold text-xl tracking-wider uppercase transition-all duration-300 hover:scale-110 active:scale-95"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-            <div className="relative bg-gradient-to-r from-blue-500 to-purple-500 px-12 py-4 rounded-lg border border-white/20">
-              <span className="animate-pulse">▶ Press Start</span>
-            </div>
-          </button>
+            
+            <button
+              onClick={() => setScreen('menu')}
+              className="group relative inline-block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-magenta-500 to-yellow-400 blur-xl opacity-75 group-hover:opacity-100 transition-opacity animate-pulse"></div>
+              <div className="relative retro-pixel text-[14px] bg-black text-yellow-300 px-12 py-6 border-4 border-cyan-400 hover:border-magenta-400 retro-glow hover:scale-110 transition-all duration-300 shadow-[0_0_30px_rgba(0,255,255,0.5)]">
+                <span className="animate-[blink_1s_infinite]">▶</span> PRESS START
+              </div>
+            </button>
 
-          <div className="flex items-center justify-center gap-4 text-white/40 text-sm font-mono">
-            <Icon name="Circle" size={16} />
-            <span>Enter</span>
-            <Icon name="Circle" size={16} className="ml-6" />
-            <span>Back</span>
-            <Icon name="Triangle" size={16} className="ml-6" />
-            <span>Options</span>
+            <div className="flex items-center justify-center gap-6 retro-pixel text-[8px] text-cyan-300/60">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 border-2 border-current rounded-full"></span>
+                <span>ENTER</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 border-2 border-current rounded-full"></span>
+                <span>BACK</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-current"></span>
+                <span>OPTIONS</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -115,37 +141,43 @@ export default function Shop() {
 
   if (screen === 'menu') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+      <div className="min-h-screen bg-black relative overflow-hidden retro-scanline retro-crt">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,0,255,0.03)_2px,rgba(255,0,255,0.03)_4px)]"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-magenta-500 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 py-12 relative z-10">
-          <div className="text-right mb-8 space-y-1">
-            <div className="text-emerald-400 text-sm font-mono tracking-wider">Your System</div>
-            <div className="text-white text-2xl font-bold tracking-wide">Configuration</div>
+          <div className="text-right mb-12 space-y-2 border-4 border-yellow-400 bg-black/80 p-4 inline-block ml-auto">
+            <div className="retro-pixel text-lime-400 text-[8px] tracking-wider retro-glow">YOUR SYSTEM</div>
+            <div className="retro-pixel text-cyan-400 text-[14px] tracking-wide retro-glow">CONFIG</div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-16">
-            <MenuItem icon="👕" label="Магазин" onClick={() => setScreen('catalog')} />
-            <MenuItem icon="💎" label="Дропы" onClick={() => setScreen('drops')} />
-            <MenuItem icon="📦" label="Заказы" onClick={() => alert('Coming soon')} />
-            <MenuItem icon="⚙️" label="Настройки" onClick={() => alert('Coming soon')} />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-5xl mx-auto mb-20">
+            <MenuItem icon="👕" label="SHOP" onClick={() => setScreen('catalog')} />
+            <MenuItem icon="💎" label="DROPS" onClick={() => setScreen('drops')} />
+            <MenuItem icon="📦" label="ORDERS" onClick={() => alert('Coming soon')} />
+            <MenuItem icon="⚙️" label="CONFIG" onClick={() => alert('Coming soon')} />
           </div>
 
-          <div className="text-center space-y-4">
-            <div className="text-white/60 text-lg font-mono tracking-widest">BRAND STORE</div>
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-white/60"></div>
-              <div className="w-3 h-3 rounded-full bg-white/20"></div>
+          <div className="text-center space-y-6">
+            <div className="retro-pixel text-magenta-400 text-[16px] tracking-widest retro-glow animate-pulse">
+              ≡ BRAND STORE ≡
+            </div>
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-r from-cyan-400 to-magenta-500 shadow-[0_0_20px_rgba(0,255,255,0.8)] animate-pulse"></div>
+              <div className="w-4 h-4 rounded-full bg-white/20 border-2 border-cyan-400"></div>
             </div>
           </div>
 
-          <div className="fixed bottom-8 left-0 right-0 flex items-center justify-center gap-8 text-white/60 text-sm font-mono">
-            <button onClick={() => setScreen('start')} className="flex items-center gap-2 hover:text-white transition-colors">
-              <Icon name="X" size={20} />
-              <span>Back</span>
+          <div className="fixed bottom-8 left-0 right-0 flex items-center justify-center">
+            <button 
+              onClick={() => setScreen('start')} 
+              className="retro-pixel text-[10px] text-cyan-300 hover:text-magenta-400 transition-colors flex items-center gap-3 bg-black/80 px-6 py-3 border-2 border-cyan-400 hover:border-magenta-400 retro-glow"
+            >
+              <Icon name="X" size={16} />
+              <span>BACK</span>
             </button>
           </div>
         </div>
@@ -155,58 +187,62 @@ export default function Shop() {
 
   if (screen === 'product' && selectedProduct) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-emerald-500 rounded-full filter blur-3xl"></div>
+      <div className="min-h-screen bg-black relative overflow-hidden retro-scanline retro-crt">
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,255,0,0.03)_2px,rgba(0,255,0,0.03)_4px)]"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-gradient-to-br from-lime-500 to-transparent rounded-full filter blur-3xl animate-pulse"></div>
         </div>
 
         <div className="container mx-auto px-4 py-12 relative z-10">
           <button
             onClick={() => setScreen(selectedProduct.isDrop ? 'drops' : 'catalog')}
-            className="mb-8 flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+            className="mb-8 retro-pixel text-[10px] text-cyan-300 hover:text-yellow-300 transition-colors flex items-center gap-3 bg-black/80 px-4 py-2 border-2 border-cyan-400 hover:border-yellow-400"
           >
-            <Icon name="ArrowLeft" size={20} />
-            <span className="font-mono">Назад</span>
+            <Icon name="ArrowLeft" size={16} />
+            <span>&lt;&lt; BACK</span>
           </button>
 
-          <div className="max-w-2xl mx-auto bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-md rounded-3xl p-8 border border-white/10">
+          <div className="max-w-2xl mx-auto bg-gradient-to-br from-purple-900/50 via-black to-blue-900/50 border-4 border-cyan-400 p-8 relative overflow-hidden retro-border">
+            <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(0,255,255,0.05)_10px,rgba(0,255,255,0.05)_20px)] pointer-events-none"></div>
+            
             {selectedProduct.isDrop && (
-              <div className="text-center mb-6">
-                <span className="inline-block bg-red-500 text-white text-sm font-bold px-6 py-2 rounded-full shadow-lg animate-pulse">
-                  🔥 LIMITED DROP
-                </span>
+              <div className="text-center mb-8 relative">
+                <div className="inline-block bg-gradient-to-r from-red-500 via-yellow-400 to-red-500 text-black retro-pixel text-[12px] px-8 py-3 border-4 border-black animate-pulse shadow-[0_0_30px_rgba(255,0,0,0.8)]">
+                  🔥 LIMITED DROP 🔥
+                </div>
               </div>
             )}
 
-            <div className="text-center mb-8">
-              <div className="text-9xl mb-6 filter drop-shadow-2xl">
+            <div className="text-center relative">
+              <div className="text-9xl mb-8 filter drop-shadow-2xl inline-block transform hover:scale-110 transition-transform duration-500">
                 {selectedProduct.image}
               </div>
-              <h2 className="text-4xl font-bold text-white mb-4">{selectedProduct.name}</h2>
-              <p className="text-5xl font-bold text-emerald-400 mb-6">{selectedProduct.price}</p>
               
-              <div className={`inline-block px-6 py-2 rounded-full text-sm font-bold ${
+              <h2 className="retro-pixel text-3xl text-yellow-300 mb-6 retro-glow">{selectedProduct.name}</h2>
+              <p className="retro-pixel text-5xl text-lime-400 mb-8 retro-glow animate-pulse">{selectedProduct.price}</p>
+              
+              <div className={`inline-block px-8 py-3 border-4 retro-pixel text-[12px] mb-8 ${
                 selectedProduct.status === 'available' 
-                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50' 
-                  : 'bg-red-500/20 text-red-400 border border-red-500/50'
+                  ? 'bg-lime-500 text-black border-lime-300 shadow-[0_0_30px_rgba(0,255,0,0.8)]' 
+                  : 'bg-red-500 text-black border-red-300 shadow-[0_0_30px_rgba(255,0,0,0.8)]'
               }`}>
-                {selectedProduct.status === 'available' ? '✓ В наличии' : '✗ Поздно'}
+                {selectedProduct.status === 'available' ? '✓✓ IN STOCK ✓✓' : '✗✗ SOLD OUT ✗✗'}
               </div>
             </div>
 
             {selectedProduct.status === 'available' ? (
               <button
                 onClick={() => alert('Telegram Payments integration')}
-                className="w-full group relative overflow-hidden"
+                className="w-full group relative mt-6"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-blue-600 blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                <div className="relative bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-bold text-xl py-5 rounded-xl border border-white/20 group-hover:scale-105 transition-transform duration-300">
-                  🛒 Оформить заказ
+                <div className="absolute inset-0 bg-gradient-to-r from-lime-400 via-cyan-400 to-magenta-500 blur-2xl opacity-75 group-hover:opacity-100 transition-opacity animate-pulse"></div>
+                <div className="relative retro-pixel text-[14px] bg-black text-lime-400 border-4 border-lime-400 hover:border-magenta-400 py-6 group-hover:scale-105 transition-all duration-300 retro-glow shadow-[0_0_40px_rgba(0,255,0,0.6)]">
+                  🛒 &gt;&gt; ORDER NOW &lt;&lt; 🛒
                 </div>
               </button>
             ) : (
-              <div className="w-full bg-gray-700/50 text-gray-400 font-bold text-xl py-5 rounded-xl text-center border border-gray-600/50">
-                Товар недоступен
+              <div className="w-full mt-6 retro-pixel text-[14px] bg-black/50 text-red-400 border-4 border-red-500 py-6 text-center">
+                ✗ NOT AVAILABLE ✗
               </div>
             )}
           </div>
@@ -216,36 +252,37 @@ export default function Shop() {
   }
 
   const currentProducts = screen === 'drops' ? drops : products;
-  const title = screen === 'drops' ? '💎 Limited Drops' : '👕 Каталог';
+  const title = screen === 'drops' ? '💎 DROPS' : '👕 CATALOG';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent"></div>
-      </div>
+    <div className="min-h-screen bg-black relative overflow-hidden retro-scanline retro-crt">
+      <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,255,255,0.03)_2px,rgba(0,255,255,0.03)_4px)]"></div>
 
       <div className="container mx-auto px-4 py-12 relative z-10">
         <button
           onClick={() => setScreen('menu')}
-          className="mb-8 flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+          className="mb-8 retro-pixel text-[10px] text-cyan-300 hover:text-yellow-300 transition-colors flex items-center gap-3 bg-black/80 px-4 py-2 border-2 border-cyan-400 hover:border-yellow-400"
         >
-          <Icon name="ArrowLeft" size={20} />
-          <span className="font-mono">Меню</span>
+          <Icon name="ArrowLeft" size={16} />
+          <span>&lt;&lt; MENU</span>
         </button>
 
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center drop-shadow-2xl">
-          {title}
-        </h2>
+        <div className="text-center mb-12 relative inline-block left-1/2 -translate-x-1/2">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-magenta-500 to-yellow-400 blur-2xl opacity-50"></div>
+          <h2 className="relative retro-pixel text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-magenta-500 to-yellow-400 retro-glow py-4 px-8 border-4 border-cyan-400 bg-black">
+            {title}
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {currentProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
         {currentProducts.length === 0 && (
-          <div className="text-center text-white/40 text-lg font-mono mt-12">
-            Пока нет дропов
+          <div className="text-center retro-pixel text-[12px] text-red-400 mt-12 retro-glow animate-pulse">
+            ✗ NO DROPS AVAILABLE ✗
           </div>
         )}
       </div>
