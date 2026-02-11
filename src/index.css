@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -236,88 +236,6 @@
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #c7d2fe;
-  }
-
-  /* Y2K Retro Styles */
-  .retro-pixel {
-    font-family: "Press Start 2P", cursive;
-    image-rendering: pixelated;
-  }
-
-  .retro-glow {
-    text-shadow:
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 30px currentColor;
-  }
-
-  .retro-border {
-    border: 3px solid;
-    border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1;
-  }
-
-  @keyframes matrix-rain {
-    0% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100vh);
-      opacity: 0;
-    }
-  }
-
-  @keyframes scanline {
-    0% {
-      transform: translateY(-100%);
-    }
-    100% {
-      transform: translateY(100%);
-    }
-  }
-
-  @keyframes flicker {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.95;
-    }
-  }
-
-  @keyframes blink {
-    0%,
-    49% {
-      opacity: 1;
-    }
-    50%,
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .retro-scanline::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(transparent, rgba(0, 255, 255, 0.3));
-    animation: scanline 8s linear infinite;
-    pointer-events: none;
-    z-index: 9999;
-  }
-
-  .retro-crt {
-    animation: flicker 0.15s infinite;
   }
 
   /* Анимация для списка объявлений при смене сортировки/категории */
